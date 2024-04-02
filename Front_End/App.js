@@ -7,8 +7,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
 SplashScreen.preventAutoHideAsync();
 
-import colors from "./app/config/colors";
-import AppButton from "./app/components/AppButton";
+import AppButtonBorder from "./app/components/AppButtonBorder";
 
 export default function App() {
   //for fonts
@@ -31,22 +30,10 @@ export default function App() {
       style={styles.container}
       onLayout={handleOnLayout} //for fonts
     >
-      <Text
-        style={{
-          fontFamily: "montserrat-black",
-          fontSize: 40,
-          color: colors.orangePrimary,
-        }}
-      >
-        Open up App.js to start working on your app!
-      </Text>
-
-      <AppButton
+      <AppButtonBorder
         title="join"
-        width={168}
-        height={32}
-        onPress={() => console.log("tapped")}
         image={require("./assets/icons/calendar.png")}
+        onPress={() => console.log("tapped")}
       />
 
       <StatusBar style="auto" />
