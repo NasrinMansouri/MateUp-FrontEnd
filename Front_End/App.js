@@ -8,6 +8,7 @@ import { useCallback } from "react";
 SplashScreen.preventAutoHideAsync();
 
 import colors from "./app/config/colors";
+import BulletPointWithText from "./app/components/BulletPointWithText";
 
 export default function App() {
   //for fonts
@@ -30,7 +31,19 @@ export default function App() {
       style={styles.container}
       onLayout={handleOnLayout} //for fonts
     >
-      <Text style={{ color: colors.white }}>hiiiiiii</Text>
+      <BulletPointWithText
+        bulletColor={colors.orangePrimary}
+        width={5}
+        height={5}
+        borderRadius={5 / 2}
+        marginRight={4}
+        text="spinning"
+        textColor={colors.white}
+        fontFamily="nunitoSans-bold"
+        textTransform={"uppercase"}
+        fontSize={16}
+      />
+
       <StatusBar style="auto" />
     </View>
   );
