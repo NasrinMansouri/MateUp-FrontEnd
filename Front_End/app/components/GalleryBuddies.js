@@ -10,6 +10,11 @@ import CardProfile from "./CardProfile";
 import colors from "../config/colors";
 
 function GalleryBuddies({ buddies }) {
+  const capitalizeFirstLetter = (string) => {
+    // capitalize first letter and make rest lowercase
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  };
+
   return (
     <FlatList
       style={styles.container}
@@ -19,7 +24,8 @@ function GalleryBuddies({ buddies }) {
       renderItem={({ item }) => (
         <CardProfile
           onPress={() => console.log("my buddies", item)}
-          name={item.name}
+          //   name={item.name}
+          name={capitalizeFirstLetter(item.name)}
           image={item.image}
           flexDirection={"column"}
           cardWidth={97}
