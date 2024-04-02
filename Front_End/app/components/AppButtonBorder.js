@@ -19,8 +19,8 @@ function AppButtonIcon({ title, onPress, image }) {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.black,
-    width: 126,
-    height: 51,
+    width: 146,
+    height: 56,
     borderRadius: 51,
     borderWidth: 1,
     borderColor: colors.green,
