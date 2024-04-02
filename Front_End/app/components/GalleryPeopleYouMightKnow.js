@@ -27,9 +27,10 @@ function GalleryPeopleYouMightKnow({ members }) {
           cardHeight={98}
           cardBorderWidth={1}
           cardBorderColor={colors.black}
+          cardRadius={5}
           imageHeight={52}
           imageWidth={52}
-          borderRadius={52 / 2}
+          imageRadius={52 / 2}
         />
       )}
     />
@@ -70,5 +71,5 @@ export default GalleryPeopleYouMightKnow;
 
 //to be used in screen as:
 {
-  /* <GalleryPeopleToKnow members={members} /> */
+  /* <GalleryPeopleYouMightKnow members={members} /> */
 }
