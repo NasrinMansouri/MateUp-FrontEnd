@@ -33,6 +33,8 @@ function GalleryPeopleYouMightKnow({ members }) {
           imageWidth={52}
           imageRadius={52 / 2}
           textColor={colors.white}
+          fontFamily="nunitoSans-bold"
+          fontSize={14}
         />
       )}
     />

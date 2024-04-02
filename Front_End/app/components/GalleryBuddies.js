@@ -32,6 +32,7 @@ function GalleryBuddies({ buddies }) {
           imageWidth={77}
           imageRadius={77 / 2}
           textColor={colors.white}
+          fontSize={14}
         />
       )}
     />

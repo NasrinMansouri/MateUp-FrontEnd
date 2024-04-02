@@ -82,16 +82,13 @@ function CardProfile({
 const styles = StyleSheet.create({
   card: {
     alignItems: "center",
+    justifyContent: "center",
     marginRight: 4,
   },
-  image: {
-    margin: 10,
-  },
+
   text: {
     textTransform: " capitalize",
     fontFamily: "nunitoSans-regular",
-    marginBottom: 10,
-    fontSize: 14,
     paddingRight: 5,
     paddingLeft: 5,
   },
