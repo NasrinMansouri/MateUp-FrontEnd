@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
 
 //for fonts
@@ -8,7 +8,25 @@ import { useCallback } from "react";
 SplashScreen.preventAutoHideAsync();
 
 import colors from "./app/config/colors";
-import BulletPointWithText from "./app/components/BulletPointWithText";
+import AppButton from "./app/components/AppButton";
+import AppButtonBorder from "./app/components/AppButtonBorder";
+import GalleryEducationalContent from "./app/components/GalleryEducationalContent";
+import UserNextWorkoutPlanning from "./app/components/UserNextWorkoutPlanning";
+
+const dataEducationalContent = [
+  {
+    id: 1,
+    image: require("./assets/image/educational-1.jpg"),
+    title: "workout buddy",
+    subttle: "Your buddy will thank you for it",
+  },
+  {
+    id: 2,
+    image: require("./assets/image/educational-2.jpg"),
+    title: "move with me",
+    subttle: "behind the scenes by sarah",
+  },
+];
 
 export default function App() {
   //for fonts
@@ -26,25 +44,37 @@ export default function App() {
   if (!isLoaded) {
     return null;
   }
-  return (
-    <View
-      style={styles.container}
-      onLayout={handleOnLayout} //for fonts
-    >
-      <BulletPointWithText
-        bulletColor={colors.orangePrimary}
-        width={5}
-        height={5}
-        borderRadius={5 / 2}
-        marginRight={4}
-        text="spinning"
-        textColor={colors.white}
-        fontFamily="nunitoSans-bold"
-        textTransform={"uppercase"}
-        fontSize={16}
-      />
 
-      <StatusBar style="auto" />
+  return (
+    <View style={styles.container}>
+      <ScrollView
+        style={styles.scrollview}
+        onLayout={handleOnLayout} //for fonts
+      >
+        <UserNextWorkoutPlanning />
+        <GalleryEducationalContent
+          educationalContent={dataEducationalContent}
+        />
+        <View style={{ alignItems: "center", marginBottom: 200 }}>
+          <AppButton title={"see all"} width={222} height={45} />
+        </View>
+
+        <StatusBar style="auto" />
+      </ScrollView>
+      <View
+        style={{
+          // marginBottom: 100,
+          position: "absolute",
+          top: "75%",
+          right: 24,
+          zIndex: 1,
+        }}
+      >
+        <AppButtonBorder
+          image={require("./assets/icons/calendar.png")}
+          title="calendar"
+        />
+      </View>
     </View>
   );
 }
@@ -52,10 +82,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    // alignItems: "center",
-    // justifyContent: "center",
     backgroundColor: colors.blackBc,
-    marginTop: 50,
+    // paddingTop: 50,
+  },
+  scrollview: {
+    flex: 1,
   },
 });
