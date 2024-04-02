@@ -21,6 +21,7 @@ function GalleryPeopleYouMightKnow({ members }) {
         <CardProfile
           onPress={() => console.log("members", item)}
           name={capitalizeFirstLetter(item.name)}
+          backgroundColor={colors.blackBc}
           image={item.image}
           flexDirection={"column"}
           cardWidth={120}
