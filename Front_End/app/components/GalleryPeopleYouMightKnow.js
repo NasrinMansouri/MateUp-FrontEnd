@@ -1,69 +1,64 @@
-// horizontal scrollable list of buddies
-// used on top of home page
+//home page
 
 import React from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList } from "react-native";
 
 import CardProfile from "./CardProfile";
 import colors from "../config/colors";
 
-function GalleryBuddies({ buddies }) {
+function GalleryPeopleYouMightKnow({ members }) {
   const capitalizeFirstLetter = (string) => {
     // capitalize first letter and make rest lowercase
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   };
-
   return (
     <FlatList
-      style={styles.container}
+      style={{ backgroundColor: colors.blackBc }}
       horizontal
-      data={buddies}
-      keyExtractor={(buddies) => buddies.id.toString()}
+      data={members}
+      keyExtractor={(members) => members.id.toString()}
       renderItem={({ item }) => (
         <CardProfile
-          onPress={() => console.log("my buddies", item)}
+          onPress={() => console.log("members", item)}
           name={capitalizeFirstLetter(item.name)}
           image={item.image}
           flexDirection={"column"}
-          cardWidth={97}
-          cardHeight={107}
-          imageHeight={77}
-          imageWidth={77}
-          borderRadius={77 / 2}
+          cardWidth={120}
+          cardHeight={98}
+          cardBorderWidth={1}
+          cardBorderColor={colors.black}
+          imageHeight={52}
+          imageWidth={52}
+          borderRadius={52 / 2}
         />
       )}
     />
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.blackBc,
-  },
-});
-export default GalleryBuddies;
+export default GalleryPeopleYouMightKnow;
 
 // to be used in screen as:
 //dummy data for testing
-// const buddiesData = [
+// const members = [
 //   {
 //     id: 1,
-//     name: "MMMMMMMMMMMMMMMM ",
+//     name: "Red ",
 //     image: require("./assets/person-1.jpg"),
 //   },
 //   {
 //     id: 2,
-//     name: "Coucheeeeeeee ",
+//     name: "Couch ",
 //     image: require("./assets/person-1.jpg"),
 //   },
 //   {
 //     id: 3,
-//     name: "Couchhhhhhhhh ",
+//     name: "Couch ",
 //     image: require("./assets/person-1.jpg"),
 //   },
 //   {
 //     id: 4,
-//     name: "NNNNNN NNNNN ",
+//     name: "Couch111111111 ",
 //     image: require("./assets/person-1.jpg"),
 //   },
 //   {
@@ -75,5 +70,5 @@ export default GalleryBuddies;
 
 //to be used in screen as:
 {
-  /* <GalleryBuddies buddies={buddiesData} /> */
+  /* <GalleryPeopleToKnow members={members} /> */
 }
