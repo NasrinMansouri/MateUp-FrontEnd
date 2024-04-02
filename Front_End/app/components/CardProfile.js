@@ -11,6 +11,7 @@ import { View, StyleSheet, Image, Text, TouchableOpacity } from "react-native";
 import colors from "../config/colors";
 
 function CardProfile({
+  backgroundColor,
   image,
   name,
   imageWidth,
@@ -28,7 +29,11 @@ function CardProfile({
   onPress,
 }) {
   return (
-    <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
+    <TouchableOpacity
+      onPress={onPress}
+      activeOpacity={0.7}
+      style={{ backgroundColor: backgroundColor }}
+    >
       <View
         style={[
           styles.card,
@@ -74,7 +79,6 @@ function CardProfile({
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.blackBc,
     alignItems: "center",
     marginRight: 4,
   },
