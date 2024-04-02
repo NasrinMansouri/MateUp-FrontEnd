@@ -7,6 +7,8 @@ import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
 SplashScreen.preventAutoHideAsync();
 
+import colors from "./app/config/colors";
+
 import GalleryBuddies from "./app/components/GalleryBuddies";
 const buddiesData = [
   {
@@ -16,12 +18,12 @@ const buddiesData = [
   },
   {
     id: 2,
-    name: "Couch ",
+    name: "Coucheeeeeeee ",
     image: require("./assets/person-1.jpg"),
   },
   {
     id: 3,
-    name: "Couch ",
+    name: "Couchhhhhhhhh ",
     image: require("./assets/person-1.jpg"),
   },
   {
@@ -69,5 +71,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: colors.blackBc,
+    marginTop: 50,
   },
 });
