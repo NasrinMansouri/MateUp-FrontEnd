@@ -6,13 +6,7 @@
 //image size can be changed
 
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  Image,
-  Text,
-  TouchableWithoutFeedback,
-} from "react-native";
+import { View, StyleSheet, Image, Text, TouchableOpacity } from "react-native";
 
 import colors from "../config/colors";
 
@@ -34,7 +28,7 @@ function CardProfile({
   onPress,
 }) {
   return (
-    <TouchableWithoutFeedback onPress={onPress}>
+    <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
       <View
         style={[
           styles.card,
@@ -74,7 +68,7 @@ function CardProfile({
           {name}
         </Text>
       </View>
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
   );
 }
 
