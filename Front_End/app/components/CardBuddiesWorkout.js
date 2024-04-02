@@ -82,3 +82,16 @@ const styles = StyleSheet.create({
     color: colors.gray,
   },
 });
+
+//to be used in screen as:
+
+// <CardBuddiesWorkout
+// image={require("./assets/person-1.jpg")}
+// name="John Doeeeeeeeeeeeeeeeeee"
+// workout="Running"
+// day="Monday"
+// date="April 4"
+// begin="8:00 AM"
+// end="9:00 AM"
+// onPress={() => console.log("tapped")}
+// />
