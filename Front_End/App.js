@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, View, Text } from "react-native";
 import { useFonts } from "expo-font";
 
 //for fonts
@@ -8,25 +8,10 @@ import { useCallback } from "react";
 SplashScreen.preventAutoHideAsync();
 
 import colors from "./app/config/colors";
-import AppButton from "./app/components/AppButton";
 import AppButtonBorder from "./app/components/AppButtonBorder";
-import GalleryEducationalContent from "./app/components/GalleryEducationalContent";
-import UserNextWorkoutPlanning from "./app/components/UserNextWorkoutPlanning";
 
-const dataEducationalContent = [
-  {
-    id: 1,
-    image: require("./assets/image/educational-1.jpg"),
-    title: "workout buddy",
-    subttle: "Your buddy will thank you for it",
-  },
-  {
-    id: 2,
-    image: require("./assets/image/educational-2.jpg"),
-    title: "move with me",
-    subttle: "behind the scenes by sarah",
-  },
-];
+import CardMeetTheMemberOfTheMonth from "./app/components/CardMeetTheMemberOfTheMonth";
+//to be used in screen as:
 
 export default function App() {
   //for fonts
@@ -46,19 +31,28 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <ScrollView
-        style={styles.scrollview}
-        onLayout={handleOnLayout} //for fonts
-      >
-        <UserNextWorkoutPlanning />
-        <GalleryEducationalContent
-          educationalContent={dataEducationalContent}
+    <View style={styles.container} onLayout={handleOnLayout}>
+      <ScrollView style={styles.scrollview}>
+        {/* <CardMeetTheMemberOfTheMonth image={require("./assets/person-1.jpg")} /> */}
+        <CardMeetTheMemberOfTheMonth
+          images={[
+            { id: "topLeft", image: require("./assets/person-1.jpg") },
+            { id: "buttomCenter", image: require("./assets/person-1.jpg") },
+            { id: "topRight", image: require("./assets/person2.jpg") },
+            { id: "bottomLeft", image: require("./assets/person3.jpg") },
+            { id: "bottomRight", image: require("./assets/person-1.jpg") },
+          ]}
         />
-        <View style={{ alignItems: "center", marginBottom: 200 }}>
-          <AppButton title={"see all"} width={222} height={45} />
-        </View>
 
+        <Text
+          style={{
+            color: "white",
+            fontFamily: "montserrat-black",
+            fontSize: 24,
+          }}
+        >
+          hiiiii
+        </Text>
         <StatusBar style="auto" />
       </ScrollView>
       <View
