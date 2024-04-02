@@ -37,6 +37,7 @@ export default function CardBuddiesWorkout({
         name={name}
         fontSize={16}
         justifyContent={" flex-start"}
+        textTransform={"capitalize"}
       />
       <BulletPointWithText
         bulletColor={colors.orangePrimary}
@@ -75,6 +76,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     borderRadius: 4,
+    marginRight: 6,
   },
   text: {
     fontFamily: "nunitoSans-bold",
