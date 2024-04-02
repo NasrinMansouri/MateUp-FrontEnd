@@ -93,6 +93,8 @@ const styles = StyleSheet.create({
     fontFamily: "nunitoSans-regular",
     marginBottom: 10,
     fontSize: 14,
+    paddingRight: 5,
+    paddingLeft: 5,
   },
 });
 
