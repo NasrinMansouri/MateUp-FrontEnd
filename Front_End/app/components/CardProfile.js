@@ -88,7 +88,10 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.white,
+    textTransform: " capitalize",
+    fontFamily: "nunitoSans-regular",
     marginBottom: 10,
+    fontSize: 14,
   },
 });
 
