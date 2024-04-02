@@ -30,6 +30,7 @@ function CardProfile({
   onPress,
   alignItems = "center",
   justifyContent = "center",
+  textTransform = "capitalize",
 }) {
   return (
     <TouchableOpacity
@@ -72,6 +73,7 @@ function CardProfile({
               fontSize: fontSize,
               fontWeight: fontWeight,
               color: textColor,
+              textTransform: textTransform,
             },
           ]}
           numberOfLines={1}
@@ -91,7 +93,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    textTransform: " capitalize",
+    // textTransform: " capitalize",
     fontFamily: "nunitoSans-regular",
     paddingRight: 5,
     paddingLeft: 5,
