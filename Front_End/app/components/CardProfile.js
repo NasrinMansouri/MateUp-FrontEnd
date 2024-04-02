@@ -28,6 +28,8 @@ function CardProfile({
   fontWeight,
   textColor,
   onPress,
+  alignItems = "center",
+  justifyContent = "center",
 }) {
   return (
     <TouchableOpacity
@@ -45,6 +47,8 @@ function CardProfile({
             borderWidth: cardBorderWidth,
             borderColor: cardBorderColor,
             borderRadius: cardRadius,
+            alignItems: alignItems,
+            justifyContent: justifyContent,
           },
         ]}
       >
@@ -81,8 +85,8 @@ function CardProfile({
 
 const styles = StyleSheet.create({
   card: {
-    alignItems: "center",
-    justifyContent: "center",
+    // alignItems: "center",
+    // justifyContent: "center",
     marginRight: 4,
   },
 
