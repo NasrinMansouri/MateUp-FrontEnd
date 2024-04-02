@@ -16,12 +16,6 @@ import {
 
 import colors from "../config/colors";
 
-// toUpperCase()
-// capitalizes the first letter
-// function capitalizeFirstLetter(string) {
-//   return string.charAt(0).toUpperCase() + string.slice(1);
-// }
-
 function CardProfile({
   image,
   name,
@@ -78,8 +72,6 @@ function CardProfile({
           numberOfLines={1}
         >
           {name}
-          {/* this capitalizes only the first letter */}
-          {/* {capitalizeFirstLetter(name.toLowerCase())} */}
         </Text>
       </View>
     </TouchableWithoutFeedback>

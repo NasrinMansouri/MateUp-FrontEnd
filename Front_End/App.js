@@ -13,12 +13,12 @@ import GalleryBuddies from "./app/components/GalleryBuddies";
 const buddiesData = [
   {
     id: 1,
-    name: "MMMMMMMMMMMMMMMM ",
+    name: "mMMMMMMMMMMMMMMM ",
     image: require("./assets/person-1.jpg"),
   },
   {
     id: 2,
-    name: "Coucheeeeeeee ",
+    name: "ccccccccc ",
     image: require("./assets/person-1.jpg"),
   },
   {
