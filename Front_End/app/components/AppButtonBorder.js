@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   text: {
     color: colors.orangeSecondary,
     textTransform: "uppercase",
+    fontFamily: "montserrat-black",
   },
   image: {
     marginRight: 12,
@@ -43,7 +44,7 @@ export default AppButtonIcon;
 {
   /* <AppButtonBorder
 title="join"
-image={require("./assets/calendar.png")}
+image={require("./assets/icons/calendar.png")}
 onPress={() => console.log("tapped")}
 /> */
 }
