@@ -9,64 +9,6 @@ SplashScreen.preventAutoHideAsync();
 
 import colors from "./app/config/colors";
 
-import GalleryBuddies from "./app/components/GalleryBuddies";
-import GalleryPeopleToKnow from "./app/components/GalleryPeopleYouMightKnow";
-const buddiesData = [
-  {
-    id: 1,
-    name: "mMMMMMMMMMMMMMMM ",
-    image: require("./assets/person-1.jpg"),
-  },
-  {
-    id: 2,
-    name: "cccccccccccC ",
-    image: require("./assets/person-1.jpg"),
-  },
-  {
-    id: 3,
-    name: "Couchhhhhhhhh ",
-    image: require("./assets/person-1.jpg"),
-  },
-  {
-    id: 4,
-    name: "NNNNNN NNNNN ",
-    image: require("./assets/person-1.jpg"),
-  },
-  {
-    id: 5,
-    name: "Couch ",
-    image: require("./assets/person-1.jpg"),
-  },
-];
-
-const members = [
-  {
-    id: 1,
-    name: "RedDDDDDDDDDD ",
-    image: require("./assets/person-1.jpg"),
-  },
-  {
-    id: 2,
-    name: "CouchHHHHHHHHH ",
-    image: require("./assets/person-1.jpg"),
-  },
-  {
-    id: 3,
-    name: "CouchHHHHHHHHHH ",
-    image: require("./assets/person-1.jpg"),
-  },
-  {
-    id: 4,
-    name: "Couch1111111111111 ",
-    image: require("./assets/person-1.jpg"),
-  },
-  {
-    id: 5,
-    name: "Couch ",
-    image: require("./assets/person-1.jpg"),
-  },
-];
-
 export default function App() {
   //for fonts
   const [isLoaded] = useFonts({
@@ -88,8 +30,7 @@ export default function App() {
       style={styles.container}
       onLayout={handleOnLayout} //for fonts
     >
-      <GalleryBuddies buddies={buddiesData} />
-      <GalleryPeopleToKnow members={members} />
+      <Text style={{ color: colors.white }}>hiiiiiii</Text>
       <StatusBar style="auto" />
     </View>
   );
