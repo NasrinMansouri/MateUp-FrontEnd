@@ -7,6 +7,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
 SplashScreen.preventAutoHideAsync();
 
+import CardProfile from "./app/components/CardProfile";
 import AppButtonBorder from "./app/components/AppButtonBorder";
 
 export default function App() {
@@ -30,6 +31,18 @@ export default function App() {
       style={styles.container}
       onLayout={handleOnLayout} //for fonts
     >
+      <CardProfile
+        onPress={() => console.log("tapped")}
+        flexDirection={"column"}
+        cardWidth={97}
+        image={require("./assets/person-1.jpg")}
+        imageHeight={77}
+        imageWidth={77}
+        borderRadius={77 / 2}
+        name="Jane Doe"
+        fontSize={14}
+      />
+
       <AppButtonBorder
         title="join"
         image={require("./assets/icons/calendar.png")}
