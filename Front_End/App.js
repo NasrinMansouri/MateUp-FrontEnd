@@ -46,6 +46,7 @@ export default function App() {
         width={168}
         height={32}
         onPress={() => console.log("tapped")}
+        image={require("./assets/icons/calendar.png")}
       />
 
       <StatusBar style="auto" />

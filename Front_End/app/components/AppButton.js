@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     fontFamily: "montserrat-black",
   },
   image: {
-    marginRight: 10,
+    marginRight: 5,
   },
 });
 
