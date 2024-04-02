@@ -23,6 +23,7 @@ function CardProfile({
   imageHeight,
   borderRadius,
   cardWidth,
+  cardHeight,
   flexDirection,
   cardRadius,
   cardBorderColor,
@@ -39,6 +40,7 @@ function CardProfile({
           styles.card,
           {
             width: cardWidth,
+            height: cardHeight,
             flexDirection: flexDirection,
             borderWidth: cardBorderWidth,
             borderColor: cardBorderColor,
