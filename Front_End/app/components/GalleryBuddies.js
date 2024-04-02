@@ -19,9 +19,7 @@ function GalleryBuddies({ buddies }) {
       renderItem={({ item }) => (
         <CardProfile
           onPress={() => console.log("my buddies", item)}
-          name={
-            item.name.length > 13 ? item.name.slice(0, 10) + "..." : item.name
-          }
+          name={item.name}
           image={item.image}
           flexDirection={"column"}
           cardWidth={97}
@@ -47,22 +45,22 @@ export default GalleryBuddies;
 // const buddiesData = [
 //   {
 //     id: 1,
-//     name: "Red ",
+//     name: "MMMMMMMMMMMMMMMM ",
 //     image: require("./assets/person-1.jpg"),
 //   },
 //   {
 //     id: 2,
-//     name: "Couch ",
+//     name: "Coucheeeeeeee ",
 //     image: require("./assets/person-1.jpg"),
 //   },
 //   {
 //     id: 3,
-//     name: "Couch ",
+//     name: "Couchhhhhhhhh ",
 //     image: require("./assets/person-1.jpg"),
 //   },
 //   {
 //     id: 4,
-//     name: "Couch ",
+//     name: "NNNNNN NNNNN ",
 //     image: require("./assets/person-1.jpg"),
 //   },
 //   {
