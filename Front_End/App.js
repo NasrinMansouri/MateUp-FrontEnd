@@ -7,8 +7,34 @@ import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
 SplashScreen.preventAutoHideAsync();
 
-import CardProfile from "./app/components/CardProfile";
-import AppButtonBorder from "./app/components/AppButtonBorder";
+import GalleryBuddies from "./app/components/GalleryBuddies";
+const buddiesData = [
+  {
+    id: 1,
+    name: "Red ",
+    image: require("./assets/person-1.jpg"),
+  },
+  {
+    id: 2,
+    name: "Couch ",
+    image: require("./assets/person-1.jpg"),
+  },
+  {
+    id: 3,
+    name: "Couch ",
+    image: require("./assets/person-1.jpg"),
+  },
+  {
+    id: 4,
+    name: "Couch ",
+    image: require("./assets/person-1.jpg"),
+  },
+  {
+    id: 5,
+    name: "Couch ",
+    image: require("./assets/person-1.jpg"),
+  },
+];
 
 export default function App() {
   //for fonts
@@ -31,24 +57,7 @@ export default function App() {
       style={styles.container}
       onLayout={handleOnLayout} //for fonts
     >
-      <CardProfile
-        onPress={() => console.log("tapped")}
-        flexDirection={"column"}
-        cardWidth={97}
-        image={require("./assets/person-1.jpg")}
-        imageHeight={77}
-        imageWidth={77}
-        borderRadius={77 / 2}
-        name="Jane Doe"
-        fontSize={14}
-      />
-
-      <AppButtonBorder
-        title="join"
-        image={require("./assets/icons/calendar.png")}
-        onPress={() => console.log("tapped")}
-      />
-
+      <GalleryBuddies buddies={buddiesData} />
       <StatusBar style="auto" />
     </View>
   );
