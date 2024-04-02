@@ -8,7 +8,7 @@ const BulletPointWithText = ({
   marginRight,
   fontFamily,
   textColor,
-  text,
+  title,
   fontSize,
   textTransform,
 }) => {
@@ -32,7 +32,7 @@ const BulletPointWithText = ({
         }}
         numberOfLines={1}
       >
-        {text}
+        {title}
       </Text>
     </View>
   );
