@@ -29,7 +29,7 @@ function GalleryBuddies({ buddies }) {
           cardHeight={107}
           imageHeight={77}
           imageWidth={77}
-          borderRadius={77 / 2}
+          imageRadius={77 / 2}
         />
       )}
     />

@@ -15,7 +15,7 @@ function CardProfile({
   name,
   imageWidth,
   imageHeight,
-  borderRadius,
+  imageRadius,
   cardWidth,
   cardHeight,
   flexDirection,
@@ -49,7 +49,7 @@ function CardProfile({
             {
               width: imageWidth,
               height: imageHeight,
-              borderRadius: borderRadius,
+              borderRadius: imageRadius,
             },
           ]}
         />
