@@ -32,6 +32,7 @@ function GalleryPeopleYouMightKnow({ members }) {
           imageHeight={52}
           imageWidth={52}
           imageRadius={52 / 2}
+          textColor={colors.white}
         />
       )}
     />

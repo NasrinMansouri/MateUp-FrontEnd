@@ -31,6 +31,7 @@ function GalleryBuddies({ buddies }) {
           imageHeight={77}
           imageWidth={77}
           imageRadius={77 / 2}
+          textColor={colors.white}
         />
       )}
     />

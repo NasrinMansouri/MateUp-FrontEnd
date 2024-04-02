@@ -26,6 +26,7 @@ function CardProfile({
   fontFamily,
   fontSize,
   fontWeight,
+  textColor,
   onPress,
 }) {
   return (
@@ -66,6 +67,7 @@ function CardProfile({
               fontFamily: fontFamily,
               fontSize: fontSize,
               fontWeight: fontWeight,
+              color: textColor,
             },
           ]}
           numberOfLines={1}
@@ -86,7 +88,6 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   text: {
-    color: colors.white,
     textTransform: " capitalize",
     fontFamily: "nunitoSans-regular",
     marginBottom: 10,
@@ -102,6 +103,7 @@ export default CardProfile;
 {
   /* <CardProfile
 onPress={() => console.log("tapped")}
+backgroundColor={colors.blackBc}
 flexDirection={"column"}
 cardWidth={97}
 image={require("./assets/person-1.jpg")}
