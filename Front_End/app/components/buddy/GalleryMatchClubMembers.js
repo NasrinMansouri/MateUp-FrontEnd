@@ -20,7 +20,11 @@ export default function GalleryMatchClubMembers({ meetClubMembers }) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  // container: {
+  //   marginLeft: 16,
+  // },
+});
 
 //to be use in screen as:
 {
