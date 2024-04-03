@@ -1,3 +1,5 @@
+//educational content in homrpage
+
 import { FlatList, StyleSheet } from "react-native";
 import React from "react";
 
