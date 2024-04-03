@@ -10,31 +10,66 @@ SplashScreen.preventAutoHideAsync();
 import colors from "./app/config/colors";
 import AppButtonBorder from "./app/components/AppButtonBorder";
 
-import LocationWithIcon from "./app/components/LocationWithIcon";
-import CardMatchBasedWorkout from "./app/components/buddy/CardMatchBasedWorkout";
-const meetClubMembersData = [
+import GalleryMatchBasedWorkout from "./app/components/buddy/GalleryMatchBasedWorkout";
+import CardProfile from "./app/components/CardProfile";
+import GalleryBuddies from "./app/components/GalleryBuddies";
+const matchClubMembersData = [
   {
     id: 1,
     name: "John Doeeeeeeeeeeeeeeeeee",
     image: require("./assets/person-1.jpg"),
+    location: "los angeles street" + " 123",
     titles: ["strength training", "running"],
   },
   {
     id: 2,
     name: "ray pather ",
     image: require("./assets/person-1.jpg"),
+    location: "los angeles street" + " 123",
     titles: ["strength training", "running", "swimming", "yoga", "boxing"],
   },
   {
     id: 3,
     name: "ray pather ",
     image: require("./assets/person-1.jpg"),
+    location: "los angeles street" + " 123",
     titles: ["strength training", "running", "swimming", "yoga", "boxing"],
   },
   {
     id: 4,
     name: "ray pather ",
     image: require("./assets/person-1.jpg"),
+    location: "los angeles street" + " 123",
+    titles: ["strength training"],
+  },
+];
+const Data = [
+  {
+    id: 1,
+
+    image: require("./assets/person-1.jpg"),
+    location: "los angeles street" + " 123",
+    titles: ["strength training", "running"],
+  },
+  {
+    id: 2,
+
+    image: require("./assets/person-1.jpg"),
+    location: "los angeles street" + " 123",
+    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
+  },
+  {
+    id: 3,
+
+    image: require("./assets/person-1.jpg"),
+    location: "los angeles street" + " 123",
+    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
+  },
+  {
+    id: 4,
+
+    image: require("./assets/person-1.jpg"),
+    location: "los angeles street" + " 123",
     titles: ["strength training"],
   },
 ];
@@ -68,19 +103,21 @@ export default function App() {
         >
           hiiiii
         </Text>
-        {/* <LocationWithIcon /> */}
-        <CardMatchBasedWorkout
-          image={require("./assets/person-1.jpg")}
-          name="ray patherrrrrrrrrrrrrrrrrr"
-          location="los angelesssssssssssssssssssssssss"
-          titles={[
-            "strength traininggggggg",
-            "running",
-            "swimming",
-            "yoga",
-            "boxing",
-          ]}
-        />
+        <View style={{ marginBottom: 26 }}>
+          <CardProfile
+            onPress={() => console.log("tapped")}
+            backgroundColor={colors.blackBc}
+            flexDirection={"column"}
+            cardWidth={97}
+            image={require("./assets/person-1.jpg")}
+            imageHeight={77}
+            imageWidth={77}
+            imageRadius={77 / 2}
+            fontSize={14}
+          />
+        </View>
+        <GalleryBuddies buddies={Data} />
+        <GalleryMatchBasedWorkout matchMemberWorkout={matchClubMembersData} />
         <StatusBar style="auto" />
       </ScrollView>
       <View
@@ -106,7 +143,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.blackBc,
     paddingTop: 50,
-    paddingLeft: 16,
+    // paddingLeft: 16,
     // paddingRight: 16,
   },
   scrollview: {
