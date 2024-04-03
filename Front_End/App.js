@@ -11,6 +11,7 @@ import colors from "./app/config/colors";
 import AppButtonBorder from "./app/components/AppButtonBorder";
 
 import CardMeetTheMemberOfTheMonth from "./app/components/CardMeetTheMemberOfTheMonth";
+import CardMeetYourClubMembers from "./app/components/buddy/CardMeetYourClubMembers";
 //to be used in screen as:
 
 export default function App() {
@@ -33,17 +34,6 @@ export default function App() {
   return (
     <View style={styles.container} onLayout={handleOnLayout}>
       <ScrollView style={styles.scrollview}>
-        {/* <CardMeetTheMemberOfTheMonth image={require("./assets/person-1.jpg")} /> */}
-        <CardMeetTheMemberOfTheMonth
-          images={[
-            { id: "topLeft", image: require("./assets/person-1.jpg") },
-            { id: "buttomCenter", image: require("./assets/person-1.jpg") },
-            { id: "topRight", image: require("./assets/person2.jpg") },
-            { id: "bottomLeft", image: require("./assets/person3.jpg") },
-            { id: "bottomRight", image: require("./assets/person-1.jpg") },
-          ]}
-        />
-
         <Text
           style={{
             color: "white",
@@ -53,6 +43,25 @@ export default function App() {
         >
           hiiiii
         </Text>
+
+        <View style={{ flexDirection: "row" }}>
+          <CardMeetYourClubMembers
+            name={"Jen"}
+            image={require("./assets/person2.jpg")}
+            titles={["strengthhhhhh training", "running"]}
+          />
+          <CardMeetYourClubMembers
+            name={"Jenn"}
+            image={require("./assets/person2.jpg")}
+            titles={["spinning", "running", "swimming", "yoga", "boxing"]}
+          />
+          <CardMeetYourClubMembers
+            name={"Jen"}
+            image={require("./assets/person2.jpg")}
+            titles={["spinning"]}
+          />
+        </View>
+
         <StatusBar style="auto" />
       </ScrollView>
       <View
@@ -77,7 +86,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.blackBc,
-    // paddingTop: 50,
+    paddingTop: 50,
   },
   scrollview: {
     flex: 1,
