@@ -1,3 +1,5 @@
+// also can be use for meet trainer at user members
+
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import React from "react";
 import CardMatchClubMembers from "./CardMatchClubMembers";
