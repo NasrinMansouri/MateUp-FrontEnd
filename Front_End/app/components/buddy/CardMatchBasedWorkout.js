@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     paddingRight: 16,
     borderRadius: 4,
+    marginRight: 6,
   },
   profile: {
     marginBottom: 30,
@@ -74,3 +75,19 @@ const styles = StyleSheet.create({
     paddingRight: 16,
   },
 });
+
+// to be used in screen as:
+{
+  /* <CardMatchBasedWorkout
+image={require("./assets/person-1.jpg")}
+name="ray patherrrrrrrrrrrrrrrrrr"
+location="los angelesssssssssssssssssssssssss"
+titles={[
+  "strength traininggggggg",
+  "running",
+  "swimming",
+  "yoga",
+  "boxing",
+]}
+/> */
+}
