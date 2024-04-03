@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-export default function GalleryMeetYourClubMembers() {
+export default function GalleryMatchClubMembers() {
   return (
     <View>
       <Text>GalleryMeetYourClubMembers</Text>
