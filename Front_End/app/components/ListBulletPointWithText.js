@@ -4,7 +4,7 @@ import React from "react";
 import BulletPointWithText from "./BulletPointWithText";
 import colors from "../config/colors";
 
-export default function ListBulletPointWithText({ titles }) {
+export default function ListBulletPointWithText({ titles, textColor }) {
   // Maximum number of workout types to display
   const maxType = 2;
 
@@ -28,7 +28,7 @@ export default function ListBulletPointWithText({ titles }) {
               borderRadius={5 / 2}
               marginRight={4}
               marginBottom={4}
-              textColor={colors.white}
+              textColor={textColor}
               fontFamily="nunitoSans-extraBold"
               textTransform={"uppercase"}
               fontSize={12}
@@ -45,7 +45,7 @@ export default function ListBulletPointWithText({ titles }) {
               borderRadius={5 / 2}
               marginRight={4}
               marginBottom={4}
-              textColor={colors.white}
+              textColor={textColor}
               fontFamily="nunitoSans-extraBold"
               textTransform={"uppercase"}
               fontSize={12}
