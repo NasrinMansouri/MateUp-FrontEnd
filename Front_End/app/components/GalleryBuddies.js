@@ -22,7 +22,8 @@ function GalleryBuddies({ buddies }) {
       renderItem={({ item }) => (
         <CardProfile
           onPress={() => console.log("my buddies", item)}
-          name={capitalizeFirstLetter(item.name)}
+          // name={capitalizeFirstLetter(item.name)}
+          name={item.name ? capitalizeFirstLetter(item.name) : null}
           backgroundColor={colors.blackBc}
           image={item.image}
           flexDirection={"column"}

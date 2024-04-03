@@ -65,21 +65,23 @@ function CardProfile({
           ]}
         />
 
-        <Text
-          style={[
-            styles.text,
-            {
-              fontFamily: fontFamily,
-              fontSize: fontSize,
-              fontWeight: fontWeight,
-              color: textColor,
-              textTransform: textTransform,
-            },
-          ]}
-          numberOfLines={1}
-        >
-          {name}
-        </Text>
+        {name && (
+          <Text
+            style={[
+              styles.text,
+              {
+                fontFamily: fontFamily,
+                fontSize: fontSize,
+                fontWeight: fontWeight,
+                color: textColor,
+                textTransform: textTransform,
+              },
+            ]}
+            numberOfLines={1}
+          >
+            {name}
+          </Text>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -112,7 +114,7 @@ cardWidth={97}
 image={require("./assets/person-1.jpg")}
 imageHeight={77}
 imageWidth={77}
-borderRadius={77 / 2}
+imageRadius={77 / 2}
 name="Jane Doe"
 fontSize={14}
 /> */
