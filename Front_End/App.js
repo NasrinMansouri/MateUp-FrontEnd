@@ -32,7 +32,7 @@ const meetClubMembersData = [
     titles: ["strength training", "running", "swimming", "yoga", "boxing"],
   },
   {
-    id: 3,
+    id: 4,
     name: "ray pather ",
     image: require("./assets/person-1.jpg"),
     titles: ["strength training"],
@@ -70,24 +70,6 @@ export default function App() {
         </Text>
         <GalleryMatchClubMembers meetClubMembers={meetClubMembersData} />
 
-        <View style={{ flexDirection: "row" }}>
-          <CardMatchClubMembers
-            name={"Jen"}
-            image={require("./assets/person2.jpg")}
-            titles={["strengthhhhhh training", "running"]}
-          />
-          <CardMatchClubMembers
-            name={"Jenn"}
-            image={require("./assets/person2.jpg")}
-            titles={["spinning", "running", "swimming", "yoga", "boxing"]}
-          />
-          <CardMatchClubMembers
-            name={"Jen"}
-            image={require("./assets/person2.jpg")}
-            titles={["spinning"]}
-          />
-        </View>
-
         <StatusBar style="auto" />
       </ScrollView>
       <View
@@ -113,6 +95,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.blackBc,
     paddingTop: 50,
+    paddingLeft: 16,
   },
   scrollview: {
     flex: 1,
