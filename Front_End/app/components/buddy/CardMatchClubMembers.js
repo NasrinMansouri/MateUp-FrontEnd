@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
     width: 170,
     height: 220,
     marginRight: 16,
-    justifyContent: "center",
   },
   profile: {
     marginBottom: 18,

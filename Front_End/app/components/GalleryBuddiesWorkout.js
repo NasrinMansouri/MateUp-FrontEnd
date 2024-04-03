@@ -1,3 +1,6 @@
+//horizontal scrollable list of buddies next
+//workout planning in homrpage
+
 import { FlatList, StyleSheet } from "react-native";
 import React from "react";
 

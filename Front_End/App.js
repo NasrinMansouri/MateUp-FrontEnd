@@ -10,9 +10,34 @@ SplashScreen.preventAutoHideAsync();
 import colors from "./app/config/colors";
 import AppButtonBorder from "./app/components/AppButtonBorder";
 
-import CardMeetTheMemberOfTheMonth from "./app/components/CardMeetTheMemberOfTheMonth";
 import CardMatchClubMembers from "./app/components/buddy/CardMatchClubMembers";
-//to be used in screen as:
+import GalleryMatchClubMembers from "./app/components/buddy/GalleryMatchClubMembers";
+const meetClubMembersData = [
+  {
+    id: 1,
+    name: "John Doeeeeeeeeeeeeeeeeee",
+    image: require("./assets/person-1.jpg"),
+    titles: ["strength training", "running"],
+  },
+  {
+    id: 2,
+    name: "ray pather ",
+    image: require("./assets/person-1.jpg"),
+    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
+  },
+  {
+    id: 3,
+    name: "ray pather ",
+    image: require("./assets/person-1.jpg"),
+    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
+  },
+  {
+    id: 3,
+    name: "ray pather ",
+    image: require("./assets/person-1.jpg"),
+    titles: ["strength training"],
+  },
+];
 
 export default function App() {
   //for fonts
@@ -43,6 +68,7 @@ export default function App() {
         >
           hiiiii
         </Text>
+        <GalleryMatchClubMembers meetClubMembers={meetClubMembersData} />
 
         <View style={{ flexDirection: "row" }}>
           <CardMatchClubMembers
