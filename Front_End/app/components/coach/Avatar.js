@@ -165,3 +165,21 @@ const styles = StyleSheet.create({
 });
 
 export default GroupAvatar;
+
+//to be used in profile screen
+{
+  /* <GroupAvatar buddies={buddies} /> */
+}
+
+// dummy data for testing
+// export default function App() {
+//     const buddies = [
+//       { id: 1, image: require("./assets/person-1.jpg") },
+//       { id: 2, image: require("./assets/person2.jpg") },
+//       { id: 3, image: require("./assets/person2.jpg") },
+//       { id: 4, image: require("./assets/person2.jpg") },
+//       { id: 5, image: require("./assets/person2.jpg") },
+//       { id: 6, image: require("./assets/person2.jpg") },
+//       { id: 7, image: require("./assets/person2.jpg") },
+//       // Add more buddies as needed
+//     ];
