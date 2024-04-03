@@ -48,7 +48,7 @@ export default BulletPointWithText;
 // height={5}
 // borderRadius={5 / 2}
 // marginRight={4}
-// text="spinning"
+// title="spinning"
 // textColor={colors.white}
 // fontFamily="nunitoSans-bold"
 // textTransform={"uppercase"}
