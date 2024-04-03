@@ -1,4 +1,5 @@
-// horizontal scrollable list of buddies
+// horizontal scrollable list of buddies with name
+//also for user profilr to display buddies without name
 // used on top of home page
 
 import React from "react";
@@ -46,6 +47,8 @@ const styles = StyleSheet.create({
   },
 });
 export default GalleryBuddies;
+
+//can be use wihout having name prop
 
 // to be used in screen as:
 //dummy data for testing
