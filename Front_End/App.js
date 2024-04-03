@@ -54,7 +54,6 @@ export default function App() {
     { id: 5, image: require("./assets/person2.jpg") },
     { id: 6, image: require("./assets/person2.jpg") },
     { id: 7, image: require("./assets/person2.jpg") },
-    // Add more buddies as needed
   ];
 
   //for fonts
