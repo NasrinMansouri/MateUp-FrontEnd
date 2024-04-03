@@ -10,8 +10,8 @@ SplashScreen.preventAutoHideAsync();
 import colors from "./app/config/colors";
 import AppButtonBorder from "./app/components/AppButtonBorder";
 
-import CardMatchClubMembers from "./app/components/buddy/CardMatchClubMembers";
-import GalleryMatchClubMembers from "./app/components/buddy/GalleryMatchClubMembers";
+import LocationWithIcon from "./app/components/LocationWithIcon";
+import CardMatchBasedWorkout from "./app/components/buddy/CardMatchBasedWorkout";
 const meetClubMembersData = [
   {
     id: 1,
@@ -68,8 +68,19 @@ export default function App() {
         >
           hiiiii
         </Text>
-        <GalleryMatchClubMembers meetClubMembers={meetClubMembersData} />
-
+        {/* <LocationWithIcon /> */}
+        <CardMatchBasedWorkout
+          image={require("./assets/person-1.jpg")}
+          name="ray patherrrrrrrrrrrrrrrrrr"
+          location="los angelesssssssssssssssssssssssss"
+          titles={[
+            "strength traininggggggg",
+            "running",
+            "swimming",
+            "yoga",
+            "boxing",
+          ]}
+        />
         <StatusBar style="auto" />
       </ScrollView>
       <View
@@ -96,6 +107,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.blackBc,
     paddingTop: 50,
     paddingLeft: 16,
+    // paddingRight: 16,
   },
   scrollview: {
     flex: 1,
