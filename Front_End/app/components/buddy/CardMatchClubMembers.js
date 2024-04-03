@@ -5,7 +5,7 @@ import CardProfile from "../CardProfile";
 import colors from "../../config/colors";
 import BulletPointWithText from "../BulletPointWithText";
 
-export default function CardMeetYourClubMembers({ name, image, titles }) {
+export default function CardMatchClubMembers({ name, image, titles }) {
   // Maximum number of workout types to display
   const maxWorkoutTypes = 2;
 

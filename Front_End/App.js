@@ -11,7 +11,7 @@ import colors from "./app/config/colors";
 import AppButtonBorder from "./app/components/AppButtonBorder";
 
 import CardMeetTheMemberOfTheMonth from "./app/components/CardMeetTheMemberOfTheMonth";
-import CardMeetYourClubMembers from "./app/components/buddy/CardMeetYourClubMembers";
+import CardMatchClubMembers from "./app/components/buddy/CardMatchClubMembers";
 //to be used in screen as:
 
 export default function App() {
@@ -45,17 +45,17 @@ export default function App() {
         </Text>
 
         <View style={{ flexDirection: "row" }}>
-          <CardMeetYourClubMembers
+          <CardMatchClubMembers
             name={"Jen"}
             image={require("./assets/person2.jpg")}
             titles={["strengthhhhhh training", "running"]}
           />
-          <CardMeetYourClubMembers
+          <CardMatchClubMembers
             name={"Jenn"}
             image={require("./assets/person2.jpg")}
             titles={["spinning", "running", "swimming", "yoga", "boxing"]}
           />
-          <CardMeetYourClubMembers
+          <CardMatchClubMembers
             name={"Jen"}
             image={require("./assets/person2.jpg")}
             titles={["spinning"]}
