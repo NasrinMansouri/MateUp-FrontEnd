@@ -7,9 +7,8 @@ export default function GalleryAllCoaches({ meetAllCoaches }) {
   return (
     <FlatList
       style={styles.container}
-      //   vertical
       data={meetAllCoaches}
-      keyExtractor={(meet) => meet.id.toString()}
+      keyExtractor={(meetAllCoaches) => meetAllCoaches.id.toString()}
       renderItem={({ item }) => (
         <CardAllCoaches
           name={item.name}
