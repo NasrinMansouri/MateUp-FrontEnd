@@ -30,3 +30,46 @@ export default function GalleryAllChallenges({ AllChallenges }) {
 }
 
 const styles = StyleSheet.create({});
+
+{
+  /* <GalleryAllChallenges AllChallenges={dataAllChallenge} /> */
+}
+//dummy data
+// const dataAllChallenge = [
+//     {
+//       id: 1,
+//       image: require("./assets/person-1.jpg"),
+//       challengeName: "Weekly Challenge",
+//       duration: "7 Hours",
+//       beginingDate: "AGU 3",
+//       endingDate: "sep 3",
+//       year: 2024,
+//       onPress: () => {
+//         console.log("card pressed");
+//       },
+//     },
+//     {
+//       id: 2,
+//       image: require("./assets/person-1.jpg"),
+//       challengeName: "Weekly Challenge",
+//       duration: "7 Hours",
+//       beginingDate: "AGU 3",
+//       endingDate: "sep 3",
+//       year: 2024,
+//       onPress: () => {
+//         console.log("card pressed");
+//       },
+//     },
+//     {
+//       id: 3,
+//       image: require("./assets/person-1.jpg"),
+//       challengeName: "Weekly Challenge",
+//       duration: "7 Hours",
+//       beginingDate: "AGU 3",
+//       endingDate: "sep 3",
+//       year: 2024,
+//       onPress: () => {
+//         console.log("card pressed");
+//       },
+//     },
+//   ];
