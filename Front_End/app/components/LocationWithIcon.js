@@ -39,3 +39,8 @@ const styles = StyleSheet.create({
     textTransform: "capitalize",
   },
 });
+
+//to be used in screen as:
+{
+  /* <LocationWithIcon location={"los angeles street" + " 123"} /> */
+}
