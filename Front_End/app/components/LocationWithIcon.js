@@ -19,10 +19,7 @@ export default function LocationWithIcon({
           color={colors.orangeSecondary}
         />
         <Text
-          style={[
-            styles.text,
-            { fontSize: fontSize, color: color, location: location },
-          ]}
+          style={[styles.text, { fontSize: fontSize, color: color }]}
           numberOfLines={1}
         >
           {location}
