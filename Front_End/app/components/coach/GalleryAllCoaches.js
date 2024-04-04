@@ -22,3 +22,40 @@ export default function GalleryAllCoaches({ meetAllCoaches }) {
 }
 
 const styles = StyleSheet.create({});
+
+// to be use in screen as:
+{
+  /* <GalleryAllCoaches meetAllCoaches={coachesData} /> */
+}
+
+// dummy data for testing
+// const coachesData = [
+//   {
+//     id: 1,
+//     name: "John Doee",
+//     image: require("./assets/person-1.jpg"),
+//     location: "los angeles street" + " 123",
+//     titles: ["strength training", "running"],
+//   },
+//   {
+//     id: 2,
+//     name: "ray pather ",
+//     image: require("./assets/person2.jpg"),
+//     location: "los angeles street" + " 123",
+//     titles: ["strength training", "running", "swimming", "yoga", "boxing"],
+//   },
+//   {
+//     id: 3,
+//     name: "aaron",
+//     image: require("./assets/person-1.jpg"),
+//     location: "los angeles street" + " 123",
+//     titles: ["strength training", "running", "swimming", "yoga", "boxing"],
+//   },
+//   {
+//     id: 4,
+//     name: "ray pather ",
+//     image: require("./assets/person-1.jpg"),
+//     location: "los angeles street" + " 123",
+//     titles: ["strength training"],
+//   },
+// ];
