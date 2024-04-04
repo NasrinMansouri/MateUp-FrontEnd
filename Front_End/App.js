@@ -9,10 +9,9 @@ SplashScreen.preventAutoHideAsync();
 
 import colors from "./app/config/colors";
 import AppButtonBorder from "./app/components/AppButtonBorder";
-
-import GalleryBuddiesJoinedChallenge from "./app/components/challenge/GalleryBuddiesJoinedChallenge";
-import GalleryClubChallenge from "./app/components/challenge/GalleryClubChallenge";
-const challengeAtYourClub = [
+import CardChallenges from "./app/components/challenge/CardChallenges";
+import GalleryAllChallenges from "./app/components/challenge/GalleryAllChallenges";
+const dataAllChallenge = [
   {
     id: 1,
     image: require("./assets/person-1.jpg"),
@@ -50,6 +49,7 @@ const challengeAtYourClub = [
     },
   },
 ];
+
 export default function App() {
   //for fonts
   const [isLoaded] = useFonts({
@@ -70,7 +70,30 @@ export default function App() {
   return (
     <View style={styles.container} onLayout={handleOnLayout}>
       <ScrollView style={styles.View}>
-        <GalleryClubChallenge ClubChallenge={challengeAtYourClub} />
+        <GalleryAllChallenges AllChallenges={dataAllChallenge} />
+        <CardChallenges
+          image={require("./assets/person2.jpg")}
+          challengeName="Weekly Challenge"
+          duration="7 Hours"
+          beginingDate="2024-04-01"
+          endingDate="2024-04-07"
+          year={2024}
+          Buddies={[
+            { id: 1, image: require("./assets/person2.jpg") },
+            { id: 2, image: require("./assets/person-1.jpg") },
+            { id: 3, image: require("./assets/person2.jpg") },
+            { id: 4, image: require("./assets/person2.jpg") },
+          ]}
+        />
+        <CardChallenges
+          image={require("./assets/person2.jpg")}
+          challengeName="Weekly Challenge"
+          duration="7 Hours"
+          beginingDate="2024-04-01"
+          endingDate="2024-04-07"
+          year={2024}
+          cardHeight={284}
+        />
         <StatusBar style="auto" />
       </ScrollView>
       <View
