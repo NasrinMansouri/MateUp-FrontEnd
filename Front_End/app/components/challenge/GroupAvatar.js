@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
+import colors from "../../config/colors";
 
 const GroupAvatar = ({ buddies }) => {
   // console.log("buddies", buddies);
@@ -58,15 +59,15 @@ const styles = StyleSheet.create({
     borderRadius: 41 / 2, // Half of avatar size for circular avatar
     width: 41,
     height: 41,
-    backgroundColor: "#ccc",
+    backgroundColor: colors.grayLight50,
     justifyContent: "center",
     alignItems: "center",
     marginLeft: -18, // To align with the margin of the last avatar
   },
   overflowText: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "white",
+    fontSize: 14,
+    fontFamily: "nunitoSans-regular",
+    color: colors.black,
   },
   avatarImage: {
     width: "100%",
