@@ -21,6 +21,7 @@ export default function CardChallenges({
   cardWidth = 283,
   cardHeight = 333,
   marginRight = 10,
+  marginBottom = 0,
 }) {
   return (
     <TouchableOpacity
@@ -31,6 +32,7 @@ export default function CardChallenges({
           width: cardWidth,
           height: cardHeight,
           marginRight: marginRight,
+          marginBottom: marginBottom,
         },
       ]}
       activeOpacity={0.8}
@@ -39,6 +41,7 @@ export default function CardChallenges({
       <View style={styles.imagecontainer}>
         <Image source={image} style={styles.image} />
       </View>
+
       <View style={styles.challengeNameContainer}>
         <BulletPointWithText
           title={challengeName}
@@ -66,6 +69,7 @@ export default function CardChallenges({
           </Text>
         </View>
       </View>
+
       {/* conditionally render group avatar, if there is no data for buddies it will not render */}
       {Buddies && Buddies.length > 0 && (
         <View style={styles.groupAvatarContainer}>
@@ -107,12 +111,13 @@ const styles = StyleSheet.create({
   },
   challengeNameContainer: {
     paddingLeft: 4,
+    // marginBottom: 20,
   },
   text: {
     fontFamily: "montserrat-black",
     fontSize: 12,
     color: colors.orangePrimary,
-    marginBottom: 8,
+    marginBottom: 6,
     paddingLeft: 4,
   },
   dateIconContainer: {
@@ -129,12 +134,12 @@ const styles = StyleSheet.create({
 
 //to be use in screen as
 {
-  /* <CardChallengBuddiesJoined
+  /* <CardChallenges
 image={require("./assets/person2.jpg")}
 challengeName="Weekly Challenge"
 duration="7 Hours"
-beginingDate="2024-04-01"
-endingDate="2024-04-07"
+beginingDate="AUG 3"
+endingDate="SEP 3"
 year={2024}
 Buddies={[
   { id: 1, image: require("./assets/person2.jpg") },
