@@ -17,10 +17,20 @@ export default function CardChallengBuddiesJoined({
   year,
   onPress,
   Buddies,
+  borderWidth = 1,
+  cardWidth = 283,
+  cardHeight = 333,
 }) {
   return (
     <TouchableOpacity
-      style={styles.container}
+      style={[
+        styles.container,
+        {
+          borderWidth: borderWidth,
+          width: cardWidth,
+          height: cardHeight,
+        },
+      ]}
       activeOpacity={0.8}
       onPress={onPress}
     >
@@ -42,12 +52,12 @@ export default function CardChallengBuddiesJoined({
         />
       </View>
       <View style={styles.challengeBased}>
-        <Text style={styles.duration}>{duration}</Text>
-        <View>
+        <Text style={styles.text}>{duration}</Text>
+        <View style={styles.dateIconContainer}>
           <MaterialCommunityIcons
             name="calendar-multiselect"
             size={24}
-            color={colors.orangeSecondary}
+            color={colors.orangePrimary}
           />
           <Text style={styles.date}>
             {beginingDate} TO {endingDate}, {year}
@@ -60,18 +70,58 @@ export default function CardChallengBuddiesJoined({
           <GroupAvatar buddies={Buddies} />
         </View>
       )}
-
       <View style={styles.buttonContainer}>
-        <AppButton title="Join" width="100%" height={45} />
+        <AppButton
+          title="Join"
+          width="100%"
+          height={45}
+          onPress={() => console.log("button pressed")}
+        />
       </View>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    // width: 283,
+    // height: 332,
+    borderRadius: 4,
+    // borderWidth: 1,
+    borderColor: colors.black,
+    paddingBottom: 8,
+    paddingRight: 8,
+    paddingLeft: 8,
+    paddingTop: 22,
+    justifyContent: "space-between",
+  },
+  imagecontainer: {
+    alignItems: "center",
+  },
   image: {
-    width: 100,
-    height: 100,
+    width: 78,
+    height: 78,
+    borderRadius: 78 / 2,
+  },
+  challengeNameContainer: {
+    paddingLeft: 4,
+  },
+  text: {
+    fontFamily: "montserrat-black",
+    fontSize: 12,
+    color: colors.orangePrimary,
+    marginBottom: 8,
+    paddingLeft: 4,
+  },
+  dateIconContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
+  date: {
+    fontFamily: "montserrat-black",
+    fontSize: 12,
+    color: colors.grayLight50,
   },
 });
 
@@ -80,7 +130,7 @@ const styles = StyleSheet.create({
   /* <CardChallengBuddiesJoined
 image={require("./assets/person2.jpg")}
 challengeName="Weekly Challenge"
-duration={7}
+duration="7 Hours"
 beginingDate="2024-04-01"
 endingDate="2024-04-07"
 year={2024}
@@ -92,3 +142,16 @@ Buddies={[
 ]}
 /> */
 }
+
+// //without avatar group and for recomend all challenge
+// <CardChallengBuddiesJoined
+// image={require("./assets/person2.jpg")}
+// challengeName="Weekly Challenge"
+// duration="7 Hours"
+// beginingDate="AUG 3"
+// endingDate="SEP 3"
+// year={2024}
+// borderWidth={0}
+// cardHeight={284}
+// cardWidth="100%"
+// />
