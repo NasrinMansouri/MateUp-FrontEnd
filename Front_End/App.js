@@ -10,22 +10,64 @@ SplashScreen.preventAutoHideAsync();
 import colors from "./app/config/colors";
 import AppButtonBorder from "./app/components/AppButtonBorder";
 
-import GroupAvatar from "./app/components/challenge/GroupAvatar";
-import LocationWithIcon from "./app/components/LocationWithIcon";
-import CardChallengBuddiesJoined from "./app/components/challenge/CardChallengBuddiesJoined";
+import CardChallenges from "./app/components/challenge/CardChallenges";
+import GalleryPersonalizedChallenge from "./app/components/challenge/GalleryPersonalizedChallenge";
 
-// const challengeData = [
-//   {
-//     image: require("./images/challenge.jpg"), // Example image path
-//     challengeName: "Weekly Challenge",
-//     duration: 7, // Example duration (in hours or days)
-//     beginingDate: "2024-04-01",
-//     endingDate: "2024-04-07",
-//     year: 2024,
-//     onPress: () => {}, // Example onPress function
-//     BuddiesImage: require("./images/buddies.jpg"),
-//   },
-// ];
+const challengeData = [
+  {
+    id: 1,
+    image: require("./assets/person-1.jpg"),
+    challengeName: "Weekly Challenge",
+    duration: "7 Hours",
+    beginingDate: "AGU 3",
+    endingDate: "sep 3",
+    year: 2024,
+    onPress: () => {
+      console.log("card pressed");
+    },
+    Buddies: [
+      { id: 1, image: require("./assets/person-1.jpg") },
+      { id: 2, image: require("./assets/person2.jpg") },
+      { id: 3, image: require("./assets/person2.jpg") },
+      { id: 4, image: require("./assets/person2.jpg") },
+      { id: 5, image: require("./assets/person2.jpg") },
+      { id: 6, image: require("./assets/person2.jpg") },
+      { id: 7, image: require("./assets/person2.jpg") },
+    ],
+  },
+  {
+    id: 2,
+    image: require("./assets/person-1.jpg"),
+    challengeName: "Weekly Challenge",
+    duration: "7 Hours",
+    beginingDate: "AGU 3",
+    endingDate: "sep 3",
+    year: 2024,
+    onPress: () => {
+      console.log("card pressed");
+    },
+    Buddies: [{ id: 1, image: require("./assets/person-1.jpg") }],
+  },
+  {
+    id: 3,
+    image: require("./assets/person-1.jpg"),
+    challengeName: "Weekly Challenge",
+    duration: "7 Hours",
+    beginingDate: "AGU 3",
+    endingDate: "sep 3",
+    year: 2024,
+    onPress: () => {
+      console.log("card pressed");
+    },
+    Buddies: [
+      { id: 1, image: require("./assets/person-1.jpg") },
+      { id: 2, image: require("./assets/person2.jpg") },
+      { id: 3, image: require("./assets/person2.jpg") },
+      { id: 4, image: require("./assets/person2.jpg") },
+      { id: 5, image: require("./assets/person2.jpg") },
+    ],
+  },
+];
 
 export default function App() {
   const buddies = [
@@ -57,21 +99,7 @@ export default function App() {
   return (
     <View style={styles.container} onLayout={handleOnLayout}>
       <ScrollView style={styles.View}>
-        {/* <CardChallengBuddiesJoined
-          image={require("./assets/person2.jpg")}
-          challengeName="Weekly Challenge"
-          duration={7} // Example duration (in hours or days)
-          beginingDate="2024-04-01"
-          endingDate="2024-04-07"
-          year={2024}
-          Buddies={[
-            require("./assets/person2.jpg"),
-            require("./assets/person-1.jpg"),
-            require("./assets/person2.jpg"),
-            require("./assets/person2.jpg"),
-          ]}
-        /> */}
-        <CardChallengBuddiesJoined
+        <CardChallenges
           image={require("./assets/person2.jpg")}
           challengeName="Weekly Challenge"
           duration="7 Hours"
@@ -83,7 +111,7 @@ export default function App() {
           cardWidth="100%"
         />
 
-        <CardChallengBuddiesJoined
+        <CardChallenges
           onPress={() => console.log("card pressed")}
           image={require("./assets/person2.jpg")}
           challengeName="Weekly Challenge"
@@ -96,25 +124,10 @@ export default function App() {
             { id: 2, image: require("./assets/person-1.jpg") },
             { id: 3, image: require("./assets/person2.jpg") },
             { id: 4, image: require("./assets/person2.jpg") },
+            { id: 5, image: require("./assets/person2.jpg") },
           ]}
         />
-
-        {/* {console.log("budiesImage", require("./assets/person2.jpg"))} */}
-        {/* <GroupAvatar buddies={buddies} /> */}
-        {/* <LocationWithIcon location={"los angeles street" + " 123"} /> */}
-        {/* <View style={{ flexDirection: "row" }}>
-          <Image source={require("./assets/line.png")} />
-          <Image
-            source={require("./assets/person2.jpg")}
-            style={{
-              width: 78,
-              height: 78,
-              borderRadius: 78 / 2,
-              position: "absolute",
-              left: 32,
-            }}
-          />
-        </View> */}
+        <GalleryPersonalizedChallenge PersonalizedChallenge={challengeData} />
         <StatusBar style="auto" />
       </ScrollView>
       <View
@@ -140,6 +153,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.blackBc,
     paddingTop: 50,
+    // paddingLeft: 16,
   },
   View: {
     flex: 1,
