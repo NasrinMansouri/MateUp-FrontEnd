@@ -10,10 +10,9 @@ SplashScreen.preventAutoHideAsync();
 import colors from "./app/config/colors";
 import AppButtonBorder from "./app/components/AppButtonBorder";
 
-import CardChallenges from "./app/components/challenge/CardChallenges";
-import GalleryPersonalizedChallenge from "./app/components/challenge/GalleryPersonalizedChallenge";
-
-const challengeData = [
+import GalleryBuddiesJoinedChallenge from "./app/components/challenge/GalleryBuddiesJoinedChallenge";
+import GalleryClubChallenge from "./app/components/challenge/GalleryClubChallenge";
+const challengeAtYourClub = [
   {
     id: 1,
     image: require("./assets/person-1.jpg"),
@@ -25,15 +24,6 @@ const challengeData = [
     onPress: () => {
       console.log("card pressed");
     },
-    Buddies: [
-      { id: 1, image: require("./assets/person-1.jpg") },
-      { id: 2, image: require("./assets/person2.jpg") },
-      { id: 3, image: require("./assets/person2.jpg") },
-      { id: 4, image: require("./assets/person2.jpg") },
-      { id: 5, image: require("./assets/person2.jpg") },
-      { id: 6, image: require("./assets/person2.jpg") },
-      { id: 7, image: require("./assets/person2.jpg") },
-    ],
   },
   {
     id: 2,
@@ -46,7 +36,6 @@ const challengeData = [
     onPress: () => {
       console.log("card pressed");
     },
-    Buddies: [{ id: 1, image: require("./assets/person-1.jpg") }],
   },
   {
     id: 3,
@@ -59,27 +48,9 @@ const challengeData = [
     onPress: () => {
       console.log("card pressed");
     },
-    Buddies: [
-      { id: 1, image: require("./assets/person-1.jpg") },
-      { id: 2, image: require("./assets/person2.jpg") },
-      { id: 3, image: require("./assets/person2.jpg") },
-      { id: 4, image: require("./assets/person2.jpg") },
-      { id: 5, image: require("./assets/person2.jpg") },
-    ],
   },
 ];
-
 export default function App() {
-  const buddies = [
-    { id: 1, image: require("./assets/person-1.jpg") },
-    { id: 2, image: require("./assets/person2.jpg") },
-    { id: 3, image: require("./assets/person2.jpg") },
-    { id: 4, image: require("./assets/person2.jpg") },
-    { id: 5, image: require("./assets/person2.jpg") },
-    { id: 6, image: require("./assets/person2.jpg") },
-    { id: 7, image: require("./assets/person2.jpg") },
-  ];
-
   //for fonts
   const [isLoaded] = useFonts({
     "montserrat-black": require("./assets/fonts/Montserrat-Black.ttf"),
@@ -99,35 +70,7 @@ export default function App() {
   return (
     <View style={styles.container} onLayout={handleOnLayout}>
       <ScrollView style={styles.View}>
-        <CardChallenges
-          image={require("./assets/person2.jpg")}
-          challengeName="Weekly Challenge"
-          duration="7 Hours"
-          beginingDate="AUG 3"
-          endingDate="SEP 3"
-          year={2024}
-          borderWidth={0}
-          cardHeight={284}
-          cardWidth="100%"
-        />
-
-        <CardChallenges
-          onPress={() => console.log("card pressed")}
-          image={require("./assets/person2.jpg")}
-          challengeName="Weekly Challenge"
-          duration="7 Hours"
-          beginingDate="AUG 3"
-          endingDate="SEP 3"
-          year={2024}
-          Buddies={[
-            { id: 1, image: require("./assets/person2.jpg") },
-            { id: 2, image: require("./assets/person-1.jpg") },
-            { id: 3, image: require("./assets/person2.jpg") },
-            { id: 4, image: require("./assets/person2.jpg") },
-            { id: 5, image: require("./assets/person2.jpg") },
-          ]}
-        />
-        <GalleryPersonalizedChallenge PersonalizedChallenge={challengeData} />
+        <GalleryClubChallenge ClubChallenge={challengeAtYourClub} />
         <StatusBar style="auto" />
       </ScrollView>
       <View
