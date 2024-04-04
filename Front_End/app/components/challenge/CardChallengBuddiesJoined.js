@@ -20,6 +20,7 @@ export default function CardChallengBuddiesJoined({
   borderWidth = 1,
   cardWidth = 283,
   cardHeight = 333,
+  marginRight = 10,
 }) {
   return (
     <TouchableOpacity
@@ -29,6 +30,7 @@ export default function CardChallengBuddiesJoined({
           borderWidth: borderWidth,
           width: cardWidth,
           height: cardHeight,
+          marginRight: marginRight,
         },
       ]}
       activeOpacity={0.8}
