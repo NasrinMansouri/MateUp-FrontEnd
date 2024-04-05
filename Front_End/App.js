@@ -11,6 +11,7 @@ import colors from "./app/config/colors";
 import AppButtonBorder from "./app/components/AppButtonBorder";
 
 import DonutChart from "./app/components/challenge/DonutChart";
+import StopWatch from "./app/components/challenge/StopWatch";
 
 export default function App() {
   //for fonts
@@ -34,6 +35,7 @@ export default function App() {
       <ScrollView style={styles.View}>
         <View>
           <DonutChart />
+          <StopWatch />
         </View>
         <StatusBar style="auto" />
       </ScrollView>
