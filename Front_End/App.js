@@ -10,36 +10,7 @@ SplashScreen.preventAutoHideAsync();
 import colors from "./app/config/colors";
 import AppButtonBorder from "./app/components/AppButtonBorder";
 
-import CardMeetTheMemberOfTheMonth from "./app/components/home/CardMeetTheMemberOfTheMonth";
-import CardMatchClubMembers from "./app/components/buddy/CardMatchClubMembers";
-import GalleryMatchClubMembers from "./app/components/buddy/GalleryMatchClubMembers";
-
-const UserClubMembersData = [
-  {
-    id: 1,
-    name: "John Doeeeeeeeeeeeeeeeeee",
-    image: require("./assets/person-1.jpg"),
-    titles: ["strength training", "running"],
-  },
-  {
-    id: 2,
-    name: "ray pather ",
-    image: require("./assets/person-1.jpg"),
-    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
-  },
-  {
-    id: 3,
-    name: "ray pather ",
-    image: require("./assets/person-1.jpg"),
-    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
-  },
-  {
-    id: 3,
-    name: "ray pather ",
-    image: require("./assets/person-1.jpg"),
-    titles: ["strength training"],
-  },
-];
+import DonutChart from "./app/components/challenge/DonutChart";
 
 export default function App() {
   //for fonts
@@ -62,28 +33,7 @@ export default function App() {
     <View style={styles.container} onLayout={handleOnLayout}>
       <ScrollView style={styles.View}>
         <View>
-          <CardMeetTheMemberOfTheMonth
-            images={[
-              { id: "topLeft", image: require("./assets/person-1.jpg") },
-              { id: "buttomCenter", image: require("./assets/person-1.jpg") },
-              { id: "topRight", image: require("./assets/person2.jpg") },
-              { id: "bottomLeft", image: require("./assets/person3.jpg") },
-              { id: "bottomRight", image: require("./assets/person-1.jpg") },
-            ]}
-          />
-          <CardMatchClubMembers
-            name={"Jen"}
-            image={require("./assets/person2.jpg")}
-            titles={[
-              "strength training",
-              "running",
-              "swimming",
-              "yoga",
-              "boxing",
-            ]}
-          />
-          <GalleryMatchClubMembers UserClubMembers={UserClubMembersData} />
-          {/* <GalleryMatchClubMembers membersAtClub={membersAtClubData} /> */}
+          <DonutChart />
         </View>
         <StatusBar style="auto" />
       </ScrollView>
