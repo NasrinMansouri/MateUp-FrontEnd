@@ -156,7 +156,7 @@ export default function CardMatchClubMembers({ name, image, titles, onPress }) {
             textColor={colors.white}
           />
         </View>
-        <ListBulletPointWithText titles={titles} />
+        <ListBulletPointWithText titles={titles} textColor={colors.white} />
       </View>
     </TouchableOpacity>
   );
@@ -172,3 +172,12 @@ const styles = StyleSheet.create({
     marginBottom: 18,
   },
 });
+
+//to be used in screen as:
+{
+  /* <CardMatchClubMembers
+  name={"Jen"}
+  image={require("./assets/person2.jpg")}
+  titles={["strength training", "running", "swimming", "yoga", "boxing"]}
+/>; */
+}
