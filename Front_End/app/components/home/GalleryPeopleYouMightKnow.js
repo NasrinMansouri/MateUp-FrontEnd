@@ -3,8 +3,8 @@
 import React from "react";
 import { FlatList } from "react-native";
 
-import CardProfile from "./CardProfile";
-import colors from "../config/colors";
+import CardProfile from "../CardProfile";
+import colors from "../../config/colors";
 
 function GalleryPeopleYouMightKnow({ members }) {
   const capitalizeFirstLetter = (string) => {

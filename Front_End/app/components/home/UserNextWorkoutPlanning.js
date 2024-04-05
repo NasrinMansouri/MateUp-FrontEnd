@@ -2,16 +2,16 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import colors from "../config/colors";
+import colors from "../../config/colors";
 
 export default function UserNextWorkoutPlanning({}) {
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.textStyle}>
-          on <Text style={styles.whiteColorText}>12 Nov</Text> is your{" "}
-          <Text style={styles.whiteColorText}>leg</Text>
-          workout at {""} <Text style={styles.whiteColorText}>7 pm</Text>.{" "}
+          <Text style={styles.whiteColorText}>Tomorrow</Text> is your{" "}
+          <Text style={styles.whiteColorText}>leg</Text> workout at {""}{" "}
+          <Text style={styles.whiteColorText}>7 pm</Text>.{" "}
         </Text>
         <Text style={styles.textStyle}>
           don't forget, you'have got 2 companies.{" "}
@@ -24,7 +24,7 @@ export default function UserNextWorkoutPlanning({}) {
         <View style={styles.buddyContainer}>
           <View style={styles.buddy1}>
             <Image
-              source={require("../../assets/person-1.jpg")}
+              source={require("../../../assets/person-1.jpg")}
               style={styles.image}
             />
             <View style={styles.icons}>
@@ -44,7 +44,7 @@ export default function UserNextWorkoutPlanning({}) {
           </View>
           <View style={styles.buddy2}>
             <Image
-              source={require("../../assets/person-1.jpg")}
+              source={require("../../../assets/person2.jpg")}
               style={styles.image}
             />
             <View style={styles.icons}>
@@ -126,7 +126,6 @@ const styles = StyleSheet.create({
   heartIcon: {
     marginRight: 20,
     marginTop: 16,
-    strokeWidth: 4,
   },
   emailIcon: {
     marginTop: 16,

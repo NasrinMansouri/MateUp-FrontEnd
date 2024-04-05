@@ -3,10 +3,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 
-import colors from "../config/colors";
-import CradProfile from "./CardProfile";
-import BulletPointWithText from "./BulletPointWithText";
-import AppButton from "./AppButton";
+import colors from "../../config/colors";
+import CradProfile from "../CardProfile";
+import BulletPointWithText from "../BulletPointWithText";
+import AppButton from "../AppButton";
 
 export default function CardBuddiesWorkout({
   image,
