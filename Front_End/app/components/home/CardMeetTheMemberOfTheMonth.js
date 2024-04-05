@@ -84,7 +84,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-import colors from "../config/colors";
+import colors from "../../config/colors";
 import AnimatedImage from "./AnimatedImage";
 
 export default function CardMeetTheMemberOfTheMonth({ images }) {
@@ -165,9 +165,9 @@ const styles = StyleSheet.create({
     right: "20%",
   },
   textStyle: {
-    fontSize: 24,
+    fontSize: 30,
     fontFamily: "montserrat-black",
-    color: colors.orangeSecondary,
+    color: colors.orangePrimary,
     textTransform: "uppercase",
     textAlign: "center",
   },

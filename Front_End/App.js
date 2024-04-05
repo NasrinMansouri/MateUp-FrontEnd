@@ -9,44 +9,35 @@ SplashScreen.preventAutoHideAsync();
 
 import colors from "./app/config/colors";
 import AppButtonBorder from "./app/components/AppButtonBorder";
-import CardChallenges from "./app/components/challenge/CardChallenges";
-import GalleryAllChallenges from "./app/components/challenge/GalleryAllChallenges";
-const dataAllChallenge = [
+
+import CardMeetTheMemberOfTheMonth from "./app/components/home/CardMeetTheMemberOfTheMonth";
+import CardMatchClubMembers from "./app/components/buddy/CardMatchClubMembers";
+import GalleryMatchClubMembers from "./app/components/buddy/GalleryMatchClubMembers";
+
+const UserClubMembersData = [
   {
     id: 1,
+    name: "John Doeeeeeeeeeeeeeeeeee",
     image: require("./assets/person-1.jpg"),
-    challengeName: "Weekly Challenge",
-    duration: "7 Hours",
-    beginingDate: "AGU 3",
-    endingDate: "sep 3",
-    year: 2024,
-    onPress: () => {
-      console.log("card pressed");
-    },
+    titles: ["strength training", "running"],
   },
   {
     id: 2,
+    name: "ray pather ",
     image: require("./assets/person-1.jpg"),
-    challengeName: "Weekly Challenge",
-    duration: "7 Hours",
-    beginingDate: "AGU 3",
-    endingDate: "sep 3",
-    year: 2024,
-    onPress: () => {
-      console.log("card pressed");
-    },
+    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
   },
   {
     id: 3,
+    name: "ray pather ",
     image: require("./assets/person-1.jpg"),
-    challengeName: "Weekly Challenge",
-    duration: "7 Hours",
-    beginingDate: "AGU 3",
-    endingDate: "sep 3",
-    year: 2024,
-    onPress: () => {
-      console.log("card pressed");
-    },
+    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
+  },
+  {
+    id: 3,
+    name: "ray pather ",
+    image: require("./assets/person-1.jpg"),
+    titles: ["strength training"],
   },
 ];
 
@@ -70,30 +61,30 @@ export default function App() {
   return (
     <View style={styles.container} onLayout={handleOnLayout}>
       <ScrollView style={styles.View}>
-        <GalleryAllChallenges AllChallenges={dataAllChallenge} />
-        <CardChallenges
-          image={require("./assets/person2.jpg")}
-          challengeName="Weekly Challenge"
-          duration="7 Hours"
-          beginingDate="2024-04-01"
-          endingDate="2024-04-07"
-          year={2024}
-          Buddies={[
-            { id: 1, image: require("./assets/person2.jpg") },
-            { id: 2, image: require("./assets/person-1.jpg") },
-            { id: 3, image: require("./assets/person2.jpg") },
-            { id: 4, image: require("./assets/person2.jpg") },
-          ]}
-        />
-        <CardChallenges
-          image={require("./assets/person2.jpg")}
-          challengeName="Weekly Challenge"
-          duration="7 Hours"
-          beginingDate="2024-04-01"
-          endingDate="2024-04-07"
-          year={2024}
-          cardHeight={284}
-        />
+        <View>
+          <CardMeetTheMemberOfTheMonth
+            images={[
+              { id: "topLeft", image: require("./assets/person-1.jpg") },
+              { id: "buttomCenter", image: require("./assets/person-1.jpg") },
+              { id: "topRight", image: require("./assets/person2.jpg") },
+              { id: "bottomLeft", image: require("./assets/person3.jpg") },
+              { id: "bottomRight", image: require("./assets/person-1.jpg") },
+            ]}
+          />
+          <CardMatchClubMembers
+            name={"Jen"}
+            image={require("./assets/person2.jpg")}
+            titles={[
+              "strength training",
+              "running",
+              "swimming",
+              "yoga",
+              "boxing",
+            ]}
+          />
+          <GalleryMatchClubMembers UserClubMembers={UserClubMembersData} />
+          {/* <GalleryMatchClubMembers membersAtClub={membersAtClubData} /> */}
+        </View>
         <StatusBar style="auto" />
       </ScrollView>
       <View

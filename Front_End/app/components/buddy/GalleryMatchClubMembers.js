@@ -4,13 +4,13 @@ import { StyleSheet, Text, View, FlatList } from "react-native";
 import React from "react";
 import CardMatchClubMembers from "./CardMatchClubMembers";
 
-export default function GalleryMatchClubMembers({ meetClubMembers }) {
+export default function GalleryMatchClubMembers({ UserClubMembers }) {
   return (
     <FlatList
       style={styles.container}
       horizontal
-      data={meetClubMembers}
-      keyExtractor={(meetClubMembers) => meetClubMembers.id.toString()}
+      data={UserClubMembers}
+      keyExtractor={(UserClubMembers) => UserClubMembers.id.toString()}
       renderItem={({ item }) => (
         <CardMatchClubMembers
           name={item.name}
@@ -30,11 +30,11 @@ const styles = StyleSheet.create({
 
 //to be use in screen as:
 {
-  /* <GalleryMatchClubMembers meetClubMembers={meetClubMembersData} /> */
+  /* <GalleryMatchClubMembers UserClubMembers ={UserClubMembersData} /> */
 }
 
 //dummy data for testing
-// const meetClubMembersData = [
+// const UserClubMembersData = [
 //   {
 //     id: 1,
 //     name: "John Doeeeeeeeeeeeeeeeeee",
