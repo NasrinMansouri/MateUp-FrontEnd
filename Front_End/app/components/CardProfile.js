@@ -31,6 +31,7 @@ function CardProfile({
   alignItems = "center",
   justifyContent = "center",
   textTransform = "capitalize",
+  marginRight = 4,
 }) {
   return (
     <TouchableOpacity
@@ -50,6 +51,7 @@ function CardProfile({
             borderRadius: cardRadius,
             alignItems: alignItems,
             justifyContent: justifyContent,
+            marginRight: marginRight,
           },
         ]}
       >
@@ -91,7 +93,7 @@ const styles = StyleSheet.create({
   card: {
     // alignItems: "center",
     // justifyContent: "center",
-    marginRight: 4,
+    // marginRight: 4,
   },
 
   text: {
