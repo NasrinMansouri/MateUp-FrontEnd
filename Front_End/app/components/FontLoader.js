@@ -3,8 +3,6 @@ import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
 SplashScreen.preventAutoHideAsync();
 
-import { View } from "react-native";
-
 export default function FontLoader({ children }) {
   //for fonts
   const [isLoaded] = useFonts({
