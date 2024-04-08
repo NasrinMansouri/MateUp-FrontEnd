@@ -4,12 +4,14 @@ import React from "react";
 import Line from "../../components/Line";
 import colors from "../../config/colors";
 import Screen from "../../components/Screen";
+import AppButton from "../../components/AppButton";
 import GalleryBuddies from "../../components/GalleryBuddies";
 import AppButtonBorder from "../../components/AppButtonBorder";
 import UserNextWorkoutPlanning from "../../components/home/UserNextWorkoutPlanning";
 import GalleryBuddiesWorkout from "../../components/home/GalleryBuddiesWorkout";
 import GalleryPeopleYouMightKnow from "../../components/home/GalleryPeopleYouMightKnow";
 import CardMeetTheMemberOfTheMonth from "../../components/home/CardMeetTheMemberOfTheMonth";
+import GalleryEducationalContent from "../../components/home/GalleryEducationalContent";
 
 export default function MainHomeScreen() {
   return (
@@ -33,32 +35,15 @@ export default function MainHomeScreen() {
             <GalleryPeopleYouMightKnow />
           </View>
           <View>
-            <Text></Text>
-            <Text></Text>
-            <CardMeetTheMemberOfTheMonth
-            // images={[
-            //   {
-            //     id: "topLeft",
-            //     image: require("../../../assets/person-1.jpg"),
-            //   },
-            //   {
-            //     id: "buttomCenter",
-            //     image: require("../../../assets/person2.jpg"),
-            //   },
-            //   {
-            //     id: "topRight",
-            //     image: require("../../../assets/person3.jpg"),
-            //   },
-            //   {
-            //     id: "bottomLeft",
-            //     image: require("../../../assets/person4.jpg"),
-            //   },
-            //   {
-            //     id: "bottomRight",
-            //     image: require("../../../assets/person5.jpg"),
-            //   },
-            // ]}
-            />
+            <Text style={styles.titleText}>whats new</Text>
+            <Text style={styles.subTitleText}>
+              Checkout the lates news on MATE-UP
+            </Text>
+            <CardMeetTheMemberOfTheMonth />
+            <GalleryEducationalContent />
+          </View>
+          <View style={{ alignItems: "center", marginBottom: 200 }}>
+            <AppButton title={"see all"} width={222} height={45} />
           </View>
         </Screen>
       </ScrollView>

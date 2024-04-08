@@ -32,7 +32,7 @@ function CardProfile({
   justifyContent = "center",
   textTransform = "capitalize",
   marginRight = 4,
-  gap,
+  gap = 8,
   marginBottom,
 }) {
   return (

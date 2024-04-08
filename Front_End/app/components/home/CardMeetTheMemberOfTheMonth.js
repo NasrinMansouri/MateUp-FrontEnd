@@ -110,6 +110,7 @@ export default function CardMeetTheMemberOfTheMonth() {
       image: require("../../../assets/person5.jpg"),
     },
   ];
+
   return (
     <View style={styles.container}>
       <Text style={styles.textStyle}>Meet The Member Of The Month</Text>
@@ -147,6 +148,8 @@ const styles = StyleSheet.create({
     height: 416,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: colors.orangeSecondary,
+    // marginTop: 76,
   },
   image: {
     position: "absolute",
@@ -189,7 +192,7 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 30,
     fontFamily: "montserrat-black",
-    color: colors.orangePrimary,
+    color: colors.white,
     textTransform: "uppercase",
     textAlign: "center",
   },
