@@ -43,6 +43,7 @@ export default function GalleryBuddiesWorkout({ buddiesWorkout }) {
     <FlatList
       style={styles.container}
       horizontal
+      showsHorizontalScrollIndicator={false}
       data={buddiesWorkoutData}
       keyExtractor={(buddiesWorkout) => buddiesWorkout.id.toString()}
       renderItem={({ item }) => (

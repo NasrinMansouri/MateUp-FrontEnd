@@ -45,6 +45,7 @@ function GalleryPeopleYouMightKnow({ members }) {
     <FlatList
       style={styles.container}
       horizontal
+      showsHorizontalScrollIndicator={false}
       data={membersData}
       keyExtractor={(members) => members.id.toString()}
       renderItem={({ item }) => (

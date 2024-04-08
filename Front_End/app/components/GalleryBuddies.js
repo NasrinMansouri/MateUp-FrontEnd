@@ -45,6 +45,7 @@ function GalleryBuddies({ buddies, style }) {
     <FlatList
       style={[styles.container, style]}
       horizontal
+      showsHorizontalScrollIndicator={false}
       data={buddiesData}
       keyExtractor={(buddies) => buddies.id.toString()}
       renderItem={({ item }) => (
