@@ -77,7 +77,6 @@ export default function App() {
   return (
     <FontLoader>
       <View style={styles.container}>
-        <Text>hello</Text>
         <MainHomeScreen />
         <StatusBar style="auto" />
       </View>
