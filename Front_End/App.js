@@ -70,6 +70,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Text } from "react-native";
 
 import FontLoader from "./app/components/FontLoader";
+import TopNav from "./app/components/TopNav";
 import colors from "./app/config/colors";
 import MainHomeScreen from "./app/screens/home/MainHomeScreen";
 
@@ -77,6 +78,11 @@ export default function App() {
   return (
     <FontLoader>
       <View style={styles.container}>
+        {/* <TopNav
+          // showProfilePic={true}
+          // userImage={require("./assets/person2.jpg")}
+          showSearchBar={true}
+        /> */}
         <MainHomeScreen />
         <StatusBar style="auto" />
       </View>
