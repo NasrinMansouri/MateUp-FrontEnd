@@ -32,6 +32,8 @@ function CardProfile({
   justifyContent = "center",
   textTransform = "capitalize",
   marginRight = 4,
+  gap,
+  marginBottom,
 }) {
   return (
     <TouchableOpacity
@@ -52,6 +54,8 @@ function CardProfile({
             alignItems: alignItems,
             justifyContent: justifyContent,
             marginRight: marginRight,
+            gap: gap,
+            marginBottom: marginBottom,
           },
         ]}
       >
@@ -99,8 +103,8 @@ const styles = StyleSheet.create({
   text: {
     // textTransform: " capitalize",
     fontFamily: "nunitoSans-regular",
-    paddingRight: 5,
-    paddingLeft: 5,
+    // paddingRight: 5,
+    // paddingLeft: 5,
   },
 });
 
