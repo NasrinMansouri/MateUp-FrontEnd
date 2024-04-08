@@ -6,10 +6,24 @@ import React from "react";
 import CardEducationalContent from "./CardEducationalContent";
 
 export default function GalleryEducationalContent({ educationalContent }) {
+  const dataEducationalContent = [
+    {
+      id: 1,
+      image: require("../../../assets/image/educational-1.jpg"),
+      title: "workout buddy",
+      subttle: "Your buddy will thank you for it",
+    },
+    {
+      id: 2,
+      image: require("../../../assets/image/educational-2.jpg"),
+      title: "move with me",
+      subttle: "behind the scenes by sarah",
+    },
+  ];
   return (
     <FlatList
       style={styles.container}
-      data={educationalContent}
+      data={dataEducationalContent}
       keyExtractor={(educationalContent) => educationalContent.id.toString()}
       renderItem={({ item }) => (
         <CardEducationalContent
@@ -30,21 +44,6 @@ const styles = StyleSheet.create({
 });
 
 //to be used in screen as:
-
-// const dataEducationalContent = [
-//     {
-//       id: 1,
-//       image: require("./assets/image/educational-1.jpg"),
-//       title: "workout buddy",
-//       subttle: "Your buddy will thank you for it",
-//     },
-//     {
-//       id: 2,
-//       image: require("./assets/image/educational-2.jpg"),
-//       title: "move with me",
-//       subttle: "behind the scenes by sarah",
-//     },
-//   ];
 
 {
   /* <GalleryEducationalContent educationalContent={dataEducationalContent} /> */
