@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   StyleSheet,
   TextInput,
@@ -30,7 +30,13 @@ export default function TopNav({
   //     );
   //     setFilteredUsers(filtered);
   //   };
-
+  const [searchQuery, setSearchQuery] = useState(""); // State to store the search query
+  const ref = useRef(null);
+  // Function to handle search
+  const handleSearch = () => {
+    console.log("Search query:", searchQuery);
+    // Perform any other search-related operations here
+  };
   return (
     <View style={styles.mainContainer}>
       <View>
@@ -53,13 +59,20 @@ export default function TopNav({
                 // value="search query"
                 placeholderTextColor="gray"
                 //new for searching
-                // value={searchQuery}
-                // onChangeText={setSearchQuery}
-                // onSubmitEditing={handleSearch}
+                value={searchQuery}
+                // onPressSearch={handleSearch}
+                onChangeText={(text) => setSearchQuery(text)}
+                // onSubmitEditing={(event) => {
+                //   event.preventDefault();
+                //   if (ref.current) console.log(ref.current.value);
+                // }}
+                onSubmitEditing={handleSearch}
+                ref={ref}
               />
             </View>
           </TouchableOpacity>
         )}
+
         {showProfilePic && (
           <TouchableOpacity onPress={onPressProfile} activeOpacity={0.9}>
             <Image source={userImage} style={styles.userImage} />
