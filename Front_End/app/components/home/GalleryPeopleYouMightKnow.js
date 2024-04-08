@@ -2,20 +2,50 @@
 
 import React from "react";
 import { FlatList } from "react-native";
+import { StyleSheet } from "react-native";
 
 import CardProfile from "../CardProfile";
 import colors from "../../config/colors";
 
 function GalleryPeopleYouMightKnow({ members }) {
+  //dummy data for testing
+  const membersData = [
+    {
+      id: 1,
+      name: "Red ",
+      image: require("../../../assets/person-1.jpg"),
+    },
+    {
+      id: 2,
+      name: "Couch ",
+      image: require("../../../assets/person-1.jpg"),
+    },
+    {
+      id: 3,
+      name: "Couch ",
+      image: require("../../../assets/person-1.jpg"),
+    },
+    {
+      id: 4,
+      name: "Couch111111111 ",
+      image: require("../../../assets/person-1.jpg"),
+    },
+    {
+      id: 5,
+      name: "Couch ",
+      image: require("../../../assets/person-1.jpg"),
+    },
+  ];
+
   const capitalizeFirstLetter = (string) => {
     // capitalize first letter and make rest lowercase
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   };
   return (
     <FlatList
-      style={{ backgroundColor: colors.blackBc }}
+      style={styles.container}
       horizontal
-      data={members}
+      data={membersData}
       keyExtractor={(members) => members.id.toString()}
       renderItem={({ item }) => (
         <CardProfile
@@ -41,37 +71,14 @@ function GalleryPeopleYouMightKnow({ members }) {
   );
 }
 
-export default GalleryPeopleYouMightKnow;
+const styles = StyleSheet.create({
+  container: {
+    paddingLeft: 16,
+    marginBottom: 96,
+  },
+});
 
-// to be used in screen as:
-//dummy data for testing
-// const members = [
-//   {
-//     id: 1,
-//     name: "Red ",
-//     image: require("./assets/person-1.jpg"),
-//   },
-//   {
-//     id: 2,
-//     name: "Couch ",
-//     image: require("./assets/person-1.jpg"),
-//   },
-//   {
-//     id: 3,
-//     name: "Couch ",
-//     image: require("./assets/person-1.jpg"),
-//   },
-//   {
-//     id: 4,
-//     name: "Couch111111111 ",
-//     image: require("./assets/person-1.jpg"),
-//   },
-//   {
-//     id: 5,
-//     name: "Couch ",
-//     image: require("./assets/person-1.jpg"),
-//   },
-// ];
+export default GalleryPeopleYouMightKnow;
 
 //to be used in screen as:
 {

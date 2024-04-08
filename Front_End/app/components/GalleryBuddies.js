@@ -62,8 +62,7 @@ function GalleryBuddies({ buddies, style }) {
           imageRadius={77 / 2}
           textColor={colors.white}
           fontSize={14}
-          // gap={10}
-          // marginBottom={40}
+          gap={10}
         />
       )}
     />

@@ -67,10 +67,9 @@
 // });
 
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, ScrollView } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 
 import FontLoader from "./app/components/FontLoader";
-import GalleryAllChallenges from "./app/components/challenge/GalleryAllChallenges";
 import colors from "./app/config/colors";
 import MainHomeScreen from "./app/screens/home/MainHomeScreen";
 
@@ -78,11 +77,9 @@ export default function App() {
   return (
     <FontLoader>
       <View style={styles.container}>
-        <ScrollView style={styles.view}>
-          {/* <GalleryAllChallenges /> */}
-          <MainHomeScreen />
-          <StatusBar style="auto" />
-        </ScrollView>
+        {/* <Text>Open up App.js to start working on your app!</Text> */}
+        <MainHomeScreen />
+        <StatusBar style="auto" />
       </View>
     </FontLoader>
   );
@@ -90,10 +87,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: colors.blackBc,
-  },
-  view: {
-    flex: 1,
   },
 });

@@ -75,7 +75,7 @@ const StopwatchApp = () => {
             styles.button,
             activeButton === "start"
               ? {
-                  backgroundColor: colors.orangePrimary,
+                  backgroundColor: colors.orangeSecondary,
                   borderColor: colors.black,
                 }
               : { borderColor: colors.green },
@@ -96,7 +96,7 @@ const StopwatchApp = () => {
             styles.button,
             activeButton === "stop"
               ? {
-                  backgroundColor: colors.orangePrimary,
+                  backgroundColor: colors.orangeSecondary,
                   borderColor: colors.black,
                 }
               : { borderColor: colors.green },
@@ -117,7 +117,7 @@ const StopwatchApp = () => {
             styles.button,
             activeButton === "reset"
               ? {
-                  backgroundColor: colors.orangePrimary,
+                  backgroundColor: colors.orangeSecondary,
                   borderColor: colors.black,
                 }
               : { borderColor: colors.green },
@@ -148,11 +148,17 @@ const styles = StyleSheet.create({
     fontSize: 48,
     fontFamily: "montserrat-black",
     color: colors.white,
-    marginTop: "50%",
+    marginTop: "90%",
+    textAlign: "center",
   },
   buttonContainer: {
     flexDirection: "row",
+    // justifyContent: "center",
+    // alignItems: "center",
     marginTop: 230,
+    // marginTop: 400,
+    position: "absolute",
+    top: 350,
   },
   button: {
     width: 80,

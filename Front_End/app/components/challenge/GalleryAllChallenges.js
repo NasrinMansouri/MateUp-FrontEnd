@@ -3,7 +3,7 @@ import React from "react";
 
 import CardChallenges from "./CardChallenges";
 
-export default function GalleryAllChallenges() {
+export default function GalleryAllChallenges({ AllChallenges }) {
   //dummy data
   const challenges = [
     {

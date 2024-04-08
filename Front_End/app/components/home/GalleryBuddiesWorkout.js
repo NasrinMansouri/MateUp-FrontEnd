@@ -55,13 +55,19 @@ export default function GalleryBuddiesWorkout({ buddiesWorkout }) {
           date={item.date}
           begin={item.begin}
           end={item.end}
+          marginRight={4}
         />
       )}
     />
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    paddingLeft: 16,
+    marginBottom: 96,
+  },
+});
 
 // to be used in screen as:
 
