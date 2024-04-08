@@ -10,11 +10,6 @@
 // import colors from "./app/config/colors";
 // import AppButtonBorder from "./app/components/AppButtonBorder";
 
-// import DonutChart from "./app/components/challenge/DonutChart";
-// import StopWatch from "./app/components/challenge/StopWatch";
-// import GalleryAllChallenges from "./app/components/challenge/GalleryAllChallenges";
-// import MainHomeScreen from "./app/screens/home/MainHomeScreen";
-
 // export default function App() {
 //   //for fonts
 //   const [isLoaded] = useFonts({
@@ -35,12 +30,23 @@
 //   return (
 //     <View style={styles.container} onLayout={handleOnLayout}>
 //       <ScrollView style={styles.View}>
-//         <View>
-//           {/* <DonutChart /> */}
-//           {/* <StopWatch /> */}
-//           <GalleryAllChallenges />
-//           {/* <MainHomeScreen /> */}
-//         </View>
+//       // //for fix btn
+// {
+//   /* <View
+//         style={{
+//           // marginBottom: 100,
+//           position: "absolute",
+//           top: "75%",
+//           right: 24,
+//           zIndex: 1,
+//         }}
+//       >
+//         <AppButtonBorder
+//           image={require("./assets/icons/calendar.png")}
+//           title="calendar"
+//         />
+//       </View> */
+// }
 //         <StatusBar style="auto" />
 //       </ScrollView>
 //     </View>
@@ -60,37 +66,21 @@
 //   // },
 // });
 
-// //for fix btn
-// {
-//   /* <View
-//         style={{
-//           // marginBottom: 100,
-//           position: "absolute",
-//           top: "75%",
-//           right: 24,
-//           zIndex: 1,
-//         }}
-//       >
-//         <AppButtonBorder
-//           image={require("./assets/icons/calendar.png")}
-//           title="calendar"
-//         />
-//       </View> */
-// }
-
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, ScrollView } from "react-native";
 
 import FontLoader from "./app/components/FontLoader";
 import GalleryAllChallenges from "./app/components/challenge/GalleryAllChallenges";
 import colors from "./app/config/colors";
+import MainHomeScreen from "./app/screens/home/MainHomeScreen";
 
 export default function App() {
   return (
     <FontLoader>
       <View style={styles.container}>
         <ScrollView style={styles.view}>
-          <GalleryAllChallenges />
+          {/* <GalleryAllChallenges /> */}
+          <MainHomeScreen />
           <StatusBar style="auto" />
         </ScrollView>
       </View>
