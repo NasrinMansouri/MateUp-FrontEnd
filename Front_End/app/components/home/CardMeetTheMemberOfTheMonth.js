@@ -87,7 +87,29 @@ import React from "react";
 import colors from "../../config/colors";
 import AnimatedImage from "./AnimatedImage";
 
-export default function CardMeetTheMemberOfTheMonth({ images }) {
+export default function CardMeetTheMemberOfTheMonth() {
+  const images = [
+    {
+      id: "topLeft",
+      image: require("../../../assets/person-1.jpg"),
+    },
+    {
+      id: "buttomCenter",
+      image: require("../../../assets/person2.jpg"),
+    },
+    {
+      id: "topRight",
+      image: require("../../../assets/person3.jpg"),
+    },
+    {
+      id: "bottomLeft",
+      image: require("../../../assets/person4.jpg"),
+    },
+    {
+      id: "bottomRight",
+      image: require("../../../assets/person5.jpg"),
+    },
+  ];
   return (
     <View style={styles.container}>
       <Text style={styles.textStyle}>Meet The Member Of The Month</Text>
