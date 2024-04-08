@@ -8,7 +8,7 @@ import { FlatList, StyleSheet } from "react-native";
 import CardProfile from "./CardProfile";
 import colors from "../config/colors";
 
-function GalleryBuddies({ buddies }) {
+function GalleryBuddies({ buddies, style }) {
   const capitalizeFirstLetter = (string) => {
     // capitalize first letter and make rest lowercase
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -43,7 +43,7 @@ function GalleryBuddies({ buddies }) {
   ];
   return (
     <FlatList
-      style={styles.container}
+      style={[styles.container, style]}
       horizontal
       data={buddiesData}
       keyExtractor={(buddies) => buddies.id.toString()}
@@ -62,6 +62,8 @@ function GalleryBuddies({ buddies }) {
           imageRadius={77 / 2}
           textColor={colors.white}
           fontSize={14}
+          // gap={10}
+          // marginBottom={40}
         />
       )}
     />
