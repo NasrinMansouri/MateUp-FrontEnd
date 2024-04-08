@@ -13,12 +13,39 @@ function GalleryBuddies({ buddies }) {
     // capitalize first letter and make rest lowercase
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   };
-
+  //dummy data for testing
+  const buddiesData = [
+    {
+      id: 1,
+      name: "MMMMMMMMMMMMMMMM ",
+      image: require("../../assets/person-1.jpg"),
+    },
+    {
+      id: 2,
+      name: "Coucheeeeeeee ",
+      image: require("../../assets/person-1.jpg"),
+    },
+    {
+      id: 3,
+      name: "Couchhhhhhhhh ",
+      image: require("../../assets/person-1.jpg"),
+    },
+    {
+      id: 4,
+      name: "NNNNNN NNNNN ",
+      image: require("../../assets/person-1.jpg"),
+    },
+    {
+      id: 5,
+      name: "Couch ",
+      image: require("../../assets/person-1.jpg"),
+    },
+  ];
   return (
     <FlatList
       style={styles.container}
       horizontal
-      data={buddies}
+      data={buddiesData}
       keyExtractor={(buddies) => buddies.id.toString()}
       renderItem={({ item }) => (
         <CardProfile
@@ -51,34 +78,6 @@ export default GalleryBuddies;
 //can be use wihout having name prop
 
 // to be used in screen as:
-//dummy data for testing
-// const buddiesData = [
-//   {
-//     id: 1,
-//     name: "MMMMMMMMMMMMMMMM ",
-//     image: require("./assets/person-1.jpg"),
-//   },
-//   {
-//     id: 2,
-//     name: "Coucheeeeeeee ",
-//     image: require("./assets/person-1.jpg"),
-//   },
-//   {
-//     id: 3,
-//     name: "Couchhhhhhhhh ",
-//     image: require("./assets/person-1.jpg"),
-//   },
-//   {
-//     id: 4,
-//     name: "NNNNNN NNNNN ",
-//     image: require("./assets/person-1.jpg"),
-//   },
-//   {
-//     id: 5,
-//     name: "Couch ",
-//     image: require("./assets/person-1.jpg"),
-//   },
-// ];
 
 //to be used in screen as:
 {
