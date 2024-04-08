@@ -12,6 +12,7 @@ import GalleryBuddiesWorkout from "../../components/home/GalleryBuddiesWorkout";
 import GalleryPeopleYouMightKnow from "../../components/home/GalleryPeopleYouMightKnow";
 import CardMeetTheMemberOfTheMonth from "../../components/home/CardMeetTheMemberOfTheMonth";
 import GalleryEducationalContent from "../../components/home/GalleryEducationalContent";
+import TopNav from "../../components/TopNav";
 
 export default function MainHomeScreen() {
   const data = [
@@ -32,6 +33,7 @@ export default function MainHomeScreen() {
   //The `renderItem` function is defined to render the components based
   // on the `data` array.
   const renderItem = ({ item }) => renderItemCache[item.type](item);
+
   renderItemCache["GalleryBuddies"] = (item) => (
     <View style={styles.buddiesContainer}>
       <GalleryBuddies
@@ -88,6 +90,11 @@ export default function MainHomeScreen() {
 
   return (
     <Screen style={styles.container}>
+      <TopNav
+        // showProfilePic={true}
+        // userImage={require("../../../assets/person2.jpg")}
+        showSearchBar={true}
+      />
       {/* The `FlatList` component is used to render the components based on the
        `data` array, using the `renderItem` function. */}
       <FlatList
