@@ -6,6 +6,8 @@ import {
   TouchableHighlight,
 } from "react-native";
 import React from "react";
+import Swipeable from "react-native-gesture-handler/Swipeable";
+
 import AppButton from "./AppButton";
 import colors from "../config/colors";
 
@@ -18,71 +20,74 @@ function ListItem({
   onPressConfirm,
   onPressDecline,
   onPress,
+  renderRightActions,
 }) {
   return (
-    <View style={styles.mainContainer}>
-      {showRequestResult ? (
-        <TouchableHighlight
-          onPress={onPress}
-          //   onPress={() => console.log("result pressed")}
-          underlayColor={colors.black}
-          style={styles.container}
-        >
-          <View style={styles.containerResult}>
-            <View>
-              <Image source={userImage} style={styles.userImage} />
-            </View>
-            <View style={styles.containerText}>
-              <Text style={styles.name}>{name} </Text>
-              <Text style={styles.textTitle} numberOfLines={2}>
-                {title}
-              </Text>
-            </View>
-          </View>
-        </TouchableHighlight>
-      ) : null}
-
-      {showRequest ? (
-        <TouchableHighlight
-          onPress={onPress}
-          underlayColor={colors.black}
-          style={styles.container}
-        >
-          <View style={styles.containerRequest}>
-            <View style={styles.imageTextContainer}>
+    <Swipeable renderRightActions={renderRightActions}>
+      <View style={styles.mainContainer}>
+        {showRequestResult ? (
+          <TouchableHighlight
+            onPress={onPress}
+            //   onPress={() => console.log("result pressed")}
+            underlayColor={colors.black}
+            style={styles.container}
+          >
+            <View style={styles.containerResult}>
               <View>
                 <Image source={userImage} style={styles.userImage} />
               </View>
-              <View style={styles.containerTextRequest}>
+              <View style={styles.containerText}>
                 <Text style={styles.name}>{name} </Text>
                 <Text style={styles.textTitle} numberOfLines={2}>
                   {title}
                 </Text>
               </View>
             </View>
-            <View style={styles.containerButtons}>
-              <AppButton
-                title="Confirm"
-                width={60}
-                height={30}
-                onPress={onPressConfirm}
-                fontFamily="nunitoSans-bold"
-                fontSize={10}
-              />
+          </TouchableHighlight>
+        ) : null}
 
-              <AppButton
-                title="Delete"
-                width={60}
-                height={30}
-                onPress={onPressDecline}
-                fontFamily="nunitoSans-bold"
-                fontSize={10}
-              />
+        {showRequest ? (
+          <TouchableHighlight
+            onPress={onPress}
+            underlayColor={colors.black}
+            style={styles.container}
+          >
+            <View style={styles.containerRequest}>
+              <View style={styles.imageTextContainer}>
+                <View>
+                  <Image source={userImage} style={styles.userImage} />
+                </View>
+                <View style={styles.containerTextRequest}>
+                  <Text style={styles.name}>{name} </Text>
+                  <Text style={styles.textTitle} numberOfLines={2}>
+                    {title}
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.containerButtons}>
+                <AppButton
+                  title="Confirm"
+                  width={60}
+                  height={30}
+                  onPress={onPressConfirm}
+                  fontFamily="nunitoSans-bold"
+                  fontSize={10}
+                />
+
+                <AppButton
+                  title="Delete"
+                  width={60}
+                  height={30}
+                  onPress={onPressDecline}
+                  fontFamily="nunitoSans-bold"
+                  fontSize={10}
+                />
+              </View>
             </View>
-          </View>
-        </TouchableHighlight>
-      ) : null}
-    </View>
+          </TouchableHighlight>
+        ) : null}
+      </View>
+    </Swipeable>
   );
 }
 
