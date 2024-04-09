@@ -26,6 +26,13 @@ export default function MainHomeScreen() {
     { type: "GalleryEducationalContent" },
   ];
 
+  //for searchbar
+  // Define the onPressSearch function
+  const handleSearch = (searchQuery) => {
+    console.log("Search query:", searchQuery);
+    // Perform search logic here
+  };
+
   //The `renderItemCache` object is created to map each component
   // type to its corresponding rendering function.
   const renderItemCache = {};
@@ -91,9 +98,10 @@ export default function MainHomeScreen() {
   return (
     <Screen style={styles.container}>
       <TopNav
-        // showProfilePic={true}
-        // userImage={require("../../../assets/person2.jpg")}
-        showSearchBar={true}
+        showProfilePic={true}
+        userImage={require("../../../assets/person2.jpg")}
+        // showSearchBar={true}
+        // onPressSearch={handleSearch}
       />
       {/* The `FlatList` component is used to render the components based on the
        `data` array, using the `renderItem` function. */}
