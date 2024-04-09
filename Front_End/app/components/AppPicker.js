@@ -1,8 +1,16 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableWithoutFeedback,
+  Modal,
+  Button,
+} from "react-native";
+import React, { useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../config/colors";
+import Screen from "./Screen";
 
 export default function AppPicker({
   icon,
@@ -12,32 +20,43 @@ export default function AppPicker({
   placeholder,
   ...otherProps
 }) {
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          borderColor: borderColor,
-          backgroundColor: backgroundColor,
-          borderWidth: borderWidth,
-        },
-      ]}
-    >
-      {icon && (
-        <MaterialCommunityIcons
-          name={icon}
-          size={20}
-          color={colors.grayLight50}
-          style={styles.icon}
-        />
-      )}
-      <Text style={styles.text}> {placeholder} </Text>
-      <MaterialCommunityIcons
-        name="chevron-down"
-        size={24}
-        color={colors.grayLight50}
-      />
-    </View>
+    <>
+      <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
+        <View
+          style={[
+            styles.container,
+            {
+              borderColor: borderColor,
+              backgroundColor: backgroundColor,
+              borderWidth: borderWidth,
+            },
+          ]}
+        >
+          {icon && (
+            <MaterialCommunityIcons
+              name={icon}
+              size={20}
+              color={colors.grayLight50}
+              style={styles.icon}
+            />
+          )}
+          <Text style={styles.text}> {placeholder} </Text>
+          <MaterialCommunityIcons
+            name="chevron-down"
+            size={24}
+            color={colors.grayLight50}
+          />
+        </View>
+      </TouchableWithoutFeedback>
+      <Modal visible={modalVisible} animationType="slide">
+        <Screen>
+          <Button title="Close" onPress={() => setModalVisible(false)} />
+        </Screen>
+      </Modal>
+    </>
   );
 }
 
