@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 import ListItem from "./ListItem";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function ListItemGallery({ style }) {
   const notificationsData = [
@@ -28,24 +29,29 @@ export default function ListItemGallery({ style }) {
     // Add more dummy data objects as needed
   ];
   return (
-    <FlatList
-      style={[styles.container, style]}
-      data={notificationsData}
-      keyExtractor={(notification) => notification.id.toString()}
-      renderItem={({ item }) => (
-        <ListItem
-          //to direct user to different Gallery
-          onPress={() => console.log("my notification", item)}
-          name={item.name}
-          title={item.title}
-          userImage={item.userImage}
-          onPressConfirm={item.onPressConfirm}
-          onPressDecline={item.onPressDecline}
-          showRequestResult={item.showRequestResult}
-          showRequest={item.showRequest}
-        />
-      )}
-    />
+    <GestureHandlerRootView>
+      <FlatList
+        style={[styles.container, style]}
+        data={notificationsData}
+        keyExtractor={(notification) => notification.id.toString()}
+        renderItem={({ item }) => (
+          <ListItem
+            //to direct user to different Gallery
+            onPress={() => console.log("my notification", item)}
+            name={item.name}
+            title={item.title}
+            userImage={item.userImage}
+            onPressConfirm={item.onPressConfirm}
+            onPressDecline={item.onPressDecline}
+            showRequestResult={item.showRequestResult}
+            showRequest={item.showRequest}
+            renderRightActions={() => (
+              <View style={{ backgroundColor: "red", width: 50 }}></View>
+            )}
+          />
+        )}
+      />
+    </GestureHandlerRootView>
   );
 }
 
