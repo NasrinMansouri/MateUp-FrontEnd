@@ -8,4 +8,5 @@ export default {
   gray: "#7A7878",
   grayLight100: "#7A7878",
   grayLight50: "#D6D0CA",
+  danger: "#ff5252",
 };
