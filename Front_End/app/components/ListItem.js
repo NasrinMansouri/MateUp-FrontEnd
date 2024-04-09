@@ -17,13 +17,17 @@ function ListItem({
   title,
   onPressConfirm,
   onPressDecline,
-  onPressResult,
-  onPressRequest,
+  onPress,
 }) {
   return (
     <View style={styles.mainContainer}>
       {showRequestResult ? (
-        <TouchableHighlight onPress={onPressResult} style={styles.container}>
+        <TouchableHighlight
+          onPress={onPress}
+          //   onPress={() => console.log("result pressed")}
+          underlayColor={colors.black}
+          style={styles.container}
+        >
           <View style={styles.containerResult}>
             <View>
               <Image source={userImage} style={styles.userImage} />
@@ -39,7 +43,11 @@ function ListItem({
       ) : null}
 
       {showRequest ? (
-        <TouchableHighlight onPress={onPressRequest} style={styles.container}>
+        <TouchableHighlight
+          onPress={onPress}
+          underlayColor={colors.black}
+          style={styles.container}
+        >
           <View style={styles.containerRequest}>
             <View style={styles.imageTextContainer}>
               <View>
