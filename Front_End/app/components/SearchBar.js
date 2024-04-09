@@ -4,7 +4,7 @@ import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import colors from "../config/colors";
 
-export default function SearchBar({ onPressSearch }) {
+export default function SearchBar({ onPressSearch, marginTop }) {
   const [searchQuery, setSearchQuery] = useState("");
   const ref = useRef(null);
 
@@ -13,13 +13,17 @@ export default function SearchBar({ onPressSearch }) {
     onPressSearch(searchQuery); // Pass the search query to the parent component
   };
 
+  const handleInputFocus = () => {
+    onPressSearch(searchQuery); // Open modal when input is focused
+  };
+
   return (
     <TouchableOpacity
       onPress={handleSearch}
       style={styles.container}
       activeOpacity={0.9}
     >
-      <View style={styles.searchContainer}>
+      <View style={[styles.searchContainer, { marginTop: marginTop }]}>
         <Ionicons
           name="search"
           size={24}
@@ -33,6 +37,7 @@ export default function SearchBar({ onPressSearch }) {
           value={searchQuery}
           onChangeText={(text) => setSearchQuery(text)}
           onSubmitEditing={handleSearch}
+          onFocus={handleInputFocus} // Open modal when input is focused
           ref={ref}
         />
       </View>
