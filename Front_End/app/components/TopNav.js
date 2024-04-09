@@ -144,9 +144,37 @@ import SearchBar from "./SearchBar";
 
 // Dummy data for user search
 const dummyUsers = [
-  { id: 1, name: "John Doe" },
-  { id: 2, name: "Jane Smith" },
-  { id: 3, name: "Alice Johnson" },
+  { id: 1, userImage: require("../../assets/person-1.jpg"), name: "John Doe" },
+  {
+    id: 2,
+    userImage: require("../../assets/person-1.jpg"),
+    name: "Jane Smith",
+  },
+  {
+    id: 3,
+    userImage: require("../../assets/person-1.jpg"),
+    name: "Alice Johnson",
+  },
+  {
+    id: 4,
+    userImage: require("../../assets/person-1.jpg"),
+    name: "Bob Williams",
+  },
+  {
+    id: 5,
+    userImage: require("../../assets/person-1.jpg"),
+    name: "Emily Brown",
+  },
+  {
+    id: 6,
+    userImage: require("../../assets/person-1.jpg"),
+    name: "Michael Davis",
+  },
+  {
+    id: 7,
+    userImage: require("../../assets/person-1.jpg"),
+    name: "Sarah Thompson",
+  },
 ];
 
 export default function TopNav({
@@ -166,20 +194,21 @@ export default function TopNav({
       user.name.toLowerCase().includes(query.toLowerCase())
     );
     setSearchResults(results);
+    setModalVisible(true); // Open modal when search is performed
   };
 
   return (
     <View style={styles.mainContainer}>
       <View>
         {/* Search Bar */}
-        {showSearchBar && (
-          <SearchBar onPressSearch={() => setModalVisible(true)} />
-        )}
+        {showSearchBar && <SearchBar onPressSearch={handleSearch} />}
         {/* Profile Picture */}
         {showProfilePic && (
-          <TouchableOpacity onPress={onPressProfile} activeOpacity={0.9}>
-            <Image source={userImage} style={styles.userImage} />
-          </TouchableOpacity>
+          <View style={styles.userImageContainer}>
+            <TouchableOpacity onPress={onPressProfile} activeOpacity={0.9}>
+              <Image source={userImage} style={styles.userImage} />
+            </TouchableOpacity>
+          </View>
         )}
       </View>
       <View style={styles.iconsContainer}>
@@ -217,11 +246,16 @@ export default function TopNav({
               <Text style={styles.closeButtonText}>Close</Text>
             </TouchableOpacity>
             {/* Search Bar inside the modal */}
-            <SearchBar onPressSearch={handleSearch} />
+            <SearchBar onPressSearch={handleSearch} marginTop={80} />
             {/* Display search results */}
             <View style={styles.searchResultsContainer}>
               {searchResults.map((user) => (
-                <TouchableOpacity key={user.id} style={styles.searchResultItem}>
+                <TouchableOpacity
+                  key={user.id}
+                  style={styles.searchResultItem}
+                  onPress={() => console.log(user)}
+                >
+                  <Image source={user.userImage} style={styles.userImage} />
                   <Text style={styles.searchResultText}>{user.name}</Text>
                 </TouchableOpacity>
               ))}
@@ -242,12 +276,17 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginRight: 16,
     paddingBottom: 10,
+    // backgroundColor: colors.white,
+    // paddingLeft: 16,
+  },
+  userImageContainer: {
+    marginLeft: 16,
   },
   userImage: {
     width: 24,
     height: 24,
     borderRadius: 24 / 2,
-    marginLeft: 16,
+    marginLeft: 32,
   },
   iconsContainer: {
     flexDirection: "row",
@@ -256,36 +295,64 @@ const styles = StyleSheet.create({
   // Modal styles
   modalContainer: {
     flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: "rgba(0, 0, 0, 0.3)",
     justifyContent: "center",
     alignItems: "center",
+    width: "100%",
+    height: "100%",
   },
   modalContent: {
     backgroundColor: colors.blackBc,
     padding: 20,
-    borderRadius: 10,
-    width: "80%",
+    borderRadius: 4,
+    width: "100%",
+    height: "100%",
   },
   closeButton: {
     position: "absolute",
-    top: 20,
-    right: 20,
+    top: 60,
+    right: 30,
     zIndex: 1,
   },
   closeButtonText: {
-    color: colors.white,
+    fontFamily: "montserrat-black",
+    color: colors.orangePrimary,
     fontSize: 16,
   },
   searchResultsContainer: {
-    marginTop: 10,
+    marginTop: 30,
   },
   searchResultItem: {
     padding: 10,
     borderBottomWidth: 1,
-    borderBottomColor: colors.gray,
+    borderBottomColor: colors.black,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
   },
   searchResultText: {
     color: colors.white,
     fontSize: 16,
   },
+  userImage: {
+    width: 24,
+    height: 24,
+    borderRadius: 24 / 2,
+    marginLeft: 0,
+  },
 });
+
+//to navigate to user profile:
+// import { useNavigation } from "@react-navigation/native"; // Import useNavigation hook
+
+// // Inside the functional component
+
+// const navigation = useNavigation(); // Get navigation object
+
+// // Function to handle search result press
+// const handleSearchResultPress = (userId) => {
+//   // Navigate to the user profile screen with the corresponding user ID
+//   navigation.navigate("UserProfile", { userId });
+//   // Close the modal
+//   setModalVisible(false);
+// };
