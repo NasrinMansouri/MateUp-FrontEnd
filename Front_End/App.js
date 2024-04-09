@@ -1,5 +1,6 @@
+import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Text, Image, ScrollView } from "react-native";
+import { StyleSheet, View, Text, Image, TextInput } from "react-native";
 //for fonts
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
@@ -7,34 +8,12 @@ import { useCallback } from "react";
 SplashScreen.preventAutoHideAsync();
 
 import colors from "./app/config/colors";
-import MainHomeScreen from "./app/screens/home/MainHomeScreen";
-import SearchBar from "./app/components/SearchBar";
-import ListItem from "./app/components/ListItem";
-import ListItemScreen from "./app/screens/ListItemScreen";
-
-const dummyData = [
-  {
-    name: "John Doe",
-    title: "Confirmed your High-Five request.",
-    userImage: require("./assets/person2.jpg"), // Replace with actual image path
-    onPressConfirm: () => console.log("Confirm pressed for John Doe"),
-    onPressDecline: () => console.log("Decline pressed for John Doe"),
-    showRequestResult: true, // or false based on your requirement
-    showRequest: false, // or true based on your requirement
-  },
-  {
-    name: "Jane Smith",
-    title: "Sent you a High-Five request.",
-    userImage: require("./assets/person3.jpg"), // Replace with actual image path
-    onPressConfirm: () => console.log("Confirm pressed for Jane Smith"),
-    onPressDecline: () => console.log("Decline pressed for Jane Smith"),
-    showRequestResult: false, // or true based on your requirement
-    showRequest: true, // or false based on your requirement
-  },
-  // Add more dummy data objects as needed
-];
+import ListItemGallery from "./app/components/ListItemGallery";
+import Screen from "./app/components/Screen";
 
 export default function App() {
+  const [firstName, setFirstName] = useState("");
+
   //for fonts
   const [isLoaded] = useFonts({
     "montserrat-black": require("./assets/fonts/Montserrat-Black.ttf"),
@@ -55,19 +34,19 @@ export default function App() {
     <View style={styles.container} onLayout={handleOnLayout}>
       {/* <MainHomeScreen /> */}
       {/* <SearchBar /> */}
-      {dummyData.map((data, index) => (
-        <ListItem
-          key={index}
-          name={data.name}
-          title={data.title}
-          userImage={data.userImage}
-          onPressConfirm={data.onPressConfirm}
-          onPressDecline={data.onPressDecline}
-          showRequestResult={data.showRequestResult}
-          showRequest={data.showRequest}
+      <Screen>
+        <Text>{firstName}</Text>
+        <TextInput
+          //command k to bring soft keyboard
+          // keyboardType="numeric"
+          //to capture password
+          // secureTextEntry={true} //also
+          onChangeText={(text) => setFirstName(text)}
+          placeholder="First Name"
+          style={{ backgroundColor: "white", borderBottomWidth: 1 }}
         />
-      ))}
-      <ListItemScreen />
+      </Screen>
+      {/* <ListItemGallery /> */}
       <StatusBar style="auto" />
     </View>
   );
@@ -76,7 +55,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.blackBc,
+    backgroundColor: colors.gray,
     paddingTop: 32,
   },
 });
