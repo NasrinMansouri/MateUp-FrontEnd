@@ -15,7 +15,7 @@
 // import SearchBar from "./SearchBar";
 
 // // Dummy data for user search
-// const dummyUsers = [
+// const usersData = [
 //   { id: 1, name: "John Doe" },
 //   { id: 2, name: "Jane Smith" },
 //   { id: 3, name: "Alice Johnson" },
@@ -33,7 +33,7 @@
 //   const [searchResults, setSearchResults] = useState([]);
 
 //   const handleSearch = (query) => {
-//     const results = dummyUsers.filter((user) =>
+//     const results = usersData.filter((user) =>
 //       user.name.toLowerCase().includes(query.toLowerCase())
 //     );
 //     setSearchResults(results);
@@ -143,7 +143,7 @@ import colors from "../config/colors";
 import SearchBar from "./SearchBar";
 
 // Dummy data for user search
-const dummyUsers = [
+const usersData = [
   { id: 1, userImage: require("../../assets/person-1.jpg"), name: "John Doe" },
   {
     id: 2,
@@ -190,7 +190,7 @@ export default function TopNav({
   const [modalVisible, setModalVisible] = useState(false); // State for modal visibility
 
   const handleSearch = (query) => {
-    const results = dummyUsers.filter((user) =>
+    const results = usersData.filter((user) =>
       user.name.toLowerCase().includes(query.toLowerCase())
     );
     setSearchResults(results);

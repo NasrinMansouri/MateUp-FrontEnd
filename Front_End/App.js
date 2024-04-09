@@ -8,6 +8,31 @@ SplashScreen.preventAutoHideAsync();
 
 import colors from "./app/config/colors";
 import MainHomeScreen from "./app/screens/home/MainHomeScreen";
+import SearchBar from "./app/components/SearchBar";
+import ListItem from "./app/components/ListItem";
+import ListItemScreen from "./app/screens/ListItemScreen";
+
+const dummyData = [
+  {
+    name: "John Doe",
+    title: "Confirmed your High-Five request.",
+    userImage: require("./assets/person2.jpg"), // Replace with actual image path
+    onPressConfirm: () => console.log("Confirm pressed for John Doe"),
+    onPressDecline: () => console.log("Decline pressed for John Doe"),
+    showRequestResult: true, // or false based on your requirement
+    showRequest: false, // or true based on your requirement
+  },
+  {
+    name: "Jane Smith",
+    title: "Sent you a High-Five request.",
+    userImage: require("./assets/person3.jpg"), // Replace with actual image path
+    onPressConfirm: () => console.log("Confirm pressed for Jane Smith"),
+    onPressDecline: () => console.log("Decline pressed for Jane Smith"),
+    showRequestResult: false, // or true based on your requirement
+    showRequest: true, // or false based on your requirement
+  },
+  // Add more dummy data objects as needed
+];
 
 export default function App() {
   //for fonts
@@ -28,7 +53,21 @@ export default function App() {
 
   return (
     <View style={styles.container} onLayout={handleOnLayout}>
-      <MainHomeScreen />
+      {/* <MainHomeScreen /> */}
+      {/* <SearchBar /> */}
+      {dummyData.map((data, index) => (
+        <ListItem
+          key={index}
+          name={data.name}
+          title={data.title}
+          userImage={data.userImage}
+          onPressConfirm={data.onPressConfirm}
+          onPressDecline={data.onPressDecline}
+          showRequestResult={data.showRequestResult}
+          showRequest={data.showRequest}
+        />
+      ))}
+      <ListItemScreen />
       <StatusBar style="auto" />
     </View>
   );
@@ -38,6 +77,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.blackBc,
+    paddingTop: 32,
   },
 });
 

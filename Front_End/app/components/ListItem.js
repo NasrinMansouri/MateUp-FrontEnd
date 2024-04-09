@@ -9,20 +9,29 @@ import React from "react";
 import AppButton from "./AppButton";
 import colors from "../config/colors";
 
-const ListItem = (props) => {
-  const { showRequestResult, showRequest } = props;
+function ListItem({
+  showRequest,
+  showRequestResult,
+  userImage,
+  name,
+  title,
+  onPressConfirm,
+  onPressDecline,
+  onPressResult,
+  onPressRequest,
+}) {
   return (
     <View style={styles.mainContainer}>
       {showRequestResult ? (
-        <TouchableHighlight onPress={props.onPress} style={styles.container}>
+        <TouchableHighlight onPress={onPressResult} style={styles.container}>
           <View style={styles.containerResult}>
             <View>
-              <Image source={props.userImage} style={styles.userImage} />
+              <Image source={userImage} style={styles.userImage} />
             </View>
             <View style={styles.containerText}>
-              <Text style={styles.name}>{props.name} </Text>
+              <Text style={styles.name}>{name} </Text>
               <Text style={styles.textTitle} numberOfLines={2}>
-                {props.title}
+                {title}
               </Text>
             </View>
           </View>
@@ -30,19 +39,16 @@ const ListItem = (props) => {
       ) : null}
 
       {showRequest ? (
-        <TouchableHighlight
-          onPress={props.onPressRequrst}
-          style={styles.container}
-        >
+        <TouchableHighlight onPress={onPressRequest} style={styles.container}>
           <View style={styles.containerRequest}>
             <View style={styles.imageTextContainer}>
               <View>
-                <Image source={props.userImage} style={styles.userImage} />
+                <Image source={userImage} style={styles.userImage} />
               </View>
               <View style={styles.containerTextRequest}>
-                <Text style={styles.name}>{props.name} </Text>
+                <Text style={styles.name}>{name} </Text>
                 <Text style={styles.textTitle} numberOfLines={2}>
-                  {props.title}
+                  {title}
                 </Text>
               </View>
             </View>
@@ -51,7 +57,7 @@ const ListItem = (props) => {
                 title="Confirm"
                 width={60}
                 height={30}
-                onPress={props.onPressConfirm}
+                onPress={onPressConfirm}
                 fontFamily="nunitoSans-bold"
                 fontSize={10}
               />
@@ -60,7 +66,7 @@ const ListItem = (props) => {
                 title="Delete"
                 width={60}
                 height={30}
-                onPress={props.onPressDecline}
+                onPress={onPressDecline}
                 fontFamily="nunitoSans-bold"
                 fontSize={10}
               />
@@ -70,7 +76,7 @@ const ListItem = (props) => {
       ) : null}
     </View>
   );
-};
+}
 
 export default ListItem;
 
