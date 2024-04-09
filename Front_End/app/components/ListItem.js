@@ -1,0 +1,163 @@
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableHighlight,
+} from "react-native";
+import React from "react";
+import AppButton from "./AppButton";
+import colors from "../config/colors";
+
+const ListItem = (props) => {
+  const { showRequestResult, showRequest } = props;
+  return (
+    <View style={styles.mainContainer}>
+      {showRequestResult ? (
+        <TouchableHighlight onPress={props.onPress} style={styles.container}>
+          <View style={styles.containerResult}>
+            <View>
+              <Image source={props.userImage} style={styles.userImage} />
+            </View>
+            <View style={styles.containerText}>
+              <Text style={styles.name}>{props.name} </Text>
+              <Text style={styles.textTitle} numberOfLines={2}>
+                {props.title}
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      ) : null}
+
+      {showRequest ? (
+        <TouchableHighlight
+          onPress={props.onPressRequrst}
+          style={styles.container}
+        >
+          <View style={styles.containerRequest}>
+            <View style={styles.imageTextContainer}>
+              <View>
+                <Image source={props.userImage} style={styles.userImage} />
+              </View>
+              <View style={styles.containerTextRequest}>
+                <Text style={styles.name}>{props.name} </Text>
+                <Text style={styles.textTitle} numberOfLines={2}>
+                  {props.title}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.containerButtons}>
+              <AppButton
+                title="Confirm"
+                width={60}
+                height={30}
+                onPress={props.onPressConfirm}
+                fontFamily="nunitoSans-bold"
+                fontSize={10}
+              />
+
+              <AppButton
+                title="Delete"
+                width={60}
+                height={30}
+                onPress={props.onPressDecline}
+                fontFamily="nunitoSans-bold"
+                fontSize={10}
+              />
+            </View>
+          </View>
+        </TouchableHighlight>
+      ) : null}
+    </View>
+  );
+};
+
+export default ListItem;
+
+const styles = StyleSheet.create({
+  mainContainer: {
+    marginBottom: 16,
+  },
+  container: {
+    marginLeft: 16,
+    marginRight: 16,
+  },
+  containerResult: {
+    flexDirection: "row",
+    gap: 10,
+  },
+  userImage: {
+    width: 49,
+    height: 49,
+    borderRadius: 49 / 2,
+  },
+  containerText: {
+    flex: 1,
+    flexDirection: "column",
+  },
+  name: {
+    fontFamily: "nunitoSans-bold",
+    fontSize: 14,
+    color: colors.white,
+  },
+  textTitle: {
+    fontFamily: "nunitoSans-regular",
+    fontSize: 14,
+    color: colors.white,
+  },
+  containerRequest: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: 10,
+  },
+  imageTextContainer: {
+    flexDirection: "row",
+    gap: 10,
+  },
+  containerButtons: {
+    flexDirection: "row",
+    // justifyContent: "center",
+    alignItems: "center",
+    gap: 4,
+  },
+  containerTextRequest: {
+    width: 150,
+  },
+});
+
+//dummy data:
+// const dummyData = [
+//   {
+//     name: "John Doe",
+//     title: "Confirmed your High-Five request.",
+//     userImage: require("./assets/person2.jpg"), // Replace with actual image path
+//     onPressConfirm: () => console.log("Confirm pressed for John Doe"),
+//     onPressDecline: () => console.log("Decline pressed for John Doe"),
+//     showRequestResult: true, // or false based on your requirement
+//     showRequest: false, // or true based on your requirement
+//   },
+//   {
+//     name: "Jane Smith",
+//     title: "Sent you a High-Five request.",
+//     userImage: require("./assets/person3.jpg"), // Replace with actual image path
+//     onPressConfirm: () => console.log("Confirm pressed for Jane Smith"),
+//     onPressDecline: () => console.log("Decline pressed for Jane Smith"),
+//     showRequestResult: false, // or true based on your requirement
+//     showRequest: true, // or false based on your requirement
+//   },
+//   // Add more dummy data objects as needed
+// ];
+
+//ysed in app.js
+// {dummyData.map((data, index) => (
+//     <ListItem
+//       key={index}
+//       name={data.name}
+//       title={data.title}
+//       userImage={data.userImage}
+//       onPressConfirm={data.onPressConfirm}
+//       onPressDecline={data.onPressDecline}
+//       showRequestResult={data.showRequestResult}
+//       showRequest={data.showRequest}
+//     />
+//   ))}
