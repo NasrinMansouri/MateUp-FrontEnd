@@ -10,6 +10,8 @@ SplashScreen.preventAutoHideAsync();
 import colors from "./app/config/colors";
 import ListItemGallery from "./app/components/ListItemGallery";
 import Screen from "./app/components/Screen";
+import AppTextInput from "./app/components/AppTextInput";
+import AppPicker from "./app/components/AppPicker";
 
 export default function App() {
   const [firstName, setFirstName] = useState("");
@@ -33,18 +35,9 @@ export default function App() {
   return (
     <View style={styles.container} onLayout={handleOnLayout}>
       {/* <MainHomeScreen /> */}
-      {/* <SearchBar /> */}
       <Screen>
-        <Text>{firstName}</Text>
-        <TextInput
-          //command k to bring soft keyboard
-          // keyboardType="numeric"
-          //to capture password
-          // secureTextEntry={true} //also
-          onChangeText={(text) => setFirstName(text)}
-          placeholder="First Name"
-          style={{ backgroundColor: "white", borderBottomWidth: 1 }}
-        />
+        <AppTextInput placeholder="Username" icon="email" />
+        <AppPicker placeholder={"category"} />
       </Screen>
       {/* <ListItemGallery /> */}
       <StatusBar style="auto" />
@@ -55,7 +48,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.gray,
+    backgroundColor: colors.blackBc,
     paddingTop: 32,
   },
 });
