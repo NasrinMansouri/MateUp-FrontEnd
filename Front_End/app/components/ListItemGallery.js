@@ -1,8 +1,9 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import ListItem from "./ListItem";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+
 import colors from "../config/colors";
 import ListItemDeletAction from "./ListItemDeletAction";
 
@@ -42,6 +43,7 @@ const initialNotifications = [
 
 export default function ListItemGallery({ style }) {
   const [notifications, setNotifications] = useState(initialNotifications);
+  const [refreshing, setRefreshing] = useState(false);
 
   const handleDelete = (notification) => {
     // Delete the notification from notifications
@@ -83,6 +85,33 @@ export default function ListItemGallery({ style }) {
             }}
           />
         )}
+        refreshing={refreshing}
+        onRefresh={() =>
+          setNotifications([
+            {
+              id: 1,
+              name: "John Doe",
+              title: "Confirmed your High-Five request.",
+              userImage: require("../../assets/person2.jpg"), // Replace with actual image path
+              onPressConfirm: () => console.log("Confirm pressed for John Doe"),
+              onPressDecline: () => console.log("Decline pressed for John Doe"),
+              showRequestResult: true, // or false based on your requirement
+              showRequest: false, // or true based on your requirement
+            },
+            {
+              id: 2,
+              name: "Jane Smith",
+              title: "Sent you a High-Five request.",
+              userImage: require("../../assets/person3.jpg"), // Replace with actual image path
+              onPressConfirm: () =>
+                console.log("Confirm pressed for Jane Smith"),
+              onPressDecline: () =>
+                console.log("Decline pressed for Jane Smith"),
+              showRequestResult: false, // or true based on your requirement
+              showRequest: true, // or false based on your requirement
+            },
+          ])
+        }
       />
     </GestureHandlerRootView>
   );
