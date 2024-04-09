@@ -96,6 +96,7 @@ export default ListItem;
 const styles = StyleSheet.create({
   mainContainer: {
     marginBottom: 16,
+    marginTop: 16,
   },
   container: {
     marginLeft: 16,
