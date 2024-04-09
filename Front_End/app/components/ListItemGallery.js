@@ -1,49 +1,62 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 import ListItem from "./ListItem";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import colors from "../config/colors";
 import ListItemDeletAction from "./ListItemDeletAction";
 
+//dummy data
+const initialNotifications = [
+  {
+    id: 1,
+    name: "John Doe",
+    title: "Confirmed your High-Five request.",
+    userImage: require("../../assets/person2.jpg"), // Replace with actual image path
+    onPressConfirm: () => console.log("Confirm pressed for John Doe"),
+    onPressDecline: () => console.log("Decline pressed for John Doe"),
+    showRequestResult: true, // or false based on your requirement
+    showRequest: false, // or true based on your requirement
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    title: "Sent you a High-Five request.",
+    userImage: require("../../assets/person3.jpg"), // Replace with actual image path
+    onPressConfirm: () => console.log("Confirm pressed for Jane Smith"),
+    onPressDecline: () => console.log("Decline pressed for Jane Smith"),
+    showRequestResult: false, // or true based on your requirement
+    showRequest: true, // or false based on your requirement
+  },
+  {
+    id: 3,
+    name: "Jane Smith",
+    title: "Sent you a High-Five request.",
+    userImage: require("../../assets/person3.jpg"), // Replace with actual image path
+    onPressConfirm: () => console.log("Confirm pressed for Jane Smith"),
+    onPressDecline: () => console.log("Decline pressed for Jane Smith"),
+    showRequestResult: false, // or true based on your requirement
+    showRequest: true, // or false based on your requirement
+  },
+];
+
 export default function ListItemGallery({ style }) {
-  const notificationsData = [
-    {
-      id: 1,
-      name: "John Doe",
-      title: "Confirmed your High-Five request.",
-      userImage: require("../../assets/person2.jpg"), // Replace with actual image path
-      onPressConfirm: () => console.log("Confirm pressed for John Doe"),
-      onPressDecline: () => console.log("Decline pressed for John Doe"),
-      showRequestResult: true, // or false based on your requirement
-      showRequest: false, // or true based on your requirement
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      title: "Sent you a High-Five request.",
-      userImage: require("../../assets/person3.jpg"), // Replace with actual image path
-      onPressConfirm: () => console.log("Confirm pressed for Jane Smith"),
-      onPressDecline: () => console.log("Decline pressed for Jane Smith"),
-      showRequestResult: false, // or true based on your requirement
-      showRequest: true, // or false based on your requirement
-    },
-    {
-      id: 3,
-      name: "Jane Smith",
-      title: "Sent you a High-Five request.",
-      userImage: require("../../assets/person3.jpg"), // Replace with actual image path
-      onPressConfirm: () => console.log("Confirm pressed for Jane Smith"),
-      onPressDecline: () => console.log("Decline pressed for Jane Smith"),
-      showRequestResult: false, // or true based on your requirement
-      showRequest: true, // or false based on your requirement
-    },
-  ];
+  const [notifications, setNotifications] = useState(initialNotifications);
+
+  const handleDelete = (notification) => {
+    // Delete the notification from notifications
+    // Later all the server API to delete the notification!
+    const newNotifications = notifications.filter(
+      (n) => n.id !== notification.id
+    );
+    setNotifications(newNotifications);
+  };
+
   return (
     <GestureHandlerRootView>
       <FlatList
         style={[styles.container, style]}
-        data={notificationsData}
+        data={notifications}
         keyExtractor={(notification) => notification.id.toString()}
         renderItem={({ item }) => (
           <ListItem
@@ -56,7 +69,9 @@ export default function ListItemGallery({ style }) {
             onPressDecline={item.onPressDecline}
             showRequestResult={item.showRequestResult}
             showRequest={item.showRequest}
-            renderRightActions={ListItemDeletAction}
+            renderRightActions={() => (
+              <ListItemDeletAction onPress={() => handleDelete(item)} />
+            )}
           />
         )}
         ItemSeparatorComponent={() => (
