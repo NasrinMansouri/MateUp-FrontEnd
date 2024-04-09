@@ -3,7 +3,15 @@ import { StyleSheet, Text, TouchableOpacity, Image } from "react-native";
 
 import colors from "../config/colors";
 
-function AppButton({ title, image, height = 45, width = "100%", onPress }) {
+function AppButton({
+  title,
+  image,
+  height = 45,
+  width = "100%",
+  onPress,
+  fontFamily = "montserrat-black",
+  fontSize = 16,
+}) {
   return (
     <TouchableOpacity
       style={[styles.button, { height: height, width: width }]}
@@ -11,7 +19,11 @@ function AppButton({ title, image, height = 45, width = "100%", onPress }) {
       onPress={onPress}
     >
       {image && <Image source={image} style={styles.image} />}
-      <Text style={styles.text}>{title}</Text>
+      <Text
+        style={[styles.text, { fontFamily: fontFamily, fontSize: fontSize }]}
+      >
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 }
@@ -28,7 +40,7 @@ const styles = StyleSheet.create({
   text: {
     color: colors.white,
     textTransform: "uppercase",
-    fontFamily: "montserrat-black",
+    // fontFamily: "montserrat-black",
   },
   image: {
     marginRight: 5,
