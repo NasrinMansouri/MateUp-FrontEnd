@@ -3,6 +3,7 @@ import React from "react";
 
 import ListItem from "./ListItem";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import colors from "../config/colors";
 
 export default function ListItemGallery({ style }) {
   const notificationsData = [
@@ -26,7 +27,16 @@ export default function ListItemGallery({ style }) {
       showRequestResult: false, // or true based on your requirement
       showRequest: true, // or false based on your requirement
     },
-    // Add more dummy data objects as needed
+    {
+      id: 3,
+      name: "Jane Smith",
+      title: "Sent you a High-Five request.",
+      userImage: require("../../assets/person3.jpg"), // Replace with actual image path
+      onPressConfirm: () => console.log("Confirm pressed for Jane Smith"),
+      onPressDecline: () => console.log("Decline pressed for Jane Smith"),
+      showRequestResult: false, // or true based on your requirement
+      showRequest: true, // or false based on your requirement
+    },
   ];
   return (
     <GestureHandlerRootView>
@@ -50,9 +60,22 @@ export default function ListItemGallery({ style }) {
             )}
           />
         )}
+        ItemSeparatorComponent={() => (
+          <View
+            style={{
+              height: 1,
+              width: "100%",
+              backgroundColor: colors.black,
+            }}
+          />
+        )}
       />
     </GestureHandlerRootView>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 40,
+  },
+});
