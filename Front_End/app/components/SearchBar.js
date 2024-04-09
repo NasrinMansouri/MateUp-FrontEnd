@@ -35,6 +35,7 @@ export default function SearchBar({ onPressSearch, marginTop }) {
           placeholder="Search here..."
           placeholderTextColor="gray"
           value={searchQuery}
+          clearButtonMode="always"
           onChangeText={(text) => setSearchQuery(text)}
           onSubmitEditing={handleSearch}
           onFocus={handleInputFocus} // Open modal when input is focused
