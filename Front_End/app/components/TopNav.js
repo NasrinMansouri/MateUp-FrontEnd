@@ -11,6 +11,14 @@ import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
+import SearchBar from "./SearchBar";
+
+// Dummy data for user search
+const dummyUsers = [
+  { id: 1, name: "John Doe" },
+  { id: 2, name: "Jane Smith" },
+  { id: 3, name: "Alice Johnson" },
+];
 
 export default function TopNav({
   userImage,
@@ -21,58 +29,33 @@ export default function TopNav({
   onPressNotification,
   onPressMessage,
 }) {
-  //new for searching
-  //   const [searchQuery, setSearchQuery] = useState("");
-  //   const [filteredUsers, setFilteredUsers] = useState([]);
-  //   const handleSearch = () => {
-  //     const filtered = users.filter((user) =>
-  //       user.name.toLowerCase().includes(searchQuery.toLowerCase())
-  //     );
-  //     setFilteredUsers(filtered);
-  //   };
-  const [searchQuery, setSearchQuery] = useState(""); // State to store the search query
-  const ref = useRef(null);
-  // Function to handle search
-  const handleSearch = () => {
-    console.log("Search query:", searchQuery);
-    // Perform any other search-related operations here
+  // const [searchQuery, setSearchQuery] = useState(""); // State to store the search query
+  // const ref = useRef(null);
+  // // Function to handle search
+  // const handleSearch = () => {
+  //   console.log("Search query:", searchQuery);
+  //   // Perform any other search-related operations here
+  // };
+  const handleSearch = (query) => {
+    console.log("Search query:", query);
+    // Simulate searching for users by name
+    const results = dummyUsers.filter((user) =>
+      user.name.toLowerCase().includes(query.toLowerCase())
+    );
+    console.log("Search results:", results);
+    // Additional logic for handling the search results
   };
+  // const handleSearch = (query) => {
+  //   console.log("Search query from ParentComponent:", query);
+  //   // Additional logic for handling the search query
+  // };
   return (
     <View style={styles.mainContainer}>
       <View>
-        {showSearchBar && (
-          <TouchableOpacity
-            onPress={onPressSearch}
-            style={styles.container}
-            activeOpacity={0.9}
-          >
-            <View style={styles.searchContainer}>
-              <Ionicons
-                name="search"
-                size={24}
-                color="white"
-                style={styles.iconSearch}
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="Search here..."
-                // value="search query"
-                placeholderTextColor="gray"
-                //new for searching
-                value={searchQuery}
-                // onPressSearch={handleSearch}
-                onChangeText={(text) => setSearchQuery(text)}
-                // onSubmitEditing={(event) => {
-                //   event.preventDefault();
-                //   if (ref.current) console.log(ref.current.value);
-                // }}
-                onSubmitEditing={handleSearch}
-                ref={ref}
-              />
-            </View>
-          </TouchableOpacity>
-        )}
-
+        {/* {showSearchBar && (
+          <SearchBar onPressSearch={handleSearch} /> // Use the SearchBar component
+        )} */}
+        {showSearchBar && <SearchBar onPressSearch={handleSearch} />}
         {showProfilePic && (
           <TouchableOpacity onPress={onPressProfile} activeOpacity={0.9}>
             <Image source={userImage} style={styles.userImage} />
