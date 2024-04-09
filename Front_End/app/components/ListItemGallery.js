@@ -4,6 +4,7 @@ import React from "react";
 import ListItem from "./ListItem";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import colors from "../config/colors";
+import ListItemDeletAction from "./ListItemDeletAction";
 
 export default function ListItemGallery({ style }) {
   const notificationsData = [
@@ -55,9 +56,7 @@ export default function ListItemGallery({ style }) {
             onPressDecline={item.onPressDecline}
             showRequestResult={item.showRequestResult}
             showRequest={item.showRequest}
-            renderRightActions={() => (
-              <View style={{ backgroundColor: "red", width: 50 }}></View>
-            )}
+            renderRightActions={ListItemDeletAction}
           />
         )}
         ItemSeparatorComponent={() => (
