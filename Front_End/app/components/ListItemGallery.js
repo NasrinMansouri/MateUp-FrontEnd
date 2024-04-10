@@ -1,3 +1,5 @@
+//for notification screen
+
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
