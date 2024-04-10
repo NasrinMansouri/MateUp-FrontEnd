@@ -41,10 +41,8 @@ export default function AppTextInput({
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: colors.black,
     borderWidth: 1,
     borderRadius: 4,
-    // borderColor: colors.grayLight50,
     flexDirection: "row",
     width: "100%",
     padding: 12,
