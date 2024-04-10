@@ -1,3 +1,5 @@
+//for picking category!
+
 import {
   StyleSheet,
   Text,
@@ -50,14 +52,19 @@ export default function AppPicker({
                 style={styles.icon}
               />
             )}
-            <Text style={styles.text}>
+            {selectedItem ? (
+              <Text style={styles.text}>{selectedItem.label}</Text>
+            ) : (
+              <Text style={styles.placeholder}>{placeholder}</Text>
+            )}
+            {/* <Text style={styles.text}>
               {" "}
               {selectedItem ? selectedItem.label : placeholder}{" "}
-            </Text>
+            </Text> */}
             <MaterialCommunityIcons
               name="chevron-down"
               size={24}
-              color={colors.grayLight50}
+              color={colors.green}
             />
           </View>
         </TouchableWithoutFeedback>
@@ -101,6 +108,12 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontFamily: "nunitoSans-regular",
     fontSize: 18,
+  },
+  placeholder: {
+    flex: 1,
+    color: colors.gray,
+    fontFamily: "nunitoSans-regular",
+    fontSize: 16,
   },
 });
 
