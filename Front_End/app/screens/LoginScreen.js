@@ -1,13 +1,11 @@
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import React from "react";
-import { Formik } from "formik";
 import * as Yup from "yup";
-
 import { Entypo } from "@expo/vector-icons";
+
 import Screen from "../components/Screen";
 import colors from "../config/colors";
-import AppFormField from "../components/AppFormField";
-import SubmitButton from "../SubmitButton";
+import { AppFormField, SubmitButton, AppForm } from "../components/forms";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -20,51 +18,45 @@ export default function LoginScreen() {
       <TouchableWithoutFeedback>
         <Text style={styles.helpText}>Need help ?</Text>
       </TouchableWithoutFeedback>
-      <Formik
+      <AppForm
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        {() => (
-          <>
-            <AppFormField
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="email"
-              keyboardType="email-address"
-              name="email"
-              placeholder="Enter Email"
-              textContentType="emailAddress" //only work on ios
-            />
-            <AppFormField
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="lock"
-              name="password"
-              placeholder="Enter Password"
-              secureTextEntry={true}
-              textContentType="password" //only work on ios
-            />
-            <View>
-              <SubmitButton title="Login" />
-              {/* TODO */}
-              {/* i need to pass basic fit url */}
-              <TouchableWithoutFeedback
-                onPress={() => console.log("not a member")}
-              >
-                <View style={styles.lastBtnContainer}>
-                  <Text style={styles.ForgetPassText}>Not A Member Yet ? </Text>
-                  <Entypo
-                    name="chevron-right"
-                    size={24}
-                    color={colors.orangePrimary}
-                  />
-                </View>
-              </TouchableWithoutFeedback>
+        <AppFormField
+          autoCapitalize="none"
+          autoCorrect={false}
+          icon="email"
+          keyboardType="email-address"
+          name="email"
+          placeholder="Enter Email"
+          textContentType="emailAddress" //only work on ios
+        />
+        <AppFormField
+          autoCapitalize="none"
+          autoCorrect={false}
+          icon="lock"
+          name="password"
+          placeholder="Enter Password"
+          secureTextEntry={true}
+          textContentType="password" //only work on ios
+        />
+        <View>
+          <SubmitButton title="Login" />
+          {/* TODO */}
+          {/* i need to pass basic fit url */}
+          <TouchableWithoutFeedback onPress={() => console.log("not a member")}>
+            <View style={styles.lastBtnContainer}>
+              <Text style={styles.ForgetPassText}>Not A Member Yet ? </Text>
+              <Entypo
+                name="chevron-right"
+                size={24}
+                color={colors.orangePrimary}
+              />
             </View>
-          </>
-        )}
-      </Formik>
+          </TouchableWithoutFeedback>
+        </View>
+      </AppForm>
     </Screen>
   );
 }
