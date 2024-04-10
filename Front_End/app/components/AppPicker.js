@@ -103,3 +103,30 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
+
+//dummy data
+// const categories = [
+//   {
+//     label: "Category 1",
+//     value: 1,
+//   },
+//   {
+//     label: "Category 2",
+//     value: 2,
+//   },
+//   {
+//     label: "Category 3",
+//     value: 3,
+//   },
+// ];
+
+//make it empty initially if no category want to be selected
+//ex: const [category, setCategory] = useState();
+
+// const [category, setCategory] = useState(categories[0]);
+/* <AppPicker
+selectedItem={category}
+onSelectItem={(item) => setCategory(item)}
+items={categories}
+placeholder={"category"}
+/> */
