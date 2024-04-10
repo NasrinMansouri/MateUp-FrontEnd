@@ -10,6 +10,7 @@ SplashScreen.preventAutoHideAsync();
 import colors from "./app/config/colors";
 import Screen from "./app/components/Screen";
 import LoginScreen from "./app/screens/LoginScreen";
+import CreateChallengeScreen from "./app/screens/challenge/CreateChallengeScreen";
 
 export default function App() {
   //for fonts
@@ -30,7 +31,8 @@ export default function App() {
 
   return (
     <View style={styles.container} onLayout={handleOnLayout}>
-      <LoginScreen />
+      {/* <LoginScreen /> */}
+      <CreateChallengeScreen />
       <StatusBar style="auto" />
     </View>
   );
