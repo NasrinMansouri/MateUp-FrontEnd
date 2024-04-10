@@ -13,8 +13,27 @@ import Screen from "./app/components/Screen";
 import AppTextInput from "./app/components/AppTextInput";
 import AppPicker from "./app/components/AppPicker";
 
+const categories = [
+  {
+    label: "Category 1",
+    value: 1,
+  },
+  {
+    label: "Category 2",
+    value: 2,
+  },
+  {
+    label: "Category 3",
+    value: 3,
+  },
+];
+
 export default function App() {
   const [firstName, setFirstName] = useState("");
+
+  //make it empty initially if no category want to be selected
+  //ex: const [category, setCategory] = useState();
+  const [category, setCategory] = useState(categories[0]);
 
   //for fonts
   const [isLoaded] = useFonts({
@@ -37,7 +56,12 @@ export default function App() {
       {/* <MainHomeScreen /> */}
       <Screen>
         <AppTextInput placeholder="Username" icon="email" />
-        <AppPicker placeholder={"category"} />
+        <AppPicker
+          selectedItem={category}
+          onSelectItem={(item) => setCategory(item)}
+          items={categories}
+          placeholder={"category"}
+        />
       </Screen>
       {/* <ListItemGallery /> */}
       <StatusBar style="auto" />
