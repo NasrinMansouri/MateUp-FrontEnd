@@ -1,12 +1,18 @@
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import React from "react";
 import { Formik } from "formik";
+import * as Yup from "yup";
 
 import AppTextInpure from "../components/AppTextInput";
 import AppButton from "../components/AppButton";
 import { Entypo } from "@expo/vector-icons";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string().required().email().label("Email"),
+  password: Yup.string().required().min(4).label("Password"),
+});
 
 export default function LoginScreen() {
   return (
@@ -17,8 +23,9 @@ export default function LoginScreen() {
       <Formik
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => console.log(values)}
+        validationSchema={validationSchema}
       >
-        {({ handleChange, handleSubmit }) => (
+        {({ handleChange, handleSubmit, errors }) => (
           <>
             <AppTextInpure
               autoCapitalize="none"
@@ -29,6 +36,7 @@ export default function LoginScreen() {
               placeholder="Enter Email"
               textContentType="emailAddress" //only work on ios
             />
+            <Text style={{ color: "red" }}>{errors.email}</Text>
             <AppTextInpure
               autoCapitalize="none"
               autoCorrect={false}
@@ -38,9 +46,14 @@ export default function LoginScreen() {
               secureTextEntry={true}
               textContentType="password" //only work on ios
             />
+            <Text style={{ color: "red" }}>{errors.password}</Text>
             <View>
               <AppButton title="Sign In" height={55} onPress={handleSubmit} />
-              <TouchableWithoutFeedback onPress={handleSubmit}>
+              {/* TODO */}
+              {/* i need to pass basic fit url */}
+              <TouchableWithoutFeedback
+                onPress={() => console.log("not a member")}
+              >
                 <View style={styles.lastBtnContainer}>
                   <Text style={styles.ForgetPassText}>Not A Member Yet ? </Text>
                   <Entypo
