@@ -3,11 +3,11 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-import AppTextInpure from "../components/AppTextInput";
 import AppButton from "../components/AppButton";
 import { Entypo } from "@expo/vector-icons";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
+import AppFormField from "../components/AppFormField";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -25,28 +25,26 @@ export default function LoginScreen() {
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        {({ handleChange, handleSubmit, errors }) => (
+        {({ handleChange, handleSubmit, errors, setFieldTouched, touched }) => (
           <>
-            <AppTextInpure
+            <AppFormField
               autoCapitalize="none"
               autoCorrect={false}
               icon="email"
               keyboardType="email-address"
-              onChangeText={handleChange("email")}
+              name="email"
               placeholder="Enter Email"
               textContentType="emailAddress" //only work on ios
             />
-            <Text style={{ color: "red" }}>{errors.email}</Text>
-            <AppTextInpure
+            <AppFormField
               autoCapitalize="none"
               autoCorrect={false}
               icon="lock"
-              onChangeText={handleChange("password")}
+              name="password"
               placeholder="Enter Password"
               secureTextEntry={true}
               textContentType="password" //only work on ios
             />
-            <Text style={{ color: "red" }}>{errors.password}</Text>
             <View>
               <AppButton title="Sign In" height={55} onPress={handleSubmit} />
               {/* TODO */}
@@ -59,7 +57,7 @@ export default function LoginScreen() {
                   <Entypo
                     name="chevron-right"
                     size={24}
-                    color={colors.orangeSecondary}
+                    color={colors.orangePrimary}
                   />
                 </View>
               </TouchableWithoutFeedback>
@@ -76,7 +74,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   helpText: {
-    color: colors.orangeSecondary,
+    color: colors.orangePrimary,
     fontFamily: "montserrat-black",
     fontSize: 16,
     marginTop: 16,
