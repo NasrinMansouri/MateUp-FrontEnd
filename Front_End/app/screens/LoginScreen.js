@@ -3,11 +3,11 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-import AppButton from "../components/AppButton";
 import { Entypo } from "@expo/vector-icons";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
 import AppFormField from "../components/AppFormField";
+import SubmitButton from "../SubmitButton";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -25,7 +25,7 @@ export default function LoginScreen() {
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        {({ handleChange, handleSubmit, errors, setFieldTouched, touched }) => (
+        {() => (
           <>
             <AppFormField
               autoCapitalize="none"
@@ -46,7 +46,7 @@ export default function LoginScreen() {
               textContentType="password" //only work on ios
             />
             <View>
-              <AppButton title="Sign In" height={55} onPress={handleSubmit} />
+              <SubmitButton title="Login" />
               {/* TODO */}
               {/* i need to pass basic fit url */}
               <TouchableWithoutFeedback
