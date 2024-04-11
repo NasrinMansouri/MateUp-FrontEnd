@@ -22,6 +22,7 @@ export default function AppPicker({
   items,
   onSelectItem,
   selectedItem,
+  PickerItemComponent = PickerItem,
   placeholder,
   borderWidth = 1,
   borderColor = colors.black,
@@ -72,7 +73,7 @@ export default function AppPicker({
               data={items}
               keyExtractor={(item) => item.value}
               renderItem={({ item }) => (
-                <PickerItem
+                <PickerItemComponent
                   label={item.label}
                   onPress={() => {
                     setModalVisible(false);
