@@ -1,10 +1,11 @@
 //horizontal scrollable list of buddies next
 //workout planning in homrpage
 
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, Text } from "react-native";
 import React from "react";
 
 import CardBuddiesWorkout from "./CardBuddiesWorkout";
+import colors from "../../config/colors";
 
 export default function GalleryBuddiesWorkout({ buddiesWorkout }) {
   const buddiesWorkoutData = [
@@ -40,26 +41,33 @@ export default function GalleryBuddiesWorkout({ buddiesWorkout }) {
     },
   ];
   return (
-    <FlatList
-      style={styles.container}
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      data={buddiesWorkoutData}
-      keyExtractor={(buddiesWorkout) => buddiesWorkout.id.toString()}
-      renderItem={({ item }) => (
-        <CardBuddiesWorkout
-          onPress={() => console.log("my buddies workout", item)}
-          image={item.image}
-          name={item.name}
-          workout={item.workout}
-          day={item.day}
-          date={item.date}
-          begin={item.begin}
-          end={item.end}
-          marginRight={4}
-        />
-      )}
-    />
+    <>
+      <Text style={styles.titleText}>upcoming buddies workout</Text>
+      <Text style={styles.subTitleText}>
+        Discover your buddies' latest workout routines, Join in for Fun and
+        Progress!
+      </Text>
+      <FlatList
+        style={styles.container}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        data={buddiesWorkoutData}
+        keyExtractor={(buddiesWorkout) => buddiesWorkout.id.toString()}
+        renderItem={({ item }) => (
+          <CardBuddiesWorkout
+            onPress={() => console.log("my buddies workout", item)}
+            image={item.image}
+            name={item.name}
+            workout={item.workout}
+            day={item.day}
+            date={item.date}
+            begin={item.begin}
+            end={item.end}
+            marginRight={4}
+          />
+        )}
+      />
+    </>
   );
 }
 
@@ -67,6 +75,21 @@ const styles = StyleSheet.create({
   container: {
     paddingLeft: 16,
     marginBottom: 96,
+  },
+  titleText: {
+    fontFamily: "montserrat-black",
+    fontSize: 26,
+    color: colors.orangePrimary,
+    marginBottom: 10,
+    textTransform: "uppercase",
+    paddingLeft: 16,
+  },
+  subTitleText: {
+    fontFamily: "nunitoSans-regular",
+    fontSize: 14,
+    color: colors.white,
+    marginBottom: 32,
+    paddingLeft: 16,
   },
 });
 
