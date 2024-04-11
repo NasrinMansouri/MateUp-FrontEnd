@@ -8,7 +8,7 @@ import { useCallback } from "react";
 SplashScreen.preventAutoHideAsync();
 
 import colors from "./app/config/colors";
-import CreateChallengeScreen from "./app/screens/challenge/CreateChallengeScreen";
+import NotificationScreen from "./app/screens/NotificationScreen";
 
 export default function App() {
   //for fonts
@@ -30,7 +30,9 @@ export default function App() {
   return (
     <>
       <View style={styles.container} onLayout={handleOnLayout}>
-        <CreateChallengeScreen />
+        {/* <CreateChallengeScreen /> */}
+        <NotificationScreen />
+        {/* <ListItem /> */}
         <StatusBar style="auto" />
       </View>
     </>
