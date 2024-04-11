@@ -3,12 +3,8 @@ import React, { useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { ListItem, ListItemDeletAction } from "../components/lists";
-
-// import ListItem from "../components/ListItem";
-
 import colors from "../config/colors";
 import Screen from "../components/Screen";
-// import ListItemDeletAction from "../components/ListItemDeletAction";
 
 //dummy data
 const initialNotifications = [

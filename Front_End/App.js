@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { Button, StyleSheet, View, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
 //for fonts
@@ -10,12 +10,11 @@ import { useCallback } from "react";
 SplashScreen.preventAutoHideAsync();
 
 import colors from "./app/config/colors";
-import NotificationScreen from "./app/screens/NotificationScreen";
-import CreateChallengeScreen from "./app/screens/challenge/CreateChallengeScreen";
-import LoginScreen from "./app/screens/LoginScreen";
+
 import Screen from "./app/components/Screen";
 
 export default function App() {
+  const [imageUri, setImageUri] = useState();
   const requestPermission = async () => {
     const { granted } = await ImagePicker.requestCameraPermissionsAsync();
     if (!granted) alert("You need to enable permission to access the library.");
@@ -23,6 +22,17 @@ export default function App() {
   useEffect(() => {
     requestPermission();
   }, []);
+
+  const selectImage = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync();
+      if (!result.canceled) {
+        setImageUri(result.uri);
+      }
+    } catch (error) {
+      console.log(" errorr reading image", error);
+    }
+  };
 
   //for fonts
   const [isLoaded] = useFonts({
@@ -47,7 +57,13 @@ export default function App() {
         {/* <NotificationScreen /> */}
         {/* <ListItem /> */}
         {/* <LoginScreen /> */}
-        <Screen></Screen>
+        <Screen>
+          <Button title="select image" onPress={selectImage} />
+          <Image
+            source={{ uri: imageUri }}
+            style={{ width: 200, height: 200 }}
+          />
+        </Screen>
         <StatusBar style="auto" />
       </View>
     </>
