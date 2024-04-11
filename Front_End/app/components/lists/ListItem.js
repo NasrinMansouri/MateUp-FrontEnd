@@ -8,8 +8,8 @@ import {
 import React from "react";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
-import AppButton from "./AppButton";
-import colors from "../config/colors";
+import AppButton from "../AppButton";
+import colors from "../../config/colors";
 
 function ListItem({
   showRequest,
