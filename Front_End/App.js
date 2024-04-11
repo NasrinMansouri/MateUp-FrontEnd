@@ -11,6 +11,7 @@ import colors from "./app/config/colors";
 import Screen from "./app/components/Screen";
 import LoginScreen from "./app/screens/LoginScreen";
 import CreateChallengeScreen from "./app/screens/challenge/CreateChallengeScreen";
+import MainHomeScreen from "./app/screens/home/MainHomeScreen";
 
 export default function App() {
   //for fonts
@@ -32,7 +33,8 @@ export default function App() {
   return (
     <View style={styles.container} onLayout={handleOnLayout}>
       {/* <LoginScreen /> */}
-      <CreateChallengeScreen />
+      {/* <CreateChallengeScreen /> */}
+      <MainHomeScreen />
       <StatusBar style="auto" />
     </View>
   );
