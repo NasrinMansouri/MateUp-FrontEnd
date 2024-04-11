@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
+import * as ImagePicker from "expo-image-picker";
+
 //for fonts
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
@@ -9,8 +11,19 @@ SplashScreen.preventAutoHideAsync();
 
 import colors from "./app/config/colors";
 import NotificationScreen from "./app/screens/NotificationScreen";
+import CreateChallengeScreen from "./app/screens/challenge/CreateChallengeScreen";
+import LoginScreen from "./app/screens/LoginScreen";
+import Screen from "./app/components/Screen";
 
 export default function App() {
+  const requestPermission = async () => {
+    const { granted } = await ImagePicker.requestCameraPermissionsAsync();
+    if (!granted) alert("You need to enable permission to access the library.");
+  };
+  useEffect(() => {
+    requestPermission();
+  }, []);
+
   //for fonts
   const [isLoaded] = useFonts({
     "montserrat-black": require("./assets/fonts/Montserrat-Black.ttf"),
@@ -31,8 +44,10 @@ export default function App() {
     <>
       <View style={styles.container} onLayout={handleOnLayout}>
         {/* <CreateChallengeScreen /> */}
-        <NotificationScreen />
+        {/* <NotificationScreen /> */}
         {/* <ListItem /> */}
+        {/* <LoginScreen /> */}
+        <Screen></Screen>
         <StatusBar style="auto" />
       </View>
     </>
