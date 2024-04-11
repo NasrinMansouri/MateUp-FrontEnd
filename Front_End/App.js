@@ -26,11 +26,14 @@ export default function App() {
   const selectImage = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync();
+      console.log("Image picker result:", result);
       if (!result.canceled) {
-        setImageUri(result.uri);
+        console.log("Selected image URI:", result.uri);
+        // setImageUri(result.uri);
+        setImageUri(result.assets[0].uri);
       }
     } catch (error) {
-      console.log(" errorr reading image", error);
+      console.log(" errorr reading image:", error);
     }
   };
 
@@ -59,10 +62,16 @@ export default function App() {
         {/* <LoginScreen /> */}
         <Screen>
           <Button title="select image" onPress={selectImage} />
-          <Image
+          {/* <Image
             source={{ uri: imageUri }}
             style={{ width: 200, height: 200 }}
-          />
+          /> */}
+          {imageUri && (
+            <Image
+              source={{ uri: imageUri }}
+              style={{ width: 200, height: 200, margin: 10 }}
+            />
+          )}
         </Screen>
         <StatusBar style="auto" />
       </View>
@@ -74,7 +83,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.blackBc,
-    // paddingTop: 32,
+    paddingTop: 33,
   },
 });
 
