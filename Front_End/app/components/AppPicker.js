@@ -24,7 +24,7 @@ export default function AppPicker({
   selectedItem,
   placeholder,
   borderWidth = 1,
-  borderColor = colors.grayLight50,
+  borderColor = colors.black,
   backgroundColor = colors.blackBc,
   ...otherProps
 }) {
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     padding: 15,
-    marginVertical: 10,
+    // marginVertical: 10,
     // marginBottom: 40,
   },
   icon: {
