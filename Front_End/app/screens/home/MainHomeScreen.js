@@ -42,7 +42,7 @@ export default function MainHomeScreen() {
 }
 
 const renderItemCache = {
-  GalleryBuddies: (item) => (
+  GalleryBuddiesComponent: (item) => (
     <View style={styles.buddiesContainer}>
       <GalleryBuddies
         style={{ paddingLeft: 16, marginBottom: 40 }}
@@ -50,20 +50,22 @@ const renderItemCache = {
       />
     </View>
   ),
-  Line: (item) => <Line marginBottom={40} item={item} />,
-  UserNextWorkoutPlanning: (item) => <UserNextWorkoutPlanning item={item} />,
-  GalleryBuddiesWorkout: (item) => (
+  LineComponent: (item) => <Line marginBottom={40} item={item} />,
+  UserNextWorkoutPlanningComponent: (item) => (
+    <UserNextWorkoutPlanning item={item} />
+  ),
+  GalleryBuddiesWorkoutComponent: (item) => (
     <View style={styles.buddiesWorkoutContainer}>
       <GalleryBuddiesWorkout item={item} />
     </View>
   ),
-  GalleryPeopleYouMightKnow: (item) => (
+  GalleryPeopleYouMightKnowComponent: (item) => (
     <GalleryPeopleYouMightKnow item={item} />
   ),
-  CardMeetTheMemberOfTheMonth: (item) => (
+  CardMeetTheMemberOfTheMonthComponent: (item) => (
     <CardMeetTheMemberOfTheMonth item={item} />
   ),
-  GalleryEducationalContent: (item) => (
+  GalleryEducationalContentComponent: (item) => (
     <View>
       <GalleryEducationalContent item={item} />
       <View style={styles.buttonSeeAll}>
@@ -74,13 +76,13 @@ const renderItemCache = {
 };
 
 const data = [
-  { type: "GalleryBuddies" },
-  { type: "Line" },
-  { type: "UserNextWorkoutPlanning" },
-  { type: "GalleryBuddiesWorkout" },
-  { type: "GalleryPeopleYouMightKnow" },
-  { type: "CardMeetTheMemberOfTheMonth" },
-  { type: "GalleryEducationalContent" },
+  { type: "GalleryBuddiesComponent" },
+  { type: "LineComponent" },
+  { type: "UserNextWorkoutPlanningComponent" },
+  { type: "GalleryBuddiesWorkoutComponent" },
+  { type: "GalleryPeopleYouMightKnowComponent" },
+  { type: "CardMeetTheMemberOfTheMonthComponent" },
+  { type: "GalleryEducationalContentComponent" },
 ];
 
 // Define the onPressSearch function for searchbar
