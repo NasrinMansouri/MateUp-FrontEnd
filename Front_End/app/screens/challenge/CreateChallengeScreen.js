@@ -7,10 +7,10 @@ import {
   AppFormField,
   SubmitButton,
   AppFormPicker,
+  AppFormDatePicker,
 } from "../../components/forms";
 import Screen from "../../components/Screen";
 import colors from "../../config/colors";
-import AppFormDateField from "../../components/forms/AppFormDateField";
 
 const validationSchema = Yup.object().shape({
   workout: Yup.object().required().label("Workout Type"), //workout type
@@ -85,12 +85,16 @@ export default function CreateChallengeScreen({}) {
             placeholder="Select goal"
             width="50%"
           />
-          <AppFormDateField
+          <AppFormDatePicker
             name="start"
             title="Start Date :"
             placeholder={"Start"}
           />
-          <AppFormDateField name="end" title="End Date :" placeholder={"End"} />
+          <AppFormDatePicker
+            name="end"
+            title="End Date :"
+            placeholder={"End"}
+          />
           <AppFormField
             questionTitle="Give your challenge a name"
             maxLength={100}
