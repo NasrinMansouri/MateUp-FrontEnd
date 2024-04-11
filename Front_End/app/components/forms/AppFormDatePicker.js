@@ -5,10 +5,10 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 
 import colors from "../../config/colors";
 import AppTextInput from "../AppTextInput";
-import AppButton from "../../components/AppButtonBorder";
+import AppButton from "../AppButtonBorder";
 import ErrorMessage from "./ErrorMessage";
 
-export default function AppFormDateField({ name, title, placeholder }) {
+export default function AppFormDatePicker({ name, title, placeholder }) {
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
   const [startDate, setStartDate] = useState("");
@@ -80,17 +80,11 @@ export default function AppFormDateField({ name, title, placeholder }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    // marginVertical: 10,
-  },
-  datePicker: {
-    // backgroundColor: colors.white,
-    // color: colors.black,
-  },
   btnContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 20,
+    marginBottom: 30,
   },
   title: {
     fontSize: 18,
