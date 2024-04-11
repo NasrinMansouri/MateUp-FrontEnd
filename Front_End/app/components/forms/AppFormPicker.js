@@ -46,6 +46,6 @@ const styles = StyleSheet.create({
     color: colors.white,
     marginBottom: 5,
     textTransform: "uppercase",
-    marginTop: 20,
+    marginTop: 30,
   },
 });
