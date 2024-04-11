@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  TextInput,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, View } from "react-native";
 //for fonts
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
@@ -15,70 +8,7 @@ import { useCallback } from "react";
 SplashScreen.preventAutoHideAsync();
 
 import colors from "./app/config/colors";
-import Screen from "./app/components/Screen";
-import LoginScreen from "./app/screens/LoginScreen";
 import CreateChallengeScreen from "./app/screens/challenge/CreateChallengeScreen";
-import MainHomeScreen from "./app/screens/home/MainHomeScreen";
-import GalleryMatchBasedWorkout from "./app/components/buddy/GalleryMatchBasedWorkout";
-import GalleryMatchClubMembers from "./app/components/buddy/GalleryMatchClubMembers";
-
-//dummy data for testing
-const matchClubMembersData = [
-  {
-    id: 1,
-    name: "John Doeeeeeeeeeeeeeeeeee",
-    image: require("./assets/person-1.jpg"),
-    location: "los angeles street" + " 123",
-    titles: ["strength training", "running"],
-  },
-  {
-    id: 2,
-    name: "ray pather ",
-    image: require("./assets/person-1.jpg"),
-    location: "los angeles street" + " 123",
-    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
-  },
-  {
-    id: 3,
-    name: "ray pather ",
-    image: require("./assets/person-1.jpg"),
-    location: "los angeles street" + " 123",
-    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
-  },
-  {
-    id: 4,
-    name: "ray pather ",
-    image: require("./assets/person-1.jpg"),
-    location: "los angeles street" + " 123",
-    titles: ["strength training"],
-  },
-];
-const UserClubMembersData = [
-  {
-    id: 1,
-    name: "John Doeeeeeeeeeeeeeeeeee",
-    image: require("./assets/person-1.jpg"),
-    titles: ["strength training", "running"],
-  },
-  {
-    id: 2,
-    name: "ray pather ",
-    image: require("./assets/person-1.jpg"),
-    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
-  },
-  {
-    id: 3,
-    name: "ray pather ",
-    image: require("./assets/person-1.jpg"),
-    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
-  },
-  {
-    id: 4,
-    name: "ray pather ",
-    image: require("./assets/person-1.jpg"),
-    titles: ["strength training"],
-  },
-];
 
 export default function App() {
   //for fonts
@@ -98,14 +28,12 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container} onLayout={handleOnLayout}>
-      {/* <LoginScreen /> */}
-      {/* <CreateChallengeScreen /> */}
-      <MainHomeScreen />
-      {/* <GalleryMatchBasedWorkout matchMemberWorkout={matchClubMembersData} />
-      <GalleryMatchClubMembers UserClubMembers={UserClubMembersData} /> */}
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <View style={styles.container} onLayout={handleOnLayout}>
+        <CreateChallengeScreen />
+        <StatusBar style="auto" />
+      </View>
+    </>
   );
 }
 
