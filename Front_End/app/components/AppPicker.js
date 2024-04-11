@@ -57,10 +57,7 @@ export default function AppPicker({
             ) : (
               <Text style={styles.placeholder}>{placeholder}</Text>
             )}
-            {/* <Text style={styles.text}>
-              {" "}
-              {selectedItem ? selectedItem.label : placeholder}{" "}
-            </Text> */}
+
             <MaterialCommunityIcons
               name="chevron-down"
               size={24}
@@ -99,6 +96,7 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 15,
     marginVertical: 10,
+    // marginBottom: 40,
   },
   icon: {
     marginRight: 10,
@@ -113,7 +111,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: colors.gray,
     fontFamily: "nunitoSans-regular",
-    fontSize: 16,
+    fontSize: 18,
   },
 });
 

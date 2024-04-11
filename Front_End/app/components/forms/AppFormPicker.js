@@ -1,7 +1,10 @@
 import React from "react";
 import { useFormikContext } from "formik";
+import { Text } from "react-native";
+import { StyleSheet } from "react-native";
 
 import AppPicker from "../AppPicker";
+import colors from "../../config/colors";
 import ErrorMessage from "./ErrorMessage";
 
 function AppFormPicker({
@@ -11,11 +14,15 @@ function AppFormPicker({
   PickerItemComponent,
   placeholder,
   width,
+  questionTitle,
 }) {
   const { errors, setFieldValue, touched, values } = useFormikContext();
 
   return (
     <>
+      {questionTitle && (
+        <Text style={styles.questionTitle}>{questionTitle}</Text>
+      )}
       <AppPicker
         items={items}
         numberOfColumns={numberOfColumns}
@@ -31,3 +38,14 @@ function AppFormPicker({
 }
 
 export default AppFormPicker;
+
+const styles = StyleSheet.create({
+  questionTitle: {
+    fontSize: 18,
+    fontFamily: "montserrat-black",
+    color: colors.white,
+    marginBottom: 5,
+    textTransform: "uppercase",
+    marginTop: 20,
+  },
+});
