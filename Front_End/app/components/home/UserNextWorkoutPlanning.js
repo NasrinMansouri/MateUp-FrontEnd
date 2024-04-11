@@ -1,70 +1,75 @@
 import { StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../../config/colors";
 
 export default function UserNextWorkoutPlanning({}) {
+  const [firstName, setFirstName] = useState("John Doe");
+
   return (
-    <View style={styles.container}>
-      <View>
-        <Text style={styles.textStyle}>
-          <Text style={styles.whiteColorText}>Tomorrow</Text> is your{" "}
-          <Text style={styles.whiteColorText}>leg</Text> workout at {""}{" "}
-          <Text style={styles.whiteColorText}>7 pm</Text>.{" "}
-        </Text>
-        <Text style={styles.textStyle}>
-          don't forget, you'have got 2 companies.{" "}
-        </Text>
-        <Text style={styles.textStyle}>
-          <Text style={styles.whiteColorText}>Sarah</Text> and{" "}
-          <Text style={styles.whiteColorText}>bob</Text> are joining you too.{" "}
-        </Text>
-        <Text style={styles.textStyleLast}> Have fun together !</Text>
-        <View style={styles.buddyContainer}>
-          <View style={styles.buddy1}>
-            <Image
-              source={require("../../../assets/person-1.jpg")}
-              style={styles.image}
-            />
-            <View style={styles.icons}>
-              <MaterialCommunityIcons
-                name="cards-heart-outline"
-                size={20}
-                color={colors.white}
-                style={styles.heartIcon}
+    <>
+      <Text style={styles.welcomeText}>WELCOME {firstName}</Text>
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyle}>
+            <Text style={styles.whiteColorText}>Tomorrow</Text> is your{" "}
+            <Text style={styles.whiteColorText}>leg</Text> workout at {""}{" "}
+            <Text style={styles.whiteColorText}>7 pm</Text>.{" "}
+          </Text>
+          <Text style={styles.textStyle}>
+            don't forget, you'have got 2 companies.{" "}
+          </Text>
+          <Text style={styles.textStyle}>
+            <Text style={styles.whiteColorText}>Sarah</Text> and{" "}
+            <Text style={styles.whiteColorText}>bob</Text> are joining you too.{" "}
+          </Text>
+          <Text style={styles.textStyleLast}> Have fun together !</Text>
+          <View style={styles.buddyContainer}>
+            <View style={styles.buddy1}>
+              <Image
+                source={require("../../../assets/person-1.jpg")}
+                style={styles.image}
               />
-              <MaterialCommunityIcons
-                name="email-outline"
-                size={20}
-                color={colors.white}
-                style={styles.emailIcon}
-              />
+              <View style={styles.icons}>
+                <MaterialCommunityIcons
+                  name="cards-heart-outline"
+                  size={20}
+                  color={colors.white}
+                  style={styles.heartIcon}
+                />
+                <MaterialCommunityIcons
+                  name="email-outline"
+                  size={20}
+                  color={colors.white}
+                  style={styles.emailIcon}
+                />
+              </View>
             </View>
-          </View>
-          <View style={styles.buddy2}>
-            <Image
-              source={require("../../../assets/person2.jpg")}
-              style={styles.image}
-            />
-            <View style={styles.icons}>
-              <MaterialCommunityIcons
-                name="cards-heart-outline"
-                size={20}
-                color={colors.white}
-                style={styles.heartIcon}
+            <View style={styles.buddy2}>
+              <Image
+                source={require("../../../assets/person2.jpg")}
+                style={styles.image}
               />
-              <MaterialCommunityIcons
-                name="email-outline"
-                size={20}
-                color={colors.white}
-                style={styles.emailIcon}
-              />
+              <View style={styles.icons}>
+                <MaterialCommunityIcons
+                  name="cards-heart-outline"
+                  size={20}
+                  color={colors.white}
+                  style={styles.heartIcon}
+                />
+                <MaterialCommunityIcons
+                  name="email-outline"
+                  size={20}
+                  color={colors.white}
+                  style={styles.emailIcon}
+                />
+              </View>
             </View>
           </View>
         </View>
       </View>
-    </View>
+    </>
   );
 }
 
@@ -78,6 +83,13 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingTop: 23,
     paddingBottom: 64,
+  },
+  welcomeText: {
+    fontFamily: "montserrat-black",
+    fontSize: 48,
+    color: colors.white,
+    marginBottom: 10,
+    paddingLeft: 16,
   },
   buddyContainer: {
     flexDirection: "row",

@@ -112,16 +112,22 @@ export default function CardMeetTheMemberOfTheMonth() {
   ];
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.textStyle}>Meet The Member Of The Month</Text>
-      {images.map(({ id, image }) => (
-        <AnimatedImage
-          key={id}
-          style={[styles.image, getPositionStyle(id)]}
-          source={image}
-        />
-      ))}
-    </View>
+    <>
+      <Text style={styles.titleText}>whats new</Text>
+      <Text style={styles.subTitleText}>
+        Checkout the lates news on MATE-UP
+      </Text>
+      <View style={styles.container}>
+        <Text style={styles.textStyle}>Meet The Member Of The Month</Text>
+        {images.map(({ id, image }) => (
+          <AnimatedImage
+            key={id}
+            style={[styles.image, getPositionStyle(id)]}
+            source={image}
+          />
+        ))}
+      </View>
+    </>
   );
 }
 
@@ -195,5 +201,20 @@ const styles = StyleSheet.create({
     color: colors.white,
     textTransform: "uppercase",
     textAlign: "center",
+  },
+  titleText: {
+    fontFamily: "montserrat-black",
+    fontSize: 26,
+    color: colors.orangePrimary,
+    marginBottom: 10,
+    textTransform: "uppercase",
+    paddingLeft: 16,
+  },
+  subTitleText: {
+    fontFamily: "nunitoSans-regular",
+    fontSize: 14,
+    color: colors.white,
+    marginBottom: 32,
+    paddingLeft: 16,
   },
 });
