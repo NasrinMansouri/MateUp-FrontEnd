@@ -8,11 +8,13 @@ import TopNav from "../../components/TopNav";
 import AppButton from "../../components/AppButton";
 import GalleryBuddies from "../../components/GalleryBuddies";
 import AppButtonBorder from "../../components/AppButtonBorder";
-import UserNextWorkoutPlanning from "../../components/home/UserNextWorkoutPlanning";
-import GalleryBuddiesWorkout from "../../components/home/GalleryBuddiesWorkout";
-import GalleryPeopleYouMightKnow from "../../components/home/GalleryPeopleYouMightKnow";
-import CardMeetTheMemberOfTheMonth from "../../components/home/CardMeetTheMemberOfTheMonth";
-import GalleryEducationalContent from "../../components/home/GalleryEducationalContent";
+import {
+  UserNextWorkoutPlanning,
+  GalleryBuddiesWorkout,
+  GalleryPeopleYouMightKnow,
+  CardMeetTheMemberOfTheMonth,
+  GalleryEducationalContent,
+} from "../../components/home";
 
 export default function MainHomeScreen() {
   return (
