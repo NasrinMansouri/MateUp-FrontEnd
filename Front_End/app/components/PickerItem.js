@@ -18,8 +18,9 @@ const styles = StyleSheet.create({
   text: {
     padding: 20,
     fontSize: 18,
-    fontFamily: "montserrat-black",
+    fontFamily: "nunitoSans-extraBold",
     color: colors.black,
-    textTransform: "uppercase",
+    // textTransform: "uppercase",
+    textTransform: "capitalize",
   },
 });
