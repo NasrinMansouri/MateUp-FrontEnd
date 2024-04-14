@@ -12,30 +12,31 @@ SplashScreen.preventAutoHideAsync();
 import colors from "./app/config/colors";
 
 import Screen from "./app/components/Screen";
+import StopwatchApp from "./app/components/challenge/StopWatch";
 
 export default function App() {
-  const [imageUri, setImageUri] = useState();
-  const requestPermission = async () => {
-    const { granted } = await ImagePicker.requestCameraPermissionsAsync();
-    if (!granted) alert("You need to enable permission to access the library.");
-  };
-  useEffect(() => {
-    requestPermission();
-  }, []);
+  // const [imageUri, setImageUri] = useState();
+  // const requestPermission = async () => {
+  //   const { granted } = await ImagePicker.requestCameraPermissionsAsync();
+  //   if (!granted) alert("You need to enable permission to access the library.");
+  // };
+  // useEffect(() => {
+  //   requestPermission();
+  // }, []);
 
-  const selectImage = async () => {
-    try {
-      const result = await ImagePicker.launchImageLibraryAsync();
-      console.log("Image picker result:", result);
-      if (!result.canceled) {
-        console.log("Selected image URI:", result.uri);
-        // setImageUri(result.uri);
-        setImageUri(result.assets[0].uri);
-      }
-    } catch (error) {
-      console.log(" errorr reading image:", error);
-    }
-  };
+  // const selectImage = async () => {
+  //   try {
+  //     const result = await ImagePicker.launchImageLibraryAsync();
+  //     console.log("Image picker result:", result);
+  //     if (!result.canceled) {
+  //       console.log("Selected image URI:", result.uri);
+  //       // setImageUri(result.uri);
+  //       setImageUri(result.assets[0].uri);
+  //     }
+  //   } catch (error) {
+  //     console.log(" errorr reading image:", error);
+  //   }
+  // };
 
   //for fonts
   const [isLoaded] = useFonts({
@@ -60,19 +61,20 @@ export default function App() {
         {/* <NotificationScreen /> */}
         {/* <ListItem /> */}
         {/* <LoginScreen /> */}
-        <Screen>
-          <Button title="select image" onPress={selectImage} />
-          {/* <Image
+        <StopwatchApp />
+        {/* <Screen> */}
+        {/* <Button title="select image" onPress={selectImage} /> */}
+        {/* <Image
             source={{ uri: imageUri }}
             style={{ width: 200, height: 200 }}
           /> */}
-          {imageUri && (
+        {/* {imageUri && (
             <Image
               source={{ uri: imageUri }}
               style={{ width: 200, height: 200, margin: 10 }}
             />
-          )}
-        </Screen>
+          )} */}
+        {/* </Screen> */}
         <StatusBar style="auto" />
       </View>
     </>
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.blackBc,
-    paddingTop: 33,
+    // paddingTop: 33,
   },
 });
 
