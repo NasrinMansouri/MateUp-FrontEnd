@@ -229,7 +229,7 @@
 // export default StopwatchApp;
 
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Modal } from "react-native";
 
 import colors from "../../config/colors";
 import Screen from "../Screen";
@@ -242,6 +242,7 @@ const StopwatchApp = () => {
   const [activeButton, setActiveButton] = useState("start");
   const [startTime, setStartTime] = useState(null); // State variable to store the start time
   const [elapsedTime, setElapsedTime] = useState(0); // State variable to store the elapsed time
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     let interval = null;
@@ -299,91 +300,113 @@ const StopwatchApp = () => {
     console.log("Elapsed time:", elapsedTime); // Log the elapsed time
   };
 
+  const handleModalOpen = () => {
+    setModalVisible(true);
+  };
+
   return (
-    <Screen>
-      <View style={styles.container}>
-        <View style={styles.headerContainer}>
-          <TouchableOpacity style={styles.closeButton}>
-            <Text style={styles.closeButtonText}>Close</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.saveButton} onPress={handleFinish}>
-            <Text style={styles.saveButtonText}>Finish</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.timeContainer}>
-          <Text style={styles.time}>
-            {hours < 10 ? "0" + hours : hours}:
-            {minutes < 10 ? "0" + minutes : minutes}:
-            {seconds < 10 ? "0" + seconds : seconds}
-          </Text>
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={[
-              styles.button,
-              activeButton === "start"
-                ? {
-                    backgroundColor: colors.orangeSecondary,
-                    borderColor: colors.black,
-                  }
-                : { borderColor: colors.green },
-            ]}
-            onPress={startStopwatch}
-          >
-            <Text
-              style={[
-                styles.buttonText,
-                activeButton === "start" && { color: colors.white },
-              ]}
+    <>
+      <Screen>
+        <View style={styles.container}>
+          <View style={styles.headerContainer}>
+            <TouchableOpacity style={styles.closeButton}>
+              <Text style={styles.closeButtonText}>Close</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.saveButton}
+              onPress={() => {
+                handleFinish();
+                handleModalOpen();
+              }}
             >
-              Start
+              <Text style={styles.saveButtonText}>Finish</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.timeContainer}>
+            <Text style={styles.time}>
+              {hours < 10 ? "0" + hours : hours}:
+              {minutes < 10 ? "0" + minutes : minutes}:
+              {seconds < 10 ? "0" + seconds : seconds}
             </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              styles.button,
-              activeButton === "stop"
-                ? {
-                    backgroundColor: colors.orangeSecondary,
-                    borderColor: colors.black,
-                  }
-                : { borderColor: colors.green },
-            ]}
-            onPress={stopStopwatch}
-          >
-            <Text
+          </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
               style={[
-                styles.buttonText,
-                activeButton === "stop" && { color: colors.white },
+                styles.button,
+                activeButton === "start"
+                  ? {
+                      backgroundColor: colors.orangeSecondary,
+                      borderColor: colors.black,
+                    }
+                  : { borderColor: colors.green },
               ]}
+              onPress={startStopwatch}
             >
-              Stop
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              styles.button,
-              activeButton === "reset"
-                ? {
-                    backgroundColor: colors.orangeSecondary,
-                    borderColor: colors.black,
-                  }
-                : { borderColor: colors.green },
-            ]}
-            onPress={resetStopwatch}
-          >
-            <Text
+              <Text
+                style={[
+                  styles.buttonText,
+                  activeButton === "start" && { color: colors.white },
+                ]}
+              >
+                Start
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
               style={[
-                styles.buttonText,
-                activeButton === "reset" && { color: colors.white },
+                styles.button,
+                activeButton === "stop"
+                  ? {
+                      backgroundColor: colors.orangeSecondary,
+                      borderColor: colors.black,
+                    }
+                  : { borderColor: colors.green },
               ]}
+              onPress={stopStopwatch}
             >
-              Reset
-            </Text>
-          </TouchableOpacity>
+              <Text
+                style={[
+                  styles.buttonText,
+                  activeButton === "stop" && { color: colors.white },
+                ]}
+              >
+                Stop
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.button,
+                activeButton === "reset"
+                  ? {
+                      backgroundColor: colors.orangeSecondary,
+                      borderColor: colors.black,
+                    }
+                  : { borderColor: colors.green },
+              ]}
+              onPress={resetStopwatch}
+            >
+              <Text
+                style={[
+                  styles.buttonText,
+                  activeButton === "reset" && { color: colors.white },
+                ]}
+              >
+                Reset
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
+      </Screen>
+      <View style={styles.modalContainer}>
+        <Modal
+          visible={modalVisible}
+          animationType="slide"
+          onRequestClose={() => setModalVisible(false)}
+          style={styles.modal}
+        >
+          <Text>Workout time: {elapsedTime} milliseconds</Text>
+        </Modal>
       </View>
-    </Screen>
+    </>
   );
 };
 
@@ -442,6 +465,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "montserrat-black",
     textTransform: "uppercase",
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modal: {
+    paddingTop: 30,
+    // backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
 });
 
