@@ -304,14 +304,18 @@ const StopwatchApp = () => {
     setModalVisible(true);
   };
 
+  const handleModalClose = () => {
+    setModalVisible(false);
+  };
+
   return (
-    <>
-      <Screen>
-        <View style={styles.container}>
-          <View style={styles.headerContainer}>
-            <TouchableOpacity style={styles.closeButton}>
-              <Text style={styles.closeButtonText}>Close</Text>
-            </TouchableOpacity>
+    <Screen>
+      <View style={styles.container}>
+        <View style={styles.headerContainer}>
+          <TouchableOpacity style={styles.closeButton}>
+            <Text style={styles.closeButtonText}>Close</Text>
+          </TouchableOpacity>
+          {activeButton === "stop" && (
             <TouchableOpacity
               style={styles.saveButton}
               onPress={() => {
@@ -321,92 +325,97 @@ const StopwatchApp = () => {
             >
               <Text style={styles.saveButtonText}>Finish</Text>
             </TouchableOpacity>
-          </View>
-          <View style={styles.timeContainer}>
-            <Text style={styles.time}>
-              {hours < 10 ? "0" + hours : hours}:
-              {minutes < 10 ? "0" + minutes : minutes}:
-              {seconds < 10 ? "0" + seconds : seconds}
-            </Text>
-          </View>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={[
-                styles.button,
-                activeButton === "start"
-                  ? {
-                      backgroundColor: colors.orangeSecondary,
-                      borderColor: colors.black,
-                    }
-                  : { borderColor: colors.green },
-              ]}
-              onPress={startStopwatch}
-            >
-              <Text
-                style={[
-                  styles.buttonText,
-                  activeButton === "start" && { color: colors.white },
-                ]}
-              >
-                Start
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[
-                styles.button,
-                activeButton === "stop"
-                  ? {
-                      backgroundColor: colors.orangeSecondary,
-                      borderColor: colors.black,
-                    }
-                  : { borderColor: colors.green },
-              ]}
-              onPress={stopStopwatch}
-            >
-              <Text
-                style={[
-                  styles.buttonText,
-                  activeButton === "stop" && { color: colors.white },
-                ]}
-              >
-                Stop
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[
-                styles.button,
-                activeButton === "reset"
-                  ? {
-                      backgroundColor: colors.orangeSecondary,
-                      borderColor: colors.black,
-                    }
-                  : { borderColor: colors.green },
-              ]}
-              onPress={resetStopwatch}
-            >
-              <Text
-                style={[
-                  styles.buttonText,
-                  activeButton === "reset" && { color: colors.white },
-                ]}
-              >
-                Reset
-              </Text>
-            </TouchableOpacity>
-          </View>
+          )}
         </View>
-      </Screen>
-      <View style={styles.modalContainer}>
-        <Modal
-          visible={modalVisible}
-          animationType="slide"
-          onRequestClose={() => setModalVisible(false)}
-          style={styles.modal}
-        >
-          <Text>Workout time: {elapsedTime} milliseconds</Text>
+        <View style={styles.timeContainer}>
+          <Text style={styles.time}>
+            {hours < 10 ? "0" + hours : hours}:
+            {minutes < 10 ? "0" + minutes : minutes}:
+            {seconds < 10 ? "0" + seconds : seconds}
+          </Text>
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={[
+              styles.button,
+              activeButton === "start"
+                ? {
+                    backgroundColor: colors.orangeSecondary,
+                    borderColor: colors.black,
+                  }
+                : { borderColor: colors.green },
+            ]}
+            onPress={startStopwatch}
+          >
+            <Text
+              style={[
+                styles.buttonText,
+                activeButton === "start" && { color: colors.white },
+              ]}
+            >
+              Start
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              styles.button,
+              activeButton === "stop"
+                ? {
+                    backgroundColor: colors.orangeSecondary,
+                    borderColor: colors.black,
+                  }
+                : { borderColor: colors.green },
+            ]}
+            onPress={stopStopwatch}
+          >
+            <Text
+              style={[
+                styles.buttonText,
+                activeButton === "stop" && { color: colors.white },
+              ]}
+            >
+              Stop
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              styles.button,
+              activeButton === "reset"
+                ? {
+                    backgroundColor: colors.orangeSecondary,
+                    borderColor: colors.black,
+                  }
+                : { borderColor: colors.green },
+            ]}
+            onPress={resetStopwatch}
+          >
+            <Text
+              style={[
+                styles.buttonText,
+                activeButton === "reset" && { color: colors.white },
+              ]}
+            >
+              Reset
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <Modal visible={modalVisible} animationType="slide">
+          <View style={styles.modalContainer}>
+            <TouchableOpacity
+              style={styles.modalCloseButton}
+              onPress={handleModalClose}
+            >
+              <Text style={styles.modalCloseButtonText}>Close</Text>
+            </TouchableOpacity>
+            <View style={styles.modalContent}>
+              <Text style={styles.modalText}>
+                Workout Time: {hours}:{minutes}:{seconds}
+              </Text>
+            </View>
+          </View>
         </Modal>
       </View>
-    </>
+    </Screen>
   );
 };
 
@@ -470,10 +479,31 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
   },
-  modal: {
-    paddingTop: 30,
-    // backgroundColor: "rgba(0, 0, 0, 0.5)",
+  modalCloseButton: {
+    position: "absolute",
+    top: 20,
+    right: 20,
+    zIndex: 1, // Ensure it's above the modal content
+  },
+  modalCloseButtonText: {
+    color: colors.white,
+    fontSize: 16,
+    fontFamily: "montserrat-black",
+  },
+  // modalContent: {
+  //   backgroundColor: colors.white, // Background color white
+  //   padding: 20,
+  //   borderRadius: 10,
+  //   elevation: 5, // Android shadow
+  //   shadowColor: "#000", // iOS shadow
+  //   marginTop: 50, // Top margin
+  // },
+  modalText: {
+    fontSize: 16,
+    fontFamily: "montserrat-black",
+    color: colors.black,
   },
 });
 
