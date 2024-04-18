@@ -1,7 +1,7 @@
 //horizontal scrollable list of buddies next
 //workout planning in homrpage
 
-import { FlatList, StyleSheet, Text } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 import CardBuddiesWorkout from "./CardBuddiesWorkout";
@@ -41,7 +41,7 @@ export default function GalleryBuddiesWorkout({ buddiesWorkout }) {
     },
   ];
   return (
-    <>
+    <View>
       <Text style={styles.titleText}>upcoming buddies workout</Text>
       <Text style={styles.subTitleText}>
         Discover your buddies' latest workout routines, Join in for Fun and
@@ -67,7 +67,7 @@ export default function GalleryBuddiesWorkout({ buddiesWorkout }) {
           />
         )}
       />
-    </>
+    </View>
   );
 }
 

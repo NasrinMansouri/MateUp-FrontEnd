@@ -23,11 +23,12 @@ export default function MainHomeScreen() {
         // showProfilePic={true}
         // userImage={require("../../../assets/person2.jpg")}
         showSearchBar={true}
-        onPressSearch={handleSearch}
       />
       <FlatList
         data={data}
         keyExtractor={(item) => item.type}
+        // renderItem function,
+        // which renders the component(each item) based on the type
         renderItem={({ item }) => renderItemCache[item.type](item)}
         showsVerticalScrollIndicator={false}
       />
@@ -75,6 +76,7 @@ const renderItemCache = {
   ),
 };
 
+//define array of data, which contains objects with a type property
 const data = [
   { type: "GalleryBuddiesComponent" },
   { type: "LineComponent" },
@@ -84,12 +86,6 @@ const data = [
   { type: "CardMeetTheMemberOfTheMonthComponent" },
   { type: "GalleryEducationalContentComponent" },
 ];
-
-// Define the onPressSearch function for searchbar
-const handleSearch = (searchQuery) => {
-  console.log("Search query:", searchQuery);
-  // Perform search logic here
-};
 
 const styles = StyleSheet.create({
   container: {
