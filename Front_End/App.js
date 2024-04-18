@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { Button, StyleSheet, View, Image } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  View,
+  Image,
+  ScrollView,
+  Text,
+} from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
 //for fonts
@@ -12,7 +19,9 @@ SplashScreen.preventAutoHideAsync();
 import colors from "./app/config/colors";
 
 import Screen from "./app/components/Screen";
-import StopwatchApp from "./app/components/challenge/StopWatch";
+import MainHomeScreen from "./app/screens/home/MainHomeScreen";
+import CreateChallengeScreen from "./app/screens/challenge/CreateChallengeScreen";
+import TopNav from "./app/components/TopNav";
 
 export default function App() {
   // const [imageUri, setImageUri] = useState();
@@ -57,11 +66,18 @@ export default function App() {
   return (
     <>
       <View style={styles.container} onLayout={handleOnLayout}>
+        {/* <Screen style={{ marginTop: 20 }}>
+          <TopNav showSearchBar={true} />
+        </Screen> */}
+        <MainHomeScreen />
+        {/* <Text>Hello</Text> */}
+
         {/* <CreateChallengeScreen /> */}
         {/* <NotificationScreen /> */}
         {/* <ListItem /> */}
         {/* <LoginScreen /> */}
-        <StopwatchApp />
+        {/* <MainHomeScreen /> */}
+        {/* <StopwatchApp /> */}
         {/* <Screen> */}
         {/* <Button title="select image" onPress={selectImage} /> */}
         {/* <Image
@@ -75,6 +91,9 @@ export default function App() {
             />
           )} */}
         {/* </Screen> */}
+        {/* <ScrollView>
+          <GalleryBuddies />
+        </ScrollView> */}
         <StatusBar style="auto" />
       </View>
     </>
