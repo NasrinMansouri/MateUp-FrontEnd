@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 
 import {
@@ -11,6 +11,7 @@ import {
 } from "../../components/forms";
 import Screen from "../../components/Screen";
 import colors from "../../config/colors";
+import ImageInpute from "../../components/forms/ImageInpute";
 
 const validationSchema = Yup.object().shape({
   workout: Yup.object().required().label("Workout Type"), //workout type
@@ -38,6 +39,7 @@ const challengeGoal = [
 ];
 
 export default function CreateChallengeScreen({}) {
+  const [imageUri, setImageUri] = useState();
   return (
     <ScrollView>
       <Screen style={styles.container}>
@@ -56,6 +58,12 @@ export default function CreateChallengeScreen({}) {
         >
           <View style={styles.headerContainer}>
             <Text style={styles.headerText}>Creat Challenge</Text>
+          </View>
+          <View style={styles.imageContainer}>
+            <ImageInpute
+              imageUri={imageUri}
+              onChangeImage={(uri) => setImageUri(uri)}
+            />
           </View>
 
           <AppFormPicker
@@ -135,6 +143,9 @@ const styles = StyleSheet.create({
     color: colors.orangePrimary,
     textAlign: "center",
     textTransform: "uppercase",
+  },
+  imageContainer: {
+    alignItems: "center",
   },
   titleFormField: {
     fontSize: 16,
