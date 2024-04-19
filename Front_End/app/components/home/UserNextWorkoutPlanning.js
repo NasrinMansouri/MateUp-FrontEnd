@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
 
 export default function UserNextWorkoutPlanning({}) {
-  const [firstName, setFirstName] = useState("John Doe");
+  const [firstName, setFirstName] = useState("John ");
 
   return (
     <>
