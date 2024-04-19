@@ -8,7 +8,6 @@ import {
   ScrollView,
   Text,
 } from "react-native";
-import * as ImagePicker from "expo-image-picker";
 
 //for fonts
 import * as SplashScreen from "expo-splash-screen";
@@ -23,29 +22,10 @@ import MainHomeScreen from "./app/screens/home/MainHomeScreen";
 import CreateChallengeScreen from "./app/screens/challenge/CreateChallengeScreen";
 import TopNav from "./app/components/TopNav";
 
+import { ImageInpute } from "./app/components/forms/ImageInpute";
+
 export default function App() {
   // const [imageUri, setImageUri] = useState();
-  // const requestPermission = async () => {
-  //   const { granted } = await ImagePicker.requestCameraPermissionsAsync();
-  //   if (!granted) alert("You need to enable permission to access the library.");
-  // };
-  // useEffect(() => {
-  //   requestPermission();
-  // }, []);
-
-  // const selectImage = async () => {
-  //   try {
-  //     const result = await ImagePicker.launchImageLibraryAsync();
-  //     console.log("Image picker result:", result);
-  //     if (!result.canceled) {
-  //       console.log("Selected image URI:", result.uri);
-  //       // setImageUri(result.uri);
-  //       setImageUri(result.assets[0].uri);
-  //     }
-  //   } catch (error) {
-  //     console.log(" errorr reading image:", error);
-  //   }
-  // };
 
   //for fonts
   const [isLoaded] = useFonts({
@@ -66,34 +46,13 @@ export default function App() {
   return (
     <>
       <View style={styles.container} onLayout={handleOnLayout}>
-        {/* <Screen style={{ marginTop: 20 }}>
-          <TopNav showSearchBar={true} />
-        </Screen> */}
-        <MainHomeScreen />
-        {/* <Text>Hello</Text> */}
-
-        {/* <CreateChallengeScreen /> */}
-        {/* <NotificationScreen /> */}
-        {/* <ListItem /> */}
-        {/* <LoginScreen /> */}
-        {/* <MainHomeScreen /> */}
-        {/* <StopwatchApp /> */}
-        {/* <Screen> */}
-        {/* <Button title="select image" onPress={selectImage} /> */}
-        {/* <Image
-            source={{ uri: imageUri }}
-            style={{ width: 200, height: 200 }}
-          /> */}
-        {/* {imageUri && (
-            <Image
-              source={{ uri: imageUri }}
-              style={{ width: 200, height: 200, margin: 10 }}
-            />
-          )} */}
-        {/* </Screen> */}
-        {/* <ScrollView>
-          <GalleryBuddies />
-        </ScrollView> */}
+        {/* <Screen>
+          <ImageInpute
+            imageUri={imageUri}
+            onChangeImage={(uri) => setImageUri(uri)}
+          />
+        </Screen>  */}
+        <CreateChallengeScreen />
         <StatusBar style="auto" />
       </View>
     </>
