@@ -62,6 +62,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginRight: 16,
     marginLeft: 16,
+    paddingBottom: 20,
+    paddingTop: 20,
   },
   LeftContainer: {
     flex: 1,
