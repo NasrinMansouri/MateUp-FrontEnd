@@ -12,6 +12,8 @@ import {
 import Screen from "../../components/Screen";
 import colors from "../../config/colors";
 import ImageInpute from "../../components/forms/ImageInpute";
+import AppFormImagePicker from "../../components/forms/AppFormImagePicker";
+import AppFormSelectionPicker from "../../components/forms/AppFormSelectionPicker";
 
 const validationSchema = Yup.object().shape({
   workout: Yup.object().required().label("Workout Type"), //workout type
@@ -21,6 +23,7 @@ const validationSchema = Yup.object().shape({
   end: Yup.string().required().label("End Date"),
   name: Yup.string().required().min(3).label("Challnege Name"), //naming the challenge
   description: Yup.string().label("Description"),
+  image: Yup.string().required().label("Image"),
 });
 
 const workoutTypes = [
@@ -39,7 +42,6 @@ const challengeGoal = [
 ];
 
 export default function CreateChallengeScreen({}) {
-  const [imageUri, setImageUri] = useState();
   return (
     <ScrollView>
       <Screen style={styles.container}>
@@ -52,6 +54,7 @@ export default function CreateChallengeScreen({}) {
             end: "",
             name: "",
             description: "",
+            image: "",
           }}
           onSubmit={(values) => console.log(values)}
           validationSchema={validationSchema}
@@ -59,13 +62,14 @@ export default function CreateChallengeScreen({}) {
           <View style={styles.headerContainer}>
             <Text style={styles.headerText}>Creat Challenge</Text>
           </View>
-          <View style={styles.imageContainer}>
-            <ImageInpute
-              imageUri={imageUri}
-              onChangeImage={(uri) => setImageUri(uri)}
-            />
-          </View>
 
+          <AppFormImagePicker name="image" />
+          {/* <AppFormSelectionPicker
+            questionTitle="What type of challenge do you want to create?"
+            items={workoutTypes}
+            name="workout"
+            numberOfColumns={3}
+          /> */}
           <AppFormPicker
             questionTitle="which workout count toward your challenge?"
             items={workoutTypes}
@@ -143,9 +147,6 @@ const styles = StyleSheet.create({
     color: colors.orangePrimary,
     textAlign: "center",
     textTransform: "uppercase",
-  },
-  imageContainer: {
-    alignItems: "center",
   },
   titleFormField: {
     fontSize: 16,
