@@ -6,19 +6,21 @@ import CardMatchClubMembers from "./CardMatchClubMembers";
 
 export default function GalleryMatchClubMembers({ UserClubMembers }) {
   return (
-    <FlatList
-      style={styles.container}
-      horizontal
-      data={UserClubMembers}
-      keyExtractor={(UserClubMembers) => UserClubMembers.id.toString()}
-      renderItem={({ item }) => (
-        <CardMatchClubMembers
-          name={item.name}
-          image={item.image}
-          titles={item.titles}
-        />
-      )}
-    />
+    <View>
+      <FlatList
+        style={styles.container}
+        horizontal
+        data={UserClubMembers}
+        keyExtractor={(UserClubMembers) => UserClubMembers.id.toString()}
+        renderItem={({ item }) => (
+          <CardMatchClubMembers
+            name={item.name}
+            image={item.image}
+            titles={item.titles}
+          />
+        )}
+      />
+    </View>
   );
 }
 
