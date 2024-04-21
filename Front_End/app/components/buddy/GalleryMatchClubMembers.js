@@ -6,7 +6,7 @@ import CardMatchClubMembers from "./CardMatchClubMembers";
 
 export default function GalleryMatchClubMembers({ UserClubMembers }) {
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         style={styles.container}
         horizontal
@@ -25,9 +25,9 @@ export default function GalleryMatchClubMembers({ UserClubMembers }) {
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   marginLeft: 16,
-  // },
+  container: {
+    paddingTop: 16,
+  },
 });
 
 //to be use in screen as:
