@@ -234,7 +234,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Modal } from "react-native";
 import colors from "../../config/colors";
 import Screen from "../Screen";
 
-const StopwatchApp = () => {
+const StopWatch = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -507,4 +507,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StopwatchApp;
+export default StopWatch;
