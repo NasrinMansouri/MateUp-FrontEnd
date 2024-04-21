@@ -5,20 +5,22 @@ import { FlatList } from "react-native";
 
 export default function GalleryMatchBasedWorkout({ matchMemberWorkout }) {
   return (
-    <FlatList
-      style={styles.container}
-      horizontal
-      data={matchMemberWorkout}
-      keyExtractor={(matchMemberWorkout) => matchMemberWorkout.id.toString()}
-      renderItem={({ item }) => (
-        <CardMatchBasedWorkout
-          name={item.name}
-          image={item.image}
-          location={item.location}
-          titles={item.titles}
-        />
-      )}
-    />
+    <View>
+      <FlatList
+        style={styles.container}
+        horizontal
+        data={matchMemberWorkout}
+        keyExtractor={(matchMemberWorkout) => matchMemberWorkout.id.toString()}
+        renderItem={({ item }) => (
+          <CardMatchBasedWorkout
+            name={item.name}
+            image={item.image}
+            location={item.location}
+            titles={item.titles}
+          />
+        )}
+      />
+    </View>
   );
 }
 
