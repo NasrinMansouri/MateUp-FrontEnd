@@ -11,9 +11,7 @@ import {
 } from "../../components/forms";
 import Screen from "../../components/Screen";
 import colors from "../../config/colors";
-import ImageInpute from "../../components/forms/ImageInpute";
 import AppFormImagePicker from "../../components/forms/AppFormImagePicker";
-import AppFormSelectionPicker from "../../components/forms/AppFormSelectionPicker";
 
 const validationSchema = Yup.object().shape({
   workout: Yup.object().required().label("Workout Type"), //workout type
@@ -64,12 +62,6 @@ export default function CreateChallengeScreen({}) {
           </View>
 
           <AppFormImagePicker name="image" />
-          {/* <AppFormSelectionPicker
-            questionTitle="What type of challenge do you want to create?"
-            items={workoutTypes}
-            name="workout"
-            numberOfColumns={3}
-          /> */}
           <AppFormPicker
             questionTitle="which workout count toward your challenge?"
             items={workoutTypes}
