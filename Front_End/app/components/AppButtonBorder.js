@@ -6,7 +6,7 @@ import colors from "../config/colors";
 function AppButtonIcon({ title, onPress, image }) {
   return (
     <TouchableOpacity
-      activeOpacity={0.8}
+      activeOpacity={0.9}
       style={styles.button}
       onPress={onPress}
     >
