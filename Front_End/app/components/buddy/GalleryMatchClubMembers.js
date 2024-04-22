@@ -2,12 +2,16 @@
 
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import React from "react";
+
+import colors from "../../config/colors";
 import CardMatchClubMembers from "./CardMatchClubMembers";
 
 export default function GalleryMatchClubMembers({ UserClubMembers }) {
   return (
-    <View style={styles.container}>
+    <View style={styles.mainContainer}>
+      <Text style={styles.title}>meet your club members</Text>
       <FlatList
+        showsHorizontalScrollIndicator={false}
         style={styles.container}
         horizontal
         data={UserClubMembers}
@@ -25,8 +29,19 @@ export default function GalleryMatchClubMembers({ UserClubMembers }) {
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {},
   container: {
     paddingTop: 16,
+
+    paddingLeft: 16,
+  },
+  title: {
+    fontFamily: "montserrat-black",
+    fontSize: 36,
+    color: colors.orangePrimary,
+    marginBottom: 10,
+    textTransform: "uppercase",
+    paddingLeft: 16,
   },
 });
 
