@@ -12,6 +12,7 @@ import React, { useState, useRef } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 import colors from "../../config/colors";
+import ListItemSeparator from "../lists/ListItemSeperator";
 
 const searchedResults = [
   {
@@ -95,6 +96,7 @@ export default function SearchBar({ onPress }) {
           <FlatList
             data={filteredResults}
             keyExtractor={(item) => item.id.toString()}
+            ItemSeparatorComponent={ListItemSeparator}
             ListEmptyComponent={
               <View style={styles.noResultsContainer}>
                 <Text style={styles.noResultsText}>
@@ -144,7 +146,6 @@ const styles = StyleSheet.create({
   containerBackSearch: {
     flexDirection: "row",
     alignItems: "center",
-    // padding: 10,
     marginTop: 60,
     marginRight: 16,
     marginLeft: 16,
@@ -152,10 +153,7 @@ const styles = StyleSheet.create({
   resultContainer: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 10,
-    marginTop: 10,
-    marginLeft: 16,
-    marginRight: 16,
+    margin: 16,
     gap: 10,
   },
   name: {
