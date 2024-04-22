@@ -1,10 +1,16 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableWithoutFeedback,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../../config/colors";
 
-export default function UserNextWorkoutPlanning({}) {
+export default function UserNextWorkoutPlanning({ onPress }) {
   const [firstName, setFirstName] = useState("John ");
 
   return (
@@ -27,43 +33,55 @@ export default function UserNextWorkoutPlanning({}) {
           <Text style={styles.textStyleLast}> Have fun together !</Text>
           <View style={styles.buddyContainer}>
             <View style={styles.buddy1}>
-              <Image
-                source={require("../../../assets/person-1.jpg")}
-                style={styles.image}
-              />
+              <TouchableWithoutFeedback onPress={onPress}>
+                <Image
+                  source={require("../../../assets/person-1.jpg")}
+                  style={styles.image}
+                />
+              </TouchableWithoutFeedback>
               <View style={styles.icons}>
-                <MaterialCommunityIcons
-                  name="cards-heart-outline"
-                  size={20}
-                  color={colors.white}
-                  style={styles.heartIcon}
-                />
-                <MaterialCommunityIcons
-                  name="email-outline"
-                  size={20}
-                  color={colors.white}
-                  style={styles.emailIcon}
-                />
+                <TouchableWithoutFeedback onPress={onPress}>
+                  <MaterialCommunityIcons
+                    name="cards-heart-outline"
+                    size={20}
+                    color={colors.white}
+                    style={styles.heartIcon}
+                  />
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={onPress}>
+                  <MaterialCommunityIcons
+                    name="email-outline"
+                    size={20}
+                    color={colors.white}
+                    style={styles.emailIcon}
+                  />
+                </TouchableWithoutFeedback>
               </View>
             </View>
             <View style={styles.buddy2}>
-              <Image
-                source={require("../../../assets/person2.jpg")}
-                style={styles.image}
-              />
+              <TouchableWithoutFeedback onPress={onPress}>
+                <Image
+                  source={require("../../../assets/person2.jpg")}
+                  style={styles.image}
+                />
+              </TouchableWithoutFeedback>
               <View style={styles.icons}>
-                <MaterialCommunityIcons
-                  name="cards-heart-outline"
-                  size={20}
-                  color={colors.white}
-                  style={styles.heartIcon}
-                />
-                <MaterialCommunityIcons
-                  name="email-outline"
-                  size={20}
-                  color={colors.white}
-                  style={styles.emailIcon}
-                />
+                <TouchableWithoutFeedback onPress={onPress}>
+                  <MaterialCommunityIcons
+                    name="cards-heart-outline"
+                    size={20}
+                    color={colors.white}
+                    style={styles.heartIcon}
+                  />
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={onPress}>
+                  <MaterialCommunityIcons
+                    name="email-outline"
+                    size={20}
+                    color={colors.white}
+                    style={styles.emailIcon}
+                  />
+                </TouchableWithoutFeedback>
               </View>
             </View>
           </View>
