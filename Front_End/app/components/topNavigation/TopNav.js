@@ -16,8 +16,8 @@ import Colors from "../../config/colors";
 
 export default function TopNav({
   showSearchBar,
-  UserProfileImage,
   showUserProfile,
+  userProfileImage,
   onPressProfile,
 }) {
   return (
@@ -27,7 +27,7 @@ export default function TopNav({
         {showUserProfile && (
           <TouchableWithoutFeedback onPress={onPressProfile}>
             <View style={styles.userImageContainer}>
-              <Image source={UserProfileImage} style={styles.userImage} />
+              <Image source={userProfileImage} style={styles.userImage} />
             </View>
           </TouchableWithoutFeedback>
         )}
@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
   LeftContainer: {
     flex: 1,
   },
-
   userImage: {
     width: 24,
     height: 24,
