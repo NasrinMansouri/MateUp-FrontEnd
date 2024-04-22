@@ -1,6 +1,6 @@
 //educational content in homrpage
 
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import React from "react";
 
 import CardEducationalContent from "./CardEducationalContent";
@@ -21,19 +21,22 @@ export default function GalleryEducationalContent({ educationalContent }) {
     },
   ];
   return (
-    <FlatList
-      style={styles.container}
-      data={dataEducationalContent}
-      keyExtractor={(educationalContent) => educationalContent.id.toString()}
-      renderItem={({ item }) => (
-        <CardEducationalContent
-          onPress={() => console.log("educational content", item)}
-          image={item.image}
-          title={item.title}
-          subttle={item.subttle}
-        />
-      )}
-    />
+    <View>
+      <FlatList
+        vertical
+        style={styles.container}
+        data={dataEducationalContent}
+        keyExtractor={(educationalContent) => educationalContent.id.toString()}
+        renderItem={({ item }) => (
+          <CardEducationalContent
+            onPress={() => console.log("educational content", item)}
+            image={item.image}
+            title={item.title}
+            subttle={item.subttle}
+          />
+        )}
+      />
+    </View>
   );
 }
 

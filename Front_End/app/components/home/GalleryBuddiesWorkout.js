@@ -47,26 +47,28 @@ export default function GalleryBuddiesWorkout({ buddiesWorkout }) {
         Discover your buddies' latest workout routines, Join in for Fun and
         Progress!
       </Text>
-      <FlatList
-        style={styles.container}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        data={buddiesWorkoutData}
-        keyExtractor={(buddiesWorkout) => buddiesWorkout.id.toString()}
-        renderItem={({ item }) => (
-          <CardBuddiesWorkout
-            onPress={() => console.log("my buddies workout", item)}
-            image={item.image}
-            name={item.name}
-            workout={item.workout}
-            day={item.day}
-            date={item.date}
-            begin={item.begin}
-            end={item.end}
-            marginRight={4}
-          />
-        )}
-      />
+      <View>
+        <FlatList
+          style={styles.container}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={buddiesWorkoutData}
+          keyExtractor={(buddiesWorkout) => buddiesWorkout.id.toString()}
+          renderItem={({ item }) => (
+            <CardBuddiesWorkout
+              onPress={() => console.log("my buddies workout", item)}
+              image={item.image}
+              name={item.name}
+              workout={item.workout}
+              day={item.day}
+              date={item.date}
+              begin={item.begin}
+              end={item.end}
+              marginRight={4}
+            />
+          )}
+        />
+      </View>
     </View>
   );
 }
