@@ -1,12 +1,15 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 import React from "react";
+
+import colors from "../../config/colors";
 import CardMatchBasedWorkout from "./CardMatchBasedWorkout";
-import { FlatList } from "react-native";
 
 export default function GalleryMatchBasedWorkout({ matchMemberWorkout }) {
   return (
-    <View>
+    <View style={styles.mainContainer}>
+      <Text style={styles.title}>matches based on your workour</Text>
       <FlatList
+        showsHorizontalScrollIndicator={false}
         style={styles.container}
         horizontal
         data={matchMemberWorkout}
@@ -24,7 +27,23 @@ export default function GalleryMatchBasedWorkout({ matchMemberWorkout }) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  mainContainer: {
+    marginTop: 96,
+  },
+  container: {
+    paddingTop: 16,
+    paddingLeft: 16,
+  },
+  title: {
+    fontFamily: "montserrat-black",
+    fontSize: 26,
+    color: colors.orangePrimary,
+    marginBottom: 10,
+    textTransform: "uppercase",
+    paddingLeft: 16,
+  },
+});
 
 //to be use in screen as:
 {
