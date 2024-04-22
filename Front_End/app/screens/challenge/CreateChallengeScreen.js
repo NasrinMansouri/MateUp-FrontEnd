@@ -8,10 +8,10 @@ import {
   SubmitButton,
   AppFormPicker,
   AppFormDatePicker,
+  AppFormImagePicker,
 } from "../../components/forms";
 import Screen from "../../components/Screen";
 import colors from "../../config/colors";
-import AppFormImagePicker from "../../components/forms/AppFormImagePicker";
 
 const validationSchema = Yup.object().shape({
   workout: Yup.object().required().label("Workout Type"), //workout type
