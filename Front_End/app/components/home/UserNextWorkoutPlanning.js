@@ -8,7 +8,7 @@ export default function UserNextWorkoutPlanning({}) {
   const [firstName, setFirstName] = useState("John ");
 
   return (
-    <>
+    <View>
       <Text style={styles.welcomeText}>WELCOME {firstName}</Text>
       <View style={styles.container}>
         <View>
@@ -69,7 +69,7 @@ export default function UserNextWorkoutPlanning({}) {
           </View>
         </View>
       </View>
-    </>
+    </View>
   );
 }
 
