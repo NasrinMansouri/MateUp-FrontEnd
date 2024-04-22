@@ -3,7 +3,7 @@
 // used on top of home page
 
 import React from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 
 import CardProfile from "./CardProfile";
 import colors from "../config/colors";
@@ -42,31 +42,33 @@ function GalleryBuddies({ buddies, style }) {
     },
   ];
   return (
-    <FlatList
-      style={[styles.container, style]}
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      data={buddiesData}
-      keyExtractor={(buddies) => buddies.id.toString()}
-      renderItem={({ item }) => (
-        <CardProfile
-          onPress={() => console.log("my buddies", item)}
-          // name={capitalizeFirstLetter(item.name)}
-          name={item.name ? capitalizeFirstLetter(item.name) : null}
-          backgroundColor={colors.blackBc}
-          image={item.image}
-          flexDirection={"column"}
-          cardWidth={97}
-          cardHeight={107}
-          imageHeight={77}
-          imageWidth={77}
-          imageRadius={77 / 2}
-          textColor={colors.white}
-          fontSize={14}
-          gap={10}
-        />
-      )}
-    />
+    <View>
+      <FlatList
+        style={[styles.container, style]}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        data={buddiesData}
+        keyExtractor={(buddies) => buddies.id.toString()}
+        renderItem={({ item }) => (
+          <CardProfile
+            onPress={() => console.log("my buddies", item)}
+            // name={capitalizeFirstLetter(item.name)}
+            name={item.name ? capitalizeFirstLetter(item.name) : null}
+            backgroundColor={colors.blackBc}
+            image={item.image}
+            flexDirection={"column"}
+            cardWidth={97}
+            cardHeight={107}
+            imageHeight={77}
+            imageWidth={77}
+            imageRadius={77 / 2}
+            textColor={colors.white}
+            fontSize={14}
+            gap={10}
+          />
+        )}
+      />
+    </View>
   );
 }
 
