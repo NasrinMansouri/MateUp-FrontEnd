@@ -3,10 +3,13 @@ import React from "react";
 
 import colors from "../config/colors";
 
-export default function Line({ width = "100%", marginBottom }) {
+export default function Line({ width = "100%", marginBottom, marginTop }) {
   return (
     <View
-      style={[styles.line, { width: width, marginBottom: marginBottom }]}
+      style={[
+        styles.line,
+        { width: width, marginBottom: marginBottom, marginTop: marginTop },
+      ]}
     ></View>
   );
 }
