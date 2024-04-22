@@ -5,6 +5,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ListItem, ListItemDeletAction } from "../components/lists";
 import colors from "../config/colors";
 import Screen from "../components/Screen";
+import ListItemSeparator from "../components/lists/ListItemSeperator";
 
 //dummy data
 const initialNotifications = [
@@ -76,15 +77,9 @@ export default function ListItemGallery({ style }) {
               )}
             />
           )}
-          ItemSeparatorComponent={() => (
-            <View
-              style={{
-                height: 1,
-                width: "100%",
-                backgroundColor: colors.black,
-              }}
-            />
-          )}
+          ItemSeparatorComponent={
+            <ListItemSeparator backgroundColor={colors.black} />
+          }
           refreshing={refreshing}
           onRefresh={() =>
             setNotifications([
