@@ -12,7 +12,7 @@ import React from "react";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import SearchBar from "./SearchBar";
-import colors from "../config/colors";
+import Colors from "../../config/colors";
 
 export default function TopNav({
   showSearchBar,

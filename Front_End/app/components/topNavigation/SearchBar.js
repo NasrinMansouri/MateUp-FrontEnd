@@ -10,23 +10,24 @@ import {
 } from "react-native";
 import React, { useState, useRef } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import colors from "../config/colors";
+
+import colors from "../../config/colors";
 
 const searchedResults = [
   {
     id: 1,
     name: "Moe",
-    image: require("../../assets/person-1.jpg"),
+    image: require("../../../assets/person-1.jpg"),
   },
   {
     id: 2,
     name: "elena",
-    image: require("../../assets/person-1.jpg"),
+    image: require("../../../assets/person-1.jpg"),
   },
   {
     id: 3,
     name: "John",
-    image: require("../../assets/person-1.jpg"),
+    image: require("../../../assets/person-1.jpg"),
   },
 ];
 
@@ -53,7 +54,7 @@ export default function SearchBar({ onPress }) {
         <Ionicons
           name="search"
           size={24}
-          color="white"
+          color={colors.white}
           style={styles.iconSearch}
           onPress={() => setModalVisible(true)}
         />
@@ -77,7 +78,7 @@ export default function SearchBar({ onPress }) {
         >
           <View style={styles.containerBackSearch}>
             <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
-              <Ionicons name="chevron-back" size={24} color="black" />
+              <Ionicons name="chevron-back" size={24} color={colors.black} />
             </TouchableWithoutFeedback>
             <TextInput
               style={styles.inputModal}
