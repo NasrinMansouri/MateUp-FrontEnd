@@ -4,11 +4,10 @@ import React from "react";
 import Line from "../../components/Line";
 import colors from "../../config/colors";
 import Screen from "../../components/Screen";
-import TopNav from "../../components/TopNav";
+import TopNav from "../../components/topNavigation/TopNav";
 import AppButton from "../../components/AppButton";
-import GalleryBuddies from "../../components/GalleryBuddies";
-import AppButtonBorder from "../../components/AppButtonBorder";
 import {
+  DisplayBuddies,
   UserNextWorkoutPlanning,
   GalleryBuddiesWorkout,
   GalleryPeopleYouMightKnow,
@@ -20,9 +19,10 @@ export default function MainHomeScreen() {
   return (
     <Screen style={styles.container}>
       <TopNav
-        // showProfilePic={true}
-        // userImage={require("../../../assets/person2.jpg")}
-        showSearchBar={true}
+        showUserProfile={true}
+        userProfileImage={require("../../../assets/person2.jpg")}
+        onPressProfile={() => console.log("Profile image pressed")}
+        // showSearchBar={true}
       />
       <FlatList
         data={data}
@@ -32,20 +32,14 @@ export default function MainHomeScreen() {
         renderItem={({ item }) => renderItemCache[item.type](item)}
         showsVerticalScrollIndicator={false}
       />
-      <View style={styles.fixButtonPosition}>
-        <AppButtonBorder
-          image={require("../../../assets/icons/calendar.png")}
-          title="calendar"
-        />
-      </View>
     </Screen>
   );
 }
 
 const renderItemCache = {
-  GalleryBuddiesComponent: (item) => (
+  DisplayBuddies: (item) => (
     <View style={styles.buddiesContainer}>
-      <GalleryBuddies
+      <DisplayBuddies
         style={{ paddingLeft: 16, marginBottom: 40 }}
         item={item}
       />
@@ -78,7 +72,7 @@ const renderItemCache = {
 
 //define array of data, which contains objects with a type property
 const data = [
-  { type: "GalleryBuddiesComponent" },
+  { type: "DisplayBuddies" },
   { type: "LineComponent" },
   { type: "UserNextWorkoutPlanningComponent" },
   { type: "GalleryBuddiesWorkoutComponent" },
@@ -101,13 +95,6 @@ const styles = StyleSheet.create({
   buddiesWorkoutContainer: {
     marginTop: 96,
   },
-  fixButtonPosition: {
-    position: "absolute",
-    zIndex: 1,
-    right: 16,
-    top: "75%",
-    bottom: 0,
-  },
   buttonSeeAll: {
     marginTop: 32,
     alignItems: "center",
@@ -115,218 +102,3 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
 });
-
-//USING SCROLLVIEW
-// import { StyleSheet, Text, View, ScrollView } from "react-native";
-// import React from "react";
-
-// import Line from "../../components/Line";
-// import colors from "../../config/colors";
-// import Screen from "../../components/Screen";
-// import TopNav from "../../components/TopNav";
-// import AppButton from "../../components/AppButton";
-// import GalleryBuddies from "../../components/GalleryBuddies";
-// import AppButtonBorder from "../../components/AppButtonBorder";
-// import {
-//   UserNextWorkoutPlanning,
-//   GalleryBuddiesWorkout,
-//   GalleryPeopleYouMightKnow,
-//   CardMeetTheMemberOfTheMonth,
-//   GalleryEducationalContent,
-// } from "../../components/home";
-// export default function MainHomeScreen() {
-//   return (
-//     <>
-//       <ScrollView showsVerticalScrollIndicator={false}>
-//         <Screen style={styles.container}>
-//           <GalleryBuddies style={{ paddingLeft: 16, marginBottom: 40 }} />
-//           <Line marginBottom={40} />
-//           <Text style={styles.welcomText}>WELCOME REZA</Text>
-//           <UserNextWorkoutPlanning />
-//           <View style={styles.buddiesWorkoutContainer}>
-//             <Text style={styles.titleText}>upcoming buddies workout</Text>
-//             <Text style={styles.subTitleText}>
-//               Discover your buddies' latest workout routines, Join in for Fun
-//               and Progress!
-//             </Text>
-//             <GalleryBuddiesWorkout />
-//           </View>
-//           <View>
-//             <Text style={styles.titleText}>people you might know</Text>
-//             <GalleryPeopleYouMightKnow />
-//           </View>
-//           <View>
-//             <Text style={styles.titleText}>whats new</Text>
-//             <Text style={styles.subTitleText}>
-//               Checkout the lates news on MATE-UP
-//             </Text>
-//             <CardMeetTheMemberOfTheMonth />
-//             <GalleryEducationalContent />
-//           </View>
-//           <View style={{ alignItems: "center", marginBottom: 200 }}>
-//             <AppButton title={"see all"} width={222} height={45} />
-//           </View>
-//         </Screen>
-//       </ScrollView>
-//       <View style={styles.fixButtonPosition}>
-//         <AppButtonBorder
-//           image={require("../../../assets/icons/calendar.png")}
-//           title="calendar"
-//         />
-//       </View>
-//     </>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     backgroundColor: colors.blackBc,
-//     flex: 1,
-//   },
-//   welcomText: {
-//     fontFamily: "montserrat-black",
-//     fontSize: 48,
-//     color: colors.white,
-//     marginBottom: 10,
-//     paddingLeft: 16,
-//   },
-//   fixButtonPosition: {
-//     position: "absolute",
-//     zIndex: 1,
-//     right: 16,
-//     top: "75%",
-//     buttom: 0,
-//   },
-//   buddiesWorkoutContainer: {
-//     marginTop: 96,
-//   },
-//   titleText: {
-//     fontFamily: "montserrat-black",
-//     fontSize: 26,
-//     color: colors.orangePrimary,
-//     marginBottom: 10,
-//     textTransform: "uppercase",
-//     paddingLeft: 16,
-//   },
-//   subTitleText: {
-//     fontFamily: "nunitoSans-regular",
-//     fontSize: 14,
-//     color: colors.white,
-//     marginBottom: 32,
-//     paddingLeft: 16,
-//   },
-// });
-
-//another approach
-// import { StyleSheet, Text, View, FlatList } from "react-native";
-// import React from "react";
-
-// import Line from "../../components/Line";
-// import colors from "../../config/colors";
-// import Screen from "../../components/Screen";
-// import TopNav from "../../components/TopNav";
-// import AppButton from "../../components/AppButton";
-// import GalleryBuddies from "../../components/GalleryBuddies";
-// import AppButtonBorder from "../../components/AppButtonBorder";
-// import {
-//   UserNextWorkoutPlanning,
-//   GalleryBuddiesWorkout,
-//   GalleryPeopleYouMightKnow,
-//   CardMeetTheMemberOfTheMonth,
-//   GalleryEducationalContent,
-// } from "../../components/home";
-
-// export default function MainHomeScreen() {
-//   // Header component for ListHeaderComponent
-//   const renderHeader = () => {
-//     return (
-//       <>
-//         <GalleryBuddies style={{ paddingLeft: 16, marginBottom: 40 }} />
-//         <Line marginBottom={40} />
-//         <Text style={styles.welcomText}>WELCOME REZA</Text>
-//         <UserNextWorkoutPlanning />
-//         <View style={styles.buddiesWorkoutContainer}>
-//           <Text style={styles.titleText}>upcoming buddies workout</Text>
-//           <Text style={styles.subTitleText}>
-//             Discover your buddies' latest workout routines, Join in for Fun and
-//             Progress!
-//           </Text>
-//           <GalleryBuddiesWorkout />
-//         </View>
-//         <View>
-//           <Text style={styles.titleText}>people you might know</Text>
-//           <GalleryPeopleYouMightKnow />
-//         </View>
-//         <View>
-//           <Text style={styles.titleText}>whats new</Text>
-//           <Text style={styles.subTitleText}>
-//             Checkout the lates news on MATE-UP
-//           </Text>
-//           <CardMeetTheMemberOfTheMonth />
-//           <GalleryEducationalContent />
-//         </View>
-//         <View style={{ alignItems: "center", marginBottom: 200 }}>
-//           <AppButton title={"see all"} width={222} height={45} />
-//         </View>
-//       </>
-//     );
-//   };
-
-//   return (
-//     <Screen style={styles.container}>
-//       <FlatList
-//         ListHeaderComponent={renderHeader} // Use the header component as ListHeaderComponent
-//         ListHeaderComponentStyle={{ marginBottom: 40 }} // Apply margin bottom to the header
-//         data={[]} // Empty data array if not needed
-//         renderItem={({ item }) => null} // Placeholder renderItem function
-//         keyExtractor={(item, index) => index.toString()} // Provide a unique key extractor
-//         showsVerticalScrollIndicator={false}
-//       />
-//       <View style={styles.fixButtonPosition}>
-//         <AppButtonBorder
-//           image={require("../../../assets/icons/calendar.png")}
-//           title="calendar"
-//         />
-//       </View>
-//     </Screen>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     backgroundColor: colors.blackBc,
-//     flex: 1,
-//   },
-//   welcomText: {
-//     fontFamily: "montserrat-black",
-//     fontSize: 48,
-//     color: colors.white,
-//     marginBottom: 10,
-//     paddingLeft: 16,
-//   },
-//   fixButtonPosition: {
-//     position: "absolute",
-//     zIndex: 1,
-//     right: 16,
-//     top: "75%",
-//     bottom: 0, // Corrected typo in "bottom"
-//   },
-//   buddiesWorkoutContainer: {
-//     marginTop: 96,
-//   },
-//   titleText: {
-//     fontFamily: "montserrat-black",
-//     fontSize: 26,
-//     color: colors.orangePrimary,
-//     marginBottom: 10,
-//     textTransform: "uppercase",
-//     paddingLeft: 16,
-//   },
-//   subTitleText: {
-//     fontFamily: "nunitoSans-regular",
-//     fontSize: 14,
-//     color: colors.white,
-//     marginBottom: 32,
-//     paddingLeft: 16,
-//   },
-// });
