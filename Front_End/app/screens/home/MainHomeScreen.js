@@ -45,7 +45,9 @@ const renderItemCache = {
       />
     </View>
   ),
-  LineComponent: (item) => <Line marginBottom={40} item={item} />,
+  LineComponent: (item) => (
+    <Line marginBottom={40} marginTop={20} item={item} />
+  ),
   UserNextWorkoutPlanningComponent: (item) => (
     <UserNextWorkoutPlanning item={item} />
   ),
