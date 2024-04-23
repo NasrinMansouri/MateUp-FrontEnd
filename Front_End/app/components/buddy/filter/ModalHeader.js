@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     top: 0,
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
+    zIndex: 2,
   },
   modalHeaderTextContainer: {
     justifyContent: "center",
