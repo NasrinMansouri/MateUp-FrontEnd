@@ -12,12 +12,18 @@ function AppButton({
   fontFamily = "montserrat-black",
   fontSize = 16,
   backgroundColor = colors.green,
+  ...otherStyles
 }) {
   return (
     <TouchableOpacity
       style={[
         styles.button,
-        { height: height, width: width, backgroundColor: backgroundColor },
+        {
+          height: height,
+          width: width,
+          backgroundColor: backgroundColor,
+          ...otherStyles,
+        },
       ]}
       activeOpacity={0.8}
       onPress={onPress}
