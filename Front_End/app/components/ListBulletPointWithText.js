@@ -4,7 +4,13 @@ import React from "react";
 import BulletPointWithText from "./BulletPointWithText";
 import colors from "../config/colors";
 
-export default function ListBulletPointWithText({ titles, textColor }) {
+export default function ListBulletPointWithText({
+  titles,
+  textColor,
+  header,
+  fontSize = 12,
+  textTransform = "uppercase",
+}) {
   // Maximum number of workout types to display
   const maxType = 2;
 
@@ -18,6 +24,7 @@ export default function ListBulletPointWithText({ titles, textColor }) {
   const showThirdType = titles.length > 2;
   return (
     <View>
+      {header && <Text style={styles.header}>{header}</Text>}
       <View style={styles.bulletPoints}>
         {displayedTitles.map((title, id) => (
           <View key={id} style={styles.listContainer}>
@@ -30,8 +37,8 @@ export default function ListBulletPointWithText({ titles, textColor }) {
               marginBottom={4}
               textColor={textColor}
               fontFamily="nunitoSans-extraBold"
-              textTransform={"uppercase"}
-              fontSize={12}
+              textTransform={textTransform}
+              fontSize={fontSize}
               title={title}
             />
           </View>
@@ -48,7 +55,7 @@ export default function ListBulletPointWithText({ titles, textColor }) {
               textColor={textColor}
               fontFamily="nunitoSans-extraBold"
               textTransform={"uppercase"}
-              fontSize={12}
+              fontSize={fontSize}
               title={titles[maxType]} // Display the third workout title
             />
             {showMoreAsText && <Text style={styles.moreAsText}>more</Text>}
@@ -76,6 +83,13 @@ const styles = StyleSheet.create({
     fontFamily: "nunitoSans-extraBold",
     color: colors.gray,
     marginLeft: 4, // Add some space between the last workout type and the ellipsis
+  },
+  header: {
+    fontFamily: "montserrat-black",
+    color: colors.orangePrimary,
+    fontSize: 32,
+    textTransform: "uppercase",
+    marginBottom: 8,
   },
 });
 
