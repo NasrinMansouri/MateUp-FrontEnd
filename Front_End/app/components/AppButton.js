@@ -11,10 +11,14 @@ function AppButton({
   onPress,
   fontFamily = "montserrat-black",
   fontSize = 16,
+  backgroundColor = colors.green,
 }) {
   return (
     <TouchableOpacity
-      style={[styles.button, { height: height, width: width }]}
+      style={[
+        styles.button,
+        { height: height, width: width, backgroundColor: backgroundColor },
+      ]}
       activeOpacity={0.8}
       onPress={onPress}
     >
@@ -30,7 +34,7 @@ function AppButton({
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: colors.green,
+    // backgroundColor: colors.green,
     flexDirection: "row",
     // width: "100%",
     borderRadius: 5,
