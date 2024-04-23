@@ -73,3 +73,13 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
 });
+
+// <CardJoinedChallenge
+// challenegImage={require("./assets/person2.jpg")}
+// challengeName="Cardio Boost Challenge"
+// challengeGoal="15 Hours"
+// startDate="Aug 3"
+// endDate="Aug 4"
+// year="2022"
+// time="10:00 AM"
+// />
