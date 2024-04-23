@@ -70,14 +70,14 @@ const styles = StyleSheet.create({
   mainContainer: {
     marginRight: 16,
     marginLeft: 16,
-    marginBottom: 16,
+    marginBottom: 30,
     marginTop: 100,
   },
   container: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 16,
+    marginTop: 6,
     backgroundColor: colors.grayLight50,
     height: 53,
     width: "100%",
