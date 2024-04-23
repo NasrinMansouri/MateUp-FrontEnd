@@ -1,50 +1,71 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../config/colors";
 
-function AppButtonIcon({ title, onPress, image }) {
+export default function AppButtonBorder({
+  onPress,
+  width = 146,
+  height = 56,
+  borderRadius = 51,
+  iconName,
+  title,
+  materialCommunityIcons,
+  backgroundColor = colors.black,
+  borderColor = colors.green,
+  textColor = colors.orangeSecondary,
+}) {
   return (
     <TouchableOpacity
       activeOpacity={0.9}
-      style={styles.button}
       onPress={onPress}
+      style={[
+        styles.container,
+        {
+          width: width,
+          height: height,
+          borderRadius: borderRadius,
+          backgroundColor: backgroundColor,
+          borderColor: borderColor,
+        },
+      ]}
     >
-      {image && <Image source={image} style={styles.image} />}
-      <Text style={styles.text}>{title}</Text>
+      {materialCommunityIcons && (
+        <View style={styles.iconContainer}>
+          <MaterialCommunityIcons
+            name={iconName}
+            size={24}
+            color={colors.orangeSecondary}
+          />
+        </View>
+      )}
+      <Text style={[styles.text, { color: textColor }]}>{title}</Text>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
-    backgroundColor: colors.black,
-    width: 146,
-    height: 56,
-    borderRadius: 51,
+  container: {
     borderWidth: 1,
-    borderColor: colors.green,
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
   },
   text: {
-    color: colors.orangeSecondary,
     textTransform: "uppercase",
     fontFamily: "montserrat-black",
   },
-  image: {
+  iconContainer: {
     marginRight: 12,
   },
 });
 
-export default AppButtonIcon;
-
-//to be used in screen as:
 {
   /* <AppButtonBorder
-title="join"
-image={require("./assets/icons/calendar.png")}
-onPress={() => console.log("tapped")}
+onPress={() => setModalVisible(true)}
+title="Filter"
+materialCommunityIcons={true}
+iconName="filter-variant"
 /> */
 }
