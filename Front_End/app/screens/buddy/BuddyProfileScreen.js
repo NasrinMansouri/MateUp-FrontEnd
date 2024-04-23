@@ -90,3 +90,45 @@ const styles = StyleSheet.create({
     marginLeft: 16,
   },
 });
+
+{
+  /* <BuddyProfileScreen userProfile={userProfileData} /> */
+}
+
+// const userProfileData = {
+//     id: 1,
+//     firstName: "John",
+//     lastName: "Doe",
+//     location: "los angeles street" + " 123",
+//     bio: "Hey there, I’m a fitness enthusiast, born with love for movement, my journey to fitness has been a dynamic dance between sweat sessions and socialising.",
+//     userImage: require("./assets/person2.jpg"),
+//     userworkout: ["Running", "Swimming", "Cycling", "Strength Training", "Yoga"],
+//     level: ["Beginner"],
+//     buddiesData: [
+//       {
+//         id: 1,
+//         name: "John Doe",
+//         image: require("./assets/person3.jpg"),
+//       },
+//       {
+//         id: 2,
+//         name: "John Doeeeeeeeeeeeeeeeeeee",
+//         image: require("./assets/person4.jpg"),
+//       },
+//       {
+//         id: 3,
+//         name: "John Doe",
+//         image: require("./assets/person5.jpg"),
+//       },
+//       {
+//         id: 4,
+//         name: "John Doeeeeeeeeeeeeeeeeeee",
+//         image: require("./assets/person2.jpg"),
+//       },
+//       {
+//         id: 5,
+//         name: "John Doe",
+//         image: require("./assets/person3.jpg"),
+//       },
+//     ],
+//   };
