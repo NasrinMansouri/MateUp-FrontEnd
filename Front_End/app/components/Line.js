@@ -3,12 +3,22 @@ import React from "react";
 
 import colors from "../config/colors";
 
-export default function Line({ width = "100%", marginBottom, marginTop }) {
+export default function Line({
+  width = "100%",
+  marginBottom,
+  marginTop,
+  backgroundColor = colors.black,
+}) {
   return (
     <View
       style={[
         styles.line,
-        { width: width, marginBottom: marginBottom, marginTop: marginTop },
+        {
+          width: width,
+          marginBottom: marginBottom,
+          marginTop: marginTop,
+          backgroundColor: backgroundColor,
+        },
       ]}
     ></View>
   );
@@ -17,8 +27,8 @@ export default function Line({ width = "100%", marginBottom, marginTop }) {
 const styles = StyleSheet.create({
   line: {
     height: 1,
-    backgroundColor: colors.black,
     justifyContent: "center",
     alignItems: "center",
+    alignSelf: "center",
   },
 });
