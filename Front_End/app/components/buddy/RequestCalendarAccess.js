@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontFamily: "montserrat-black",
-    fontSize: 28,
+    fontSize: 26,
     color: colors.orangePrimary,
     marginBottom: 26,
     marginLeft: 16,
