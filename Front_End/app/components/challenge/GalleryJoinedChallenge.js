@@ -7,7 +7,7 @@ import colors from "../../config/colors";
 export default function GalleryJoinedChallenge({
   joinedChallenge,
   header,
-  fontSize = 28,
+  fontSize = 26,
 }) {
   return (
     <View style={styles.mainContainer}>
@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "montserrat-black",
-    // fontSize: 26,
     color: colors.orangePrimary,
     marginBottom: 10,
     textTransform: "uppercase",
