@@ -1,10 +1,10 @@
-// also can be use for meet trainer at user members
+// also can be use for meet  at user members
 
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import React from "react";
-import CardTrainerClubMembers from "./CardTrainerClubMembers";
+import CardCoachClubMember from "./CardCoachClubMember";
 
-export default function GalleryTrainerClubMembers({ UserClubMembers }) {
+export default function GalleryCoachesClubMembers({ UserClubMembers }) {
   return (
     <View style={styles.container}>
       <FlatList
@@ -13,7 +13,7 @@ export default function GalleryTrainerClubMembers({ UserClubMembers }) {
         data={UserClubMembers}
         keyExtractor={(UserClubMembers) => UserClubMembers.id.toString()}
         renderItem={({ item }) => (
-          <CardTrainerClubMembers
+          <CardCoachClubMember
             name={item.name}
             image={item.image}
             titles={item.titles}
