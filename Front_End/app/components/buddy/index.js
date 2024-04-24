@@ -4,3 +4,5 @@ export { default as GalleryBuddies } from "./GalleryBuddies";
 export { default as GalleryConnectAll } from "./GalleryConnectAll";
 export { default as GalleryMatchBasedWorkout } from "./GalleryMatchBasedWorkout";
 export { default as GalleryMatchClubMembers } from "./GalleryMatchClubMembers";
+export { default as RequestCalendarAccess } from "./RequestCalendarAccess";
+export { default as FilterModal } from "./FilterModal";
