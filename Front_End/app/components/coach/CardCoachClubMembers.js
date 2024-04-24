@@ -135,7 +135,7 @@ import CardProfile from "../CardProfile";
 import colors from "../../config/colors";
 import ListBulletPointWithText from "../ListBulletPointWithText";
 
-export default function TrainerClubMembers({ name, image, titles, onPress }) {
+export default function CardCoachClubMember({ name, image, titles, onPress }) {
   return (
     <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
       <View style={styles.container}>
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
 
 //to be used in screen as:
 {
-  /* <TrainerClubMembers
+  /* <CardCoachClubMember
   name={"Jen"}
   image={require("./assets/person2.jpg")}
   titles={["strength training", "running", "swimming", "yoga", "boxing"]}
