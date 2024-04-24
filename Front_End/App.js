@@ -16,13 +16,82 @@ import { useCallback } from "react";
 SplashScreen.preventAutoHideAsync();
 
 import colors from "./app/config/colors";
-
-import Screen from "./app/components/Screen";
+import BuddyScreen from "./app/screens/buddy/BuddyScreen";
+import AddBuddyBtn from "./app/components/home/AddBuddyBtn";
 import MainHomeScreen from "./app/screens/home/MainHomeScreen";
+import HomeScreen from "./app/screens/home/HomeScreen";
+import NotificationScreen from "./app/screens/NotificationScreen";
+import Gender from "./app/components/buddy/filter/Gender";
 import CreateChallengeScreen from "./app/screens/challenge/CreateChallengeScreen";
-import TopNav from "./app/components/TopNav";
+import DatePicker from "./app/components/buddy/filter/DatePicker";
+import ProfileTile from "./app/components/shareMemberProfile/ProfileTile";
+import Bio from "./app/components/shareMemberProfile/Bio";
+import HeaderTile from "./app/components/shareMemberProfile/HeaderTile";
+import BuddyProfileScreen from "./app/screens/buddy/BuddyProfileScreen";
+import BulletList from "./app/components/shareMemberProfile/BulletList";
+import CardJoinedChallenge from "./app/components/challenge/CardJoinedChallenge";
 
-import { ImageInpute } from "./app/components/forms/ImageInpute";
+// dummy data for Buddy Profile screen
+const userProfileData = {
+  id: 1,
+  firstName: "John",
+  lastName: "Doe",
+  location: "los angeles street" + " 123",
+  bio: "Hey there, I’m a fitness enthusiast, born with love for movement, my journey to fitness has been a dynamic dance between sweat sessions and socialising.",
+  userImage: require("./assets/person2.jpg"),
+  userworkout: ["Running", "Swimming", "Cycling", "Strength Training", "Yoga"],
+  level: ["Beginner"],
+  buddiesData: [
+    {
+      id: 1,
+      name: "John Doe",
+      image: require("./assets/person3.jpg"),
+    },
+    {
+      id: 2,
+      name: "John Doeeeeeeeeeeeeeeeeeee",
+      image: require("./assets/person4.jpg"),
+    },
+    {
+      id: 3,
+      name: "John Doe",
+      image: require("./assets/person5.jpg"),
+    },
+    {
+      id: 4,
+      name: "John Doeeeeeeeeeeeeeeeeeee",
+      image: require("./assets/person2.jpg"),
+    },
+    {
+      id: 5,
+      name: "John Doe",
+      image: require("./assets/person3.jpg"),
+    },
+  ],
+  joinedChallengeData: [
+    {
+      id: 1,
+      challenegImage: require("./assets/person2.jpg"),
+      challengeName: "Cardio Boost Challenge",
+      challengeGoal: "15 Hours",
+      startDate: "Aug 3",
+      endDate: "Aug 4",
+      year: "2022",
+      time: "10:00 AM",
+    },
+    {
+      id: 2,
+      challenegImage: require("./assets/person2.jpg"),
+      challengeName: "Cardio Boost Challenge",
+      challengeGoal: "15 Hours",
+      startDate: "Aug 3",
+      endDate: "Aug 4",
+      year: "2022",
+      time: "10:00 AM",
+    },
+  ],
+  firstName: "John",
+};
 
 export default function App() {
   // const [imageUri, setImageUri] = useState();
@@ -46,13 +115,36 @@ export default function App() {
   return (
     <>
       <View style={styles.container} onLayout={handleOnLayout}>
-        {/* <Screen>
-          <ImageInpute
-            imageUri={imageUri}
-            onChangeImage={(uri) => setImageUri(uri)}
-          />
-        </Screen>  */}
-        <CreateChallengeScreen />
+        <BuddyProfileScreen userProfile={userProfileData} />
+        {/* <BuddyScreen /> */}
+        {/* <HeaderTile />
+        {/* <BuddyProfileScreen /> */}
+        {/* <DatePicker title="Select Date :" placeholder={"when?"} /> */}
+        {/* <CreateChallengeScreen /> */}
+        {/* <Gender /> */}
+        {/* <NotificationScreen /> */}
+        {/* <MainHomeScreen /> */}
+        {/* <HomeScreen /> */}
+        {/* <BulletList
+          titles={[
+            "Running",
+            "Swimming",
+            "Cycling",
+            "Strength Training",
+            "Yoga",
+          ]}
+        /> */}
+
+        {/* to be continued..... */}
+        {/* <CardJoinedChallenge
+          challenegImage={require("./assets/person2.jpg")}
+          challengeName="Cardio Boost Challenge"
+          challengeGoal="15 Hours"
+          startDate="Aug 3"
+          endDate="Aug 4"
+          year="2022"
+          time="10:00 AM"
+        /> */}
         <StatusBar style="auto" />
       </View>
     </>
@@ -63,7 +155,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.blackBc,
-    // paddingTop: 33,
+    paddingTop: 33,
+    // paddingBottom: 100,
   },
 });
 
