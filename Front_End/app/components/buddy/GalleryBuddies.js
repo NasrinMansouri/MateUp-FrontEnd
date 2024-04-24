@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   header: {
     fontFamily: "montserrat-black",
     color: colors.orangePrimary,
-    fontSize: 32,
+    fontSize: 28,
     textTransform: "uppercase",
     marginBottom: 8,
     marginLeft: 16,
