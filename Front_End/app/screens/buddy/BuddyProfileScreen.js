@@ -11,11 +11,10 @@ import {
   ProfileTile,
   UserImage,
 } from "../../components/shareMemberProfile";
+import { GalleryBuddies, RequestCalendarAccess } from "../../components/buddy";
 import ListBulletPointWithText from "../../components/ListBulletPointWithText";
 import BulletList from "../../components/shareMemberProfile/BulletList";
-import { GalleryBuddies } from "../../components/buddy";
 import GalleryJoinedChallenge from "../../components/challenge/GalleryJoinedChallenge";
-import RequestCalendarAccess from "../../components/buddy/RequestCalendarAccess";
 
 export default function BuddyProfileScreen({ userProfile }) {
   const {
