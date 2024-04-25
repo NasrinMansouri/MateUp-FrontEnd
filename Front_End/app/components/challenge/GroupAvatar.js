@@ -8,7 +8,7 @@ const GroupAvatar = ({ buddies }) => {
   // Function to render the avatar images
   const renderAvatars = () => {
     const MAX_AVATARS = 4; // Maximum number of avatars to display before showing "+X"
-    const avatarMargin = -18; // Margin between avatars
+    const avatarMargin = -10; // Margin between avatars
 
     // If there are more buddies than the maximum, display "+X" avatar
     if (buddies.length > MAX_AVATARS) {
