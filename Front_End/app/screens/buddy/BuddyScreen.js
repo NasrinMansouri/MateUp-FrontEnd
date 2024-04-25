@@ -170,8 +170,8 @@ export default function BuddyScreen() {
 
   return (
     <Screen style={styles.container}>
+      <TopNav showSearchBar={true} />
       <ScrollView style={styles.container}>
-        <TopNav showSearchBar={true} />
         <GalleryBuddies buddies={buddiesData} />
         <Line marginBottom={40} marginTop={20} />
         <GalleryMatchClubMembers UserClubMembers={UserClubMembersData} />
