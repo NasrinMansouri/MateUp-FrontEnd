@@ -137,6 +137,33 @@ const dataLocation = [
     value: "New York",
   },
 ];
+const buddiesData = [
+  {
+    id: 1,
+    name: "MMMMMMMMMMMMMMMM ",
+    image: require("../../../assets/person-1.jpg"),
+  },
+  {
+    id: 2,
+    name: "Coucheeeeeeee ",
+    image: require("../../../assets/person-1.jpg"),
+  },
+  {
+    id: 3,
+    name: "Couchhhhhhhhh ",
+    image: require("../../../assets/person-1.jpg"),
+  },
+  {
+    id: 4,
+    name: "NNNNNN NNNNN ",
+    image: require("../../../assets/person-1.jpg"),
+  },
+  {
+    id: 5,
+    name: "Couch ",
+    image: require("../../../assets/person-1.jpg"),
+  },
+];
 
 export default function BuddyScreen() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -145,7 +172,7 @@ export default function BuddyScreen() {
     <Screen style={styles.container}>
       <ScrollView style={styles.container}>
         <TopNav showSearchBar={true} />
-        <GalleryBuddies />
+        <GalleryBuddies buddies={buddiesData} />
         <Line marginBottom={40} marginTop={20} />
         <GalleryMatchClubMembers UserClubMembers={UserClubMembersData} />
         <GalleryMatchBasedWorkout matchMemberWorkout={matchClubMembersData} />
