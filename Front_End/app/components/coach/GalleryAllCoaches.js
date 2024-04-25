@@ -1,29 +1,56 @@
-import { StyleSheet, FlatList, View } from "react-native";
+import { StyleSheet, FlatList, ScrollView, View, Text } from "react-native";
 import React from "react";
 
 import CardAllCoaches from "./CardAllCoaches";
+import colors from "../../config/colors";
 
 export default function GalleryAllCoaches({ meetAllCoaches }) {
   return (
-    <View>
-      <FlatList
-        style={styles.container}
-        data={meetAllCoaches}
-        keyExtractor={(meetAllCoaches) => meetAllCoaches.id.toString()}
-        renderItem={({ item }) => (
+    // <View style={styles.container}>
+    //   <Text style={styles.title}>Meet All Coaches</Text>
+    //   <FlatList
+    //     data={meetAllCoaches}
+    //     keyExtractor={(meetAllCoaches) => meetAllCoaches.id.toString()}
+    //     renderItem={({ item }) => (
+    //       <CardAllCoaches
+    //         name={item.name}
+    //         image={item.image}
+    //         location={item.location}
+    //         titles={item.titles}
+    //       />
+    //     )}
+    //   />
+    // </View>
+    <View style={styles.container}>
+      <Text style={styles.title}>Meet All Coaches</Text>
+      <ScrollView>
+        {meetAllCoaches.map((coach) => (
           <CardAllCoaches
-            name={item.name}
-            image={item.image}
-            location={item.location}
-            titles={item.titles}
+            key={coach.id.toString()}
+            name={coach.name}
+            image={coach.image}
+            location={coach.location}
+            titles={coach.titles}
           />
-        )}
-      />
+        ))}
+      </ScrollView>
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 96,
+  },
+  title: {
+    fontFamily: "montserrat-black",
+    fontSize: 26,
+    color: colors.orangePrimary,
+    marginBottom: 30,
+    textTransform: "uppercase",
+    paddingLeft: 16,
+  },
+});
 
 // to be use in screen as:
 {
