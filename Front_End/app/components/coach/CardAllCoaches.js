@@ -66,3 +66,6 @@ location="los angeles street 123"
 titles={["strength training", "running"]}
 /> */
 }
+
+//to import inside app.js
+// import { CardAllCoaches } from "./app/components/coach";
