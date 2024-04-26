@@ -46,7 +46,15 @@ export default function BuddyProfileScreen({ userProfile }) {
           onPressBack={() => console.log("pressed back")}
           onPressShare={() => console.log("pressed share")}
         />
-        <UserImage userImage={userImage} />
+        <UserImage
+          userImage={userImage}
+          imageWidth={116}
+          imageHeight={116}
+          imageRadius={116 / 2}
+          marginLeft={16}
+          marginTop={40}
+          marginBottom={16}
+        />
         <ProfileTile
           firstName={firstName}
           lastName={lastName}
