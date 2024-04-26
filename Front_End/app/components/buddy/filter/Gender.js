@@ -16,7 +16,6 @@ export default function Gender() {
       selected === index && styles.selectedBox,
       selected === index && {
         backgroundColor: colors.orangeSecondary,
-        // borderRadius: 4,
       },
     ];
   };
