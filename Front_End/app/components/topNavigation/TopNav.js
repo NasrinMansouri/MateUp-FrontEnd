@@ -60,10 +60,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginRight: 16,
-    marginLeft: 16,
+    paddingRight: 16,
+    paddingLeft: 16,
     paddingBottom: 20,
     paddingTop: 20,
+    backgroundColor: Colors.blackBc,
+    zIndex: 1,
   },
   LeftContainer: {
     flex: 1,
@@ -75,8 +77,8 @@ const styles = StyleSheet.create({
   },
   iconsContainer: {
     flexDirection: "row",
-    gap: 22,
-    marginLeft: 50,
+    gap: 26,
+    marginLeft: 150,
   },
 });
 
