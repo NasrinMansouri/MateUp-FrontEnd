@@ -27,21 +27,22 @@ export default function RequestCalendarAccess({
             <Text style={styles.text1}>
               Want to access {userFirstName}'s calendar?
             </Text>
-            <Text style={styles.text1}>
-              Once you have access, you can seamlessly view activities in your
-              calendar.
-            </Text>
             <Text style={styles.text2}>
               Send a buddy requests to {userFirstName} to get started. Someone
               has to take the first step, right? So, Go For It and Make It
               Happen!
             </Text>
+            <Text style={styles.text1}>
+              Once you have access, you can seamlessly view activities in your
+              calendar.
+            </Text>
+
             <View>
               <TouchableWithoutFeedback
                 onPress={onPressGoToTop}
                 activeOpacity={1.0}
               >
-                <Text style={styles.text3}>go to buddy request</Text>
+                <Text style={styles.text3}>send request now</Text>
               </TouchableWithoutFeedback>
             </View>
           </View>
