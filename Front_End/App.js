@@ -17,19 +17,15 @@ SplashScreen.preventAutoHideAsync();
 
 import colors from "./app/config/colors";
 import BuddyScreen from "./app/screens/buddy/BuddyScreen";
-import AddBuddyBtn from "./app/components/home/AddBuddyBtn";
-import MainHomeScreen from "./app/screens/home/MainHomeScreen";
-import HomeScreen from "./app/screens/home/HomeScreen";
-import NotificationScreen from "./app/screens/NotificationScreen";
-import Gender from "./app/components/buddy/filter/Gender";
-import CreateChallengeScreen from "./app/screens/challenge/CreateChallengeScreen";
-import DatePicker from "./app/components/buddy/filter/DatePicker";
-import ProfileTile from "./app/components/shareMemberProfile/ProfileTile";
-import Bio from "./app/components/shareMemberProfile/Bio";
-import HeaderTile from "./app/components/shareMemberProfile/HeaderTile";
+import { GalleryBuddiesWorkout } from "./app/components/home";
+import { CardAllCoaches, GalleryAllCoaches } from "./app/components/coach";
+import MeetTtrainer from "./app/screens/coach/coachScreenContent/MeetTtrainer";
+import CoachScreen from "./app/screens/coach/CoachScreen";
+import { Gender } from "./app/components/buddy/filter";
+import CardMySession from "./app/components/coach/CardMySession";
+import GalleryBuddiesJoinedChallenge from "./app/components/challenge/GalleryBuddiesJoinedChallenge";
 import BuddyProfileScreen from "./app/screens/buddy/BuddyProfileScreen";
-import BulletList from "./app/components/shareMemberProfile/BulletList";
-import CardJoinedChallenge from "./app/components/challenge/CardJoinedChallenge";
+import MySessions from "./app/screens/coach/coachScreenContent/MySessions";
 
 // dummy data for Buddy Profile screen
 const userProfileData = {
@@ -93,6 +89,162 @@ const userProfileData = {
   firstName: "John",
 };
 
+const coachesClubMembersData = [
+  {
+    id: 1,
+    name: "John Doeeeeeeeeeeeeeeeeee",
+    image: require("./assets/person2.jpg"),
+    titles: ["strength training", "running"],
+  },
+  {
+    id: 2,
+    name: "ray pather ",
+    image: require("./assets/person2.jpg"),
+    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
+  },
+  {
+    id: 3,
+    name: "ray pather ",
+    image: require("./assets/person2.jpg"),
+    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
+  },
+  {
+    id: 4,
+    name: "ray pather ",
+    image: require("./assets/person2.jpg"),
+    titles: ["strength training"],
+  },
+];
+
+const coachesData = [
+  {
+    id: 1,
+    name: "John Doee",
+    image: require("./assets/person2.jpg"),
+    location: "los angeles street" + " 123",
+    titles: ["strength training", "running"],
+  },
+  {
+    id: 2,
+    name: "ray pather ",
+    image: require("./assets/person2.jpg"),
+    location: "los angeles street" + " 123",
+    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
+  },
+  {
+    id: 3,
+    name: "aaron",
+    image: require("./assets/person2.jpg"),
+    location: "los angeles street" + " 123",
+    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
+  },
+  {
+    id: 4,
+    name: "ray pather ",
+    image: require("./assets/person2.jpg"),
+    location: "los angeles street" + " 123",
+    titles: ["strength training"],
+  },
+];
+
+const sessionMembersData = [
+  {
+    id: 1,
+    image: require("./assets/person3.jpg"),
+  },
+  {
+    id: 2,
+    image: require("./assets/person4.jpg"),
+  },
+];
+const challengeYourBuddiesJoined = [
+  {
+    id: 1,
+    image: require("./assets/person-1.jpg"),
+    challengeName: "Weekly Challenge",
+    duration: "7 Hours",
+    beginingDate: "AGU 3",
+    endingDate: "sep 3",
+    year: 2024,
+    onPress: () => {
+      console.log("card pressed");
+    },
+    Buddies: [
+      { id: 1, image: require("./assets/person-1.jpg") },
+      { id: 2, image: require("./assets/person2.jpg") },
+      { id: 3, image: require("./assets/person2.jpg") },
+      { id: 4, image: require("./assets/person2.jpg") },
+      { id: 5, image: require("./assets/person2.jpg") },
+      { id: 6, image: require("./assets/person2.jpg") },
+      { id: 7, image: require("./assets/person2.jpg") },
+    ],
+  },
+  {
+    id: 2,
+    image: require("./assets/person-1.jpg"),
+    challengeName: "Weekly Challenge",
+    duration: "7 Hours",
+    beginingDate: "AGU 3",
+    endingDate: "sep 3",
+    year: 2024,
+    onPress: () => {
+      console.log("card pressed");
+    },
+    Buddies: [{ id: 1, image: require("./assets/person-1.jpg") }],
+  },
+  {
+    id: 3,
+    image: require("./assets/person-1.jpg"),
+    challengeName: "Weekly Challenge",
+    duration: "7 Hours",
+    beginingDate: "AGU 3",
+    endingDate: "sep 3",
+    year: 2024,
+    onPress: () => {
+      console.log("card pressed");
+    },
+    Buddies: [
+      { id: 1, image: require("./assets/person-1.jpg") },
+      { id: 2, image: require("./assets/person2.jpg") },
+      { id: 3, image: require("./assets/person2.jpg") },
+      { id: 4, image: require("./assets/person2.jpg") },
+      { id: 5, image: require("./assets/person2.jpg") },
+    ],
+  },
+];
+
+const sessionDetails = {
+  id: 1,
+  imageTrainer: require("./assets/person2.jpg"),
+  trainerName: "John Doe",
+  sessionGoal: "Get Strong and get toned",
+  date: "Aug 3",
+  start: "5 PM",
+  end: "7 PM",
+  members: [
+    {
+      id: 1,
+      image: require("./assets/person3.jpg"),
+    },
+    {
+      id: 2,
+      image: require("./assets/person3.jpg"),
+    },
+    {
+      id: 3,
+      image: require("./assets/person3.jpg"),
+    },
+    {
+      id: 4,
+      image: require("./assets/person3.jpg"),
+    },
+    {
+      id: 5,
+      image: require("./assets/person3.jpg"),
+    },
+  ],
+};
+
 export default function App() {
   // const [imageUri, setImageUri] = useState();
 
@@ -115,7 +267,41 @@ export default function App() {
   return (
     <>
       <View style={styles.container} onLayout={handleOnLayout}>
-        <BuddyProfileScreen userProfile={userProfileData} />
+        {/* <MeetTtrainer /> */}
+        <CoachScreen />
+        {/* <MySessions sessionDetails={sessionDetails} /> */}
+        {/* <CardMySession
+          imageTrainer={require("./assets/person2.jpg")}
+          sessionGoal={"Get Strong and get toned"}
+          date={"Aug 3"}
+          start={"5 PM"}
+          end={"7 PM"}
+          sessionMembers={sessionMembersData}
+        /> */}
+        {/* <GalleryBuddiesJoinedChallenge
+          BuddiesJoinedChallenge={challengeYourBuddiesJoined}
+        /> */}
+        {/* <BuddyScreen /> */}
+        {/* <CardAllCoaches
+          image={require("./assets/person2.jpg")}
+          name="John Doeeeeeeeeeeeeeeeeee"
+          location="los angeles street 123"
+          titles={["strength training", "running"]}
+        /> */}
+
+        {/* <BuddyProfileScreen userProfile={userProfileData} /> */}
+
+        {/* <BuddyScreen /> */}
+        {/* <MainHomeScreen /> */}
+        {/* <GalleryAllCoaches meetAllCoaches={coachesData} /> */}
+        {/* <CardAllCoaches
+          image={require("./assets/person2.jpg")}
+          name="John Doeeeeeeeeeeeeeeeeee"
+          location="los angeles street 123"
+          titles={["strength training", "running"]}
+        /> */}
+        {/* <GalleryBuddiesWorkout /> */}
+        {/* <BuddyScreen /> */}
         {/* <BuddyScreen /> */}
         {/* <HeaderTile />
         {/* <BuddyProfileScreen /> */}
@@ -155,7 +341,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.blackBc,
-    paddingTop: 33,
+    // paddingTop: 33,
     // paddingBottom: 100,
   },
 });
