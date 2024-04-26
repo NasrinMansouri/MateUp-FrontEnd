@@ -35,10 +35,8 @@ export default function HeaderTile({ onPressBack, onPressShare }) {
 
 const styles = StyleSheet.create({
   container: {
-    // position: "absolute",
-    // top: 0,
+    paddingTop: 20,
     width: "100%",
-    // zIndex: 2,
   },
   iconsContainer: {
     flexDirection: "row",
