@@ -2,16 +2,20 @@
 
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import React from "react";
+
+import colors from "../../config/colors";
 import CardCoachClubMember from "./CardCoachClubMember";
 
-export default function GalleryCoachesClubMembers({ UserClubMembers }) {
+export default function GalleryCoachesClubMembers({ coachesClubMember }) {
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Coaches at your club</Text>
       <FlatList
         style={styles.container}
         horizontal
-        data={UserClubMembers}
-        keyExtractor={(UserClubMembers) => UserClubMembers.id.toString()}
+        showsHorizontalScrollIndicator={false}
+        data={coachesClubMember}
+        keyExtractor={(coachesClubMember) => coachesClubMember.id.toString()}
         renderItem={({ item }) => (
           <CardCoachClubMember
             name={item.name}
@@ -28,15 +32,23 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 16,
   },
+  title: {
+    fontFamily: "montserrat-black",
+    fontSize: 36,
+    color: colors.orangePrimary,
+    marginBottom: 10,
+    textTransform: "uppercase",
+    paddingLeft: 16,
+  },
 });
 
 //to be use in screen as:
 {
-  /* <GalleryMatchClubMembers UserClubMembers ={UserClubMembersData} /> */
+  /* <GalleryMatchClubMembers coachesClubMember ={coachesClubMemberData} /> */
 }
 
 //dummy data for testing
-// const UserClubMembersData = [
+// const coachesClubMemberData = [
 //   {
 //     id: 1,
 //     name: "John Doeeeeeeeeeeeeeeeeee",
