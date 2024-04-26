@@ -172,7 +172,9 @@ export default function BuddyScreen() {
     <Screen style={styles.container}>
       <TopNav showSearchBar={true} />
       <ScrollView style={styles.container}>
-        <GalleryBuddies buddies={buddiesData} />
+        <View style={styles.buddyContainer}>
+          <GalleryBuddies buddies={buddiesData} />
+        </View>
         <Line marginBottom={40} marginTop={20} />
         <GalleryMatchClubMembers UserClubMembers={UserClubMembersData} />
         <GalleryMatchBasedWorkout matchMemberWorkout={matchClubMembersData} />
@@ -209,6 +211,9 @@ const styles = StyleSheet.create({
     right: 16,
     top: "75%",
     bottom: 0,
+  },
+  buddyContainer: {
+    marginTop: 20,
   },
   modalView: {
     backgroundColor: colors.white, //to change modal background
