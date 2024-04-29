@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     marginTop: 40,
-    marginBottom: 20,
+    // marginBottom: 20,
   },
   btn: {
     flex: 1,
