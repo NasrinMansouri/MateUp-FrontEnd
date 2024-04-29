@@ -2,6 +2,8 @@ import { StyleSheet, Text, View, Animated, TextInput } from "react-native";
 import React from "react";
 import Svg, { G, Circle } from "react-native-svg";
 
+import colors from "../../config/colors";
+
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 export default function DonutChart({
@@ -10,8 +12,9 @@ export default function DonutChart({
   strokeWidth = 12,
   duration = 500,
   color = "#FC6423",
+  colorOuterStroke = colors.green,
   delay = 0,
-  textColor,
+  textColor = colors.white,
   max = 100,
 }) {
   const animatedValue = React.useRef(new Animated.Value(0)).current;
@@ -67,17 +70,17 @@ export default function DonutChart({
             cx="50%"
             cy={"50%"}
             stroke={color}
-            r={radius}
+            r={radius - strokeWidth / 2}
             strokeWidth={strokeWidth}
-            fill="transparent"
-            strokeOpacity={0.2}
+            fill={colors.orangeSecondary}
+            strokeOpacity={0}
           />
           <AnimatedCircle
             ref={circleRef}
             cx="50%"
             cy={"50%"}
-            stroke={color}
-            r={radius}
+            stroke={colorOuterStroke}
+            r={radius + strokeWidth / 2}
             strokeWidth={strokeWidth}
             fill="transparent"
             strokeDasharray={circleCircumference}
