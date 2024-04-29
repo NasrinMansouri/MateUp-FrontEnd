@@ -26,6 +26,11 @@ import CardMySession from "./app/components/coach/CardMySession";
 import GalleryBuddiesJoinedChallenge from "./app/components/challenge/GalleryBuddiesJoinedChallenge";
 import BuddyProfileScreen from "./app/screens/buddy/BuddyProfileScreen";
 import MySessions from "./app/screens/coach/coachScreenContent/MySessions";
+import CoachProfileScreen from "./app/screens/coach/CoachProfileScreen";
+import ListBulletPointWithText from "./app/components/ListBulletPointWithText";
+import DisplayVideo from "./app/components/coach/DisplayVideo";
+import AvailableGroupsScreen from "./app/screens/coach/AvailableGroupsScreen";
+import CardAvailableGroup from "./app/components/coach/CardAvailableGroup";
 
 // dummy data for Buddy Profile screen
 const userProfileData = {
@@ -34,8 +39,10 @@ const userProfileData = {
   lastName: "Doe",
   location: "los angeles street" + " 123",
   bio: "Hey there, I’m a fitness enthusiast, born with love for movement, my journey to fitness has been a dynamic dance between sweat sessions and socialising.",
-  userImage: require("./assets/person2.jpg"),
+  userImage: require("./assets/person3.jpg"),
   userworkout: ["Running", "Swimming", "Cycling", "Strength Training", "Yoga"],
+  education: "University of California, Los Angeles",
+  expertise: ["lose weight", "get started", "lose belly fat"],
   level: ["Beginner"],
   buddiesData: [
     {
@@ -87,6 +94,32 @@ const userProfileData = {
     },
   ],
   firstName: "John",
+};
+
+// dummy data for coach Profile screen
+const coachProfileData = {
+  id: 1,
+  firstName: "John",
+  lastName: "Doe",
+  location: "los angeles street" + " 123",
+  bio: "Hey there, I’m a fitness enthusiast, born with love for movement, my journey to fitness has been a dynamic dance between sweat sessions and socialising.",
+  userImage: require("./assets/person3.jpg"),
+  userworkout: ["Running", "Swimming", "Cycling", "Strength Training", "Yoga"],
+  education: ["erps 3", "University of California, Los Angeles"],
+  expertise: ["lose weight", "get started", "lose belly fat", "lose weight"],
+  language: ["English", "Spanish", "French"],
+  ratingDetails:
+    "The cost for the service is 100 euros per hour for each group of 3 participants. This means that each person within the group will contribute 33.3 euros.",
+
+  BehindSceneDetails:
+    "“I live for hyping people up. I’m not a personal trainer, I’m an energy dealer.”",
+  firstName: "John",
+  videos: [
+    {
+      id: 1,
+      source: require("./assets/videos/trainer1.mp4"),
+    },
+  ],
 };
 
 const coachesClubMembersData = [
@@ -245,6 +278,61 @@ const sessionDetails = {
   ],
 };
 
+const members = [
+  {
+    id: 1,
+    image: require("./assets/person3.jpg"),
+  },
+  // {
+  //   id: 2,
+  //   image: require("./assets/person2.jpg"),
+  // },
+
+  (goal = "Get Strong and get toned"),
+  (date = "Aug 3"),
+  (year = "2024"),
+  (start = "5 PM"),
+  (end = "7 PM"),
+  (spots = "1 spot is still available"),
+];
+
+const availableGroups = [
+  {
+    id: 1,
+    members: [
+      {
+        id: 1,
+        image: require("./assets/person3.jpg"),
+      },
+      {
+        id: 2,
+        image: require("./assets/person3.jpg"),
+      },
+    ],
+    goal: "Get Strong and get toned",
+    date: "Aug 3",
+    year: "2024",
+    start: "5 PM",
+    end: "7 PM",
+    spots: "1 spot is still available",
+  },
+  {
+    id: 2,
+    members: [
+      {
+        id: 1,
+        image: require("./assets/person3.jpg"),
+      },
+    ],
+    goal: "Get Strong and get toned",
+    date: "Aug 3",
+    year: "2024",
+    start: "5 PM",
+    end: "7 PM",
+    spots: "2 spot is still available",
+  },
+];
+
 export default function App() {
   // const [imageUri, setImageUri] = useState();
 
@@ -267,8 +355,26 @@ export default function App() {
   return (
     <>
       <View style={styles.container} onLayout={handleOnLayout}>
+        {/* <AvailableGroupsScreen /> */}
+        {/* <CardAvailableGroup
+          members={members}
+          goal={goal}
+          date={date}
+          start={start}
+          end={end}
+          year={year}
+          spots={spots}
+        /> */}
+        <AvailableGroupsScreen availableGroups={availableGroups} />
         {/* <MeetTtrainer /> */}
-        <CoachScreen />
+        {/* <CoachProfileScreen coachProfile={coachProfileData} /> */}
+        {/* <DisplayVideo /> */}
+        {/* <ListBulletPointWithText
+          name={"John Doe"}
+          location={"los angeles street 123"}
+          titles={["strength training"]}
+        /> */}
+        {/* <CoachScreen /> */}
         {/* <MySessions sessionDetails={sessionDetails} /> */}
         {/* <CardMySession
           imageTrainer={require("./assets/person2.jpg")}
@@ -341,7 +447,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.blackBc,
-    // paddingTop: 33,
+    paddingTop: 33,
     // paddingBottom: 100,
   },
 });
