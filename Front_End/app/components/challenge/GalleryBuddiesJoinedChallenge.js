@@ -1,36 +1,55 @@
-import { StyleSheet, FlatList } from "react-native";
+import { StyleSheet, FlatList, Text, View } from "react-native";
 import React from "react";
+
+import colors from "../../config/colors";
 import CardChallenges from "./CardChallenges";
 
 export default function GalleryBuddiesJoinedChallenge({
   BuddiesJoinedChallenge,
 }) {
   return (
-    <FlatList
-      style={styles.container}
-      horizontal
-      data={BuddiesJoinedChallenge}
-      keyExtractor={(BuddiesJoinedChallenge) =>
-        BuddiesJoinedChallenge.id.toString()
-      }
-      renderItem={({ item }) => (
-        <CardChallenges
-          image={item.image}
-          challengeName={item.challengeName}
-          duration={item.duration}
-          beginingDate={item.beginingDate}
-          endingDate={item.endingDate}
-          year={item.year}
-          onPress={item.onPress}
-          Buddies={item.Buddies}
-        />
-      )}
-    />
+    <View>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>your buddies joined</Text>
+      </View>
+      <FlatList
+        showsHorizontalScrollIndicator={false}
+        style={styles.container}
+        horizontal
+        data={BuddiesJoinedChallenge}
+        keyExtractor={(BuddiesJoinedChallenge) =>
+          BuddiesJoinedChallenge.id.toString()
+        }
+        renderItem={({ item }) => (
+          <CardChallenges
+            onPress={() => console.log("my buddies challenge", item)}
+            image={item.image}
+            challengeName={item.challengeName}
+            duration={item.duration}
+            beginingDate={item.beginingDate}
+            endingDate={item.endingDate}
+            year={item.year}
+            Buddies={item.Buddies}
+          />
+        )}
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    paddingLeft: 16,
+  },
+  titleContainer: {
+    marginTop: 40,
+  },
+  title: {
+    fontFamily: "montserrat-black",
+    fontSize: 26,
+    color: colors.orangePrimary,
+    marginBottom: 30,
+    textTransform: "uppercase",
     paddingLeft: 16,
   },
 });
