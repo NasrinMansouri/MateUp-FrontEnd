@@ -11,9 +11,8 @@ import {
 import Screen from "../../components/Screen";
 import colors from "../../config/colors";
 import TopNav from "../../components/topNavigation/TopNav";
-import Join from "./challengeScreen/Join";
-import MyChallenges from "./challengeScreen/MyChallenges";
 import TabButton from "../../components/tabButtons/TabButtons";
+import { Join, MyChallenges } from "./challengeScreen";
 
 // For android to enable Layoutanimation
 if (Platform.OS === "android") {
