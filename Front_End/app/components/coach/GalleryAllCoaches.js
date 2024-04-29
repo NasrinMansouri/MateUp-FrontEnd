@@ -24,9 +24,9 @@ export default function GalleryAllCoaches({ meetAllCoaches }) {
     <View style={styles.container}>
       <Text style={styles.title}>Meet All Coaches</Text>
       <ScrollView>
-        {meetAllCoaches.map((coach) => (
+        {meetAllCoaches.map((coach, id) => (
           <CardAllCoaches
-            key={coach.id.toString()}
+            key={id}
             name={coach.name}
             image={coach.image}
             location={coach.location}
