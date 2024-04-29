@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     zIndex: 1,
     right: 16,
-    top: "75%",
+    marginBottom: 100,
     bottom: 0,
   },
   buddyContainer: {

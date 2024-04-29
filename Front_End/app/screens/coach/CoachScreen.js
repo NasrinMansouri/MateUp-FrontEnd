@@ -114,19 +114,11 @@ export default function CoachScreen({}) {
 }
 
 const styles = StyleSheet.create({
-  // nav: {
-  //   position: "absolute",
-  //   top: 0,
-  //   left: 0,
-  //   right: 0,
-  //   zIndex: 1,
-  // },
-
   fixButtonPosition: {
     position: "absolute",
     zIndex: 1,
     right: 16,
-    top: "70%",
+    marginBottom: 100,
     bottom: 0,
   },
   topBtnscontainer: {
