@@ -22,13 +22,13 @@ export default function GalleryJoinedChallenge({
         keyExtractor={(joinedChallenge) => joinedChallenge.id.toString()}
         renderItem={({ item }) => (
           <CardJoinedChallenge
+            onPress={() => console.log("my buddies challenge", item)}
             challenegImage={item.challenegImage}
             challengeName={item.challengeName}
             challengeGoal={item.challengeGoal}
             startDate={item.startDate}
             endDate={item.endDate}
             year={item.year}
-            onPress={item.onPress}
           />
         )}
       />
