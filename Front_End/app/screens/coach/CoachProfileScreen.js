@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, StyleSheet, View, Text } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 import AppButton from "../../components/AppButton";
 import colors from "../../config/colors";
