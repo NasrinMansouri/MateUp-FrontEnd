@@ -1,71 +1,49 @@
-import { StyleSheet, FlatList } from "react-native";
+import { StyleSheet, FlatList, Text, View } from "react-native";
 import React from "react";
 
+import colors from "../../config/colors";
 import CardChallenges from "./CardChallenges";
 
 export default function GalleryAllChallenges({ AllChallenges }) {
-  //dummy data
-  const challenges = [
-    {
-      id: 1,
-      image: require("../../../assets/person2.jpg"),
-      challengeName: "Weekly Challenge",
-      duration: "7 Hours",
-      beginingDate: "AGU 3",
-      endingDate: "sep 3",
-      year: 2024,
-      onPress: () => {
-        console.log("card pressed");
-      },
-    },
-    {
-      id: 2,
-      image: require("../../../assets/person2.jpg"),
-      challengeName: "Weekly Challenge",
-      duration: "7 Hours",
-      beginingDate: "AGU 3",
-      endingDate: "sep 3",
-      year: 2024,
-      onPress: () => {
-        console.log("card pressed");
-      },
-    },
-    {
-      id: 3,
-      image: require("../../../assets/person2.jpg"),
-      challengeName: "Weekly Challenge",
-      duration: "7 Hours",
-      beginingDate: "AGU 3",
-      endingDate: "sep 3",
-      year: 2024,
-      onPress: () => {
-        console.log("card pressed");
-      },
-    },
-  ];
   return (
-    <FlatList
-      style={styles.container}
-      data={challenges}
-      keyExtractor={(AllChallenges) => AllChallenges.id.toString()}
-      renderItem={({ item }) => (
-        <CardChallenges
-          image={item.image}
-          challengeName={item.challengeName}
-          duration={item.duration}
-          beginingDate={item.beginingDate}
-          endingDate={item.endingDate}
-          year={item.year}
-          onPress={item.onPress}
-          Buddies={item.Buddies}
-          cardWidth="100%"
-          marginBottom={50}
-          borderWidth={0}
-          cardHeight={284}
-        />
-      )}
-    />
+    <View style={styles.container}>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>recommended for you</Text>
+      </View>
+      <FlatList
+        data={AllChallenges}
+        keyExtractor={(AllChallenges) => AllChallenges.id.toString()}
+        renderItem={({ item }) => (
+          <CardChallenges
+            onPress={() => console.log("all challenge", item)}
+            image={item.image}
+            challengeName={item.challengeName}
+            duration={item.duration}
+            beginingDate={item.beginingDate}
+            endingDate={item.endingDate}
+            year={item.year}
+            cardWidth="100%"
+            marginBottom={50}
+            borderWidth={0}
+            cardHeight={284}
+          />
+        )}
+      />
+    </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 96,
+    marginBottom: 300,
+  },
+  title: {
+    fontFamily: "montserrat-black",
+    fontSize: 26,
+    color: colors.orangePrimary,
+    marginBottom: 30,
+    textTransform: "uppercase",
+    paddingLeft: 16,
+  },
+});
