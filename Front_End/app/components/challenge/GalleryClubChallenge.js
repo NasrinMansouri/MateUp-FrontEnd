@@ -18,7 +18,7 @@ export default function GalleryClubChallenge({ ClubChallenge }) {
         renderItem={({ item }) => (
           <CardChallenges
             onPress={() => console.log("club challenge", item)}
-            image={item.image}
+            challengeImage={item.challengeImage}
             challengeName={item.challengeName}
             duration={item.duration}
             beginingDate={item.beginingDate}

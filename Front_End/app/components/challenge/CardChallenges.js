@@ -9,7 +9,7 @@ import AppButton from "../AppButton";
 import BulletPointWithText from "../BulletPointWithText";
 
 export default function CardChallenges({
-  image,
+  challengeImage,
   challengeName,
   duration,
   beginingDate,
@@ -39,7 +39,7 @@ export default function CardChallenges({
       onPress={onPress}
     >
       <View style={styles.imagecontainer}>
-        <Image source={image} style={styles.image} />
+        <Image source={challengeImage} style={styles.image} />
       </View>
 
       <View style={styles.challengeNameContainer}>

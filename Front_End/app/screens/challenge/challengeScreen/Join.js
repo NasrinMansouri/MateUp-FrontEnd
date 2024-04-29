@@ -8,7 +8,7 @@ import GalleryClubChallenge from "../../../components/challenge/GalleryClubChall
 const challengeYourBuddiesJoined = [
   {
     id: 1,
-    image: require("../../../../assets/person-1.jpg"),
+    challengeImage: require("../../../../assets/person-1.jpg"),
     challengeName: "Weekly Challenge",
     duration: "7 Hours",
     beginingDate: "AGU 3",
@@ -27,7 +27,7 @@ const challengeYourBuddiesJoined = [
   },
   {
     id: 2,
-    image: require("../../../../assets/person-1.jpg"),
+    challengeImage: require("../../../../assets/person-1.jpg"),
     challengeName: "Weekly Challenge",
     duration: "7 Hours",
     beginingDate: "AGU 3",
@@ -38,7 +38,7 @@ const challengeYourBuddiesJoined = [
   },
   {
     id: 3,
-    image: require("../../../../assets/person-1.jpg"),
+    challengeImage: require("../../../../assets/person-1.jpg"),
     challengeName: "Weekly Challenge",
     duration: "7 Hours",
     beginingDate: "AGU 3",
