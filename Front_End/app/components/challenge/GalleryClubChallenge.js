@@ -1,34 +1,50 @@
-import { StyleSheet, FlatList } from "react-native";
+import { StyleSheet, FlatList, Text, View } from "react-native";
 import React from "react";
 
+import colors from "../../config/colors";
 import CardChallenges from "./CardChallenges";
 
 export default function GalleryClubChallenge({ ClubChallenge }) {
   return (
-    <FlatList
-      style={styles.container}
-      horizontal
-      data={ClubChallenge}
-      keyExtractor={(ClubChallenge) => ClubChallenge.id.toString()}
-      renderItem={({ item }) => (
-        <CardChallenges
-          image={item.image}
-          challengeName={item.challengeName}
-          duration={item.duration}
-          beginingDate={item.beginingDate}
-          endingDate={item.endingDate}
-          year={item.year}
-          onPress={item.onPress}
-          Buddies={item.Buddies}
-          cardHeight={284}
-        />
-      )}
-    />
+    <View style={styles.mainContainer}>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>at your club</Text>
+      </View>
+      <FlatList
+        style={styles.container}
+        horizontal
+        data={ClubChallenge}
+        keyExtractor={(ClubChallenge) => ClubChallenge.id.toString()}
+        renderItem={({ item }) => (
+          <CardChallenges
+            onPress={() => console.log("club challenge", item)}
+            image={item.image}
+            challengeName={item.challengeName}
+            duration={item.duration}
+            beginingDate={item.beginingDate}
+            endingDate={item.endingDate}
+            year={item.year}
+            cardHeight={284}
+          />
+        )}
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    marginTop: 96,
+  },
   container: {
+    paddingLeft: 16,
+  },
+  title: {
+    fontFamily: "montserrat-black",
+    fontSize: 26,
+    color: colors.orangePrimary,
+    marginBottom: 30,
+    textTransform: "uppercase",
     paddingLeft: 16,
   },
 });
