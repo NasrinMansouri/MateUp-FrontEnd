@@ -9,6 +9,7 @@ export default function AppTextInput({
   borderWidth = 1,
   borderColor = colors.black,
   backgroundColor = colors.blackBc,
+  Width = "100%",
   ...otherProps
 }) {
   return (
@@ -19,6 +20,7 @@ export default function AppTextInput({
           borderColor: borderColor,
           backgroundColor: backgroundColor,
           borderWidth: borderWidth,
+          Width: Width,
         },
       ]}
     >
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 4,
     flexDirection: "row",
-    width: "100%",
+    // width: "100%",
     padding: 12,
     // marginVertical: 10,
     // marginBottom: 40,
