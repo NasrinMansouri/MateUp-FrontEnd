@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { StatusBar } from "expo-status-bar";
-import {
-  Button,
-  StyleSheet,
-  View,
-  Image,
-  ScrollView,
-  Text,
-} from "react-native";
+import { StyleSheet, View, Text } from "react-native";
+// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createMaterialBottomTabNavigator } from "react-native-paper/react-navigation";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+//to change background of active  TAB
+// import { useTheme } from "react-native-paper";
+// to change the background color
+import NavigationTheme from "./app/navigation/NavigationTheme";
 
 //for fonts
 import * as SplashScreen from "expo-splash-screen";
@@ -36,6 +39,12 @@ import ChallengeScreen from "./app/screens/challenge/ChallengeScreen";
 import DetailsChallengeScreen from "./app/screens/challenge/DetailsChallengeScreen";
 import JoinedChallnegeScreen from "./app/screens/challenge/JoinedChallnegeScreen";
 import CreateChallengeScreen from "./app/screens/challenge/CreateChallengeScreen";
+import NotificationScreen from "./app/screens/NotificationScreen";
+import { TabActions } from "@react-navigation/native";
+import Screen from "./app/components/Screen";
+import LoginScreen from "./app/screens/LoginScreen";
+import AuthNavigator from "./app/navigation/AuthNavigator";
+import AppNavigator from "./app/navigation/AppNavigator";
 
 // dummy data for Buddy Profile screen
 const userProfileData = {
@@ -376,7 +385,8 @@ const challengeDetailsData = {
 };
 
 export default function App() {
-  // const [imageUri, setImageUri] = useState();
+  // to change color of bottom tab
+  // const theme = useTheme();
 
   //for fonts
   const [isLoaded] = useFonts({
@@ -394,47 +404,138 @@ export default function App() {
     return null;
   }
 
+  // to change color of bottom tab
+  // theme.colors.secondaryContainer = "transperent";
+  // const CalendarScreen = () => {
+  //   <Screen>
+  //     <Text>Calendar</Text>
+  //   </Screen>;
+  // };
+  // const Tab = createMaterialBottomTabNavigator();
+  // const TabNavigator = () => {
+  //   return (
+  //     <Tab.Navigator
+  //       initialRouteName="Home"
+  //       activeColor={colors.orangePrimary}
+  //       inactiveColor={colors.grayLight50}
+  //       activeIndicatorStyle={{ height: 0 }}
+  //       barStyle={{
+  //         backgroundColor: colors.blackBc,
+  //         elevation: 0, // remove shadow on Android
+  //         height: 100,
+  //         paddingTop: 0,
+  //         paddingRight: 16,
+  //         paddingLeft: 1,
+  //         paddingVertical: 10,
+  //       }}
+  //     >
+  //       <Tab.Screen
+  //         name="Home"
+  //         component={MainHomeScreen}
+  //         options={{
+  //           tabBarIcon: ({ color }) => (
+  //             <MaterialCommunityIcons name="home" color={color} size={24} />
+  //           ),
+  //         }}
+  //       />
+  //       <Tab.Screen
+  //         name="Calendar"
+  //         component={CalendarScreen}
+  //         options={{
+  //           tabBarIcon: ({ color }) => (
+  //             <MaterialCommunityIcons
+  //               name="calendar-month"
+  //               color={color}
+  //               size={24}
+  //             />
+  //           ),
+  //         }}
+  //       />
+  //       <Tab.Screen
+  //         name="Buddy"
+  //         component={BuddyScreen}
+  //         options={{
+  //           tabBarIcon: ({ color }) => (
+  //             <MaterialCommunityIcons
+  //               name="account-group"
+  //               color={color}
+  //               size={22}
+  //             />
+  //           ),
+  //         }}
+  //       />
+  //       <Tab.Screen
+  //         name="Coach"
+  //         component={CoachScreen}
+  //         options={{
+  //           tabBarIcon: ({ color }) => (
+  //             <MaterialCommunityIcons name="account" color={color} size={24} />
+  //           ),
+  //         }}
+  //       />
+  //       <Tab.Screen
+  //         name="Challenge"
+  //         component={ChallengeScreen}
+  //         options={{
+  //           tabBarIcon: ({ color }) => (
+  //             <MaterialCommunityIcons name="trophy" color={color} size={22} />
+  //           ),
+  //         }}
+  //       />
+  //     </Tab.Navigator>
+  //   );
+  // };
+
   return (
     <>
-      <View style={styles.container} onLayout={handleOnLayout}>
-        {/* <AvailableGroupsScreen availableGroups={availableGroups} /> */}
-        {/* <MeetTtrainer /> */}
-        {/* <CoachProfileScreen coachProfile={coachProfileData} /> */}
-        {/* <DisplayVideo /> */}
-        {/* <ChallengeScreen /> */}
-        {/* <DetailsChallengeScreen challengeDetails={challengeDetailsData} /> */}
-        <JoinedChallnegeScreen
-          challengeDetailsProgress={challengeDetailsData}
-        />
-        {/* <MainHomeScreen /> */}
-        {/* <CoachScreen /> */}
-        {/* <MySessions sessionDetails={sessionDetails} /> */}
+      <SafeAreaProvider onLayout={handleOnLayout}>
+        <NavigationContainer theme={NavigationTheme}>
+          <AppNavigator />
+        </NavigationContainer>
+      </SafeAreaProvider>
 
-        {/* <GalleryBuddiesJoinedChallenge
+      {/* <View style={styles.container} onLayout={handleOnLayout}> */}
+      {/* <LoginScreen /> */}
+      {/* <AvailableGroupsScreen availableGroups={availableGroups} /> */}
+      {/* <MeetTtrainer /> */}
+      {/* <CoachProfileScreen coachProfile={coachProfileData} /> */}
+      {/* <DisplayVideo /> */}
+      {/* <ChallengeScreen /> */}
+      {/* <CoachScreen /> */}
+      {/* <DetailsChallengeScreen challengeDetails={challengeDetailsData} /> */}
+      {/* <JoinedChallnegeScreen
+          challengeDetailsProgress={challengeDetailsData}
+        /> */}
+      {/* <NotificationScreen /> */}
+      {/* <MainHomeScreen /> */}
+      {/* <CoachScreen /> */}
+      {/* <MySessions sessionDetails={sessionDetails} /> */}
+
+      {/* <GalleryBuddiesJoinedChallenge
           BuddiesJoinedChallenge={challengeYourBuddiesJoined}
         /> */}
-        {/* <BuddyScreen /> */}
-        {/* <CreateChallengeScreen /> */}
+      {/* <BuddyScreen /> */}
+      {/* <CreateChallengeScreen /> */}
 
-        {/* <BuddyProfileScreen userProfile={userProfileData} /> */}
+      {/* <BuddyProfileScreen userProfile={userProfileData} /> */}
 
-        {/* <BuddyScreen /> */}
-        {/* <MainHomeScreen /> */}
-        {/* <ChallengeScreen /> */}
-        {/* <GalleryAllCoaches meetAllCoaches={coachesData} /> */}
+      {/* <BuddyScreen /> */}
+      {/* <MainHomeScreen /> */}
+      {/* <ChallengeScreen /> */}
+      {/* <GalleryAllCoaches meetAllCoaches={coachesData} /> */}
 
-        {/* <GalleryBuddiesWorkout /> */}
-        {/* <BuddyScreen /> */}
-        {/* <BuddyScreen /> */}
-        {/* <HeaderTile />
+      {/* <GalleryBuddiesWorkout /> */}
+      {/* <BuddyScreen /> */}
+      {/* <BuddyScreen /> */}
+      {/* <HeaderTile />
         {/* <BuddyProfileScreen /> */}
-        {/* <DatePicker title="Select Date :" placeholder={"when?"} /> */}
-        {/* <CreateChallengeScreen /> */}
-        {/* <Gender /> */}
-        {/* <NotificationScreen /> */}
-        {/* <MainHomeScreen /> */}
-        {/* <HomeScreen /> */}
-        {/* <BulletList
+      {/* <DatePicker title="Select Date :" placeholder={"when?"} /> */}
+      {/* <CreateChallengeScreen /> */}
+      {/* <Gender /> */}
+      {/* <NotificationScreen /> */}
+      {/* <MainHomeScreen /> */}
+      {/* <HomeScreen /> */}
+      {/* <BulletList
           titles={[
             "Running",
             "Swimming",
@@ -444,8 +545,8 @@ export default function App() {
           ]}
         /> */}
 
-        {/* to be continued..... */}
-        {/* <CardJoinedChallenge
+      {/* to be continued..... */}
+      {/* <CardJoinedChallenge
           challenegImage={require("./assets/person2.jpg")}
           challengeName="Cardio Boost Challenge"
           challengeGoal="15 Hours"
@@ -454,8 +555,8 @@ export default function App() {
           year="2022"
           time="10:00 AM"
         /> */}
-        <StatusBar style="auto" />
-      </View>
+      {/* <StatusBar style="auto" /> */}
+      {/* </View> */}
     </>
   );
 }
