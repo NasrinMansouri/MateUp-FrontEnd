@@ -31,6 +31,11 @@ import ListBulletPointWithText from "./app/components/ListBulletPointWithText";
 import DisplayVideo from "./app/components/coach/DisplayVideo";
 import AvailableGroupsScreen from "./app/screens/coach/AvailableGroupsScreen";
 import CardAvailableGroup from "./app/components/coach/CardAvailableGroup";
+import MainHomeScreen from "./app/screens/home/MainHomeScreen";
+import ChallengeScreen from "./app/screens/challenge/ChallengeScreen";
+import DetailsChallengeScreen from "./app/screens/challenge/DetailsChallengeScreen";
+import JoinedChallnegeScreen from "./app/screens/challenge/JoinedChallnegeScreen";
+import CreateChallengeScreen from "./app/screens/challenge/CreateChallengeScreen";
 
 // dummy data for Buddy Profile screen
 const userProfileData = {
@@ -332,6 +337,43 @@ const availableGroups = [
     spots: "2 spot is still available",
   },
 ];
+//dummy data for joined challenge screen
+const challengeDetailsData = {
+  challengeImage: require("./assets/person3.jpg"),
+  ChallengeName: "Cardio Boost Challenge ",
+  challengeType: "Cardio workout",
+  duration: "15 Hours",
+  startDate: "Aug 3",
+  endDate: "Aug 4",
+  year: "2022",
+  challengeDescription:
+    "Embark on a transformative journey! Commit to completing  15 hours of cardio within the next 30 days! Join me in making every step count during this four-week adventure! Let's share our experiences here and uplift each other along the way. We've got this! 💪🏃‍♀️🏃‍♂️",
+  numberOfMembers: 10,
+  yourBuddies: [
+    {
+      id: 1,
+      name: "John Doeeeeeeeeeeeeeeeeeee",
+      image: require("./assets/person4.jpg"),
+    },
+    {
+      id: 2,
+      name: "John Doeeeeeeeeeeeeeeeeeee",
+      image: require("./assets/person5.jpg"),
+    },
+    {
+      id: 3,
+      name: "John Doeeeeeeeeeeeeeeeeeee",
+      image: require("./assets/person4.jpg"),
+    },
+    {
+      id: 4,
+      name: "John Doeeeeeeeeeeeeeeeeeee",
+      image: require("./assets/person5.jpg"),
+    },
+  ],
+  numberOfLikes: 30,
+  numberOfComments: 10,
+};
 
 export default function App() {
   // const [imageUri, setImageUri] = useState();
@@ -355,57 +397,32 @@ export default function App() {
   return (
     <>
       <View style={styles.container} onLayout={handleOnLayout}>
-        {/* <AvailableGroupsScreen /> */}
-        {/* <CardAvailableGroup
-          members={members}
-          goal={goal}
-          date={date}
-          start={start}
-          end={end}
-          year={year}
-          spots={spots}
-        /> */}
-        <AvailableGroupsScreen availableGroups={availableGroups} />
+        {/* <AvailableGroupsScreen availableGroups={availableGroups} /> */}
         {/* <MeetTtrainer /> */}
         {/* <CoachProfileScreen coachProfile={coachProfileData} /> */}
         {/* <DisplayVideo /> */}
-        {/* <ListBulletPointWithText
-          name={"John Doe"}
-          location={"los angeles street 123"}
-          titles={["strength training"]}
-        /> */}
+        {/* <ChallengeScreen /> */}
+        {/* <DetailsChallengeScreen challengeDetails={challengeDetailsData} /> */}
+        <JoinedChallnegeScreen
+          challengeDetailsProgress={challengeDetailsData}
+        />
+        {/* <MainHomeScreen /> */}
         {/* <CoachScreen /> */}
         {/* <MySessions sessionDetails={sessionDetails} /> */}
-        {/* <CardMySession
-          imageTrainer={require("./assets/person2.jpg")}
-          sessionGoal={"Get Strong and get toned"}
-          date={"Aug 3"}
-          start={"5 PM"}
-          end={"7 PM"}
-          sessionMembers={sessionMembersData}
-        /> */}
+
         {/* <GalleryBuddiesJoinedChallenge
           BuddiesJoinedChallenge={challengeYourBuddiesJoined}
         /> */}
         {/* <BuddyScreen /> */}
-        {/* <CardAllCoaches
-          image={require("./assets/person2.jpg")}
-          name="John Doeeeeeeeeeeeeeeeeee"
-          location="los angeles street 123"
-          titles={["strength training", "running"]}
-        /> */}
+        {/* <CreateChallengeScreen /> */}
 
         {/* <BuddyProfileScreen userProfile={userProfileData} /> */}
 
         {/* <BuddyScreen /> */}
         {/* <MainHomeScreen /> */}
+        {/* <ChallengeScreen /> */}
         {/* <GalleryAllCoaches meetAllCoaches={coachesData} /> */}
-        {/* <CardAllCoaches
-          image={require("./assets/person2.jpg")}
-          name="John Doeeeeeeeeeeeeeeeeee"
-          location="los angeles street 123"
-          titles={["strength training", "running"]}
-        /> */}
+
         {/* <GalleryBuddiesWorkout /> */}
         {/* <BuddyScreen /> */}
         {/* <BuddyScreen /> */}
