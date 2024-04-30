@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Image,
   StyleSheet,
@@ -15,9 +15,8 @@ import ChallengeDescription from "../../components/challenge/ChallengeDescriptio
 import DonutChart from "../../components/challenge/DonutChart";
 import Line from "../../components/Line";
 import ShowReactions from "../../components/challenge/ShowReactions";
-import AppTextInput from "../../components/AppTextInput";
-import Like from "../../components/challenge/Like";
 import AddReactions from "../../components/challenge/AddReactions";
+import Like from "../../components/challenge/Like";
 
 export default function JoinedChallnegeScreen({ challengeDetailsProgress }) {
   const {
@@ -32,6 +31,7 @@ export default function JoinedChallnegeScreen({ challengeDetailsProgress }) {
     numberOfLikes,
     numberOfComments,
   } = challengeDetailsProgress;
+
   return (
     <Screen>
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
@@ -80,16 +80,9 @@ export default function JoinedChallnegeScreen({ challengeDetailsProgress }) {
           marginTop={20}
           backgroundColor={colors.blackBc}
         />
-        {/* <AppTextInput
-          placeholder="Add a comment..."
-          multiline
-          maxLength={500}
-          numberOfLines={7}
-          autoCapitalize="none"
-          autoCorrect={false}
-        />
-        <Like /> */}
-        {/* <AddReactions /> */}
+        <View style={styles.addReactionContainer}>
+          <AddReactions />
+        </View>
       </ScrollView>
     </Screen>
   );
@@ -148,5 +141,8 @@ const styles = StyleSheet.create({
   },
   donutContainer: {
     marginTop: 30,
+  },
+  addReactionContainer: {
+    marginBottom: 300,
   },
 });
