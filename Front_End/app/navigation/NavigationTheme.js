@@ -1,7 +1,7 @@
 import { DefaultTheme } from "@react-navigation/native";
 import colors from "../config/colors";
 
-export default {
+const myTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
@@ -9,3 +9,5 @@ export default {
     primary: colors.orangeSecondary,
   },
 };
+
+export default myTheme;
