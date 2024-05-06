@@ -43,7 +43,7 @@ export default function CoachScreen({}) {
   };
 
   return (
-    <Screen>
+    <Screen style={styles.screen}>
       <View style={styles.nav}>
         <TopNav showSearchBar={true} />
       </View>
@@ -114,18 +114,21 @@ export default function CoachScreen({}) {
 }
 
 const styles = StyleSheet.create({
+  screen: {
+    backgroundColor: colors.blackBc,
+  },
   fixButtonPosition: {
     position: "absolute",
     zIndex: 1,
     right: 16,
-    marginBottom: 100,
+    marginBottom: 10,
     bottom: 0,
   },
   topBtnscontainer: {
     flexDirection: "row",
     flex: 1,
     justifyContent: "space-between",
-    marginTop: 40,
+    marginTop: 20,
     // marginBottom: 20,
   },
   btn: {

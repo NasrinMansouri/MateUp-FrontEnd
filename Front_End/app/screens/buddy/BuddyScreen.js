@@ -204,12 +204,14 @@ export default function BuddyScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    backgroundColor: colors.blackBc,
+  },
   fixButtonPosition: {
     position: "absolute",
     zIndex: 1,
     right: 16,
-    marginBottom: 100,
+    marginBottom: 10,
     bottom: 0,
   },
   buddyContainer: {
