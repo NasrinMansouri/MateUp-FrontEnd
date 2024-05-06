@@ -40,7 +40,7 @@ export default function MainHomeScreen({ navigation }) {
     GalleryPeopleYouMightKnowComponent: (item) => (
       <GalleryPeopleYouMightKnow
         item={item}
-        onPress={() => navigation.navigate("MemberProfile")}
+        onPress={() => navigation.navigate("MemberProfile", { item })}
       />
     ),
     CardMeetTheMemberOfTheMonthComponent: (item) => (
