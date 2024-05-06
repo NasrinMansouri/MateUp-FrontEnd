@@ -24,6 +24,8 @@ const styles = StyleSheet.create({
     textTransform: "capitalize",
     marginRight: 12,
     gap: 8,
+    width: 97,
+    height: 107,
   },
   circle: {
     width: 77,
