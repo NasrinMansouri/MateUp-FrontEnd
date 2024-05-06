@@ -1,9 +1,10 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import GalleryAllChallenges from "../../../components/challenge/GalleryAllChallenges";
 
 import GalleryBuddiesJoinedChallenge from "../../../components/challenge/GalleryBuddiesJoinedChallenge";
 import GalleryClubChallenge from "../../../components/challenge/GalleryClubChallenge";
+import Screen from "../../../components/Screen";
 
 const challengeYourBuddiesJoined = [
   {
@@ -55,18 +56,47 @@ const challengeYourBuddiesJoined = [
   },
 ];
 
-export default function Join() {
-  return (
-    <View style={styles.container}>
+// export default function Join({}) {
+//   return (
+//     <View style={styles.container}>
+//       <GalleryBuddiesJoinedChallenge
+//         BuddiesJoinedChallenge={challengeYourBuddiesJoined}
+//       />
+//       <GalleryClubChallenge ClubChallenge={challengeYourBuddiesJoined} />
+//       <GalleryAllChallenges AllChallenges={challengeYourBuddiesJoined} />
+//     </View>
+//   );
+// }
+
+export default function Join({}) {
+  const renderItemCache = {
+    GalleryBuddiesJoinedChallenge: (challengeYourBuddiesJoined) => (
       <GalleryBuddiesJoinedChallenge
         BuddiesJoinedChallenge={challengeYourBuddiesJoined}
       />
+    ),
+    GalleryClubChallenge: (challengeYourBuddiesJoined) => (
       <GalleryClubChallenge ClubChallenge={challengeYourBuddiesJoined} />
+    ),
+    GalleryAllChallenges: (challengeYourBuddiesJoined) => (
       <GalleryAllChallenges AllChallenges={challengeYourBuddiesJoined} />
-    </View>
+    ),
+  };
+
+  const data = [
+    { type: "GalleryBuddiesJoinedChallenge", data: challengeYourBuddiesJoined },
+    { type: "GalleryClubChallenge", data: challengeYourBuddiesJoined },
+    { type: "GalleryAllChallenges", data: challengeYourBuddiesJoined },
+  ];
+
+  return (
+    <Screen>
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item.type}
+        renderItem={({ item }) => renderItemCache[item.type](item.data)}
+        showsVerticalScrollIndicator={false}
+      />
+    </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {},
-});
