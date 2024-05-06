@@ -23,6 +23,19 @@ import {
 } from "../../components/buddy";
 import FilterModal from "../../components/buddy/FilterModal";
 
+const buddiesData = [
+  {
+    id: 1,
+    name: "Jeremy Dipper",
+    image: require("../../../assets/person-1.jpg"),
+  },
+  {
+    id: 2,
+    name: "Mary Jane",
+    image: require("../../../assets/person2.jpg"),
+  },
+];
+
 const UserClubMembersData = [
   {
     id: 1,
@@ -35,18 +48,6 @@ const UserClubMembersData = [
     name: "ray pather ",
     image: require("../../../assets/person2.jpg"),
     titles: ["strength training", "running", "swimming", "yoga", "boxing"],
-  },
-  {
-    id: 3,
-    name: "ray pather ",
-    image: require("../../../assets/person2.jpg"),
-    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
-  },
-  {
-    id: 4,
-    name: "ray pather ",
-    image: require("../../../assets/person2.jpg"),
-    titles: ["strength training"],
   },
 ];
 const matchClubMembersData = [
@@ -63,20 +64,6 @@ const matchClubMembersData = [
     image: require("../../../assets/person2.jpg"),
     location: "los angeles street" + " 123",
     titles: ["strength training", "running", "swimming", "yoga", "boxing"],
-  },
-  {
-    id: 3,
-    name: "ray pather ",
-    image: require("../../../assets/person2.jpg"),
-    location: "los angeles street" + " 123",
-    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
-  },
-  {
-    id: 4,
-    name: "ray pather ",
-    image: require("../../../assets/person2.jpg"),
-    location: "los angeles street" + " 123",
-    titles: ["strength training"],
   },
 ];
 
@@ -95,90 +82,37 @@ const connectAllMembersData = [
     location: "los angeles street" + " 123",
     titles: ["strength training", "running", "swimming", "yoga", "boxing"],
   },
-  {
-    id: 3,
-    name: "ray pather ",
-    image: require("../../../assets/person2.jpg"),
-    location: "los angeles street" + " 123",
-    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
-  },
-  {
-    id: 4,
-    name: "ray pather ",
-    image: require("../../../assets/person2.jpg"),
-    location: "los angeles street" + " 123",
-    titles: ["strength training"],
-  },
 ];
 
-const dataWorkout = [
-  {
-    Key: "1",
-    value: "Strength Training",
-    disabled: true,
-  },
-  {
-    Key: "2",
-    value: "Running",
-  },
-  {
-    Key: "3",
-    value: "Yoga",
-  },
-];
-
-const dataLocation = [
-  {
-    Key: "1",
-    value: "Los Angeles",
-  },
-  {
-    Key: "2",
-    value: "New York",
-  },
-];
-const buddiesData = [
-  {
-    id: 1,
-    name: "MMMMMMMMMMMMMMMM ",
-    image: require("../../../assets/person-1.jpg"),
-  },
-  {
-    id: 2,
-    name: "Coucheeeeeeee ",
-    image: require("../../../assets/person-1.jpg"),
-  },
-  {
-    id: 3,
-    name: "Couchhhhhhhhh ",
-    image: require("../../../assets/person-1.jpg"),
-  },
-  {
-    id: 4,
-    name: "NNNNNN NNNNN ",
-    image: require("../../../assets/person-1.jpg"),
-  },
-  {
-    id: 5,
-    name: "Couch ",
-    image: require("../../../assets/person-1.jpg"),
-  },
-];
-
-export default function BuddyScreen() {
+export default function BuddyScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <Screen style={styles.container}>
-      <TopNav showSearchBar={true} />
+      <TopNav
+        showSearchBar={true}
+        onPressMessage={() => console.log("message")}
+        onPressNotification={() =>
+          navigation.navigate("Notification", { screen: "buddy" })
+        }
+      />
       <ScrollView style={styles.container}>
         <View style={styles.buddyContainer}>
           <GalleryBuddies buddies={buddiesData} />
         </View>
         <Line marginBottom={40} marginTop={20} />
-        <GalleryMatchClubMembers UserClubMembers={UserClubMembersData} />
-        <GalleryMatchBasedWorkout matchMemberWorkout={matchClubMembersData} />
-        <GalleryConnectAll connectAllMembers={connectAllMembersData} />
+        <GalleryMatchClubMembers
+          UserClubMembers={UserClubMembersData}
+          // onPress={() => navigation.navigate("MemberProfile")}
+        />
+        <GalleryMatchBasedWorkout
+          matchMemberWorkout={matchClubMembersData}
+          // onPress={() => navigation.navigate("MemberProfile")}
+        />
+        <GalleryConnectAll
+          connectAllMembers={connectAllMembersData}
+          // onPress={() => navigation.navigate("MemberProfile")}
+        />
       </ScrollView>
       <View style={styles.fixButtonPosition}>
         <AppButtonBorder

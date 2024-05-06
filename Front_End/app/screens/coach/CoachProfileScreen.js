@@ -14,7 +14,37 @@ import {
 import BulletList from "../../components/shareMemberProfile/BulletList";
 import { GalleryDisplayVideos, TitleSubtitle } from "../../components/coach";
 
-export default function CoachProfileScreen({ coachProfile }) {
+export default function CoachProfileScreen({ navigation }) {
+  const coachProfile = {
+    id: 1,
+    firstName: "John",
+    lastName: "Doe",
+    location: "los angeles street" + " 123",
+    bio: "Hey there, I’m a fitness enthusiast, born with love for movement, my journey to fitness has been a dynamic dance between sweat sessions and socialising.",
+    userImage: require("../../../assets/person3.jpg"),
+    userworkout: [
+      "Running",
+      "Swimming",
+      "Cycling",
+      "Strength Training",
+      "Yoga",
+    ],
+    education: ["erps 3", "University of California, Los Angeles"],
+    expertise: ["lose weight", "get started", "lose belly fat", "lose weight"],
+    language: ["English", "Spanish", "French"],
+    ratingDetails:
+      "The cost for the service is 100 euros per hour for each group of 3 participants. This means that each person within the group will contribute 33.3 euros.",
+
+    BehindSceneDetails:
+      "“I live for hyping people up. I’m not a personal trainer, I’m an energy dealer.”",
+    firstName: "John",
+    videos: [
+      {
+        id: 1,
+        source: require("../../../assets/videos/trainer1.mp4"),
+      },
+    ],
+  };
   const {
     firstName,
     lastName,
@@ -32,10 +62,10 @@ export default function CoachProfileScreen({ coachProfile }) {
   return (
     <Screen style={styles.screen}>
       <ScrollView style={styles.container}>
-        <HeaderTile
+        {/* <HeaderTile
           onPressBack={() => console.log("pressed back")}
           onPressShare={() => console.log("pressed share")}
-        />
+        /> */}
         <UserImage
           userImage={userImage}
           imageWidth={375}
@@ -87,14 +117,14 @@ export default function CoachProfileScreen({ coachProfile }) {
           title={"see available groups"}
           width={"100%"}
           fontSize={14}
-          onPress={() => console.log("pressed see available groups")}
+          onPress={() => navigation.navigate("AvailableGroups")}
           containerStyle={styles.buttonContainer}
         />
         <AppButton
           title={"create new group"}
           width={"100%"}
           fontSize={14}
-          onPress={() => console.log("pressed create new group")}
+          onPress={() => console.log("create new groups")}
           containerStyle={styles.buttonContainer}
         />
       </View>
@@ -125,7 +155,8 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 16,
     left: 16,
-    marginBottom: 100,
+    marginBottom: 10,
+    bottom: 0,
   },
 });
 
