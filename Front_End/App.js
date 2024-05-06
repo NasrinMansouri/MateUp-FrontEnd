@@ -14,6 +14,9 @@ SplashScreen.preventAutoHideAsync();
 
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import AppNavigator from "./app/navigation/AppNavigator";
+import LoginScreen from "./app/screens/LoginScreen";
+import myTheme from "./app/navigation/NavigationTheme";
+import { FilterModal } from "./app/components/buddy";
 
 // dummy data for Buddy Profile screen
 const userProfileData = {
@@ -401,8 +404,9 @@ export default function App() {
   return (
     <>
       <SafeAreaProvider onLayout={handleOnLayout}>
-        <NavigationContainer theme={NavigationTheme}>
+        <NavigationContainer theme={myTheme}>
           <AppNavigator />
+          {/* <AuthNavigator /> */}
         </NavigationContainer>
       </SafeAreaProvider>
     </>
