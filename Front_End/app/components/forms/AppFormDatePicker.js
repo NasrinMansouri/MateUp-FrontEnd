@@ -142,6 +142,24 @@ export default function AppFormDatePicker({ name, title, placeholder }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
+      {showPicker && Platform.OS === "ios" && (
+        <View style={styles.btnContainer}>
+          <AppButton
+            onPress={toggleDatePicker}
+            title="cancel"
+            height={26}
+            width={120}
+            borderRadius={4}
+          />
+          <AppButton
+            onPress={confirmIOSDate}
+            title="Confirm"
+            height={26}
+            width={120}
+            borderRadius={4}
+          />
+        </View>
+      )}
       {!showPicker && (
         <Pressable onPress={toggleDatePicker}>
           <AppTextInput
@@ -165,22 +183,7 @@ export default function AppFormDatePicker({ name, title, placeholder }) {
           textColor={colors.white}
         />
       )}
-      {showPicker && Platform.OS === "ios" && (
-        <View style={styles.btnContainer}>
-          <AppButton
-            onPress={toggleDatePicker}
-            title="cancel"
-            height={12}
-            width={13}
-          />
-          <AppButton
-            onPress={confirmIOSDate}
-            title="Confirm"
 
-            // height={12}
-          />
-        </View>
-      )}
       <ErrorMessage error={errors[name]} visible={touched[name]} />
     </View>
   );
@@ -189,7 +192,8 @@ export default function AppFormDatePicker({ name, title, placeholder }) {
 const styles = StyleSheet.create({
   btnContainer: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "center",
+    gap: 5,
     marginTop: 20,
     marginBottom: 30,
   },
