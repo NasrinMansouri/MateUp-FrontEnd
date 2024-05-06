@@ -1,9 +1,11 @@
 import React from "react";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, TouchableOpacity, FlatList } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import AppButton from "../../../components/AppButton";
 import GalleryChallengeByMe from "../../../components/challenge/GalleryChallengeByMe";
 import GalleryJoinedChallenge from "../../../components/challenge/GalleryJoinedChallenge";
+import Screen from "../../../components/Screen";
 
 joinedChallengeData = [
   {
@@ -28,27 +30,55 @@ joinedChallengeData = [
   },
 ];
 
-export default function MyChallenges({ onPress }) {
-  return (
-    <View style={styles.container}>
+export default function MyChallenges({}) {
+  const navigation = useNavigation();
+
+  const renderItemCache = {
+    CreateAChallenge: () => (
       <View style={styles.btnContainer}>
-        <TouchableOpacity activeOpacity={0.9} onPress={onPress}>
-          <AppButton title="create a Challenge" fontSize={14} />
-        </TouchableOpacity>
+        <AppButton
+          title="create a Challenge"
+          fontSize={14}
+          onPress={() => {
+            navigation.navigate("CreateChallenge");
+            console.log("create a Challenge");
+          }}
+        />
       </View>
+    ),
+    GalleryJoinedChallenge: (joinedChallengeData) => (
       <View style={styles.title1Container}>
         <GalleryJoinedChallenge
-          header={"Joined Challenges"}
           joinedChallenge={joinedChallengeData}
+          header={"Joined Challenges"}
         />
       </View>
+    ),
+    GalleryChallengeByMe: (joinedChallengeData) => (
       <View style={styles.title2Container}>
         <GalleryChallengeByMe
-          header={"Challenges by me"}
           challengeByMe={joinedChallengeData}
+          header={"Challenges by me"}
         />
       </View>
-    </View>
+    ),
+  };
+
+  const data = [
+    { type: "CreateAChallenge" },
+    { type: "GalleryJoinedChallenge", data: joinedChallengeData },
+    { type: "GalleryChallengeByMe", data: joinedChallengeData },
+  ];
+
+  return (
+    <Screen>
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item.type}
+        renderItem={({ item }) => renderItemCache[item.type](item.data)}
+        showsVerticalScrollIndicator={false}
+      />
+    </Screen>
   );
 }
 

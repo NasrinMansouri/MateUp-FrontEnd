@@ -1,5 +1,6 @@
 import React from "react";
 import { Image, StyleSheet, View, Text, ScrollView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import AppButton from "../../components/AppButton";
 import BulletPointWithText from "../../components/BulletPointWithText";
@@ -8,7 +9,45 @@ import colors from "../../config/colors";
 import CardProfile from "../../components/CardProfile";
 import Screen from "../../components/Screen";
 
-export default function DetailsChallengeScreen({ challengeDetails, onPress }) {
+export default function DetailsChallengeScreen({}) {
+  const navigation = useNavigation();
+  const challengeDetails = {
+    challengeImage: require("../../../assets/person3.jpg"),
+    ChallengeName: "Cardio Boost Challenge ",
+    challengeType: "Cardio workout",
+    duration: "15 Hours",
+    startDate: "Aug 3",
+    endDate: "Aug 4",
+    year: "2022",
+    challengeDescription:
+      "Embark on a transformative journey! Commit to completing  15 hours of cardio within the next 30 days! Join me in making every step count during this four-week adventure! Let's share our experiences here and uplift each other along the way. We've got this! 💪🏃‍♀️🏃‍♂️",
+    numberOfMembers: 10,
+    yourBuddies: [
+      {
+        id: 1,
+        name: "John Doeeeeeeeeeeeeeeeeeee",
+        image: require("../../../assets/person4.jpg"),
+      },
+      {
+        id: 2,
+        name: "John Doeeeeeeeeeeeeeeeeeee",
+        image: require("../../../assets/person5.jpg"),
+      },
+      {
+        id: 3,
+        name: "John Doeeeeeeeeeeeeeeeeeee",
+        image: require("../../../assets/person4.jpg"),
+      },
+      {
+        id: 4,
+        name: "John Doeeeeeeeeeeeeeeeeeee",
+        image: require("../../../assets/person5.jpg"),
+      },
+    ],
+    numberOfLikes: 30,
+    numberOfComments: 10,
+  };
+
   const {
     challengeImage,
     ChallengeName,
@@ -21,6 +60,7 @@ export default function DetailsChallengeScreen({ challengeDetails, onPress }) {
     numberOfMembers,
     yourBuddies,
   } = challengeDetails;
+
   return (
     <Screen>
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
@@ -57,7 +97,6 @@ export default function DetailsChallengeScreen({ challengeDetails, onPress }) {
                   key={id}
                   name={buddy.name}
                   image={buddy.image}
-                  onPress={() => console.log("tapped")}
                   flexDirection={"row"}
                   cardWidth={"100%"}
                   imageHeight={52}
@@ -78,7 +117,11 @@ export default function DetailsChallengeScreen({ challengeDetails, onPress }) {
         </Text>
       </ScrollView>
       <View style={styles.button}>
-        <AppButton title="Join" fontSize={14} onPress={onPress} />
+        <AppButton
+          title="Join"
+          fontSize={14}
+          onPress={() => navigation.navigate("JoinedChallenge")}
+        />
       </View>
     </Screen>
   );
@@ -133,7 +176,8 @@ const styles = StyleSheet.create({
   },
   button: {
     position: "absolute",
-    bottom: 100,
+    bottom: 0,
+    marginBottom: 10,
     right: 16,
     left: 16,
   },
