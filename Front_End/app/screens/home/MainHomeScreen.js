@@ -15,13 +15,65 @@ import {
   GalleryEducationalContent,
 } from "../../components/home";
 
-export default function MainHomeScreen() {
+export default function MainHomeScreen({ navigation }) {
+  const renderItemCache = {
+    DisplayBuddies: (item) => (
+      <View style={styles.buddiesContainer}>
+        <DisplayBuddies
+          style={{ marginBottom: 40 }}
+          item={item}
+          onPressAddBuddy={() => navigation.navigate("Buddy")}
+        />
+      </View>
+    ),
+    LineComponent: (item) => (
+      <Line marginBottom={40} marginTop={20} item={item} />
+    ),
+    UserNextWorkoutPlanningComponent: (item) => (
+      <UserNextWorkoutPlanning item={item} />
+    ),
+    GalleryBuddiesWorkoutComponent: (item) => (
+      <View style={styles.buddiesWorkoutContainer}>
+        <GalleryBuddiesWorkout item={item} />
+      </View>
+    ),
+    GalleryPeopleYouMightKnowComponent: (item) => (
+      <GalleryPeopleYouMightKnow
+        item={item}
+        onPress={() => navigation.navigate("MemberProfile")}
+      />
+    ),
+    CardMeetTheMemberOfTheMonthComponent: (item) => (
+      <CardMeetTheMemberOfTheMonth item={item} />
+    ),
+    GalleryEducationalContentComponent: (item) => (
+      <View>
+        <GalleryEducationalContent item={item} />
+        <View style={styles.buttonSeeAll}>
+          <AppButton title={"see all"} width={222} height={45} />
+        </View>
+      </View>
+    ),
+  };
+
+  //define array of data, which contains objects with a type property
+  const data = [
+    { type: "DisplayBuddies" },
+    { type: "LineComponent" },
+    { type: "UserNextWorkoutPlanningComponent" },
+    { type: "GalleryBuddiesWorkoutComponent" },
+    { type: "GalleryPeopleYouMightKnowComponent" },
+    { type: "CardMeetTheMemberOfTheMonthComponent" },
+    { type: "GalleryEducationalContentComponent" },
+  ];
   return (
     <Screen style={styles.container}>
       <TopNav
         showUserProfile={true}
         userProfileImage={require("../../../assets/person2.jpg")}
         onPressProfile={() => console.log("Profile image pressed")}
+        onPressNotification={() => navigation.navigate("Notification")}
+        onPressMessage={() => console.log("Message image pressed")}
         // showSearchBar={true}
       />
       <FlatList
@@ -36,60 +88,13 @@ export default function MainHomeScreen() {
   );
 }
 
-const renderItemCache = {
-  DisplayBuddies: (item) => (
-    <View style={styles.buddiesContainer}>
-      <DisplayBuddies
-        style={{ paddingLeft: 16, marginBottom: 40 }}
-        item={item}
-      />
-    </View>
-  ),
-  LineComponent: (item) => (
-    <Line marginBottom={40} marginTop={20} item={item} />
-  ),
-  UserNextWorkoutPlanningComponent: (item) => (
-    <UserNextWorkoutPlanning item={item} />
-  ),
-  GalleryBuddiesWorkoutComponent: (item) => (
-    <View style={styles.buddiesWorkoutContainer}>
-      <GalleryBuddiesWorkout item={item} />
-    </View>
-  ),
-  GalleryPeopleYouMightKnowComponent: (item) => (
-    <GalleryPeopleYouMightKnow item={item} />
-  ),
-  CardMeetTheMemberOfTheMonthComponent: (item) => (
-    <CardMeetTheMemberOfTheMonth item={item} />
-  ),
-  GalleryEducationalContentComponent: (item) => (
-    <View>
-      <GalleryEducationalContent item={item} />
-      <View style={styles.buttonSeeAll}>
-        <AppButton title={"see all"} width={222} height={45} />
-      </View>
-    </View>
-  ),
-};
-
-//define array of data, which contains objects with a type property
-const data = [
-  { type: "DisplayBuddies" },
-  { type: "LineComponent" },
-  { type: "UserNextWorkoutPlanningComponent" },
-  { type: "GalleryBuddiesWorkoutComponent" },
-  { type: "GalleryPeopleYouMightKnowComponent" },
-  { type: "CardMeetTheMemberOfTheMonthComponent" },
-  { type: "GalleryEducationalContentComponent" },
-];
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.blackBc,
     flex: 1,
   },
   buddiesContainer: {
-    marginTop: 32,
+    marginTop: 20,
   },
   buddiesWorkoutContainer: {
     marginTop: 96,
