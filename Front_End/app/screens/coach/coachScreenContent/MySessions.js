@@ -4,26 +4,48 @@ import CardMySession from "../../../components/coach/CardMySession";
 
 export default function MySessions({ sessionDetails }) {
   return (
-    <View style={styles.container}>
-      <FlatList
-        style={styles.container}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        data={sessionDetailsData}
-        keyExtractor={(sessionDetails) => sessionDetails.id.toString()}
-        renderItem={({ item }) => (
-          <CardMySession
-            imageTrainer={item.imageTrainer}
-            trainerName={item.trainerName}
-            sessionGoal={item.sessionGoal}
-            date={item.date}
-            start={item.start}
-            end={item.end}
-            members={item.members}
-          />
-        )}
-      />
-    </View>
+    <>
+      <View style={styles.container}>
+        <FlatList
+          style={styles.container}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={sessionDetailsData}
+          keyExtractor={(sessionDetails) => sessionDetails.id.toString()}
+          renderItem={({ item }) => (
+            <CardMySession
+              imageTrainer={item.imageTrainer}
+              trainerName={item.trainerName}
+              sessionGoal={item.sessionGoal}
+              date={item.date}
+              start={item.start}
+              end={item.end}
+              members={item.members}
+            />
+          )}
+        />
+      </View>
+      <View style={styles.container}>
+        <FlatList
+          style={styles.container}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={sessionDetailsData}
+          keyExtractor={(sessionDetails) => sessionDetails.id.toString()}
+          renderItem={({ item }) => (
+            <CardMySession
+              imageTrainer={item.imageTrainer}
+              trainerName={item.trainerName}
+              sessionGoal={item.sessionGoal}
+              date={item.date}
+              start={item.start}
+              end={item.end}
+              members={item.members}
+            />
+          )}
+        />
+      </View>
+    </>
   );
 }
 
