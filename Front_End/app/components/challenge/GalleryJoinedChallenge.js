@@ -1,5 +1,6 @@
 import React from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import CardJoinedChallenge from "./CardJoinedChallenge";
 import colors from "../../config/colors";
@@ -9,6 +10,7 @@ export default function GalleryJoinedChallenge({
   header,
   fontSize = 26,
 }) {
+  const navigation = useNavigation();
   return (
     <View style={styles.mainContainer}>
       {header && (
@@ -22,7 +24,7 @@ export default function GalleryJoinedChallenge({
         keyExtractor={(joinedChallenge) => joinedChallenge.id.toString()}
         renderItem={({ item }) => (
           <CardJoinedChallenge
-            onPress={() => console.log("my buddies challenge", item)}
+            onPress={() => navigation.navigate("JoinedChallenge", item)}
             challenegImage={item.challenegImage}
             challengeName={item.challengeName}
             challengeGoal={item.challengeGoal}

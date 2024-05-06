@@ -5,7 +5,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
 import GroupAvatar from "./GroupAvatar";
 import AppButton from "../AppButton";
-
 import BulletPointWithText from "../BulletPointWithText";
 
 export default function CardChallenges({
@@ -15,7 +14,8 @@ export default function CardChallenges({
   beginingDate,
   endingDate,
   year,
-  onPress,
+  onPressCard,
+  onPressBtn,
   Buddies,
   borderWidth = 1,
   cardWidth = 283,
@@ -35,8 +35,8 @@ export default function CardChallenges({
           marginBottom: marginBottom,
         },
       ]}
-      activeOpacity={0.8}
-      onPress={onPress}
+      activeOpacity={0.9}
+      onPress={onPressCard}
     >
       <View style={styles.imagecontainer}>
         <Image source={challengeImage} style={styles.image} />
@@ -77,12 +77,7 @@ export default function CardChallenges({
         </View>
       )}
       <View style={styles.buttonContainer}>
-        <AppButton
-          title="Join"
-          width="100%"
-          height={45}
-          onPress={() => console.log("button pressed")}
-        />
+        <AppButton title="Join" width="100%" height={45} onPress={onPressBtn} />
       </View>
     </TouchableOpacity>
   );
