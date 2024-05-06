@@ -1,14 +1,8 @@
 import React from "react";
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Text } from "react-native";
-// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createMaterialBottomTabNavigator } from "react-native-paper/react-navigation";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-//to change background of active  TAB
-// import { useTheme } from "react-native-paper";
+
 // to change the background color
 import NavigationTheme from "./app/navigation/NavigationTheme";
 
@@ -18,31 +12,6 @@ import { useFonts } from "expo-font";
 import { useCallback } from "react";
 SplashScreen.preventAutoHideAsync();
 
-import colors from "./app/config/colors";
-import BuddyScreen from "./app/screens/buddy/BuddyScreen";
-import { GalleryBuddiesWorkout } from "./app/components/home";
-import { CardAllCoaches, GalleryAllCoaches } from "./app/components/coach";
-import MeetTtrainer from "./app/screens/coach/coachScreenContent/MeetTtrainer";
-import CoachScreen from "./app/screens/coach/CoachScreen";
-import { Gender } from "./app/components/buddy/filter";
-import CardMySession from "./app/components/coach/CardMySession";
-import GalleryBuddiesJoinedChallenge from "./app/components/challenge/GalleryBuddiesJoinedChallenge";
-import BuddyProfileScreen from "./app/screens/buddy/BuddyProfileScreen";
-import MySessions from "./app/screens/coach/coachScreenContent/MySessions";
-import CoachProfileScreen from "./app/screens/coach/CoachProfileScreen";
-import ListBulletPointWithText from "./app/components/ListBulletPointWithText";
-import DisplayVideo from "./app/components/coach/DisplayVideo";
-import AvailableGroupsScreen from "./app/screens/coach/AvailableGroupsScreen";
-import CardAvailableGroup from "./app/components/coach/CardAvailableGroup";
-import MainHomeScreen from "./app/screens/home/MainHomeScreen";
-import ChallengeScreen from "./app/screens/challenge/ChallengeScreen";
-import DetailsChallengeScreen from "./app/screens/challenge/DetailsChallengeScreen";
-import JoinedChallnegeScreen from "./app/screens/challenge/JoinedChallnegeScreen";
-import CreateChallengeScreen from "./app/screens/challenge/CreateChallengeScreen";
-import NotificationScreen from "./app/screens/NotificationScreen";
-import { TabActions } from "@react-navigation/native";
-import Screen from "./app/components/Screen";
-import LoginScreen from "./app/screens/LoginScreen";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import AppNavigator from "./app/navigation/AppNavigator";
 
@@ -107,8 +76,36 @@ const userProfileData = {
       time: "10:00 AM",
     },
   ],
-  firstName: "John",
 };
+
+//show buddies
+const buddies = [
+  {
+    id: 1,
+    name: "MMMMMMMMMMMMMMMM ",
+    image: require("./assets/person-1.jpg"),
+  },
+  {
+    id: 2,
+    name: "Coucheeeeeeee ",
+    image: require("./assets/person-1.jpg"),
+  },
+  {
+    id: 3,
+    name: "Couchhhhhhhhh ",
+    image: require("./assets/person-1.jpg"),
+  },
+  {
+    id: 4,
+    name: "NNNNNN NNNNN ",
+    image: require("./assets/person-1.jpg"),
+  },
+  {
+    id: 5,
+    name: "Couch ",
+    image: require("./assets/person-1.jpg"),
+  },
+];
 
 // dummy data for coach Profile screen
 const coachProfileData = {
@@ -385,9 +382,6 @@ const challengeDetailsData = {
 };
 
 export default function App() {
-  // to change color of bottom tab
-  // const theme = useTheme();
-
   //for fonts
   const [isLoaded] = useFonts({
     "montserrat-black": require("./assets/fonts/Montserrat-Black.ttf"),
@@ -404,88 +398,6 @@ export default function App() {
     return null;
   }
 
-  // to change color of bottom tab
-  // theme.colors.secondaryContainer = "transperent";
-  // const CalendarScreen = () => {
-  //   <Screen>
-  //     <Text>Calendar</Text>
-  //   </Screen>;
-  // };
-  // const Tab = createMaterialBottomTabNavigator();
-  // const TabNavigator = () => {
-  //   return (
-  //     <Tab.Navigator
-  //       initialRouteName="Home"
-  //       activeColor={colors.orangePrimary}
-  //       inactiveColor={colors.grayLight50}
-  //       activeIndicatorStyle={{ height: 0 }}
-  //       barStyle={{
-  //         backgroundColor: colors.blackBc,
-  //         elevation: 0, // remove shadow on Android
-  //         height: 100,
-  //         paddingTop: 0,
-  //         paddingRight: 16,
-  //         paddingLeft: 1,
-  //         paddingVertical: 10,
-  //       }}
-  //     >
-  //       <Tab.Screen
-  //         name="Home"
-  //         component={MainHomeScreen}
-  //         options={{
-  //           tabBarIcon: ({ color }) => (
-  //             <MaterialCommunityIcons name="home" color={color} size={24} />
-  //           ),
-  //         }}
-  //       />
-  //       <Tab.Screen
-  //         name="Calendar"
-  //         component={CalendarScreen}
-  //         options={{
-  //           tabBarIcon: ({ color }) => (
-  //             <MaterialCommunityIcons
-  //               name="calendar-month"
-  //               color={color}
-  //               size={24}
-  //             />
-  //           ),
-  //         }}
-  //       />
-  //       <Tab.Screen
-  //         name="Buddy"
-  //         component={BuddyScreen}
-  //         options={{
-  //           tabBarIcon: ({ color }) => (
-  //             <MaterialCommunityIcons
-  //               name="account-group"
-  //               color={color}
-  //               size={22}
-  //             />
-  //           ),
-  //         }}
-  //       />
-  //       <Tab.Screen
-  //         name="Coach"
-  //         component={CoachScreen}
-  //         options={{
-  //           tabBarIcon: ({ color }) => (
-  //             <MaterialCommunityIcons name="account" color={color} size={24} />
-  //           ),
-  //         }}
-  //       />
-  //       <Tab.Screen
-  //         name="Challenge"
-  //         component={ChallengeScreen}
-  //         options={{
-  //           tabBarIcon: ({ color }) => (
-  //             <MaterialCommunityIcons name="trophy" color={color} size={22} />
-  //           ),
-  //         }}
-  //       />
-  //     </Tab.Navigator>
-  //   );
-  // };
-
   return (
     <>
       <SafeAreaProvider onLayout={handleOnLayout}>
@@ -493,110 +405,8 @@ export default function App() {
           <AppNavigator />
         </NavigationContainer>
       </SafeAreaProvider>
-
-      {/* <View style={styles.container} onLayout={handleOnLayout}> */}
-      {/* <LoginScreen /> */}
-      {/* <AvailableGroupsScreen availableGroups={availableGroups} /> */}
-      {/* <MeetTtrainer /> */}
-      {/* <CoachProfileScreen coachProfile={coachProfileData} /> */}
-      {/* <DisplayVideo /> */}
-      {/* <ChallengeScreen /> */}
-      {/* <CoachScreen /> */}
-      {/* <DetailsChallengeScreen challengeDetails={challengeDetailsData} /> */}
-      {/* <JoinedChallnegeScreen
-          challengeDetailsProgress={challengeDetailsData}
-        /> */}
-      {/* <NotificationScreen /> */}
-      {/* <MainHomeScreen /> */}
-      {/* <CoachScreen /> */}
-      {/* <MySessions sessionDetails={sessionDetails} /> */}
-
-      {/* <GalleryBuddiesJoinedChallenge
-          BuddiesJoinedChallenge={challengeYourBuddiesJoined}
-        /> */}
-      {/* <BuddyScreen /> */}
-      {/* <CreateChallengeScreen /> */}
-
-      {/* <BuddyProfileScreen userProfile={userProfileData} /> */}
-
-      {/* <BuddyScreen /> */}
-      {/* <MainHomeScreen /> */}
-      {/* <ChallengeScreen /> */}
-      {/* <GalleryAllCoaches meetAllCoaches={coachesData} /> */}
-
-      {/* <GalleryBuddiesWorkout /> */}
-      {/* <BuddyScreen /> */}
-      {/* <BuddyScreen /> */}
-      {/* <HeaderTile />
-        {/* <BuddyProfileScreen /> */}
-      {/* <DatePicker title="Select Date :" placeholder={"when?"} /> */}
-      {/* <CreateChallengeScreen /> */}
-      {/* <Gender /> */}
-      {/* <NotificationScreen /> */}
-      {/* <MainHomeScreen /> */}
-      {/* <HomeScreen /> */}
-      {/* <BulletList
-          titles={[
-            "Running",
-            "Swimming",
-            "Cycling",
-            "Strength Training",
-            "Yoga",
-          ]}
-        /> */}
-
-      {/* to be continued..... */}
-      {/* <CardJoinedChallenge
-          challenegImage={require("./assets/person2.jpg")}
-          challengeName="Cardio Boost Challenge"
-          challengeGoal="15 Hours"
-          startDate="Aug 3"
-          endDate="Aug 4"
-          year="2022"
-          time="10:00 AM"
-        /> */}
-      {/* <StatusBar style="auto" /> */}
-      {/* </View> */}
     </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.blackBc,
-    paddingTop: 33,
-    // paddingBottom: 100,
-  },
-});
-
-// import { StatusBar } from "expo-status-bar";
-// import { StyleSheet, View, Text } from "react-native";
-
-// import FontLoader from "./app/components/FontLoader";
-// import TopNav from "./app/components/TopNav";
-// import colors from "./app/config/colors";
-// import MainHomeScreen from "./app/screens/home/MainHomeScreen";
-
-// export default function App() {
-//   return (
-//     <FontLoader>
-//       <View style={styles.container}>
-//         {/* <TopNav
-//           // showProfilePic={true}
-//           // userImage={require("./assets/person2.jpg")}
-//           showSearchBar={true}
-//         /> */}
-//         <MainHomeScreen />
-//         <StatusBar style="auto" />
-//       </View>
-//     </FontLoader>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     backgroundColor: colors.blackBc,
-//     flex: 1,
-//   },
-// });
+const styles = StyleSheet.create({});
