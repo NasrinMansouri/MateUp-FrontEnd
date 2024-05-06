@@ -25,26 +25,6 @@ export default function MySessions({ sessionDetails }) {
           )}
         />
       </View>
-      <View style={styles.container}>
-        <FlatList
-          style={styles.container}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          data={sessionDetailsData}
-          keyExtractor={(sessionDetails) => sessionDetails.id.toString()}
-          renderItem={({ item }) => (
-            <CardMySession
-              imageTrainer={item.imageTrainer}
-              trainerName={item.trainerName}
-              sessionGoal={item.sessionGoal}
-              date={item.date}
-              start={item.start}
-              end={item.end}
-              members={item.members}
-            />
-          )}
-        />
-      </View>
     </>
   );
 }
