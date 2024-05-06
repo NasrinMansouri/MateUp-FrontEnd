@@ -6,7 +6,7 @@ import { StyleSheet, Text, View, FlatList } from "react-native";
 import CardProfile from "../CardProfile";
 import colors from "../../config/colors";
 
-function GalleryPeopleYouMightKnow({ members }) {
+function GalleryPeopleYouMightKnow({ members, onPress }) {
   //dummy data for testing
   const membersData = [
     {
@@ -52,7 +52,7 @@ function GalleryPeopleYouMightKnow({ members }) {
           keyExtractor={(members) => members.id.toString()}
           renderItem={({ item }) => (
             <CardProfile
-              onPress={() => console.log("members", item)}
+              onPress={onPress}
               name={capitalizeFirstLetter(item.name)}
               backgroundColor={colors.blackBc}
               image={item.image}
