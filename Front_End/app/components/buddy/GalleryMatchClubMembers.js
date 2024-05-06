@@ -2,11 +2,13 @@
 
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 import colors from "../../config/colors";
 import CardMatchClubMembers from "./CardMatchClubMembers";
 
 export default function GalleryMatchClubMembers({ UserClubMembers }) {
+  const navigation = useNavigation();
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.title}>meet your club members</Text>
@@ -15,12 +17,13 @@ export default function GalleryMatchClubMembers({ UserClubMembers }) {
         style={styles.container}
         horizontal
         data={UserClubMembers}
-        keyExtractor={(UserClubMembers) => UserClubMembers.id.toString()}
+        keyExtractor={(Members) => Members.id.toString()}
         renderItem={({ item }) => (
           <CardMatchClubMembers
             name={item.name}
             image={item.image}
             titles={item.titles}
+            onPress={() => navigation.navigate("MemberProfile", item)}
           />
         )}
       />

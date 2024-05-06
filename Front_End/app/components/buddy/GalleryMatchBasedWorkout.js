@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 import colors from "../../config/colors";
 import CardMatchBasedWorkout from "./CardMatchBasedWorkout";
 
 export default function GalleryMatchBasedWorkout({ matchMemberWorkout }) {
+  const navigation = useNavigation();
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.title}>matches based on your workour</Text>
@@ -13,13 +15,14 @@ export default function GalleryMatchBasedWorkout({ matchMemberWorkout }) {
         style={styles.container}
         horizontal
         data={matchMemberWorkout}
-        keyExtractor={(matchMemberWorkout) => matchMemberWorkout.id.toString()}
+        keyExtractor={(Members) => Members.id.toString()}
         renderItem={({ item }) => (
           <CardMatchBasedWorkout
             name={item.name}
             image={item.image}
             location={item.location}
             titles={item.titles}
+            onPress={() => navigation.navigate("MemberProfile", item)}
           />
         )}
       />

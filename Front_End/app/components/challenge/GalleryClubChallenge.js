@@ -1,10 +1,12 @@
 import { StyleSheet, FlatList, Text, View } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 import colors from "../../config/colors";
 import CardChallenges from "./CardChallenges";
 
 export default function GalleryClubChallenge({ ClubChallenge }) {
+  const navigation = useNavigation();
   return (
     <View style={styles.mainContainer}>
       <View style={styles.titleContainer}>
@@ -17,7 +19,8 @@ export default function GalleryClubChallenge({ ClubChallenge }) {
         keyExtractor={(ClubChallenge) => ClubChallenge.id.toString()}
         renderItem={({ item }) => (
           <CardChallenges
-            onPress={() => console.log("club challenge", item)}
+            onPressCard={() => navigation.navigate("ChallengeDetails", item)}
+            onPressBtn={() => navigation.navigate("JoinedChallnege", item)}
             challengeImage={item.challengeImage}
             challengeName={item.challengeName}
             duration={item.duration}
