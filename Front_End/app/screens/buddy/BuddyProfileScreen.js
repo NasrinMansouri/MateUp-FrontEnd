@@ -7,7 +7,6 @@ import Screen from "../../components/Screen";
 import Line from "../../components/Line";
 import {
   Bio,
-  HeaderTile,
   ProfileTile,
   UserImage,
 } from "../../components/shareMemberProfile";
@@ -16,7 +15,9 @@ import ListBulletPointWithText from "../../components/ListBulletPointWithText";
 import BulletList from "../../components/shareMemberProfile/BulletList";
 import GalleryJoinedChallenge from "../../components/challenge/GalleryJoinedChallenge";
 
-export default function BuddyProfileScreen() {
+export default function BuddyProfileScreen({ route }) {
+  const Members = route.params;
+
   // pass userProfile as prop and get the data from backend later
   const userProfile = {
     id: 1,
