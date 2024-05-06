@@ -25,7 +25,7 @@ if (Platform.OS === "android") {
   }
 }
 
-export default function CoachScreen({}) {
+export default function CoachScreen({ navigation }) {
   // to keep track of which button is active
   const [activeContent, setActiveContent] = useState("meet trainers");
   const [modalVisible, setModalVisible] = useState(false);
@@ -45,7 +45,13 @@ export default function CoachScreen({}) {
   return (
     <Screen style={styles.screen}>
       <View style={styles.nav}>
-        <TopNav showSearchBar={true} />
+        <TopNav
+          showSearchBar={true}
+          onPressMessage={() => console.log("message")}
+          onPressNotification={() =>
+            navigation.navigate("Notification", { screen: "coach" })
+          }
+        />
       </View>
       <ScrollView>
         <View style={styles.topBtnscontainer}>
@@ -93,7 +99,10 @@ export default function CoachScreen({}) {
 
         <View style={styles.contentContainer}>
           {activeContent === "meet trainers" ? (
-            <MeetTtrainer />
+            <MeetTtrainer
+              onPressAllCoaches={() => navigation.navigate("CoachProfile")}
+              onPressClubCoaches={() => navigation.navigate("CoachProfile")}
+            />
           ) : (
             <MySessions />
           )}
