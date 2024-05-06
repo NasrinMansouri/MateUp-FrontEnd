@@ -1,4 +1,10 @@
-import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+  Linking,
+} from "react-native";
 import React from "react";
 import * as Yup from "yup";
 import { Entypo } from "@expo/vector-icons";
@@ -14,6 +20,11 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function LoginScreen(props) {
+  const handleSignUp = () => {
+    // navigate to basic-fit website
+    Linking.openURL("https://www.basic-fit.com/en-be/home");
+  };
+
   return (
     <Screen style={styles.container}>
       <TouchableWithoutFeedback>
@@ -83,7 +94,7 @@ export default function LoginScreen(props) {
           <SubmitButton title="Login" />
           {/* TODO */}
           {/* i need to pass basic fit url */}
-          <TouchableWithoutFeedback onPress={() => console.log("not a member")}>
+          <TouchableWithoutFeedback onPress={handleSignUp}>
             <View style={styles.lastBtnContainer}>
               <Text style={styles.ForgetPassText}>Not A Member Yet ? </Text>
               <Entypo
