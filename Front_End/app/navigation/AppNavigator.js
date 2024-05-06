@@ -7,10 +7,11 @@ import { useTheme } from "react-native-paper";
 
 import colors from "../config/colors";
 import { Screen } from "../components/Screen";
-import BuddyScreen from "../screens/buddy/BuddyScreen";
 import ChallengeScreen from "../screens/challenge/ChallengeScreen";
-import CoachScreen from "../screens/coach/CoachScreen";
 import HomeNavigator from "./HomeNavigator";
+import BuddyNavigator from "./BuddyNavigator";
+import CoachNavigator from "./CoachNavigator";
+import ChallengeNavigator from "./ChallengeNavigator";
 
 const CalendarScreen = () => {
   <Screen>
@@ -67,7 +68,7 @@ const AppNavigator = () => {
       />
       <Tab.Screen
         name="Buddy"
-        component={BuddyScreen}
+        component={BuddyNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
@@ -80,7 +81,7 @@ const AppNavigator = () => {
       />
       <Tab.Screen
         name="Coach"
-        component={CoachScreen}
+        component={CoachNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="account" color={color} size={24} />
@@ -89,7 +90,7 @@ const AppNavigator = () => {
       />
       <Tab.Screen
         name="Challenge"
-        component={ChallengeScreen}
+        component={ChallengeNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="trophy" color={color} size={22} />
