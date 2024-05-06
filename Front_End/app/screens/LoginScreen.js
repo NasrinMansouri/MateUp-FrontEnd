@@ -26,7 +26,7 @@ export default function LoginScreen(props) {
   };
 
   return (
-    <Screen style={styles.container}>
+    <Screen style={styles.screen}>
       <TouchableWithoutFeedback>
         <Text style={styles.helpText}>Need help ?</Text>
       </TouchableWithoutFeedback>
@@ -92,8 +92,6 @@ export default function LoginScreen(props) {
 
         <View style={styles.buttonContainer}>
           <SubmitButton title="Login" />
-          {/* TODO */}
-          {/* i need to pass basic fit url */}
           <TouchableWithoutFeedback onPress={handleSignUp}>
             <View style={styles.lastBtnContainer}>
               <Text style={styles.ForgetPassText}>Not A Member Yet ? </Text>
@@ -111,8 +109,9 @@ export default function LoginScreen(props) {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     padding: 10,
+    // backgroundColor: colors.blackBc,
   },
   helpText: {
     color: colors.orangePrimary,
