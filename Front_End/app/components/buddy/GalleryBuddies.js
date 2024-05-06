@@ -8,7 +8,7 @@ import { FlatList, StyleSheet, View, Text } from "react-native";
 import CardProfile from "../CardProfile";
 import colors from "../../config/colors";
 
-function GalleryBuddies({ buddies, style, header }) {
+function GalleryBuddies({ buddies, style, header, paddingLeft = 16 }) {
   const capitalizeFirstLetter = (string) => {
     // capitalize first letter and make rest lowercase
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -49,7 +49,7 @@ function GalleryBuddies({ buddies, style, header }) {
         </View>
       )}
       <FlatList
-        style={[styles.container, style]}
+        style={[styles.container, style, { paddingLeft: paddingLeft }]}
         horizontal
         showsHorizontalScrollIndicator={false}
         data={buddies}
@@ -80,7 +80,7 @@ function GalleryBuddies({ buddies, style, header }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.blackBc,
-    paddingLeft: 16,
+    // paddingLeft: 16,
   },
   header: {
     fontFamily: "montserrat-black",
