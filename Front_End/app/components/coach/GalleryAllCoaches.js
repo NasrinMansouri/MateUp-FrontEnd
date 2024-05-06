@@ -4,7 +4,10 @@ import React from "react";
 import CardAllCoaches from "./CardAllCoaches";
 import colors from "../../config/colors";
 
-export default function GalleryAllCoaches({ meetAllCoaches }) {
+export default function GalleryAllCoaches({
+  meetAllCoaches,
+  onPressAllCoaches,
+}) {
   return (
     // <View style={styles.container}>
     //   <Text style={styles.title}>Meet All Coaches</Text>
@@ -31,6 +34,7 @@ export default function GalleryAllCoaches({ meetAllCoaches }) {
             image={coach.image}
             location={coach.location}
             titles={coach.titles}
+            onPress={onPressAllCoaches}
           />
         ))}
       </ScrollView>

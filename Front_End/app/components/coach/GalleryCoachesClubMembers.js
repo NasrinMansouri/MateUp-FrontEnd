@@ -6,7 +6,10 @@ import React from "react";
 import colors from "../../config/colors";
 import CardCoachClubMember from "./CardCoachClubMember";
 
-export default function GalleryCoachesClubMembers({ coachesClubMember }) {
+export default function GalleryCoachesClubMembers({
+  coachesClubMember,
+  onPressClubCoaches,
+}) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Coaches at your club</Text>
@@ -21,6 +24,7 @@ export default function GalleryCoachesClubMembers({ coachesClubMember }) {
             name={item.name}
             image={item.image}
             titles={item.titles}
+            onPress={onPressClubCoaches}
           />
         )}
       />
