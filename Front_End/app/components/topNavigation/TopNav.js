@@ -19,6 +19,8 @@ export default function TopNav({
   showUserProfile,
   userProfileImage,
   onPressProfile,
+  onPressMessage,
+  onPressNotification,
 }) {
   return (
     <View style={styles.mainContainer}>
