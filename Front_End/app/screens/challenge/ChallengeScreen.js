@@ -40,7 +40,7 @@ export default function ChallengeScreen({}) {
   };
 
   return (
-    <Screen>
+    <Screen style={styles.screen}>
       <TopNav showSearchBar={true} />
       {/* <Text style={styles.title}>group challenges</Text> */}
       <View style={styles.topBtnscontainer}>
@@ -76,10 +76,13 @@ export default function ChallengeScreen({}) {
 }
 
 const styles = StyleSheet.create({
+  screen: {
+    backgroundColor: colors.blackBc,
+  },
   topBtnscontainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 40,
+    marginTop: 20,
     // marginBottom: 20,
   },
   contentContainer: {
