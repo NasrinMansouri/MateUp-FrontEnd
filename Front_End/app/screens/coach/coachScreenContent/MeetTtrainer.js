@@ -64,12 +64,21 @@ const coachesData = [
   },
 ];
 
-export default function MeetTtrainer() {
+export default function MeetTtrainer({
+  onPressClubCoaches,
+  onPressAllCoaches,
+}) {
   return (
     <View>
       <ScrollView style={styles.container}>
-        <GalleryCoachesClubMembers coachesClubMember={coachesClubMembersData} />
-        <GalleryAllCoaches meetAllCoaches={coachesData} />
+        <GalleryCoachesClubMembers
+          coachesClubMember={coachesClubMembersData}
+          onPressClubCoaches={onPressClubCoaches}
+        />
+        <GalleryAllCoaches
+          meetAllCoaches={coachesData}
+          onPressAllCoaches={onPressAllCoaches}
+        />
       </ScrollView>
     </View>
   );
