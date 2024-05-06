@@ -16,7 +16,73 @@ import ListBulletPointWithText from "../../components/ListBulletPointWithText";
 import BulletList from "../../components/shareMemberProfile/BulletList";
 import GalleryJoinedChallenge from "../../components/challenge/GalleryJoinedChallenge";
 
-export default function BuddyProfileScreen({ userProfile }) {
+export default function BuddyProfileScreen() {
+  // pass userProfile as prop and get the data from backend later
+  const userProfile = {
+    id: 1,
+    firstName: "John",
+    lastName: "Doe",
+    location: "los angeles street" + " 123",
+    bio: "Hey there, I’m a fitness enthusiast, born with love for movement, my journey to fitness has been a dynamic dance between sweat sessions and socialising.",
+    userImage: require("../../../assets/person3.jpg"),
+    userworkout: [
+      "Running",
+      "Swimming",
+      "Cycling",
+      "Strength Training",
+      "Yoga",
+    ],
+    level: ["Beginner"],
+    buddiesData: [
+      {
+        id: 1,
+        name: "John Doe",
+        image: require("../../../assets/person3.jpg"),
+      },
+      {
+        id: 2,
+        name: "John Doeeeeeeeeeeeeeeeeeee",
+        image: require("../../../assets/person3.jpg"),
+      },
+      {
+        id: 3,
+        name: "John Doe",
+        image: require("../../../assets/person3.jpg"),
+      },
+      {
+        id: 4,
+        name: "John Doeeeeeeeeeeeeeeeeeee",
+        image: require("../../../assets/person3.jpg"),
+      },
+      {
+        id: 5,
+        name: "John Doe",
+        image: require("../../../assets/person3.jpg"),
+      },
+    ],
+    joinedChallengeData: [
+      {
+        id: 1,
+        challenegImage: require("../../../assets/person3.jpg"),
+        challengeName: "Cardio Boost Challenge",
+        challengeGoal: "15 Hours",
+        startDate: "Aug 3",
+        endDate: "Aug 4",
+        year: "2022",
+        time: "10:00 AM",
+      },
+      {
+        id: 2,
+        challenegImage: require("../../../assets/person3.jpg"),
+        challengeName: "Cardio Boost Challenge",
+        challengeGoal: "15 Hours",
+        startDate: "Aug 3",
+        endDate: "Aug 4",
+        year: "2022",
+        time: "10:00 AM",
+      },
+    ],
+  };
   const {
     firstName,
     lastName,
@@ -42,10 +108,10 @@ export default function BuddyProfileScreen({ userProfile }) {
   return (
     <Screen style={styles.screen}>
       <ScrollView style={styles.container} ref={scrollRef}>
-        <HeaderTile
+        {/* <HeaderTile
           onPressBack={() => console.log("pressed back")}
           onPressShare={() => console.log("pressed share")}
-        />
+        /> */}
         <UserImage
           userImage={userImage}
           imageWidth={116}
@@ -111,6 +177,7 @@ export default function BuddyProfileScreen({ userProfile }) {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    backgroundColor: colors.blackBc,
   },
   buttonContainer: {
     marginRight: 16,
