@@ -5,9 +5,19 @@ import LocationWithIcon from "../LocationWithIcon";
 import ListBulletPointWithText from "../ListBulletPointWithText";
 import colors from "../../config/colors";
 
-export default function CardAllCoaches({ image, name, location, titles }) {
+export default function CardAllCoaches({
+  image,
+  name,
+  location,
+  titles,
+  onPress,
+}) {
   return (
-    <TouchableOpacity activeOpacity={0.8} style={styles.container}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      style={styles.container}
+      onPress={onPress}
+    >
       <View>
         <Image source={image} style={styles.image} />
       </View>
