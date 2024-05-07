@@ -2,7 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import colors from "../config/colors";
-import MainHomeScreen from "../screens/home/MainHomeScreen";
+import HomeScreen from "../screens/home/HomeScreen";
 import BuddyScreen from "../screens/buddy/BuddyScreen";
 import BuddyProfileScreen from "../screens/buddy/BuddyProfileScreen";
 import NotificationScreen from "../screens/NotificationScreen";
@@ -14,7 +14,7 @@ const HomeNavigator = () => {
     <Stack.Navigator>
       <Stack.Screen
         name="Home"
-        component={MainHomeScreen}
+        component={HomeScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
@@ -22,6 +22,7 @@ const HomeNavigator = () => {
         component={BuddyScreen}
         options={{ headerShown: false }}
       />
+
       <Stack.Screen
         name="MemberProfile"
         component={BuddyProfileScreen}
@@ -29,9 +30,11 @@ const HomeNavigator = () => {
           headerStyle: {
             backgroundColor: colors.blackBc,
           },
+
           headerTitle: "",
         }}
       />
+
       <Stack.Screen
         name="Notification"
         component={NotificationScreen}
