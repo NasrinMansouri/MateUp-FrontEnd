@@ -4,11 +4,13 @@
 
 import React from "react";
 import { FlatList, StyleSheet, View, Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import CardProfile from "../CardProfile";
 import colors from "../../config/colors";
 
 function GalleryBuddies({ buddies, style, header, paddingLeft = 16 }) {
+  const navigation = useNavigation();
   const capitalizeFirstLetter = (string) => {
     // capitalize first letter and make rest lowercase
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -56,7 +58,7 @@ function GalleryBuddies({ buddies, style, header, paddingLeft = 16 }) {
         keyExtractor={(buddies) => buddies.id.toString()}
         renderItem={({ item }) => (
           <CardProfile
-            onPress={() => console.log("my buddies", item)}
+            onPressProfile={() => navigation.navigate("MemberProfile", item)}
             // name={capitalizeFirstLetter(item.name)}
             name={item.name ? capitalizeFirstLetter(item.name) : null}
             backgroundColor={colors.blackBc}

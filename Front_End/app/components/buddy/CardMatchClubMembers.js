@@ -135,29 +135,38 @@ import CardProfile from "../CardProfile";
 import colors from "../../config/colors";
 import ListBulletPointWithText from "../ListBulletPointWithText";
 
-export default function CardMatchClubMembers({ name, image, titles, onPress }) {
+export default function CardMatchClubMembers({
+  name,
+  image,
+  titles,
+  onPress,
+  onPressProfile,
+}) {
   return (
-    <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
-      <View style={styles.container}>
-        <View style={styles.profile}>
-          <CardProfile
-            name={name}
-            image={image}
-            imageWidth={116}
-            imageHeight={116}
-            imageRadius={116 / 2}
-            cardWidth={142}
-            cardHeight={140}
-            backgroundColor={colors.blackBc}
-            flexDirection={"column"}
-            fontFamily={"nunitoSans-regular"}
-            fontSize={16}
-            textTransform={"capitalize"}
-            textColor={colors.white}
-          />
-        </View>
-        <ListBulletPointWithText titles={titles} textColor={colors.white} />
+    <TouchableOpacity
+      onPress={onPress}
+      activeOpacity={0.9}
+      style={styles.container}
+    >
+      <View style={styles.profile}>
+        <CardProfile
+          onPressProfile={onPressProfile}
+          name={name}
+          image={image}
+          imageWidth={116}
+          imageHeight={116}
+          imageRadius={116 / 2}
+          cardWidth={142}
+          cardHeight={140}
+          // backgroundColor={colors.blackBc}
+          flexDirection={"column"}
+          fontFamily={"nunitoSans-regular"}
+          fontSize={16}
+          textTransform={"capitalize"}
+          textColor={colors.white}
+        />
       </View>
+      <ListBulletPointWithText titles={titles} textColor={colors.white} />
     </TouchableOpacity>
   );
 }
@@ -167,6 +176,7 @@ const styles = StyleSheet.create({
     width: 170,
     height: 220,
     marginRight: 8,
+    backgroundColor: colors.blackBc,
   },
   profile: {
     marginBottom: 18,

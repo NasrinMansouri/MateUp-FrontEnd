@@ -25,7 +25,7 @@ function CardProfile({
   fontSize,
   fontWeight,
   textColor,
-  onPress,
+  onPressProfile,
   alignItems = "center",
   justifyContent = "center",
   textTransform = "capitalize",
@@ -35,7 +35,7 @@ function CardProfile({
 }) {
   return (
     <TouchableOpacity
-      onPress={onPress}
+      onPress={onPressProfile}
       activeOpacity={0.8}
       style={{ backgroundColor: backgroundColor }}
     >
