@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 import React from "react";
 
 import Line from "../../components/Line";
@@ -15,7 +15,7 @@ import {
   GalleryEducationalContent,
 } from "../../components/home";
 
-export default function MainHomeScreen({ navigation }) {
+export default function HomeScreen({ navigation }) {
   const renderItemCache = {
     DisplayBuddies: (item) => (
       <View style={styles.buddiesContainer}>
@@ -38,10 +38,7 @@ export default function MainHomeScreen({ navigation }) {
       </View>
     ),
     GalleryPeopleYouMightKnowComponent: (item) => (
-      <GalleryPeopleYouMightKnow
-        item={item}
-        onPress={() => navigation.navigate("MemberProfile", { item })}
-      />
+      <GalleryPeopleYouMightKnow item={item} />
     ),
     CardMeetTheMemberOfTheMonthComponent: (item) => (
       <CardMeetTheMemberOfTheMonth item={item} />
