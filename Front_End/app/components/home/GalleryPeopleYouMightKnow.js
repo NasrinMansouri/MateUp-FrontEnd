@@ -2,11 +2,13 @@
 
 import React from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import CardProfile from "../CardProfile";
 import colors from "../../config/colors";
 
-function GalleryPeopleYouMightKnow({ members, onPress }) {
+function GalleryPeopleYouMightKnow({}) {
+  const navigation = useNavigation();
   //dummy data for testing
   const membersData = [
     {
@@ -52,7 +54,7 @@ function GalleryPeopleYouMightKnow({ members, onPress }) {
           keyExtractor={(members) => members.id.toString()}
           renderItem={({ item }) => (
             <CardProfile
-              onPress={onPress}
+              onPressProfile={() => navigation.navigate("MemberProfile", item)}
               name={capitalizeFirstLetter(item.name)}
               backgroundColor={colors.blackBc}
               image={item.image}
