@@ -25,7 +25,7 @@ export default function GalleryBuddiesJoinedChallenge({
         renderItem={({ item }) => (
           <CardChallenges
             onPressCard={() => navigation.navigate("ChallengeDetails", item)}
-            onPressBtn={() => navigation.navigate("JoinedChallnege", item)}
+            onPressBtn={() => navigation.navigate("JoinedChallenge", item)}
             challengeImage={item.challengeImage}
             challengeName={item.challengeName}
             duration={item.duration}
