@@ -7,7 +7,11 @@ import ListBulletPointWithText from "../ListBulletPointWithText";
 
 export default function CardCoachClubMember({ name, image, titles, onPress }) {
   return (
-    <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
+    <TouchableOpacity
+      onPress={onPress}
+      activeOpacity={0.8}
+      style={styles.MainContainer}
+    >
       <View style={styles.container}>
         <View style={styles.profile}>
           <CardProfile
@@ -18,7 +22,6 @@ export default function CardCoachClubMember({ name, image, titles, onPress }) {
             imageRadius={116 / 2}
             cardWidth={142}
             cardHeight={140}
-            backgroundColor={colors.blackBc}
             flexDirection={"column"}
             fontFamily={"nunitoSans-regular"}
             fontSize={16}
@@ -33,12 +36,14 @@ export default function CardCoachClubMember({ name, image, titles, onPress }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  MainContainer: {
     width: 170,
     height: 220,
     marginRight: 8,
+    backgroundColor: colors.blackBc,
+  },
+  container: {
     paddingLeft: 16,
-    // paddingRight: 30,
   },
   profile: {
     marginBottom: 18,

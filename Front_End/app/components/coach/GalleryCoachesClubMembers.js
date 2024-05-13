@@ -2,6 +2,7 @@
 
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 import colors from "../../config/colors";
 import CardCoachClubMember from "./CardCoachClubMember";
@@ -10,6 +11,7 @@ export default function GalleryCoachesClubMembers({
   coachesClubMember,
   onPressClubCoaches,
 }) {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Coaches at your club</Text>
@@ -24,7 +26,7 @@ export default function GalleryCoachesClubMembers({
             name={item.name}
             image={item.image}
             titles={item.titles}
-            onPress={onPressClubCoaches}
+            onPress={() => navigation.navigate("CoachProfile", item)}
           />
         )}
       />
