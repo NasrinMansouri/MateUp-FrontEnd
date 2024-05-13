@@ -3,11 +3,13 @@ import React from "react";
 
 import CardAllCoaches from "./CardAllCoaches";
 import colors from "../../config/colors";
+import { useNavigation } from "@react-navigation/native";
 
 export default function GalleryAllCoaches({
   meetAllCoaches,
   onPressAllCoaches,
 }) {
+  const navigation = useNavigation();
   return (
     // <View style={styles.container}>
     //   <Text style={styles.title}>Meet All Coaches</Text>
@@ -34,7 +36,7 @@ export default function GalleryAllCoaches({
             image={coach.image}
             location={coach.location}
             titles={coach.titles}
-            onPress={onPressAllCoaches}
+            onPress={() => navigation.navigate("CoachProfile", id)}
           />
         ))}
       </ScrollView>
