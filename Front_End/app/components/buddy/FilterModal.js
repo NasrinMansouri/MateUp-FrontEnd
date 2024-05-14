@@ -3,7 +3,8 @@ import { ScrollView, View, StyleSheet } from "react-native";
 
 import AppButton from "../AppButton";
 import colors from "../../config/colors";
-import { ModalHeader, DropDownList, DatePicker, Gender } from "./filter/index";
+import { ModalHeader, DropDownList, DatePicker, Gender } from "../filter";
+// import TimePicker from "../filter/TimePicker";
 
 const FilterModal = ({ setModalVisible }) => {
   //to apply reset, when clicked on reset button
@@ -51,6 +52,7 @@ const FilterModal = ({ setModalVisible }) => {
           data={dataLocation}
         />
         <DatePicker title="When" placeholder={"Select date"} />
+        {/* <TimePicker title="Time" placeholder={"Select time"} /> */}
         <View style={styles.btnContainer}>
           <AppButton
             title="Reset"
