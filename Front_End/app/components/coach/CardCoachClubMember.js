@@ -38,9 +38,11 @@ export default function CardCoachClubMember({ name, image, titles, onPress }) {
 const styles = StyleSheet.create({
   MainContainer: {
     width: 170,
-    height: 220,
+    height: 230,
     marginRight: 8,
     backgroundColor: colors.blackBc,
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   container: {
     paddingLeft: 16,
