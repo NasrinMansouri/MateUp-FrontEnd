@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 
 import colors from "../../config/colors";
 
-function ListItemSeparator({ backgroundColor = colors.grayLight50 }) {
+function ListItemSeparator({ backgroundColor = colors.black }) {
   return (
     <View style={[styles.separator, { backgroundColor: backgroundColor }]} />
   );
