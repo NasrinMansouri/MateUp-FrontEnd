@@ -11,9 +11,9 @@ const Stack = createNativeStackNavigator();
 
 const CoachNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Coach">
+    <Stack.Navigator initialRouteName="coach">
       <Stack.Screen
-        name="Coach"
+        name="coach"
         component={CoachScreen}
         options={{ headerShown: false }}
       />

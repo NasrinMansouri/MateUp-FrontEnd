@@ -7,7 +7,6 @@ import { useTheme } from "react-native-paper";
 
 import colors from "../config/colors";
 import { Screen } from "../components/Screen";
-import ChallengeScreen from "../screens/challenge/ChallengeScreen";
 import HomeNavigator from "./HomeNavigator";
 import BuddyNavigator from "./BuddyNavigator";
 import CoachNavigator from "./CoachNavigator";
