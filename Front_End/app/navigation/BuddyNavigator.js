@@ -11,11 +11,11 @@ const Stack = createNativeStackNavigator();
 const BuddyNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Buddy"
+      initialRouteName="buddy"
       // screenOptions={{ presentation: "modal" }}
     >
       <Stack.Screen
-        name="Buddy"
+        name="buddy"
         component={BuddyScreen}
         options={{ headerShown: false }}
       />
