@@ -59,32 +59,18 @@ export default function SearchBar({ onPress }) {
           style={styles.iconSearch}
           onPress={() => setModalVisible(true)}
         />
-        <TextInput
-          style={styles.input}
-          placeholder="Search..."
-          placeholderTextColor={colors.white}
-          autoCapitalize="none"
-          autoCorrect={false}
-          keyboardType="default"
-          onFocus={() => setModalVisible(true)}
-        />
       </View>
 
-      {/*  TODO: modal back ground color */}
-      <View style={styles.modalContainer}>
-        <Modal
-          visible={ModalVisible}
-          animationType="slide"
-          style={styles.modal}
-        >
+      <Modal visible={ModalVisible} animationType="slide">
+        <View style={styles.containerModal}>
           <View style={styles.containerBackSearch}>
             <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
-              <Ionicons name="chevron-back" size={24} color={colors.black} />
+              <Ionicons name="chevron-back" size={24} color={colors.white} />
             </TouchableWithoutFeedback>
             <TextInput
               style={styles.inputModal}
               placeholder="Search here..."
-              placeholderTextColor={colors.black}
+              placeholderTextColor={colors.grayLight50}
               autoCapitalize="none"
               autoCorrect={false}
               keyboardType="default"
@@ -94,6 +80,7 @@ export default function SearchBar({ onPress }) {
             />
           </View>
           <FlatList
+            showsVerticalScrollIndicator={false}
             data={filteredResults}
             keyExtractor={(item) => item.id.toString()}
             ItemSeparatorComponent={ListItemSeparator}
@@ -113,8 +100,8 @@ export default function SearchBar({ onPress }) {
               </TouchableWithoutFeedback>
             )}
           />
-        </Modal>
-      </View>
+        </View>
+      </Modal>
     </>
   );
 }
@@ -128,13 +115,17 @@ const styles = StyleSheet.create({
   },
   input: {
     padding: 10,
-    // borderBottomColor: colors.grayLight100,
-    // borderBottomWidth: 1,
+    flex: 1,
+  },
+  containerModal: {
+    backgroundColor: colors.blackBc, //this change the background color
     flex: 1,
   },
   modal: {
     flex: 1,
+    backgroundColor: "black",
   },
+
   inputModal: {
     flex: 1,
     height: 40,
@@ -142,13 +133,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     borderRadius: 4,
+    borderColor: colors.orangeSecondary,
+    color: colors.white,
   },
   containerBackSearch: {
     flexDirection: "row",
     alignItems: "center",
     marginTop: 60,
     marginRight: 16,
-    marginLeft: 16,
+    marginLeft: 10,
   },
   resultContainer: {
     flexDirection: "row",
@@ -158,7 +151,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16,
-    fontWeight: "bold",
+    color: colors.white,
   },
   image: {
     width: 50,
@@ -171,5 +164,6 @@ const styles = StyleSheet.create({
   },
   noResultsText: {
     fontSize: 20,
+    color: colors.white,
   },
 });
