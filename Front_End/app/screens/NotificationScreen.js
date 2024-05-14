@@ -118,5 +118,6 @@ export default function ListItemGallery({ style }) {
 const styles = StyleSheet.create({
   container: {
     marginTop: 40,
+    height: "100%",
   },
 });
