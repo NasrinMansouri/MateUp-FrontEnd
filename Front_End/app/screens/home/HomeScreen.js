@@ -22,7 +22,7 @@ export default function HomeScreen({ navigation }) {
         <DisplayBuddies
           style={{ marginBottom: 40 }}
           item={item}
-          onPressAddBuddy={() => navigation.navigate("Buddy")}
+          onPressAddBuddy={() => navigation.jumpTo("Buddy")}
         />
       </View>
     ),
