@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import colors from "../../config/colors";
 import CardMatchClubMembers from "./CardMatchClubMembers";
 
-export default function GalleryMatchClubMembers({ UserClubMembers }) {
+export default function GalleryMatchClubMembers({ UserClubMembers, onPress }) {
   const navigation = useNavigation();
   return (
     <View style={styles.mainContainer}>
@@ -23,8 +23,9 @@ export default function GalleryMatchClubMembers({ UserClubMembers }) {
             name={item.name}
             image={item.image}
             titles={item.titles}
-            onPress={() => navigation.navigate("MemberProfile", item)}
+            // onPress={() => navigation.navigate("MemberProfile", item)}
             onPressProfile={() => navigation.navigate("MemberProfile", item)}
+            // onPressProfile={onPress}
           />
         )}
       />

@@ -5,7 +5,10 @@ import { useNavigation } from "@react-navigation/native";
 import colors from "../../config/colors";
 import CardMatchBasedWorkout from "./CardMatchBasedWorkout";
 
-export default function GalleryMatchBasedWorkout({ matchMemberWorkout }) {
+export default function GalleryMatchBasedWorkout({
+  matchMemberWorkout,
+  onPress,
+}) {
   const navigation = useNavigation();
   return (
     <View style={styles.mainContainer}>
@@ -23,6 +26,7 @@ export default function GalleryMatchBasedWorkout({ matchMemberWorkout }) {
             location={item.location}
             titles={item.titles}
             onPress={() => navigation.navigate("MemberProfile", item)}
+            // onPressProfile={onPress}
           />
         )}
       />

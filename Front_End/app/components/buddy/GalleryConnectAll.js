@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import colors from "../../config/colors";
 import CardMatchBasedWorkout from "./CardMatchBasedWorkout";
 
-export default function GalleryConnectAll({ connectAllMembers }) {
+export default function GalleryConnectAll({ connectAllMembers, onPress }) {
   const navigation = useNavigation();
   return (
     <View style={styles.mainContainer}>
@@ -23,6 +23,7 @@ export default function GalleryConnectAll({ connectAllMembers }) {
             location={item.location}
             titles={item.titles}
             onPress={() => navigation.navigate("MemberProfile", item)}
+            // onPressProfile={onPress}
           />
         )}
       />
@@ -33,6 +34,7 @@ export default function GalleryConnectAll({ connectAllMembers }) {
 const styles = StyleSheet.create({
   mainContainer: {
     marginTop: 96,
+    marginBottom: 200,
   },
   container: {
     paddingTop: 16,
