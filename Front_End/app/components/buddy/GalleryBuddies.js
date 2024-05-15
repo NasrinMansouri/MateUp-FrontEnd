@@ -9,7 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import CardProfile from "../CardProfile";
 import colors from "../../config/colors";
 
-function GalleryBuddies({ buddies, style, header, paddingLeft = 16 }) {
+function GalleryBuddies({ buddies, style, header, paddingLeft = 16, onPress }) {
   const navigation = useNavigation();
   const capitalizeFirstLetter = (string) => {
     // capitalize first letter and make rest lowercase
@@ -58,7 +58,16 @@ function GalleryBuddies({ buddies, style, header, paddingLeft = 16 }) {
         keyExtractor={(buddies) => buddies.id.toString()}
         renderItem={({ item }) => (
           <CardProfile
-            onPressProfile={() => navigation.navigate("MemberProfile", item)}
+            // onPressProfile={() =>
+            //   navigation.navigate(
+            //     "MemberProfile",
+            //     item,
+            //     {
+            //       memberProfile: memberProfile,
+            //     }
+            //   )
+            // }
+            onPressProfile={onPress}
             // name={capitalizeFirstLetter(item.name)}
             name={item.name ? capitalizeFirstLetter(item.name) : null}
             backgroundColor={colors.blackBc}
