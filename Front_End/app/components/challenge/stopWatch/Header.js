@@ -8,18 +8,18 @@ const Header = ({
   activeButton,
   handleFinish,
   handleModalOpen,
-  //   handleClose,
+  // handleModalClose,
 }) => {
   const navigation = useNavigation();
-  const handleClose = () => {
-    navigation.goBack();
-  };
+  // const handleModalClose = () => {
+  //   setModalVisible(false);
+  // };
 
   return (
     <View style={styles.headerContainer}>
-      <TouchableOpacity style={styles.closeButton} onPress={handleClose}>
+      {/* <TouchableOpacity style={styles.closeButton} onPress={handleModalClose}>
         <Text style={styles.closeButtonText}>Close</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       {activeButton === "pause" && (
         <TouchableOpacity
           style={styles.finishButtonContainer}
@@ -38,7 +38,7 @@ const Header = ({
 const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     alignItems: "center",
     marginTop: 20,
   },
