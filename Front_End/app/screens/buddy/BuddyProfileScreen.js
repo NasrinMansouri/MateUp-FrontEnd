@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View, Text } from "react-native";
 
 import AppButton from "../../components/AppButton";
 import colors from "../../config/colors";
@@ -16,10 +16,40 @@ import BulletList from "../../components/shareMemberProfile/BulletList";
 import GalleryJoinedChallenge from "../../components/challenge/GalleryJoinedChallenge";
 
 export default function BuddyProfileScreen({ route }) {
-  const Members = route.params;
+  // const { memberProfile } = route.params;
+  // const { memberId } = route.params;
+  // useEffect(() => {
+  //   // Fetch member profile based on itemId
+  //   const fetchMemberProfile = async () => {
+  //     // Simulating data fetching
+  //     const response = await fetch(
+  //       `https://your-api-url/memberProfile/${memberId}`
+  //     );
+  //     const data = await response.json();
+  //     setMemberProfile(data);
+  //   };
 
-  // pass userProfile as prop and get the data from backend later
-  const userProfile = {
+  //   fetchMemberProfile();
+  // }, [memberId]);
+
+  // if (!memberProfile) {
+  //   return <Text>Loading...</Text>;
+  // }
+
+  // for backend connection
+  // const [memberProfile, setMemberProfile] = useState({});
+
+  // useEffect(() => {
+  //   loadMemberProfile();
+  // }, []);
+
+  // const loadMemberProfile = async () => {
+  //   const response = await membersProfileApi.getMembersProfile();
+  //   setMemberProfile(response.data);
+  // };
+
+  // // pass userProfile as prop and get the data from backend later
+  const memberProfile = {
     id: 1,
     firstName: "John",
     lastName: "Doe",
@@ -84,6 +114,7 @@ export default function BuddyProfileScreen({ route }) {
       },
     ],
   };
+
   const {
     firstName,
     lastName,
@@ -94,7 +125,7 @@ export default function BuddyProfileScreen({ route }) {
     level,
     buddiesData,
     joinedChallengeData,
-  } = userProfile;
+  } = memberProfile;
 
   //  to trigger go to top
   const scrollRef = useRef();
@@ -131,7 +162,7 @@ export default function BuddyProfileScreen({ route }) {
         <Bio bio={bio} />
         <View style={styles.buttonContainer}>
           <AppButton
-            title="Send Buddy Request"
+            title="Add As Buddy"
             onPress={() => console.log("add As buddy btn pressed")}
             fontSize={14}
           />
