@@ -1,5 +1,5 @@
 import { StyleSheet, View, FlatList } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 import Line from "../../components/Line";
 import colors from "../../config/colors";
@@ -14,8 +14,18 @@ import {
   CardMeetTheMemberOfTheMonth,
   GalleryEducationalContent,
 } from "../../components/home";
+import MenueContent from "./MenueContent";
 
 export default function HomeScreen({ navigation }) {
+  // for menue in top navigation
+  const [modalVisible, setModalVisible] = useState(false);
+  const handleModal = () => {
+    setModalVisible(!modalVisible);
+  };
+  const handleModalClose = () => {
+    setModalVisible(false);
+  };
+
   const renderItemCache = {
     DisplayBuddies: (item) => (
       <View style={styles.buddiesContainer}>
@@ -66,9 +76,8 @@ export default function HomeScreen({ navigation }) {
   return (
     <Screen style={styles.container}>
       <TopNav
-        showUserProfile={true}
-        userProfileImage={require("../../../assets/person2.jpg")}
-        onPressProfile={() => console.log("Profile image pressed")}
+        showMenue={true}
+        onPressMenue={handleModal}
         onPressNotification={() => navigation.navigate("Notification")}
         onPressMessage={() => console.log("Message image pressed")}
         // showSearchBar={true}
@@ -80,6 +89,11 @@ export default function HomeScreen({ navigation }) {
         // which renders the component(each item) based on the type
         renderItem={({ item }) => renderItemCache[item.type](item)}
         showsVerticalScrollIndicator={false}
+      />
+      <MenueContent
+        modalVisible={modalVisible}
+        handleModalClose={handleModal}
+        onPressProfile={() => console.log("Profile pressed")}
       />
     </Screen>
   );
