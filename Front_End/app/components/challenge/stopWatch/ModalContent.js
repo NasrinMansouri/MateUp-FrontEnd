@@ -16,6 +16,7 @@ const ModalContent = ({
   time,
   resumeAndCloseModal,
   saveWorkout,
+  deleteAndCloseModal,
 }) => {
   return (
     <Modal visible={modalVisible} animationType="slide">
@@ -27,18 +28,13 @@ const ModalContent = ({
           >
             <Text style={styles.resume}>Resume</Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity onPress={saveWorkout} style={styles.saveContainer}>
-            <Text style={styles.save}>Save</Text>
-          </TouchableOpacity> */}
         </View>
 
         <View style={styles.modalContent}>
-          <Text style={styles.text}>Great Job!</Text>
+          <Text style={styles.text1}>Great Job !</Text>
           <Text style={styles.text}>
             Your workout duration is :{" "}
-            <Text style={{ color: colors.orangePrimary }}>
-              {formatTime(time)}
-            </Text>
+            <Text style={styles.time}>{formatTime(time)}</Text>
           </Text>
 
           <View>
@@ -56,6 +52,13 @@ const ModalContent = ({
               title="Save"
               onPress={saveWorkout}
               backgroundColor={colors.orangeSecondary}
+              fontSize={14}
+              width="100%"
+            />
+            <AppButton
+              title="Delete"
+              onPress={deleteAndCloseModal}
+              backgroundColor={colors.blackBc}
               fontSize={14}
               width="100%"
             />
@@ -99,16 +102,28 @@ const styles = StyleSheet.create({
     marginTop: 60,
     height: "100%",
   },
-  text: {
-    fontSize: 16,
+  text1: {
+    fontSize: 20,
     fontFamily: "montserrat-black",
     color: colors.white,
     marginBottom: 30,
+    textTransform: "uppercase",
+  },
+  text: {
+    fontSize: 16,
+    fontFamily: "nunitoSans-extraBold",
+    color: colors.white,
+    marginBottom: 30,
+  },
+  time: {
+    color: colors.orangeSecondary,
+    fontSize: 16,
+    fontFamily: "montserrat-black",
   },
   textInpute: {
     color: colors.white,
     fontSize: 16,
-    fontFamily: "montserrat-black",
+    fontFamily: "nunitoSans-regular",
   },
   textInputeContainer: {
     borderWidth: 1,
@@ -121,7 +136,7 @@ const styles = StyleSheet.create({
   saveBtn: {
     position: "absolute",
     bottom: 0,
-    marginBottom: 200,
+    marginBottom: 150,
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
