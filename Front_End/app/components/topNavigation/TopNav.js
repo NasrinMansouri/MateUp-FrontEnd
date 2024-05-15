@@ -10,15 +10,16 @@ import {
 } from "react-native";
 import React from "react";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
 import SearchBar from "./SearchBar";
 import Colors from "../../config/colors";
 
 export default function TopNav({
   showSearchBar,
-  showUserProfile,
+  showMenue,
   userProfileImage,
-  onPressProfile,
+  onPressMenue,
   onPressMessage,
   onPressNotification,
 }) {
@@ -26,11 +27,12 @@ export default function TopNav({
     <View style={styles.mainContainer}>
       <View style={styles.LeftContainer}>
         {showSearchBar && <SearchBar searchedResults />}
-        {showUserProfile && (
-          <TouchableWithoutFeedback onPress={onPressProfile}>
-            <View style={styles.userImageContainer}>
+        {showMenue && (
+          <TouchableWithoutFeedback onPress={onPressMenue}>
+            {/* <View style={styles.userImageContainer}>
               <Image source={userProfileImage} style={styles.userImage} />
-            </View>
+            </View> */}
+            <Feather name="menu" size={24} color="white" />
           </TouchableWithoutFeedback>
         )}
       </View>
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     paddingLeft: 16,
     paddingBottom: 20,
-    paddingTop: 20,
+    paddingTop: 15,
     backgroundColor: Colors.blackBc,
     zIndex: 1,
   },
