@@ -17,6 +17,7 @@ const HomeNavigator = () => {
         component={HomeScreen}
         options={{ headerShown: false }}
       />
+
       <Stack.Screen
         name="Buddy"
         component={BuddyScreen}
@@ -30,7 +31,6 @@ const HomeNavigator = () => {
           headerStyle: {
             backgroundColor: colors.blackBc,
           },
-
           headerTitle: "",
         }}
       />
