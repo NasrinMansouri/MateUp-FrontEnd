@@ -9,10 +9,12 @@ import {
   ScrollView,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Modal,
 } from "react-native";
 
 import colors from "../../config/colors";
 import Screen from "../../components/Screen";
+import StopWatch from "../../screens/challenge/StopWatch";
 import BulletPointWithText from "../../components/BulletPointWithText";
 import ChallengeDescription from "../../components/challenge/ChallengeDescription";
 import DonutChart from "../../components/challenge/DonutChart";
@@ -21,9 +23,19 @@ import ShowReactions from "../../components/challenge/ShowReactions";
 import AddReactions from "../../components/challenge/AddReactions";
 import Like from "../../components/challenge/Like";
 import { useNavigation } from "@react-navigation/native";
+import AppButton from "../../components/AppButton";
 
-export default function JoinedChallengeScreen({}) {
-  const navigation = useNavigation();
+export default function JoinedChallengeScreen({ navigation }) {
+  // const navigation = useNavigation();
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const handleModal = () => {
+    setModalVisible(!modalVisible);
+  };
+
+  const handleModalClose = () => {
+    setModalVisible(false);
+  };
 
   const challengeDetailsProgress = {
     challengeImage: require("../../../assets/person3.jpg"),
@@ -63,7 +75,7 @@ export default function JoinedChallengeScreen({}) {
   };
 
   const handleBackPress = () => {
-    navigation.navigate("Challenge", { screen: "My Challenges" });
+    navigation.navigate("challenge", { screen: "My Challenges" });
   };
 
   const {
@@ -80,7 +92,7 @@ export default function JoinedChallengeScreen({}) {
   } = challengeDetailsProgress;
 
   return (
-    <Screen>
+    <Screen style={styles.screen}>
       <TouchableWithoutFeedback onPress={handleBackPress}>
         <View style={styles.headerTile}>
           <Ionicons
@@ -94,6 +106,14 @@ export default function JoinedChallengeScreen({}) {
 
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <Image source={challengeImage} style={styles.image} />
+        <View style={styles.recordContainer}>
+          <AppButton
+            title="Start Challenge"
+            fontSize={14}
+            backgroundColor={colors.green}
+            onPress={handleModal}
+          />
+        </View>
         <Text style={styles.name}>{ChallengeName}</Text>
         <View style={styles.typeContainer}>
           <BulletPointWithText
@@ -142,11 +162,30 @@ export default function JoinedChallengeScreen({}) {
           <AddReactions />
         </View>
       </ScrollView>
+
+      <Modal
+        animationType="slide"
+        visible={modalVisible}
+        onRequestClose={handleModalClose}
+      >
+        <View style={{ flex: 1, backgroundColor: colors.blackBc }}>
+          <TouchableOpacity
+            style={styles.closeButton}
+            onPress={handleModalClose}
+          >
+            <Text style={styles.closeButtonText}>Close</Text>
+          </TouchableOpacity>
+          <StopWatch />
+        </View>
+      </Modal>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+  },
   headerTile: {
     backgroundColor: colors.blackBc,
     height: 44,
@@ -164,8 +203,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   container: {
+    flex: 1,
+    marginTop: 20,
     marginLeft: 16,
     marginRight: 16,
+  },
+  recordContainer: {
+    marginBottom: 50,
   },
   image: {
     width: 78,
@@ -175,8 +219,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
-    marginBottom: 67,
-    marginTop: 40,
+    marginBottom: 40,
+    marginTop: 60,
   },
   name: {
     fontFamily: "montserrat-black",
@@ -218,5 +262,17 @@ const styles = StyleSheet.create({
   },
   addReactionContainer: {
     marginBottom: 300,
+  },
+  closeButton: {
+    position: "absolute",
+    top: 35,
+    left: 16,
+    zIndex: 2,
+  },
+  closeButtonText: {
+    color: colors.green,
+    fontSize: 16,
+    fontFamily: "montserrat-black",
+    // marginLeft: 16,
   },
 });
