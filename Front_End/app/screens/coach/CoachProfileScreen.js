@@ -41,7 +41,7 @@ export default function CoachProfileScreen({ navigation }) {
     videos: [
       {
         id: 1,
-        source: require("../../../assets/videos/trainer1.mp4"),
+        source: require("../../../assets/videos/BigBuckBunny.mp4"),
       },
     ],
   };
@@ -62,10 +62,6 @@ export default function CoachProfileScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
       <ScrollView style={styles.container}>
-        {/* <HeaderTile
-          onPressBack={() => console.log("pressed back")}
-          onPressShare={() => console.log("pressed share")}
-        /> */}
         <UserImage
           userImage={userImage}
           imageWidth={375}
