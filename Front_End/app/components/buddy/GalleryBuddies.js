@@ -58,16 +58,16 @@ function GalleryBuddies({ buddies, style, header, paddingLeft = 16, onPress }) {
         keyExtractor={(buddies) => buddies.id.toString()}
         renderItem={({ item }) => (
           <CardProfile
-            // onPressProfile={() =>
-            //   navigation.navigate(
-            //     "MemberProfile",
-            //     item,
-            //     {
-            //       memberProfile: memberProfile,
-            //     }
-            //   )
-            // }
-            onPressProfile={onPress}
+            onPressProfile={() =>
+              navigation.navigate(
+                "MemberProfile",
+                item
+                // {
+                //   memberProfile: memberProfile,
+                // }
+              )
+            }
+            // onPressProfile={onPress}
             // name={capitalizeFirstLetter(item.name)}
             name={item.name ? capitalizeFirstLetter(item.name) : null}
             backgroundColor={colors.blackBc}
