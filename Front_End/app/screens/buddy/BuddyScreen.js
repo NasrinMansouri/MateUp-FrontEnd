@@ -1,6 +1,4 @@
-// TODO: modal fills like floating, is not fix!
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   ScrollView,
@@ -13,6 +11,7 @@ import {
 import Screen from "../../components/Screen";
 import AppButtonBorder from "../../components/AppButtonBorder";
 import Line from "../../components/Line";
+import membersApi from "../../api/members";
 import TopNav from "../../components/topNavigation/TopNav";
 import colors from "../../config/colors";
 import {
@@ -87,6 +86,39 @@ const connectAllMembersData = [
 export default function BuddyScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
 
+  // for backend connection
+  // const [buddies, setBuddies] = useState([]);
+  // const [UserClubMembers, setUserClubMembers] = useState([]);
+  // const [matchClubMembers, setMatchClubMembers] = useState([]);
+  // const [connectAllMembers, setConnectAllMembers] = useState([]);
+
+  // useEffect(() => {
+  //   loadBuddies();
+  //   loadUserClubMembers();
+  //   loadMatchClubMembers();
+  //   loadConnectAllMembers();
+  // }, []);
+
+  // const loadBuddies = async () => {
+  //   const response = await membersApi.getBuddies();
+  //   setBuddies(response.data);
+  // };
+
+  // const loadUserClubMembers = async () => {
+  //   const response = await membersApi.getUserClubMembers();
+  //   setUserClubMembers(response.data);
+  // };
+
+  // const loadMatchClubMembers = async () => {
+  //   const response = await membersApi.getMatchClubMembers();
+  //   setMatchClubMembers(response.data);
+  // };
+
+  // const loadConnectAllMembers = async () => {
+  //   const response = await membersApi.getConnectAllMembers();
+  //   setConnectAllMembers(response.data);
+  // };
+
   return (
     <Screen style={styles.container}>
       <TopNav
@@ -98,20 +130,27 @@ export default function BuddyScreen({ navigation }) {
       />
       <ScrollView style={styles.container}>
         <View style={styles.buddyContainer}>
-          <GalleryBuddies buddies={buddiesData} />
+          <GalleryBuddies
+            buddies={buddiesData}
+            onPress={(item) => navigation.navigate("MemberProfile", { item })}
+          />
         </View>
         <Line marginBottom={40} marginTop={20} />
         <GalleryMatchClubMembers
           UserClubMembers={UserClubMembersData}
-          // onPress={() => navigation.navigate("MemberProfile")}
+          onPress={(item) =>
+            navigation.navigate("MemberProfile", { memberId: item.id })
+          }
         />
         <GalleryMatchBasedWorkout
           matchMemberWorkout={matchClubMembersData}
-          // onPress={() => navigation.navigate("MemberProfile")}
+          onPress={(item) =>
+            navigation.navigate("MemberProfile", { memberId: item.id })
+          }
         />
         <GalleryConnectAll
           connectAllMembers={connectAllMembersData}
-          // onPress={() => navigation.navigate("MemberProfile")}
+          onPress={(item) => navigation.navigate("MemberProfile", { item })}
         />
       </ScrollView>
       <View style={styles.fixButtonPosition}>
@@ -122,17 +161,19 @@ export default function BuddyScreen({ navigation }) {
           iconName="filter-variant"
         />
       </View>
-      <Modal
-        animationType="slide"
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(false);
-        }}
-      >
-        <View style={styles.modalView}>
-          <FilterModal setModalVisible={setModalVisible} />
-        </View>
-      </Modal>
+      <View style={{ backgroundColor: colors.black }}>
+        <Modal
+          animationType="slide"
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(false);
+          }}
+        >
+          <View style={styles.modalView}>
+            <FilterModal setModalVisible={setModalVisible} />
+          </View>
+        </Modal>
+      </View>
     </Screen>
   );
 }
