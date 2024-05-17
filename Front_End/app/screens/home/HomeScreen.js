@@ -17,15 +17,6 @@ import {
 import MenueScreen from "./MenueScreen";
 
 export default function HomeScreen({ navigation }) {
-  // for menue in top navigation
-  // const [modalVisible, setModalVisible] = useState(false);
-  // const handleModal = () => {
-  //   setModalVisible(!modalVisible);
-  // };
-  // const handleModalClose = () => {
-  //   setModalVisible(false);
-  // };
-
   const renderItemCache = {
     DisplayBuddies: (item) => (
       <View style={styles.buddiesContainer}>
