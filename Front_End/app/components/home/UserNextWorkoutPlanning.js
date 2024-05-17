@@ -11,11 +11,11 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
 
 export default function UserNextWorkoutPlanning({ onPress }) {
-  const [firstName, setFirstName] = useState("John ");
+  // const [firstName, setFirstName] = useState("John ");
 
   return (
     <View>
-      <Text style={styles.welcomeText}>WELCOME {firstName}</Text>
+      {/* <Text style={styles.welcomeText}>WELCOME {firstName}</Text> */}
       <View style={styles.container}>
         <View>
           <Text style={styles.textStyle}>
@@ -94,7 +94,7 @@ export default function UserNextWorkoutPlanning({ onPress }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.orangeSecondary,
-    height: 485,
+    height: 360,
     width: "100%",
     textTransform: "uppercase",
     paddingRight: 16,
@@ -155,9 +155,9 @@ const styles = StyleSheet.create({
   },
   heartIcon: {
     marginRight: 20,
-    marginTop: 16,
+    marginTop: 8,
   },
   emailIcon: {
-    marginTop: 16,
+    marginTop: 8,
   },
 });
