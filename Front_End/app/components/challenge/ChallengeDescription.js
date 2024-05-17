@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   moreAsText: {
     fontSize: 16,
     fontFamily: "nunitoSans-extraBold",
-    color: colors.green,
+    color: colors.grayLight100,
     marginBottom: 40,
   },
 });
