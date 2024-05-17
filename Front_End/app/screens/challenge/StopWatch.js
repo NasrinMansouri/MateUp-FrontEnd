@@ -13,6 +13,7 @@ const StopWatch = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [activeButton, setActiveButton] = useState("start");
   const [modalVisible, setModalVisible] = useState(false);
+  const [finishTime, setFinishTime] = useState(0);
 
   useEffect(() => {
     let interval = null;
@@ -50,7 +51,10 @@ const StopWatch = () => {
   };
 
   const handleFinish = () => {
+    pauseStopWatch();
     console.log("Elapsed time:", time); // Log the elapsed time
+    setFinishTime(time);
+    setModalVisible(true);
   };
 
   const handleModalOpen = () => {
@@ -85,10 +89,9 @@ const StopWatch = () => {
     <Screen>
       <View style={styles.container}>
         <Header
+          isRunning={isRunning}
           activeButton={activeButton}
-          handleFinish={handleFinish}
-          handleModalOpen={handleModalOpen}
-          // handleClose={handleClose}
+          resetStopwatch={resetStopwatch}
         />
         <Body time={time} formatTime={formatTime} />
         <Controllers
@@ -96,12 +99,14 @@ const StopWatch = () => {
           activeButton={activeButton}
           startStopwatch={startStopwatch}
           pauseStopWatch={pauseStopWatch}
-          resetStopwatch={resetStopwatch}
+          handleFinish={handleFinish}
+          handleModalOpen={handleModalOpen}
         />
         <ModalContent
           modalVisible={modalVisible}
           formatTime={formatTime}
           time={time}
+          finishTime={formatTime(finishTime)}
           resumeAndCloseModal={resumeAndCloseModal}
           deleteAndCloseModal={deleteAndCloseModal}
         />

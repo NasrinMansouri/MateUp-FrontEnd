@@ -21,8 +21,6 @@ import DonutChart from "../../components/challenge/DonutChart";
 import Line from "../../components/Line";
 import ShowReactions from "../../components/challenge/ShowReactions";
 import AddReactions from "../../components/challenge/AddReactions";
-import Like from "../../components/challenge/Like";
-import { useNavigation } from "@react-navigation/native";
 import AppButton from "../../components/AppButton";
 
 export default function JoinedChallengeScreen({ navigation }) {
@@ -168,12 +166,13 @@ export default function JoinedChallengeScreen({ navigation }) {
         visible={modalVisible}
         onRequestClose={handleModalClose}
       >
-        <View style={{ flex: 1, backgroundColor: colors.blackBc }}>
+        <View style={styles.modalContainer}>
           <TouchableOpacity
             style={styles.closeButton}
             onPress={handleModalClose}
           >
-            <Text style={styles.closeButtonText}>Close</Text>
+            <Ionicons name="close" size={24} color={colors.white} />
+            {/* <Text style={styles.closeButtonText}>Cancel</Text> */}
           </TouchableOpacity>
           <StopWatch />
         </View>
@@ -270,9 +269,13 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   closeButtonText: {
-    color: colors.green,
+    color: colors.white,
     fontSize: 16,
     fontFamily: "montserrat-black",
     // marginLeft: 16,
+  },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: colors.blackBc,
   },
 });

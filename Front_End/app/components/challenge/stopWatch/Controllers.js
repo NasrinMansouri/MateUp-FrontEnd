@@ -4,43 +4,37 @@ import colors from "../../../config/colors";
 
 const Controllers = ({
   isRunning,
-  activeButton,
   startStopwatch,
   pauseStopWatch,
-  resetStopwatch,
+  handleFinish,
+  handleModalOpen,
 }) => {
-  const btnStartStyle = [
-    styles.buttonStart,
-    activeButton === "start"
-      ? {
-          backgroundColor: colors.orangeSecondary,
-          borderColor: colors.black,
-        }
-      : { borderColor: colors.green },
-  ];
-
-  const btnTextStyle = [
-    styles.buttonText,
-    activeButton === "start" && { color: colors.white },
-  ];
-
   return (
     <View style={styles.buttonContainer}>
       {!isRunning && (
-        <TouchableOpacity style={btnStartStyle} onPress={startStopwatch}>
-          <Text style={btnTextStyle}>Start</Text>
+        <TouchableOpacity
+          style={styles.startContainer}
+          onPress={startStopwatch}
+        >
+          <Text style={styles.startText}>Start</Text>
         </TouchableOpacity>
       )}
       <View style={styles.btnsContainer}>
         {isRunning && (
-          <TouchableOpacity style={styles.button} onPress={pauseStopWatch}>
-            <Text style={styles.buttonText}>Pause</Text>
-          </TouchableOpacity>
-        )}
-        {isRunning && (
-          <TouchableOpacity style={styles.button} onPress={resetStopwatch}>
-            <Text style={styles.buttonText}>Reset</Text>
-          </TouchableOpacity>
+          <>
+            <TouchableOpacity style={styles.button} onPress={pauseStopWatch}>
+              <Text style={styles.buttonText}>Pause</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.buttonFinish}
+              onPress={() => {
+                handleFinish();
+                handleModalOpen();
+              }}
+            >
+              <Text style={styles.textFinish}>Finish</Text>
+            </TouchableOpacity>
+          </>
         )}
       </View>
     </View>
@@ -56,14 +50,19 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginHorizontal: 16,
   },
-  buttonStart: {
+  startContainer: {
     height: 45,
     borderRadius: 5,
     justifyContent: "center",
     alignItems: "center",
-    borderWidth: 1,
-    borderColor: colors.green,
+    backgroundColor: colors.orangeSecondary,
     width: "100%",
+  },
+  startText: {
+    color: colors.white,
+    fontSize: 14,
+    fontFamily: "montserrat-black",
+    textTransform: "uppercase",
   },
   btnsContainer: {
     flexDirection: "row",
@@ -84,7 +83,23 @@ const styles = StyleSheet.create({
     borderColor: colors.green,
   },
   buttonText: {
-    color: colors.white,
+    color: colors.green,
+    fontSize: 14,
+    fontFamily: "montserrat-black",
+    textTransform: "uppercase",
+  },
+  buttonFinish: {
+    flex: 1,
+    width: "100%",
+    height: 45,
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: colors.orangeSecondary,
+  },
+  textFinish: {
+    color: colors.orangeSecondary,
     fontSize: 14,
     fontFamily: "montserrat-black",
     textTransform: "uppercase",

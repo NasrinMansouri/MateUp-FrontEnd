@@ -1,34 +1,17 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 import colors from "../../../config/colors";
 
-const Header = ({
-  activeButton,
-  handleFinish,
-  handleModalOpen,
-  // handleModalClose,
-}) => {
-  const navigation = useNavigation();
-  // const handleModalClose = () => {
-  //   setModalVisible(false);
-  // };
-
+const Header = ({ resetStopwatch, isRunning }) => {
   return (
     <View style={styles.headerContainer}>
-      {/* <TouchableOpacity style={styles.closeButton} onPress={handleModalClose}>
-        <Text style={styles.closeButtonText}>Close</Text>
-      </TouchableOpacity> */}
-      {activeButton === "pause" && (
+      {isRunning && (
         <TouchableOpacity
-          style={styles.finishButtonContainer}
-          onPress={() => {
-            handleFinish();
-            handleModalOpen();
-          }}
+          style={styles.resetContainer}
+          onPress={resetStopwatch}
         >
-          <Text style={styles.finishButton}>Finish</Text>
+          <Text style={styles.resetText}>Reset</Text>
         </TouchableOpacity>
       )}
     </View>
@@ -42,17 +25,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 20,
   },
-  closeButtonText: {
-    color: colors.white,
-    fontSize: 16,
-    fontFamily: "montserrat-black",
-    marginLeft: 16,
-  },
-  finishButton: {
-    color: colors.orangePrimary,
-    fontSize: 16,
-    fontFamily: "montserrat-black",
+  resetContainer: {
     marginRight: 16,
+  },
+  resetText: {
+    color: colors.green,
+    fontSize: 16,
+    fontFamily: "montserrat-black",
   },
 });
 
