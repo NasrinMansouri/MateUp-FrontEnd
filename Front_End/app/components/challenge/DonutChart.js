@@ -6,8 +6,10 @@ import colors from "../../config/colors";
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
+let currentPercentage = 10;
+
 export default function DonutChart({
-  percentage = 10,
+  percentage = currentPercentage,
   radius = 150,
   strokeWidth = 12,
   duration = 500,
