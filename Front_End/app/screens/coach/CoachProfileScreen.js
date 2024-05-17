@@ -41,7 +41,7 @@ export default function CoachProfileScreen({ navigation }) {
     videos: [
       {
         id: 1,
-        source: require("../../../assets/videos/BigBuckBunny.mp4"),
+        source: require("../../../assets/videos/trainer1.mp4"),
       },
     ],
   };
