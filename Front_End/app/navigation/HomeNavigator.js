@@ -6,6 +6,9 @@ import HomeScreen from "../screens/home/HomeScreen";
 import BuddyScreen from "../screens/buddy/BuddyScreen";
 import BuddyProfileScreen from "../screens/buddy/BuddyProfileScreen";
 import NotificationScreen from "../screens/NotificationScreen";
+import MenueScreen from "../screens/home/MenueScreen";
+import UserProfileScreen from "../screens/home/UserProfileScreen";
+import Setting from "../screens/home/Setting";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +35,39 @@ const HomeNavigator = () => {
             backgroundColor: colors.blackBc,
           },
           headerTitle: "",
+        }}
+      />
+
+      <Stack.Screen
+        name="menu"
+        component={MenueScreen}
+        options={{
+          headerStyle: {
+            backgroundColor: colors.blackBc,
+          },
+          headerTitle: "",
+          headerBackTitle: "MATE-UP",
+        }}
+      />
+
+      <Stack.Screen
+        name="UserProfile"
+        component={UserProfileScreen}
+        options={{
+          headerStyle: {
+            backgroundColor: colors.blackBc,
+          },
+          headerTitle: "",
+        }}
+      />
+
+      <Stack.Screen
+        name="Setting"
+        component={Setting}
+        options={{
+          headerStyle: {
+            backgroundColor: colors.blackBc,
+          },
         }}
       />
 
