@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   buddyContainer: {
-    marginTop: 20,
+    // marginTop: 20,
   },
   modalView: {
     backgroundColor: colors.white, //to change modal background

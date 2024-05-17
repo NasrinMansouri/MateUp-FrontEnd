@@ -36,7 +36,7 @@ export default function GalleryCoachesClubMembers({
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 16,
+    paddingTop: 40,
   },
   title: {
     fontFamily: "montserrat-black",
