@@ -384,6 +384,67 @@ const challengeDetailsData = {
   numberOfComments: 10,
 };
 
+// dummy data for member profile
+const memberProfile = {
+  id: 1,
+  firstName: "John",
+  lastName: "Doe",
+  location: "los angeles street" + " 123",
+  bio: "Hey there, I’m a fitness enthusiast, born with love for movement, my journey to fitness has been a dynamic dance between sweat sessions and socialising.",
+  userImage: require("./assets/person3.jpg"),
+  userWorkout: ["Running", "Swimming", "Cycling", "Strength Training", "Yoga"],
+  level: ["Beginner"],
+  buddiesData: [
+    {
+      id: 1,
+      name: "John Doe",
+      image: require("./assets/person3.jpg"),
+    },
+    {
+      id: 2,
+      name: "John Doeeeeeeeeeeeeeeeeeee",
+      image: require("./assets/person3.jpg"),
+    },
+    {
+      id: 3,
+      name: "John Doe",
+      image: require("./assets/person3.jpg"),
+    },
+    {
+      id: 4,
+      name: "John Doeeeeeeeeeeeeeeeeeee",
+      image: require("./assets/person3.jpg"),
+    },
+    {
+      id: 5,
+      name: "John Doe",
+      image: require("./assets/person3.jpg"),
+    },
+  ],
+  joinedChallengeData: [
+    {
+      id: 1,
+      challenegImage: require("./assets/person3.jpg"),
+      challengeName: "Cardio Boost Challenge",
+      challengeGoal: "15 Hours",
+      startDate: "Aug 3",
+      endDate: "Aug 4",
+      year: "2022",
+      time: "10:00 AM",
+    },
+    {
+      id: 2,
+      challenegImage: require("./assets/person3.jpg"),
+      challengeName: "Cardio Boost Challenge",
+      challengeGoal: "15 Hours",
+      startDate: "Aug 3",
+      endDate: "Aug 4",
+      year: "2022",
+      time: "10:00 AM",
+    },
+  ],
+};
+
 export default function App() {
   //for fonts
   const [isLoaded] = useFonts({
