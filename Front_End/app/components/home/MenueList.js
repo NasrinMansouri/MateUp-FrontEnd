@@ -1,11 +1,18 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Image } from "react-native";
 import { TouchableHighlight } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 import colors from "../../config/colors";
 
-export default function MenueList({ onPress, title, name }) {
+export default function MenueList({
+  onPress,
+  title,
+  name,
+  feather,
+  profilePicture,
+  userName,
+}) {
   return (
     <View style={styles.container}>
       <TouchableHighlight
@@ -14,7 +21,13 @@ export default function MenueList({ onPress, title, name }) {
         underlayColor={colors.grayLight50}
       >
         <View style={styles.containerBox}>
-          <Feather name={name} size={24} color={colors.green} />
+          {feather && <Feather name={name} size={24} color={colors.green} />}
+          {profilePicture && (
+            <View style={styles.imageContainer}>
+              <Image source={profilePicture} style={styles.image} />
+              <Text style={styles.text}>{userName}</Text>
+            </View>
+          )}
           <Text style={styles.text}>{title}</Text>
         </View>
       </TouchableHighlight>
@@ -38,5 +51,15 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
     fontFamily: "nunitoSans-regular",
+  },
+  image: {
+    width: 30,
+    height: 30,
+    borderRadius: 30 / 2,
+  },
+  imageContainer: {
+    flexDirection: "row",
+    gap: 10,
+    alignItems: "center",
   },
 });
