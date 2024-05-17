@@ -14,17 +14,17 @@ import {
   CardMeetTheMemberOfTheMonth,
   GalleryEducationalContent,
 } from "../../components/home";
-import MenueContent from "./MenueContent";
+import MenueScreen from "./MenueScreen";
 
 export default function HomeScreen({ navigation }) {
   // for menue in top navigation
-  const [modalVisible, setModalVisible] = useState(false);
-  const handleModal = () => {
-    setModalVisible(!modalVisible);
-  };
-  const handleModalClose = () => {
-    setModalVisible(false);
-  };
+  // const [modalVisible, setModalVisible] = useState(false);
+  // const handleModal = () => {
+  //   setModalVisible(!modalVisible);
+  // };
+  // const handleModalClose = () => {
+  //   setModalVisible(false);
+  // };
 
   const renderItemCache = {
     DisplayBuddies: (item) => (
@@ -37,7 +37,7 @@ export default function HomeScreen({ navigation }) {
       </View>
     ),
     LineComponent: (item) => (
-      <Line marginBottom={40} marginTop={20} item={item} />
+      <Line marginBottom={0} marginTop={20} item={item} />
     ),
     UserNextWorkoutPlanningComponent: (item) => (
       <UserNextWorkoutPlanning item={item} />
@@ -77,7 +77,8 @@ export default function HomeScreen({ navigation }) {
     <Screen style={styles.container}>
       <TopNav
         showMenue={true}
-        onPressMenue={handleModal}
+        // onPressMenue={handleModal}
+        onPressMenue={() => navigation.navigate("menu")}
         onPressNotification={() => navigation.navigate("Notification")}
         onPressMessage={() => console.log("Message image pressed")}
         // showSearchBar={true}
@@ -90,10 +91,9 @@ export default function HomeScreen({ navigation }) {
         renderItem={({ item }) => renderItemCache[item.type](item)}
         showsVerticalScrollIndicator={false}
       />
-      <MenueContent
-        modalVisible={modalVisible}
-        handleModalClose={handleModal}
-        onPressProfile={() => console.log("Profile pressed")}
+      <MenueScreen
+      // onPressProfile={() => navigation.navigate("UserProfile")}
+      //  modalVisible={modalVisible} handleModalClose={handleModal}
       />
     </Screen>
   );
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buddiesContainer: {
-    marginTop: 20,
+    // marginTop: 8,
   },
   buddiesWorkoutContainer: {
     marginTop: 96,
