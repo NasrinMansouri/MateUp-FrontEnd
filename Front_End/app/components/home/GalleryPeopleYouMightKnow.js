@@ -70,6 +70,8 @@ function GalleryPeopleYouMightKnow({}) {
               textColor={colors.white}
               fontFamily="nunitoSans-bold"
               fontSize={14}
+              paddingLeft={6}
+              paddingRight={6}
             />
           )}
         />

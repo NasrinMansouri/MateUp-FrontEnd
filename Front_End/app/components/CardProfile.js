@@ -32,6 +32,8 @@ function CardProfile({
   marginRight = 4,
   gap = 8,
   marginBottom,
+  paddingRight = 0,
+  paddingLeft = 0,
 }) {
   return (
     <TouchableOpacity
@@ -54,6 +56,8 @@ function CardProfile({
             marginRight: marginRight,
             gap: gap,
             marginBottom: marginBottom,
+            paddingRight: paddingRight,
+            paddingLeft: paddingLeft,
           },
         ]}
       >

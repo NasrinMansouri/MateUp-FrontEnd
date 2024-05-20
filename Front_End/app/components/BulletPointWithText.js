@@ -11,6 +11,7 @@ const BulletPointWithText = ({
   title,
   fontSize,
   textTransform,
+  marginLeft = 0,
 }) => {
   return (
     <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -21,6 +22,7 @@ const BulletPointWithText = ({
           borderRadius: width / 2,
           backgroundColor: bulletColor,
           marginRight: marginRight,
+          marginLeft: marginLeft,
         }}
       />
       <Text

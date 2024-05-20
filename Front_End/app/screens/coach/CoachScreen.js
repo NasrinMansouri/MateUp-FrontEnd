@@ -6,7 +6,7 @@ import Screen from "../../components/Screen";
 import colors from "../../config/colors";
 import TopNav from "../../components/topNavigation/TopNav";
 import MeetTtrainer from "./coachScreenContent/MeetTtrainer";
-import MySessions from "./coachScreenContent/MySessions";
+import MySession from "./coachScreenContent/MySession";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -36,7 +36,7 @@ const CoachScreen = ({ navigation }) => {
         }}
       >
         <Tab.Screen name="Meet Trainers" component={MeetTtrainer} />
-        <Tab.Screen name="My Sessions" component={MySessions} />
+        <Tab.Screen name="My Sessions" component={MySession} />
       </Tab.Navigator>
     </Screen>
   );

@@ -39,29 +39,31 @@ export default function CardBuddiesWorkout({
         justifyContent={" flex-start"}
         textTransform={"capitalize"}
       />
-      <BulletPointWithText
-        bulletColor={colors.orangePrimary}
-        width={5}
-        height={5}
-        borderRadius={5 / 2}
-        marginRight={4}
-        title={workout}
-        textColor={colors.black}
-        fontFamily="nunitoSans-bold"
-        textTransform={"uppercase"}
-        fontSize={16}
-      />
-      <View>
-        <Text style={styles.text}>
-          {" "}
-          {day}
-          {","} {date}{" "}
-        </Text>
-        <Text style={styles.text}>
-          {" "}
-          From {begin} to {end}{" "}
-        </Text>
+      <View style={styles.workoutDateContainer}>
+        <BulletPointWithText
+          bulletColor={colors.orangePrimary}
+          width={5}
+          height={5}
+          borderRadius={5 / 2}
+          marginRight={4}
+          marginLeft={1}
+          title={workout}
+          textColor={colors.black}
+          fontFamily="nunitoSans-bold"
+          textTransform={"uppercase"}
+          fontSize={16}
+        />
+        <View>
+          <Text style={styles.text}>
+            {day}
+            {","} {date}{" "}
+          </Text>
+          <Text style={styles.text}>
+            From {begin} to {end}{" "}
+          </Text>
+        </View>
       </View>
+
       <AppButton title={"Join"} width={217} height={32} onPress={onPress} />
     </TouchableOpacity>
   );
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
     width: 225,
-    height: 215,
+    height: 200,
     padding: 4,
     flexDirection: "column",
     justifyContent: "space-between",
@@ -82,6 +84,10 @@ const styles = StyleSheet.create({
     fontFamily: "nunitoSans-bold",
     fontSize: 14,
     color: colors.gray,
+  },
+  workoutDateContainer: {
+    flexDirection: "column",
+    gap: 6,
   },
 });
 
