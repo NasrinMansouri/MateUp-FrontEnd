@@ -16,6 +16,28 @@ import BulletList from "../../components/shareMemberProfile/BulletList";
 import GalleryJoinedChallenge from "../../components/challenge/GalleryJoinedChallenge";
 
 export default function BuddyProfileScreen({ route }) {
+  //to change the state of button when clicked
+  const [buttonClicked, setButtonClicked] = useState({
+    title: "Send Buddy Request",
+    backgroundColor: colors.green,
+  });
+
+  const handleButtonClicked = () => {
+    setButtonClicked((toggleState) => ({
+      //check if the current state is send buddy request,
+      //if yes it will change it to cancel buddy request
+      // else it will change it to send buddy request, which means it is cancel request
+      title:
+        toggleState.title === "Send Buddy Request"
+          ? "Cancel Buddy Request"
+          : "Send Buddy Request",
+      backgroundColor:
+        toggleState.backgroundColor === colors.green
+          ? colors.orangeSecondary
+          : colors.green,
+    }));
+  };
+
   // const { memberProfile } = route.params;
   // const { memberId } = route.params;
   // useEffect(() => {
@@ -162,8 +184,10 @@ export default function BuddyProfileScreen({ route }) {
         <Bio bio={bio} />
         <View style={styles.buttonContainer}>
           <AppButton
-            title="Send Buddy Request"
-            onPress={() => console.log("add As buddy btn pressed")}
+            title={buttonClicked.title}
+            backgroundColor={buttonClicked.backgroundColor}
+            onPress={handleButtonClicked}
+            // onPress={() => console.log("add As buddy btn pressed")}
             fontSize={14}
           />
         </View>
