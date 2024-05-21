@@ -11,8 +11,8 @@ import ListItemSeparator from "../components/lists/ListItemSeperator";
 const initialNotifications = [
   {
     id: 1,
-    name: "John Doe",
-    title: "Confirmed your High-Five request.",
+    name: "linda lee",
+    title: "Confirmed your buddy request.",
     userImage: require("../../assets/person2.jpg"), // Replace with actual image path
     onPressConfirm: () => console.log("Confirm pressed for John Doe"),
     onPressDecline: () => console.log("Decline pressed for John Doe"),
@@ -22,8 +22,8 @@ const initialNotifications = [
   {
     id: 2,
     name: "Jane Smith",
-    title: "Sent you a High-Five request.",
-    userImage: require("../../assets/person3.jpg"), // Replace with actual image path
+    title: "Sent you a buddy request.",
+    userImage: require("../../assets/person4.jpg"), // Replace with actual image path
     onPressConfirm: () => console.log("Confirm pressed for Jane Smith"),
     onPressDecline: () => console.log("Decline pressed for Jane Smith"),
     showRequestResult: false, // or true based on your requirement
@@ -31,9 +31,9 @@ const initialNotifications = [
   },
   {
     id: 3,
-    name: "Jane Smith",
-    title: "Sent you a High-Five request.",
-    userImage: require("../../assets/person3.jpg"), // Replace with actual image path
+    name: "Sarah Johnson",
+    title: "Sent you a buddy request.",
+    userImage: require("../../assets/person5.jpg"), // Replace with actual image path
     onPressConfirm: () => console.log("Confirm pressed for Jane Smith"),
     onPressDecline: () => console.log("Decline pressed for Jane Smith"),
     showRequestResult: false, // or true based on your requirement
@@ -69,7 +69,7 @@ export default function ListItemGallery({ style }) {
               title={item.title}
               userImage={item.userImage}
               onPressConfirm={item.onPressConfirm}
-              onPressDecline={item.onPressDecline}
+              onPressDecline={() => handleDelete(item)}
               showRequestResult={item.showRequestResult}
               showRequest={item.showRequest}
               renderRightActions={() => (
@@ -85,7 +85,7 @@ export default function ListItemGallery({ style }) {
             setNotifications([
               {
                 id: 1,
-                name: "John Doe",
+                name: "Linda Lee",
                 title: "Confirmed your High-Five request.",
                 userImage: require("../../assets/person2.jpg"), // Replace with actual image path
                 onPressConfirm: () =>
@@ -97,9 +97,9 @@ export default function ListItemGallery({ style }) {
               },
               {
                 id: 2,
-                name: "Jane Smith",
+                name: "Sarah Johnson",
                 title: "Sent you a High-Five request.",
-                userImage: require("../../assets/person3.jpg"), // Replace with actual image path
+                userImage: require("../../assets/person4.jpg"), // Replace with actual image path
                 onPressConfirm: () =>
                   console.log("Confirm pressed for Jane Smith"),
                 onPressDecline: () =>
