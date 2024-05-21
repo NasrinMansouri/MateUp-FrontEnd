@@ -12,12 +12,14 @@ import colors from "../../config/colors";
 
 function GalleryBuddies({ buddies, style, header, paddingLeft = 16, onPress }) {
   const navigation = useNavigation();
-  const capitalizeFirstLetter = (string) => {
-    // capitalize first letter and make rest lowercase
-    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-  };
 
+  //do not need capitalizeFirstLetter, i used textTransform in CardProfile
+  // const capitalizeFirstLetter = (string) => {
+  //   // capitalize first letter and make rest lowercase
+  //   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  // };
 
+  // for backend connection
   // const [buddies, setBuddies] = useState([]);
 
   // useEffect(() => {
@@ -82,18 +84,21 @@ function GalleryBuddies({ buddies, style, header, paddingLeft = 16, onPress }) {
         renderItem={({ item }) => {
           return (
             <CardProfile
-              onPressProfile={() => navigation.navigate(
-                "MemberProfile",
-                item
-                // {
-                //   memberProfile: memberProfile,
-                // }
-              )}
+              onPressProfile={() =>
+                navigation.navigate(
+                  "MemberProfile",
+                  item
+                  // {
+                  //   memberProfile: memberProfile,
+                  // }
+                )
+              }
               // onPressProfile={onPress}
-              // name={capitalizeFirstLetter(item.name)}
-              name={item.user.name ? capitalizeFirstLetter(item.user.name) : null}
+              name={item.name}
+              // name={item.user.name ? capitalizeFirstLetter(item.user.name) : null} //for connecting to backed
               backgroundColor={colors.blackBc}
-              image={item.user.profile_image_url}
+              // image={item.user.profile_image_url} //for connecting to backed
+              image={item.image}
               flexDirection={"column"}
               cardWidth={97}
               cardHeight={107}
@@ -102,7 +107,9 @@ function GalleryBuddies({ buddies, style, header, paddingLeft = 16, onPress }) {
               imageRadius={77 / 2}
               textColor={colors.white}
               fontSize={14}
-              gap={10} />
+              gap={10}
+              textTransform={"capitalize"}
+            />
           );
         }}
       />
