@@ -69,6 +69,7 @@ export default function HomeScreen({ navigation }) {
       <TopNav
         showMenue={true}
         // onPressMenue={handleModal}
+        userProfileImage={require("../../../assets/person3.jpg")}
         onPressMenue={() => navigation.navigate("menu")}
         onPressNotification={() => navigation.navigate("Notification")}
         onPressMessage={() => console.log("Message image pressed")}

@@ -6,7 +6,7 @@ export default function MySession({ sessionDetails }) {
   return (
     <>
       <View style={styles.container}>
-        <FlatList
+        {/* <FlatList
           style={styles.container}
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -23,7 +23,7 @@ export default function MySession({ sessionDetails }) {
               members={item.members}
             />
           )}
-        />
+        /> */}
       </View>
     </>
   );

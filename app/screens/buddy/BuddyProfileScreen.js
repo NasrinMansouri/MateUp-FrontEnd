@@ -162,7 +162,7 @@ export default function BuddyProfileScreen({ route }) {
         <Bio bio={bio} />
         <View style={styles.buttonContainer}>
           <AppButton
-            title="Add As Buddy"
+            title="Send Buddy Request"
             onPress={() => console.log("add As buddy btn pressed")}
             fontSize={14}
           />
