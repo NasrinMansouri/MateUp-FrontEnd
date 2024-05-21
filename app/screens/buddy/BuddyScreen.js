@@ -35,89 +35,92 @@ const buddiesData = [
   },
 ];
 
-const UserClubMembersData = [
-  {
-    id: 1,
-    name: "John Doeeeeeeeeeeeeeeeeee",
-    image: require("../../../assets/person2.jpg"),
-    titles: ["strength training", "running"],
-  },
-  {
-    id: 2,
-    name: "ray pather ",
-    image: require("../../../assets/person2.jpg"),
-    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
-  },
-];
-const matchClubMembersData = [
-  {
-    id: 1,
-    name: "John Doeeeeeeeeeeeeeeeeee",
-    image: require("../../../assets/person2.jpg"),
-    location: "los angeles street" + " 123",
-    titles: ["strength training", "running"],
-  },
-  {
-    id: 2,
-    name: "ray pather ",
-    image: require("../../../assets/person2.jpg"),
-    location: "los angeles street" + " 123",
-    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
-  },
-];
+// const UserClubMembersData = [
+//   {
+//     id: 1,
+//     name: "John Doeeeeeeeeeeeeeeeeee",
+//     image: require("../../../assets/person2.jpg"),
+//     titles: ["strength training", "running"],
+//   },
+//   {
+//     id: 2,
+//     name: "ray pather ",
+//     image: require("../../../assets/person2.jpg"),
+//     titles: ["strength training", "running", "swimming", "yoga", "boxing"],
+//   },
+// ];
+// const matchClubMembersData = [
+//   {
+//     id: 1,
+//     name: "John Doeeeeeeeeeeeeeeeeee",
+//     image: require("../../../assets/person2.jpg"),
+//     location: "los angeles street" + " 123",
+//     titles: ["strength training", "running"],
+//   },
+//   {
+//     id: 2,
+//     name: "ray pather ",
+//     image: require("../../../assets/person2.jpg"),
+//     location: "los angeles street" + " 123",
+//     titles: ["strength training", "running", "swimming", "yoga", "boxing"],
+//   },
+// ];
 
-const connectAllMembersData = [
-  {
-    id: 1,
-    name: "John Doeeeeeeeeeeeeeeeeee",
-    image: require("../../../assets/person2.jpg"),
-    location: "los angeles street" + " 123",
-    titles: ["strength training", "running"],
-  },
-  {
-    id: 2,
-    name: "ray pather ",
-    image: require("../../../assets/person2.jpg"),
-    location: "los angeles street" + " 123",
-    titles: ["strength training", "running", "swimming", "yoga", "boxing"],
-  },
-];
+// const connectAllMembersData = [
+//   {
+//     id: 1,
+//     name: "John Doeeeeeeeeeeeeeeeeee",
+//     image: require("../../../assets/person2.jpg"),
+//     location: "los angeles street" + " 123",
+//     titles: ["strength training", "running"],
+//   },
+//   {
+//     id: 2,
+//     name: "ray pather ",
+//     image: require("../../../assets/person2.jpg"),
+//     location: "los angeles street" + " 123",
+//     titles: ["strength training", "running", "swimming", "yoga", "boxing"],
+//   },
+// ];
 
 export default function BuddyScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
 
-  // for backend connection
-  // const [buddies, setBuddies] = useState([]);
-  // const [UserClubMembers, setUserClubMembers] = useState([]);
-  // const [matchClubMembers, setMatchClubMembers] = useState([]);
-  // const [connectAllMembers, setConnectAllMembers] = useState([]);
+  //for backend connection
+  const [buddies, setBuddies] = useState([]);
+  const [UserClubMembers, setUserClubMembers] = useState([]);
+  const [matchClubMembers, setMatchClubMembers] = useState([]);
+  const [connectAllMembers, setConnectAllMembers] = useState([]);
 
-  // useEffect(() => {
-  //   loadBuddies();
-  //   loadUserClubMembers();
-  //   loadMatchClubMembers();
-  //   loadConnectAllMembers();
-  // }, []);
+  useEffect(() => {
+    loadBuddies();
+    loadUserClubMembers();
+    loadMatchClubMembers();
+    loadConnectAllMembers();
+  }, []);
 
-  // const loadBuddies = async () => {
-  //   const response = await membersApi.getBuddies();
-  //   setBuddies(response.data);
-  // };
+  const loadBuddies = async () => {
+    const response = await membersApi.getBuddies();
+    //const parsed = JSON.parse(response);
+    //console.log(parsed);
+    setBuddies(response.data.members);
 
-  // const loadUserClubMembers = async () => {
-  //   const response = await membersApi.getUserClubMembers();
-  //   setUserClubMembers(response.data);
-  // };
+  };
 
-  // const loadMatchClubMembers = async () => {
-  //   const response = await membersApi.getMatchClubMembers();
-  //   setMatchClubMembers(response.data);
-  // };
+  const loadUserClubMembers = async () => {
+    const response = await membersApi.getUserClubMembers();
+    setUserClubMembers(response.data);
+  };
 
-  // const loadConnectAllMembers = async () => {
-  //   const response = await membersApi.getConnectAllMembers();
-  //   setConnectAllMembers(response.data);
-  // };
+  const loadMatchClubMembers = async () => {
+    const response = await membersApi.getMatchClubMembers();
+    setMatchClubMembers(response.data);
+  };
+
+  const loadConnectAllMembers = async () => {
+    const response = await membersApi.getConnectAllMembers();
+    setConnectAllMembers(response.data);
+  };
 
   return (
     <Screen style={styles.container}>
@@ -131,25 +134,25 @@ export default function BuddyScreen({ navigation }) {
       <ScrollView style={styles.container}>
         <View style={styles.buddyContainer}>
           <GalleryBuddies
-            buddies={buddiesData}
+            buddies={buddies}
             onPress={(item) => navigation.navigate("MemberProfile", { item })}
           />
         </View>
         <Line marginBottom={40} marginTop={20} />
         <GalleryMatchClubMembers
-          UserClubMembers={UserClubMembersData}
+          UserClubMembers={UserClubMembers}
           onPress={(item) =>
             navigation.navigate("MemberProfile", { memberId: item.id })
           }
         />
         <GalleryMatchBasedWorkout
-          matchMemberWorkout={matchClubMembersData}
+          matchMemberWorkout={matchClubMembers}
           onPress={(item) =>
             navigation.navigate("MemberProfile", { memberId: item.id })
           }
         />
         <GalleryConnectAll
-          connectAllMembers={connectAllMembersData}
+          connectAllMembers={connectAllMembers}
           onPress={(item) => navigation.navigate("MemberProfile", { item })}
         />
       </ScrollView>

@@ -1,9 +1,9 @@
 import client from "./client";
 
-const getBuddies = () => client.get("/buddies");
-const getUserClubMembers = () => client.get("/userClubMembers");
-const getMatchClubMembers = () => client.get("/matchClubMembers");
-const getConnectAllMembers = () => client.get("/connectAllMembers");
+const getBuddies = () => client.get("/members");
+const getUserClubMembers = () => client.get("/members");
+const getMatchClubMembers = () => client.get("/members");
+const getConnectAllMembers = () => client.get("/members");
 
 export default {
   getBuddies,
