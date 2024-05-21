@@ -29,10 +29,10 @@ export default function TopNav({
         {showSearchBar && <SearchBar searchedResults />}
         {showMenue && (
           <TouchableWithoutFeedback onPress={onPressMenue}>
-            {/* <View style={styles.userImageContainer}>
+            <View style={styles.userImageContainer}>
               <Image source={userProfileImage} style={styles.userImage} />
-            </View> */}
-            <Feather name="menu" size={24} color="white" />
+            </View>
+            {/* <Feather name="menu" size={24} color="white" /> */}
           </TouchableWithoutFeedback>
         )}
       </View>
