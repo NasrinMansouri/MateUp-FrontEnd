@@ -11,12 +11,13 @@ import HomeNavigator from "./HomeNavigator";
 import BuddyNavigator from "./BuddyNavigator";
 import CoachNavigator from "./CoachNavigator";
 import ChallengeNavigator from "./ChallengeNavigator";
+import Calendar from "../screens/calendar/Calendar";
 
-const CalendarScreen = () => {
-  <Screen>
-    <Text>Calendar</Text>
-  </Screen>;
-};
+// const CalendarScreen = () => {
+//   <Screen>
+//     <Text>Calendar</Text>
+//   </Screen>;
+// };
 
 const Tab = createMaterialBottomTabNavigator();
 const AppNavigator = () => {
@@ -54,7 +55,7 @@ const AppNavigator = () => {
       />
       <Tab.Screen
         name="Calendar"
-        component={CalendarScreen}
+        component={Calendar}
         options={{
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
