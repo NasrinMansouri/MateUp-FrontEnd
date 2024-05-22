@@ -1,6 +1,6 @@
 import client from "./client";
 
-const getMembersProfile = () => client.get("/membersProfile");
+const getMembersProfile = () => client.get("/members");
 
 export default {
   getMembersProfile,
