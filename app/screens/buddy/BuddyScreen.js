@@ -22,18 +22,18 @@ import {
 } from "../../components/buddy";
 import FilterModal from "../../components/buddy/FilterModal";
 
-const buddiesData = [
-  {
-    id: 1,
-    name: "Jeremy Dipper",
-    image: require("../../../assets/person-1.jpg"),
-  },
-  {
-    id: 2,
-    name: "Mary Jane",
-    image: require("../../../assets/person2.jpg"),
-  },
-];
+// const buddiesData = [
+//   {
+//     id: 1,
+//     name: "Jeremy Dipper",
+//     image: require("../../../assets/person-1.jpg"),
+//   },
+//   {
+//     id: 2,
+//     name: "Mary Jane",
+//     image: require("../../../assets/person2.jpg"),
+//   },
+// ];
 
 // const UserClubMembersData = [
 //   {
@@ -109,17 +109,17 @@ export default function BuddyScreen({ navigation }) {
 
   const loadUserClubMembers = async () => {
     const response = await membersApi.getUserClubMembers();
-    setUserClubMembers(response.data);
+    setUserClubMembers(response.data.members);
   };
 
   const loadMatchClubMembers = async () => {
     const response = await membersApi.getMatchClubMembers();
-    setMatchClubMembers(response.data);
+    setMatchClubMembers(response.data.members);
   };
 
   const loadConnectAllMembers = async () => {
     const response = await membersApi.getConnectAllMembers();
-    setConnectAllMembers(response.data);
+    setConnectAllMembers(response.data.members);
   };
 
   return (

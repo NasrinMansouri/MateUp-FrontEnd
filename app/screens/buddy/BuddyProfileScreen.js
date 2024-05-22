@@ -115,6 +115,7 @@ export default function BuddyProfileScreen({ route }) {
     ],
   };
 
+
   const {
     firstName,
     lastName,

@@ -9,6 +9,7 @@ import CardMatchClubMembers from "./CardMatchClubMembers";
 
 export default function GalleryMatchClubMembers({ UserClubMembers, onPress }) {
   const navigation = useNavigation();
+  console.log(UserClubMembers);
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.title}>meet your club members</Text>
@@ -17,12 +18,12 @@ export default function GalleryMatchClubMembers({ UserClubMembers, onPress }) {
         style={styles.container}
         horizontal
         data={UserClubMembers}
-        keyExtractor={(Members) => Members.id.toString()}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <CardMatchClubMembers
-            name={item.name}
-            image={item.image}
-            titles={item.titles}
+            name={item.user.name}
+            image={item.user.profile_image_url}
+            titles={item.workout_types}
             // onPress={() => navigation.navigate("MemberProfile", item)}
             onPress={() => navigation.navigate("MemberProfile", item)}
             // onPressProfile={onPress}

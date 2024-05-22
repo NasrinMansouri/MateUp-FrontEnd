@@ -11,56 +11,80 @@ export default function ListBulletPointWithText({
   fontSize = 12,
   textTransform = "uppercase",
 }) {
-  // Maximum number of workout types to display
-  const maxType = 2;
+  // // Maximum number of workout types to display
+  // const maxType = 2;
 
-  // Slice the titles array to include only the first three workout types
-  const displayedTitles = titles.slice(0, maxType);
+  // // Slice the titles array to include only the first three workout types
+  // const displayedTitles = titles.slice(0, maxType);
 
-  // to indicate if moreAsText is needed
-  const showMoreAsText = titles.length > maxType;
+  // // to indicate if moreAsText is needed
+  // const showMoreAsText = titles.length > maxType;
 
-  //to indicate if last workout is needed
-  const showThirdType = titles.length > 2;
+  // //to indicate if last workout is needed
+  // const showThirdType = titles.length > 2;
+  // return (
+  //   <View>
+  //     {header && <Text style={styles.header}>{header}</Text>}
+  //     <View style={styles.bulletPoints}>
+  //       {displayedTitles.map((title, id) => (
+  //         <View key={id} style={styles.listContainer}>
+  //           <BulletPointWithText
+  //             bulletColor={colors.orangePrimary}
+  //             width={5}
+  //             height={5}
+  //             borderRadius={5 / 2}
+  //             marginRight={4}
+  //             marginBottom={4}
+  //             textColor={textColor}
+  //             fontFamily="nunitoSans-extraBold"
+  //             textTransform={textTransform}
+  //             fontSize={fontSize}
+  //             title={title}
+  //           />
+  //         </View>
+  //       ))}
+  //       {showThirdType && (
+  //         <View style={styles.lastListContainer}>
+  //           <BulletPointWithText
+  //             bulletColor={colors.orangePrimary}
+  //             width={5}
+  //             height={5}
+  //             borderRadius={5 / 2}
+  //             marginRight={4}
+  //             marginBottom={4}
+  //             textColor={textColor}
+  //             fontFamily="nunitoSans-extraBold"
+  //             textTransform={"uppercase"}
+  //             fontSize={fontSize}
+  //             title={titles[maxType]} // Display the third workout title
+  //           />
+  //           {showMoreAsText && <Text style={styles.moreAsText}>more</Text>}
+  //         </View>
+  //       )}
+  //     </View>
+  //   </View>
+  // );
+  const title = titles
+
   return (
     <View>
       {header && <Text style={styles.header}>{header}</Text>}
       <View style={styles.bulletPoints}>
-        {displayedTitles.map((title, id) => (
-          <View key={id} style={styles.listContainer}>
-            <BulletPointWithText
-              bulletColor={colors.orangePrimary}
-              width={5}
-              height={5}
-              borderRadius={5 / 2}
-              marginRight={4}
-              marginBottom={4}
-              textColor={textColor}
-              fontFamily="nunitoSans-extraBold"
-              textTransform={textTransform}
-              fontSize={fontSize}
-              title={title}
-            />
-          </View>
-        ))}
-        {showThirdType && (
-          <View style={styles.lastListContainer}>
-            <BulletPointWithText
-              bulletColor={colors.orangePrimary}
-              width={5}
-              height={5}
-              borderRadius={5 / 2}
-              marginRight={4}
-              marginBottom={4}
-              textColor={textColor}
-              fontFamily="nunitoSans-extraBold"
-              textTransform={"uppercase"}
-              fontSize={fontSize}
-              title={titles[maxType]} // Display the third workout title
-            />
-            {showMoreAsText && <Text style={styles.moreAsText}>more</Text>}
-          </View>
-        )}
+        <View style={styles.listContainer}>
+          <BulletPointWithText
+            bulletColor={colors.orangePrimary}
+            width={5}
+            height={5}
+            borderRadius={5 / 2}
+            marginRight={4}
+            marginBottom={4}
+            textColor={textColor}
+            fontFamily="nunitoSans-extraBold"
+            textTransform={textTransform}
+            fontSize={fontSize}
+            title={title}
+          />
+        </View>
       </View>
     </View>
   );

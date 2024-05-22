@@ -7,6 +7,7 @@ import CardMatchBasedWorkout from "./CardMatchBasedWorkout";
 
 export default function GalleryConnectAll({ connectAllMembers, onPress }) {
   const navigation = useNavigation();
+  const location = "Raghenoplein 21 bis, 2800 Mechelen";
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.title}>connect with all members</Text>
@@ -18,10 +19,10 @@ export default function GalleryConnectAll({ connectAllMembers, onPress }) {
         keyExtractor={(Members) => Members.id.toString()}
         renderItem={({ item }) => (
           <CardMatchBasedWorkout
-            name={item.name}
-            image={item.image}
-            location={item.location}
-            titles={item.titles}
+            name={item.user.name}
+            image={item.user.profile_image_url}
+            location={location}
+            titles={item.workout_types}
             onPress={() => navigation.navigate("MemberProfile", item)}
             // onPressProfile={onPress}
           />

@@ -9,35 +9,57 @@ export default function BulletList({ titles, textColor, header }) {
   const [expanded, setExpanded] = useState(false);
   const maxType = 3;
 
-  const displayedTitles = expanded ? titles : titles.slice(0, maxType);
-  const showMoreAsText = titles.length > maxType;
+  // const displayedTitles = expanded ? titles : titles.slice(0, maxType);
+  // const showMoreAsText = titles.length > maxType;
+  const displayedTitle = titles; // assuming title is a single string
+  const showMoreAsText = false; // no need for this logic anymore
 
   return (
+    // <View style={styles.container}>
+    //   {header && <Text style={styles.header}>{header}</Text>}
+    //   <View style={styles.bulletPoints}>
+    //     {displayedTitles.map((title, id) => (
+    //       <View key={id} style={styles.listContainer}>
+    //         <BulletPointWithText
+    //           bulletColor={colors.orangePrimary}
+    //           width={5}
+    //           height={5}
+    //           borderRadius={5 / 2}
+    //           marginRight={4}
+    //           marginBottom={4}
+    //           textColor={colors.white}
+    //           fontFamily="nunitoSans-extraBold"
+    //           textTransform={"capitalize"}
+    //           fontSize={16}
+    //           title={title}
+    //         />
+    //       </View>
+    //     ))}
+    //     {showMoreAsText && (
+    //       <TouchableOpacity onPress={() => setExpanded(!expanded)}>
+    //         <Text style={styles.moreAsText}>{expanded ? "less" : "more"}</Text>
+    //       </TouchableOpacity>
+    //     )}
+    //   </View>
+    // </View>
     <View style={styles.container}>
       {header && <Text style={styles.header}>{header}</Text>}
       <View style={styles.bulletPoints}>
-        {displayedTitles.map((title, id) => (
-          <View key={id} style={styles.listContainer}>
-            <BulletPointWithText
-              bulletColor={colors.orangePrimary}
-              width={5}
-              height={5}
-              borderRadius={5 / 2}
-              marginRight={4}
-              marginBottom={4}
-              textColor={colors.white}
-              fontFamily="nunitoSans-extraBold"
-              textTransform={"capitalize"}
-              fontSize={16}
-              title={title}
-            />
-          </View>
-        ))}
-        {showMoreAsText && (
-          <TouchableOpacity onPress={() => setExpanded(!expanded)}>
-            <Text style={styles.moreAsText}>{expanded ? "less" : "more"}</Text>
-          </TouchableOpacity>
-        )}
+        <View style={styles.listContainer}>
+          <BulletPointWithText
+            bulletColor={colors.orangePrimary}
+            width={5}
+            height={5}
+            borderRadius={5 / 2}
+            marginRight={4}
+            marginBottom={4}
+            textColor={colors.white}
+            fontFamily="nunitoSans-extraBold"
+            textTransform={"capitalize"}
+            fontSize={16}
+            title={displayedTitle}
+          />
+        </View>
       </View>
     </View>
   );

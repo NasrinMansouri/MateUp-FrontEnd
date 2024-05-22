@@ -17,54 +17,34 @@ function GalleryBuddies({ buddies, style, header, paddingLeft = 16, onPress }) {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   };
 
-
-  // const [buddies, setBuddies] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchBuddies = async () => {
-  //     try {
-  //       const response = await ("http://127.0.0.1:8000/api/members");
-  //       if (response.ok) {
-  //         setBuddies(response.data);
-  //       } else {
-  //         console.error('Error fetching members:', response.problem);
-  //       }
-  //     } catch (error) {
-  //       console.error('Error fetching members:', error);
-  //     }
-  //   };
-
-  //   fetchBuddies();
-  // }, []);
-
   //dummy data for testing
-  // const buddiesData = [
-  //   {
-  //     id: 1,
-  //     name: "MMMMMMMMMMMMMMMM ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Coucheeeeeeee ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Couchhhhhhhhh ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "NNNNNN NNNNN ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "Couch ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  // ];
+  const buddiesData = [
+    {
+      id: 1,
+      name: "MMMMMMMMMMMMMMMM ",
+      image: require("../../../assets/person-1.jpg"),
+    },
+    {
+      id: 2,
+      name: "Coucheeeeeeee ",
+      image: require("../../../assets/person-1.jpg"),
+    },
+    {
+      id: 3,
+      name: "Couchhhhhhhhh ",
+      image: require("../../../assets/person-1.jpg"),
+    },
+    {
+      id: 4,
+      name: "NNNNNN NNNNN ",
+      image: require("../../../assets/person-1.jpg"),
+    },
+    {
+      id: 5,
+      name: "Couch ",
+      image: require("../../../assets/person-1.jpg"),
+    },
+  ];
   return (
     <View>
       {header && (
@@ -77,7 +57,7 @@ function GalleryBuddies({ buddies, style, header, paddingLeft = 16, onPress }) {
         style={[styles.container, style, { paddingLeft: paddingLeft }]}
         horizontal
         showsHorizontalScrollIndicator={false}
-        data={buddies}
+        data={buddiesData}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => {
           return (
@@ -91,9 +71,9 @@ function GalleryBuddies({ buddies, style, header, paddingLeft = 16, onPress }) {
               )}
               // onPressProfile={onPress}
               // name={capitalizeFirstLetter(item.name)}
-              name={item.user.name ? capitalizeFirstLetter(item.user.name) : null}
+              name={item.name ? capitalizeFirstLetter(item.name) : null}
               backgroundColor={colors.blackBc}
-              image={item.user.profile_image_url}
+              image={item.image}
               flexDirection={"column"}
               cardWidth={97}
               cardHeight={107}
