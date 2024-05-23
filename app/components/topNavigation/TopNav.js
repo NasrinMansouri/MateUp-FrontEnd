@@ -17,6 +17,7 @@ import Colors from "../../config/colors";
 
 export default function TopNav({
   showSearchBar,
+  onPressSearch,
   showMenue,
   userProfileImage,
   onPressMenue,
@@ -26,7 +27,8 @@ export default function TopNav({
   return (
     <View style={styles.mainContainer}>
       <View style={styles.LeftContainer}>
-        {showSearchBar && <SearchBar searchedResults />}
+        {showSearchBar && <SearchBar searchedResults onPress={onPressSearch} />}
+
         {showMenue && (
           <TouchableWithoutFeedback onPress={onPressMenue}>
             <View style={styles.userImageContainer}>

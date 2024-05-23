@@ -6,6 +6,7 @@ import colors from "../config/colors";
 import CoachProfileScreen from "../screens/coach/CoachProfileScreen";
 import NotificationScreen from "../screens/NotificationScreen";
 import CoachScreen from "../screens/coach/CoachScreen";
+import SearchScreen from "../screens/SearchScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -60,6 +61,12 @@ const CoachNavigator = () => {
           },
           headerTitle: "Notifications",
         }}
+      />
+
+      <Stack.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

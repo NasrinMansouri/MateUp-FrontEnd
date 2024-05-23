@@ -8,6 +8,7 @@ import DetailsChallengeScreen from "../screens/challenge/DetailsChallengeScreen"
 import JoinedChallengeScreen from "../screens/challenge/JoinedChallengeScreen";
 import CreateChallengeScreen from "../screens/challenge/CreateChallengeScreen";
 import StopWatch from "../screens/challenge/StopWatch";
+import SearchScreen from "../screens/SearchScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -61,6 +62,12 @@ const ChallengeNavigator = () => {
           },
           headerTitle: "Notifications",
         }}
+      />
+
+      <Stack.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{ headerShown: false }}
       />
 
       <Stack.Screen
