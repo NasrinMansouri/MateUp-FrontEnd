@@ -12,10 +12,15 @@ import {
 } from "../../components/shareMemberProfile";
 import { GalleryBuddies, RequestCalendarAccess } from "../../components/buddy";
 import ListBulletPointWithText from "../../components/ListBulletPointWithText";
+import membersApi from "../../api/members";
 import BulletList from "../../components/shareMemberProfile/BulletList";
 import GalleryJoinedChallenge from "../../components/challenge/GalleryJoinedChallenge";
 
-export default function BuddyProfileScreen({ route }) {
+export default function BuddyProfileScreen({ route, navigation }) {
+  const { memberId } = route.params;
+  // for backend connection
+  // const [memberProfile, setMemberProfile] = useState(null); or ({}) pass an empty object
+
   //to change the state of button when clicked
   const [buttonClicked, setButtonClicked] = useState({
     title: "Send Buddy Request",
@@ -38,37 +43,27 @@ export default function BuddyProfileScreen({ route }) {
     }));
   };
 
-  // const { memberProfile } = route.params;
-  // const { memberId } = route.params;
-  // useEffect(() => {
-  //   // Fetch member profile based on itemId
-  //   const fetchMemberProfile = async () => {
-  //     // Simulating data fetching
-  //     const response = await fetch(
-  //       `https://your-api-url/memberProfile/${memberId}`
-  //     );
-  //     const data = await response.json();
-  //     setMemberProfile(data);
-  //   };
-
-  //   fetchMemberProfile();
-  // }, [memberId]);
-
-  // if (!memberProfile) {
-  //   return <Text>Loading...</Text>;
-  // }
-
-  // for backend connection
-  // const [memberProfile, setMemberProfile] = useState({});
+  //for backend connection
 
   // useEffect(() => {
   //   loadMemberProfile();
-  // }, []);
+  // }, [memberId]);
 
   // const loadMemberProfile = async () => {
-  //   const response = await membersProfileApi.getMembersProfile();
-  //   setMemberProfile(response.data);
+  //   try {
+  //     const response = await membersApi.getMembersProfile(memberId);
+  //     setMemberProfile(response.data);
+  //   } catch (error) {
+  //     console.error("Error loading member profile:", error);
+  //   }
   // };
+  // if (!memberProfile) {
+  //   return (
+  //     <View style={styles.container}>
+  //       <Text>Loading...</Text>
+  //     </View>
+  //   );
+  // }
 
   // // pass userProfile as prop and get the data from backend later
   const memberProfile = {
@@ -168,6 +163,9 @@ export default function BuddyProfileScreen({ route }) {
         /> */}
         <UserImage
           userImage={userImage}
+          // userImage={members.userProfile.userImage}
+          //or
+          //userImage={members.userImage}
           imageWidth={116}
           imageHeight={116}
           imageRadius={116 / 2}
@@ -177,6 +175,7 @@ export default function BuddyProfileScreen({ route }) {
         />
         <ProfileTile
           firstName={firstName}
+          // firstName={members.userProfile.firstName}
           lastName={lastName}
           location={location}
           onpressmessage={() => console.log("pressed message")}
@@ -197,6 +196,7 @@ export default function BuddyProfileScreen({ route }) {
             <View style={styles.level}>
               <ListBulletPointWithText
                 titles={level}
+                // titles={members.userProfile.level}
                 header={"Fitness level"}
                 textColor={colors.white}
                 fontSize={16}
@@ -209,13 +209,19 @@ export default function BuddyProfileScreen({ route }) {
         <BulletList
           header={"workout"}
           titles={userworkout}
+          // titles={members.userProfile.userworkout}
           textColor={colors.white}
         />
         <Line marginTop={62} marginBottom={22} width={"90%"} />
-        <GalleryBuddies buddies={buddiesData} header={"buddies"} />
+        <GalleryBuddies
+          buddies={buddiesData}
+          // buddies={members.userProfile.buddiesData}
+          header={"buddies"}
+        />
         <Line marginTop={62} marginBottom={22} width={"90%"} />
         <GalleryJoinedChallenge
           joinedChallenge={joinedChallengeData}
+          // joinedChallenge={members.userProfile.joinedChallengeData}
           header={"joined challenges"}
         />
         <Line marginTop={62} marginBottom={22} width={"90%"} />
@@ -309,3 +315,22 @@ const styles = StyleSheet.create({
 //   ],
 //   firstName: "John",
 // };
+
+// const { memberId } = route.params;
+// useEffect(() => {
+//   // Fetch member profile based on itemId
+//   const fetchMemberProfile = async () => {
+//     // Simulating data fetching
+//     const response = await fetch(
+//       `https://your-api-url/memberProfile/${memberId}`
+//     );
+//     const data = await response.json();
+//     setMemberProfile(data);
+//   };
+
+//   fetchMemberProfile();
+// }, [memberId]);
+
+// if (!memberProfile) {
+//   return <Text>Loading...</Text>;
+// }
