@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   bio: {
-    fontFamily: "nunitoSans-bold",
+    fontFamily: "nunitoSans-regular",
     color: colors.white,
     fontSize: 16,
 

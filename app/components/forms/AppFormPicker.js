@@ -41,7 +41,7 @@ export default AppFormPicker;
 
 const styles = StyleSheet.create({
   questionTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: "montserrat-black",
     color: colors.white,
     marginBottom: 5,
