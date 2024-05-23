@@ -13,6 +13,7 @@ const ChallengeScreen = ({ navigation }) => {
     <Screen style={styles.screen}>
       <TopNav
         showSearchBar={true}
+        onPressSearch={() => navigation.navigate("Search")}
         onPressMessage={() => {
           console.log("message");
         }}
