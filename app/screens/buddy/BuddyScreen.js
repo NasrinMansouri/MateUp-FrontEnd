@@ -101,31 +101,29 @@ export default function BuddyScreen({ navigation }) {
 
   // const loadBuddies = async () => {
   //   const response = await membersApi.getBuddies();
-  //   //const parsed = JSON.parse(response);
-  //   //console.log(parsed);
   //   setBuddies(response.data.members);
-
   // };
 
   // const loadUserClubMembers = async () => {
   //   const response = await membersApi.getUserClubMembers();
-  //   setUserClubMembers(response.data);
+  //   setUserClubMembers(response.data.members);
   // };
 
   // const loadMatchClubMembers = async () => {
   //   const response = await membersApi.getMatchClubMembers();
-  //   setMatchClubMembers(response.data);
+  //   setMatchClubMembers(response.data.members);
   // };
 
   // const loadConnectAllMembers = async () => {
   //   const response = await membersApi.getConnectAllMembers();
-  //   setConnectAllMembers(response.data);
+  //   setConnectAllMembers(response.data.members);
   // };
 
   return (
     <Screen style={styles.container}>
       <TopNav
         showSearchBar={true}
+        onPressSearch={() => navigation.navigate("Search")}
         onPressMessage={() => console.log("message")}
         onPressNotification={() =>
           navigation.navigate("Notification", { screen: "buddy" })
@@ -136,7 +134,9 @@ export default function BuddyScreen({ navigation }) {
           <GalleryBuddies
             paddingLeft={6}
             buddies={buddiesData}
-            onPress={(item) => navigation.navigate("MemberProfile", { item })}
+            onPress={(item) =>
+              navigation.navigate("MemberProfile", { memberId: item.id })
+            }
           />
         </View>
         <Line marginBottom={40} marginTop={20} />
@@ -154,7 +154,9 @@ export default function BuddyScreen({ navigation }) {
         />
         <GalleryConnectAll
           connectAllMembers={connectAllMembersData}
-          onPress={(item) => navigation.navigate("MemberProfile", { item })}
+          onPress={(item) =>
+            navigation.navigate("MemberProfile", { memberId: item.id })
+          }
         />
       </ScrollView>
       <View style={styles.fixButtonPosition}>
