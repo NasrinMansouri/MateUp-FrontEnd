@@ -23,8 +23,9 @@ export default function GalleryConnectAll({ connectAllMembers, onPress }) {
             image={item.user.profile_image_url}
             location={location}
             titles={item.workout_types}
-            onPress={() => navigation.navigate("MemberProfile", item)}
-            // onPressProfile={onPress}
+            // onPress={() => navigation.navigate("MemberProfile", item)}
+            // onPress={onPress}
+            onPress={() => onPress(item)}
           />
         )}
       />

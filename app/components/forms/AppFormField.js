@@ -25,7 +25,7 @@ export default function AppFormField({ name, questionTitle, ...otherProps }) {
 
 const styles = StyleSheet.create({
   questionTitle: {
-    fontSize: 18,
+    fontSize: 16,
     marginTop: 30,
     fontFamily: "montserrat-black",
     color: colors.white,

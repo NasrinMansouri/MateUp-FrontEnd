@@ -66,12 +66,13 @@ function ListItem({
               </View>
               <View style={styles.containerButtons}>
                 <AppButton
-                  title="Confirm"
+                  title="Accept"
                   width={60}
                   height={30}
                   onPress={onPressConfirm}
-                  fontFamily="nunitoSans-bold"
-                  fontSize={10}
+                  fontFamily="nunitoSans-extraBold"
+                  fontSize={12}
+                  textTransform={"capitalize"}
                 />
 
                 <AppButton
@@ -79,8 +80,10 @@ function ListItem({
                   width={60}
                   height={30}
                   onPress={onPressDecline}
-                  fontFamily="nunitoSans-bold"
-                  fontSize={10}
+                  fontFamily="nunitoSans-extraBold"
+                  fontSize={12}
+                  backgroundColor={colors.black}
+                  textTransform={"capitalize"}
                 />
               </View>
             </View>

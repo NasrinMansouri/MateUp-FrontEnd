@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   title: {
-    fontSize: 18,
+    fontSize: 16,
     marginTop: 30,
     fontFamily: "montserrat-black",
     color: colors.white,

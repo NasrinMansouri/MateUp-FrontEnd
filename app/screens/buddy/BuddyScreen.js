@@ -25,12 +25,12 @@ import FilterModal from "../../components/buddy/FilterModal";
 // const buddiesData = [
 //   {
 //     id: 1,
-//     name: "Jeremy Dipper",
+//     name: "Jon",
 //     image: require("../../../assets/person-1.jpg"),
 //   },
 //   {
 //     id: 2,
-//     name: "Mary Jane",
+//     name: "Mary",
 //     image: require("../../../assets/person2.jpg"),
 //   },
 // ];
@@ -101,10 +101,7 @@ export default function BuddyScreen({ navigation }) {
 
   const loadBuddies = async () => {
     const response = await membersApi.getBuddies();
-    //const parsed = JSON.parse(response);
-    //console.log(parsed);
     setBuddies(response.data.members);
-
   };
 
   const loadUserClubMembers = async () => {
@@ -126,6 +123,7 @@ export default function BuddyScreen({ navigation }) {
     <Screen style={styles.container}>
       <TopNav
         showSearchBar={true}
+        onPressSearch={() => navigation.navigate("Search")}
         onPressMessage={() => console.log("message")}
         onPressNotification={() =>
           navigation.navigate("Notification", { screen: "buddy" })
@@ -134,8 +132,11 @@ export default function BuddyScreen({ navigation }) {
       <ScrollView style={styles.container}>
         <View style={styles.buddyContainer}>
           <GalleryBuddies
+            paddingLeft={6}
             buddies={buddies}
-            onPress={(item) => navigation.navigate("MemberProfile", { item })}
+            onPress={(item) =>
+              navigation.navigate("MemberProfile", { memberId: item.id })
+            }
           />
         </View>
         <Line marginBottom={40} marginTop={20} />
@@ -153,7 +154,9 @@ export default function BuddyScreen({ navigation }) {
         />
         <GalleryConnectAll
           connectAllMembers={connectAllMembers}
-          onPress={(item) => navigation.navigate("MemberProfile", { item })}
+          onPress={(item) =>
+            navigation.navigate("MemberProfile", { memberId: item.id })
+          }
         />
       </ScrollView>
       <View style={styles.fixButtonPosition}>

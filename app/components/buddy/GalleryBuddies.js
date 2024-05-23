@@ -13,10 +13,7 @@ import colors from "../../config/colors";
 
 function GalleryBuddies({ buddies, style, header, paddingLeft = 16 }) {
   const navigation = useNavigation();
-  const capitalizeFirstLetter = (string) => {
-    // capitalize first letter and make rest lowercase
-    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-  };
+  console.log(buddies)
 
   //dummy data for testing
   // const buddiesData = [
@@ -46,6 +43,7 @@ function GalleryBuddies({ buddies, style, header, paddingLeft = 16 }) {
   //     image: require("../../../assets/person-1.jpg"),
   //   },
   // ];
+  
   return (
     <View>
       {header && (
@@ -53,27 +51,31 @@ function GalleryBuddies({ buddies, style, header, paddingLeft = 16 }) {
           <Text style={styles.header}>{header}</Text>
         </View>
       )}
-      {console.log(buddies)}
+      {/* {console.log(buddies)} */}
       <FlatList
         style={[styles.container, style, { paddingLeft: paddingLeft }]}
         horizontal
         showsHorizontalScrollIndicator={false}
         data={buddies}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(members) => members.id.toString()}
         renderItem={({ item }) => {
           return (
             <CardProfile
-              onPressProfile={() => navigation.navigate(
-                "MemberProfile",
-                item,
-                // {
-                //   memberProfile: memberProfile,
-                // }
-              )}
-              // onPressProfile={onPress}
+            // onPressProfile={() =>
+              //   navigation.navigate(
+              //     "MemberProfile",
+              //     item
+              //     // {
+              //     //   memberProfile: memberProfile,
+              //     // }
+              //   )
+              // }
+              onPressProfile={() => onPress(item)}
               // name={capitalizeFirstLetter(item.name)}
-              name={item.user.name ? capitalizeFirstLetter(item.user.name) : null}
+              name={item.user.name}
+              // name={item.user.name ? capitalizeFirstLetter(item.user.name) : null}
               backgroundColor={colors.blackBc}
+              // image={item.user.profile_image_url} //for connecting to backed
               image={item.user.profile_image_url}
               flexDirection={"column"}
               cardWidth={97}
@@ -83,7 +85,9 @@ function GalleryBuddies({ buddies, style, header, paddingLeft = 16 }) {
               imageRadius={77 / 2}
               textColor={colors.white}
               fontSize={14}
-              gap={10} />
+              gap={10}
+              textTransform={"capitalize"}
+            />
           );
         }}
       />

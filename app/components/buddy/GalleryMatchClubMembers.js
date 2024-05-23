@@ -25,8 +25,8 @@ export default function GalleryMatchClubMembers({ UserClubMembers, onPress }) {
             image={item.user.profile_image_url}
             titles={item.workout_types}
             // onPress={() => navigation.navigate("MemberProfile", item)}
-            onPress={() => navigation.navigate("MemberProfile", item)}
-            // onPressProfile={onPress}
+            // onPressProfile={() => onPress(item)}
+            onPress={() => onPress(item)}
           />
         )}
       />

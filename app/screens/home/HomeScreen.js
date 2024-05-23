@@ -20,11 +20,14 @@ export default function HomeScreen({ navigation }) {
   const renderItemCache = {
     DisplayBuddies: (item) => (
       <View style={styles.buddiesContainer}>
-        <DisplayBuddies
+        {/* <DisplayBuddies
           style={{ marginBottom: 40 }}
           item={item}
           onPressAddBuddy={() => navigation.jumpTo("Buddy")}
-        />
+          onPressProfile={(item) =>
+            navigation.navigate("MemberProfile", { memberId: item.id })
+          }
+        /> */}
       </View>
     ),
     LineComponent: (item) => (
@@ -56,7 +59,7 @@ export default function HomeScreen({ navigation }) {
 
   //define array of data, which contains objects with a type property
   const data = [
-    { type: "DisplayBuddies" },
+    //{ type: "DisplayBuddies" },
     { type: "LineComponent" },
     { type: "UserNextWorkoutPlanningComponent" },
     { type: "GalleryBuddiesWorkoutComponent" },
@@ -69,6 +72,7 @@ export default function HomeScreen({ navigation }) {
       <TopNav
         showMenue={true}
         // onPressMenue={handleModal}
+        userProfileImage={require("../../../assets/person3.jpg")}
         onPressMenue={() => navigation.navigate("menu")}
         onPressNotification={() => navigation.navigate("Notification")}
         onPressMessage={() => console.log("Message image pressed")}

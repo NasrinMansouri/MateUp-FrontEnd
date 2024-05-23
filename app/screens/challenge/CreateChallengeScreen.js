@@ -63,7 +63,7 @@ export default function CreateChallengeScreen({}) {
 
           <AppFormImagePicker name="image" />
           <AppFormPicker
-            questionTitle="which workout count toward your challenge?"
+            questionTitle="Which workout count toward your challenge?"
             items={workoutTypes}
             name="workout"
             numberOfColumns={3}
@@ -72,7 +72,7 @@ export default function CreateChallengeScreen({}) {
             width="50%"
           />
           <AppFormPicker
-            questionTitle="do you want to track time or frequency?"
+            questionTitle="Do you want to track time or frequency?"
             items={challengeBase}
             name="base"
             numberOfColumns={3}
@@ -81,7 +81,7 @@ export default function CreateChallengeScreen({}) {
             width="50%"
           />
           <AppFormPicker
-            questionTitle="set goal for your challenge :"
+            questionTitle="Set goal for your challenge :"
             items={challengeGoal}
             name="goal"
             numberOfColumns={3}

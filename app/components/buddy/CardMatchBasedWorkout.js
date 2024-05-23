@@ -7,11 +7,12 @@ import LocationWithIcon from "../LocationWithIcon";
 import ListBulletPointWithText from "../ListBulletPointWithText";
 
 export default function CardMatchBasedWorkout({
-  onPress,
   image,
   name,
   location,
   titles,
+  onPress,
+  onPressProfile,
 }) {
   return (
     <TouchableOpacity
@@ -21,6 +22,7 @@ export default function CardMatchBasedWorkout({
     >
       <View style={styles.profile}>
         <CardProfile
+          onPressProfile={onPressProfile}
           //   backgroundColor={colors.blackBc}
           flexDirection={"row"}
           cardWidth={140}

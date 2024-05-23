@@ -12,6 +12,7 @@ function AppButton({
   fontFamily = "montserrat-black",
   fontSize = 16,
   backgroundColor = colors.green,
+  textTransform = "uppercase",
   ...otherStyles
 }) {
   return (
@@ -30,7 +31,14 @@ function AppButton({
     >
       {image && <Image source={image} style={styles.image} />}
       <Text
-        style={[styles.text, { fontFamily: fontFamily, fontSize: fontSize }]}
+        style={[
+          styles.text,
+          {
+            fontFamily: fontFamily,
+            fontSize: fontSize,
+            textTransform: textTransform,
+          },
+        ]}
       >
         {title}
       </Text>

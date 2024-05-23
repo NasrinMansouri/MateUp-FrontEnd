@@ -1,7 +1,7 @@
-import client from "./client";
+// import client from "./client";
 
-const getMembersProfile = () => client.get("/members");
+// const getMembersProfile = () => client.get("/members");
 
-export default {
-  getMembersProfile,
-};
+// export default {
+//   getMembersProfile,
+// };

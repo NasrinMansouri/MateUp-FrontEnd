@@ -5,6 +5,7 @@ import colors from "../config/colors";
 import BuddyScreen from "../screens/buddy/BuddyScreen";
 import BuddyProfileScreen from "../screens/buddy/BuddyProfileScreen";
 import NotificationScreen from "../screens/NotificationScreen";
+import SearchScreen from "../screens/SearchScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -45,6 +46,12 @@ const BuddyNavigator = () => {
           },
           headerTitle: "Notifications",
         }}
+      />
+
+      <Stack.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
