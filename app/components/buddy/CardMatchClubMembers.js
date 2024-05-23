@@ -5,13 +5,7 @@ import CardProfile from "../CardProfile";
 import colors from "../../config/colors";
 import ListBulletPointWithText from "../ListBulletPointWithText";
 
-export default function CardMatchClubMembers({
-  name,
-  image,
-  titles,
-  onPress,
-  onPressProfile,
-}) {
+export default function CardMatchClubMembers({ name, image, titles, onPress }) {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -20,7 +14,7 @@ export default function CardMatchClubMembers({
     >
       <View style={styles.profile}>
         <CardProfile
-          onPressProfile={onPressProfile}
+          onPressProfile={onPress}
           name={name}
           image={image}
           imageWidth={116}

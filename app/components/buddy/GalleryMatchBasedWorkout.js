@@ -25,8 +25,9 @@ export default function GalleryMatchBasedWorkout({
             image={item.image}
             location={item.location}
             titles={item.titles}
-            onPress={() => navigation.navigate("MemberProfile", item)}
-            // onPressProfile={onPress}
+            // onPress={onPress}
+            // onPress={() => navigation.navigate("MemberProfile", item)}
+            onPress={() => onPress(item)}
           />
         )}
       />

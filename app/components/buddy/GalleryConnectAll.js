@@ -22,8 +22,9 @@ export default function GalleryConnectAll({ connectAllMembers, onPress }) {
             image={item.image}
             location={item.location}
             titles={item.titles}
-            onPress={() => navigation.navigate("MemberProfile", item)}
-            // onPressProfile={onPress}
+            // onPress={() => navigation.navigate("MemberProfile", item)}
+            // onPress={onPress}
+            onPress={() => onPress(item)}
           />
         )}
       />

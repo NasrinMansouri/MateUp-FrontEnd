@@ -74,28 +74,28 @@ function GalleryBuddies({ buddies, style, header, paddingLeft = 16, onPress }) {
           <Text style={styles.header}>{header}</Text>
         </View>
       )}
-      {console.log(buddies)}
+      {/* {console.log(buddies)} */}
       <FlatList
         style={[styles.container, style, { paddingLeft: paddingLeft }]}
         horizontal
         showsHorizontalScrollIndicator={false}
         data={buddies}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(members) => members.id.toString()}
         renderItem={({ item }) => {
           return (
             <CardProfile
-              onPressProfile={() =>
-                navigation.navigate(
-                  "MemberProfile",
-                  item
-                  // {
-                  //   memberProfile: memberProfile,
-                  // }
-                )
-              }
-              // onPressProfile={onPress}
+              // onPressProfile={() =>
+              //   navigation.navigate(
+              //     "MemberProfile",
+              //     item
+              //     // {
+              //     //   memberProfile: memberProfile,
+              //     // }
+              //   )
+              // }
+              onPressProfile={() => onPress(item)}
               name={item.name}
-              // name={item.user.name ? capitalizeFirstLetter(item.user.name) : null} //for connecting to backed
+              // name={item.user.name} //for connecting to backed
               backgroundColor={colors.blackBc}
               // image={item.user.profile_image_url} //for connecting to backed
               image={item.image}
