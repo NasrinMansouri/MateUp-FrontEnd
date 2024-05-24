@@ -17,15 +17,16 @@ import BulletList from "../../components/shareMemberProfile/BulletList";
 import GalleryJoinedChallenge from "../../components/challenge/GalleryJoinedChallenge";
 
 export default function BuddyProfileScreen({ route, navigation }) {
-  const { memberId } = route.params;
+  //  to trigger go to top
+  const scrollRef = useRef();
   // for backend connection
   // const [memberProfile, setMemberProfile] = useState(null); or ({}) pass an empty object
-
   //to change the state of button when clicked
   const [buttonClicked, setButtonClicked] = useState({
     title: "Send Buddy Request",
     backgroundColor: colors.green,
   });
+  const { memberId } = route.params;
 
   const handleButtonClicked = () => {
     setButtonClicked((toggleState) => ({
@@ -52,7 +53,8 @@ export default function BuddyProfileScreen({ route, navigation }) {
   // const loadMemberProfile = async () => {
   //   try {
   //     const response = await membersApi.getMembersProfile(memberId);
-  //     setMemberProfile(response.data);
+  //     setMemberProfile(response.data.member);
+  //     console.log(response.data.member);
   //   } catch (error) {
   //     console.error("Error loading member profile:", error);
   //   }
@@ -144,8 +146,6 @@ export default function BuddyProfileScreen({ route, navigation }) {
     joinedChallengeData,
   } = memberProfile;
 
-  //  to trigger go to top
-  const scrollRef = useRef();
   const goToTop = () => {
     scrollRef.current.scrollTo({ y: 0, animated: true });
   };
@@ -163,7 +163,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
         /> */}
         <UserImage
           userImage={userImage}
-          // userImage={members.userProfile.userImage}
+          // userImage={memberProfile.user.profile_image_url}
           //or
           //userImage={members.userImage}
           imageWidth={116}
@@ -175,12 +175,16 @@ export default function BuddyProfileScreen({ route, navigation }) {
         />
         <ProfileTile
           firstName={firstName}
-          // firstName={members.userProfile.firstName}
+          // firstName={memberProfile.user.name}
+          // lastName={memberProfile.user.surname}
           lastName={lastName}
           location={location}
           onpressmessage={() => console.log("pressed message")}
         />
-        <Bio bio={bio} />
+        <Bio
+          bio={bio}
+          // bio={memberProfile.user.bio}
+        />
         <View style={styles.buttonContainer}>
           <AppButton
             title={buttonClicked.title}
@@ -196,7 +200,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
             <View style={styles.level}>
               <ListBulletPointWithText
                 titles={level}
-                // titles={members.userProfile.level}
+                // titles={membersProfile.level_fitness}
                 header={"Fitness level"}
                 textColor={colors.white}
                 fontSize={16}
@@ -209,19 +213,19 @@ export default function BuddyProfileScreen({ route, navigation }) {
         <BulletList
           header={"workout"}
           titles={userworkout}
-          // titles={members.userProfile.userworkout}
+          // titles={memberProfile.workout_types}
           textColor={colors.white}
         />
         <Line marginTop={62} marginBottom={22} width={"90%"} />
         <GalleryBuddies
           buddies={buddiesData}
-          // buddies={members.userProfile.buddiesData}
+          // buddies={memberProfile.buddies}
           header={"buddies"}
         />
         <Line marginTop={62} marginBottom={22} width={"90%"} />
         <GalleryJoinedChallenge
           joinedChallenge={joinedChallengeData}
-          // joinedChallenge={members.userProfile.joinedChallengeData}
+          // joinedChallenge={memberProfile.joinedChallengeData}
           header={"joined challenges"}
         />
         <Line marginTop={62} marginBottom={22} width={"90%"} />
