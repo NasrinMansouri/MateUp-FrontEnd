@@ -11,6 +11,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 
 import colors from "../config/colors";
+import searchApi from "../api/search";
 import ListItemSeparator from "../components/lists/ListItemSeperator";
 import Screen from "../components/Screen";
 
@@ -33,20 +34,51 @@ const searchedResults = [
 ];
 
 export default function SearchScreen({ navigation }) {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filteredResults, setFilteredResults] = useState([]);
+  // State for storing user's search input
+  const [searchInput, setsearchInput] = useState("");
+  // State for storing filtered search results
+  const [searchResults, setsearchResults] = useState([]);
 
+  // Function to handle search input change
   const handleSearch = (text) => {
-    setSearchQuery(text);
+    setsearchInput(text); // Update searchInput state
     const filtered = searchedResults.filter((item) =>
+      // Filter search results based on user's search input and make it case insensitive
       item.name.toLowerCase().includes(text.toLowerCase())
     );
-    setFilteredResults(filtered);
-    // Update filteredResults even when search query is empty
+    setsearchResults(filtered); // Update searchResults state
+    // Update searchResults even when search query is empty
     if (text === "") {
-      setFilteredResults([]);
+      setsearchResults([]); //clear searchResults when search query is empty
     }
   };
+
+  // to connect to back end
+
+  // Function to handle search input change
+  // const handleSearch = (text) => {
+  //   setSearchInput(text); // Update searchInput state
+  // };
+
+  // //for backend connection
+  // useEffect(() => {
+  //   loadSearchResults();
+  // }, [searchInput]);
+
+  // const loadSearchResults = async () => {
+  //   if (searchInput.trim() !== "") {        //The trim() method removes whitespace from both sides of a string.
+  //     try {
+  //       // Calling API function to fetch members based on search input
+  //       const response = await membersApi.getSearch(searchInput);
+  //       // Update searchResults state with the fetched data
+  //       setSearchResults(response.data.members);
+  //     } catch (error) {
+  //       console.error("Error fetching search results:", error);
+  //     }
+  //   } else {
+  //     setSearchResults([]); // Clear searchResults when search query is empty
+  //   }
+  // };
 
   return (
     <Screen style={styles.container}>
@@ -62,23 +94,25 @@ export default function SearchScreen({ navigation }) {
           autoCorrect={false}
           keyboardType="default"
           autoFocus
-          onChangeText={(text) => handleSearch(text)}
+          onChangeText={(text) => handleSearch(text)} // Call handleSearch function on text change
           keyboardAppearance="dark"
         />
       </View>
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={filteredResults}
-        keyExtractor={(item) => item.id.toString()}
+        data={searchResults}
+        keyExtractor={(members) => members.id.toString()}
         ItemSeparatorComponent={ListItemSeparator}
         ListEmptyComponent={
           <View style={styles.noResultsContainer}>
             <Text style={styles.noResultsText}>
-              {searchQuery ? "No results found!" : ""}
+              {searchInput ? "No results found!" : ""}
             </Text>
           </View>
         }
-        renderItem={({ item }) => (
+        renderItem={(
+          { item } //render each item in FlatList
+        ) => (
           <TouchableWithoutFeedback
             //  onPress={() => console.log(item)}
             onPress={() =>
