@@ -24,7 +24,7 @@ export default function HomeScreen({ navigation }) {
           style={{ marginBottom: 40 }}
           item={item}
           onPressAddBuddy={() => navigation.jumpTo("Buddy")}
-          onPressProfile={(item) =>
+          onPress={(item) =>
             navigation.navigate("MemberProfile", { memberId: item.id })
           }
         />
