@@ -7,7 +7,7 @@ import colors from "../config/colors";
 export default function AppTextInput({
   icon,
   borderWidth = 1,
-  borderColor = colors.black,
+  borderColor = colors.green,
   backgroundColor = colors.blackBc,
   Width = "100%",
   ...otherProps
