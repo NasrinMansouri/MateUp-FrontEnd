@@ -28,7 +28,7 @@ const ChallengeNavigator = () => {
           headerStyle: {
             backgroundColor: colors.blackBc,
           },
-          headerTitle: "Challenge Details",
+          headerTitle: "",
         }}
       />
 
