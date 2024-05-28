@@ -28,7 +28,7 @@ export default function RequestCalendarAccess({
               Want to access {userFirstName}'s calendar?
             </Text>
             <Text style={styles.text2}>
-              Send a buddy requests to {userFirstName} to get started. Someone
+              SEND A BUDDY REQUEST to {userFirstName} to get started. Someone
               has to take the first step, right? So, Go For It and Make It
               Happen!
             </Text>
@@ -42,7 +42,7 @@ export default function RequestCalendarAccess({
                 onPress={onPressGoToTop}
                 activeOpacity={1.0}
               >
-                <Text style={styles.text3}>send request now</Text>
+                <Text style={styles.text3}>Go To Top</Text>
               </TouchableWithoutFeedback>
             </View>
           </View>
@@ -91,12 +91,12 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
   text3: {
-    fontFamily: "montserrat-black",
-    fontSize: 16,
+    fontFamily: "nunitoSans-extraBold",
+    fontSize: 14,
     marginTop: 16,
-    color: colors.black,
+    color: colors.white,
     textDecorationLine: "underline",
-    textDecorationColor: colors.blackBc,
+    textDecorationColor: colors.white,
     textTransform: "uppercase",
   },
 
