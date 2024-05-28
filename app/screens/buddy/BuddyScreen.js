@@ -6,6 +6,7 @@ import {
   Modal,
   Text,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 
 import Screen from "../../components/Screen";
@@ -21,6 +22,7 @@ import {
   GalleryMatchClubMembers,
 } from "../../components/buddy";
 import FilterModal from "../../components/buddy/FilterModal";
+import useApi from "../../hooks/useApi";
 
 const buddiesData = [
   {
@@ -86,6 +88,19 @@ const connectAllMembersData = [
 export default function BuddyScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
 
+  // new for connecting to backend using my custom api hook
+
+  // const getBuddiesApi = useApi(membersApi.getBuddies);
+  // const getUserClubMembersApi = useApi(membersApi.getUserClubMembers);
+  // const getMatchClubMembersApi = useApi(membersApi.getMatchClubMembers);
+  // const getConnectAllMembersApi = useApi(membersApi.getConnectAllMembers);
+  // useEffect(() => {
+  //   getBuddiesApi.request();
+  //   getUserClubMembersApi.request();
+  //   getMatchClubMembersApi.request();
+  //   getConnectAllMembersApi.request();
+  // }, []);
+
   //for backend connection
   // const [buddies, setBuddies] = useState([]);
   // const [UserClubMembers, setUserClubMembers] = useState([]);
@@ -131,29 +146,53 @@ export default function BuddyScreen({ navigation }) {
       />
       <ScrollView style={styles.container}>
         <View style={styles.buddyContainer}>
+          {/* <ActivityIndicator
+            animating={getBuddiesApi.loading}
+            color={colors.orangePrimary}
+          /> */}
           <GalleryBuddies
             paddingLeft={6}
             buddies={buddiesData}
+            // for new connection to backend
+            // buddies={getBuddiesApi.data}
             onPress={(item) =>
               navigation.navigate("MemberProfile", { memberId: item.id })
             }
           />
         </View>
         <Line marginBottom={40} marginTop={20} />
+        {/* <ActivityIndicator
+          animating={getUserClubMembersApi.loading}
+          color={colors.orangePrimary}
+        /> */}
         <GalleryMatchClubMembers
           UserClubMembers={UserClubMembersData}
+          // for new connection to backend
+          // UserClubMembers={getUserClubMembersApi.data}
           onPress={(item) =>
             navigation.navigate("MemberProfile", { memberId: item.id })
           }
         />
+        {/* <ActivityIndicator
+          animating={getMatchClubMembersApi.loading}
+          color={colors.orangePrimary}
+        /> */}
         <GalleryMatchBasedWorkout
           matchMemberWorkout={matchClubMembersData}
+          // for new connection to backend
+          // matchMemberWorkout={getMatchClubMembersApi.data}
           onPress={(item) =>
             navigation.navigate("MemberProfile", { memberId: item.id })
           }
         />
+        {/* <ActivityIndicator
+          animating={getConnectAllMembersApi.loading}
+          color={colors.orangePrimary}
+        /> */}
         <GalleryConnectAll
           connectAllMembers={connectAllMembersData}
+          // for new connection to backend
+          // connectAllMembers={getConnectAllMembersApi.data}
           onPress={(item) =>
             navigation.navigate("MemberProfile", { memberId: item.id })
           }
