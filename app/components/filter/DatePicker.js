@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   container: {
     marginRight: 16,
     marginLeft: 16,
-    marginBottom: 50,
+    marginBottom: 30,
   },
   textInputContainer: {
     position: "relative",
