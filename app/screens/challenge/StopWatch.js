@@ -3,19 +3,20 @@ import { View, Text, TouchableOpacity, StyleSheet, Modal } from "react-native";
 
 import colors from "../../config/colors";
 import Screen from "../../components/Screen";
-import Header from "../../components/challenge/stopWatch/Header";
 import Body from "../../components/challenge/stopWatch/Body";
-import Controllers from "../../components/challenge/stopWatch/Controllers";
 import ControllerStopWatch from "../../components/challenge/stopWatch/ControllerStopWatch";
 import HeaderStopWatch from "../../components/challenge/stopWatch/HeaderStopWatch";
 import ModalContent from "../../components/challenge/stopWatch/ModalContent";
+import { useNavigation } from "@react-navigation/native";
 
-const StopWatchChallenge = () => {
+const StopWatchChallenge = ({ saveWorkout }) => {
   const [time, setTime] = useState(0); // Store the elapsed time in seconds
   const [isRunning, setIsRunning] = useState(false);
   const [activeButton, setActiveButton] = useState("start");
   const [modalVisible, setModalVisible] = useState(false);
   const [finishTime, setFinishTime] = useState(0);
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     let interval = null;
@@ -77,6 +78,11 @@ const StopWatchChallenge = () => {
     handleModalClose();
   };
 
+  const handleSave = () => {
+    // navigation.navigate("JoinedChallenge");
+    // setModalVisible(false);
+  };
+
   const formatTime = (timeInSeconds) => {
     const hours = Math.floor(timeInSeconds / 3600);
     const minutes = Math.floor((timeInSeconds - hours * 3600) / 60);
@@ -111,6 +117,7 @@ const StopWatchChallenge = () => {
           finishTime={formatTime(finishTime)}
           resumeAndCloseModal={resumeAndCloseModal}
           deleteAndCloseModal={deleteAndCloseModal}
+          saveWorkout={handleSave}
         />
       </View>
     </Screen>

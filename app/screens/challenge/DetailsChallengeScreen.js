@@ -145,9 +145,9 @@ const styles = StyleSheet.create({
   },
   name: {
     fontFamily: "montserrat-black",
-    fontSize: 20,
+    fontSize: 16,
     color: colors.white,
-    textTransform: "capitalize",
+    textTransform: "uppercase",
     marginBottom: 10,
   },
   typeContainer: {

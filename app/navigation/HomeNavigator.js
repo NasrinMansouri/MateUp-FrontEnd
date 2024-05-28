@@ -57,7 +57,11 @@ const HomeNavigator = () => {
           headerStyle: {
             backgroundColor: colors.blackBc,
           },
-          headerTitle: "",
+          headerTitleStyle: {
+            color: colors.orangePrimary,
+            fontSize: 16,
+          },
+          headerTitle: "Profile",
         }}
       />
 
@@ -68,6 +72,11 @@ const HomeNavigator = () => {
           headerStyle: {
             backgroundColor: colors.blackBc,
           },
+          headerTitleStyle: {
+            color: colors.orangePrimary,
+            fontSize: 16,
+          },
+          headerTitle: "Settings",
         }}
       />
 

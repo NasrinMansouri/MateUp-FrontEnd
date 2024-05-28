@@ -25,15 +25,20 @@ import AppButton from "../../components/AppButton";
 
 export default function JoinChallengeScreen({ navigation }) {
   // const navigation = useNavigation();
-
   const [modalVisible, setModalVisible] = useState(false);
-  const handleModal = () => {
-    setModalVisible(!modalVisible);
+
+  const handleStart = () => {
+    // setModalVisible(!modalVisible);
+    navigation.navigate("StartChallenge");
   };
 
-  const handleModalClose = () => {
-    setModalVisible(false);
+  const handleBackPress = () => {
+    navigation.navigate("challenge", { screen: "My Challenges" });
   };
+
+  // const handleModalClose = () => {
+  //   setModalVisible(false);
+  // };
 
   const challengeDetailsProgress = {
     challengeImage: require("../../../assets/person3.jpg"),
@@ -70,10 +75,7 @@ export default function JoinChallengeScreen({ navigation }) {
     ],
     numberOfLikes: 30,
     numberOfComments: 10,
-  };
-
-  const handleBackPress = () => {
-    navigation.navigate("challenge", { screen: "My Challenges" });
+    percentage: 0,
   };
 
   const {
@@ -87,6 +89,7 @@ export default function JoinChallengeScreen({ navigation }) {
     challengeDescription,
     numberOfLikes,
     numberOfComments,
+    percentage,
   } = challengeDetailsProgress;
 
   return (
@@ -109,7 +112,7 @@ export default function JoinChallengeScreen({ navigation }) {
             title="Start Challenge"
             fontSize={14}
             backgroundColor={colors.green}
-            onPress={handleModal}
+            onPress={handleStart}
           />
         </View>
         <Text style={styles.name}>{ChallengeName}</Text>
@@ -122,7 +125,7 @@ export default function JoinChallengeScreen({ navigation }) {
             bulletColor={colors.orangePrimary}
             marginRight={4}
             textColor={colors.white}
-            fontFamily="nunitoSans-bold"
+            fontFamily="nunitoSans-extraBold"
             textTransform={"uppercase"}
             fontSize={16}
           />
@@ -142,7 +145,7 @@ export default function JoinChallengeScreen({ navigation }) {
           </TouchableOpacity>
         </View>
         <View style={styles.donutContainer}>
-          <DonutChart />
+          <DonutChart percentage={percentage} duration={duration} />
         </View>
         <Line marginBottom={20} marginTop={40} />
         <ShowReactions NumberOfReactions={numberOfLikes} title={"Likes"} />
@@ -160,23 +163,6 @@ export default function JoinChallengeScreen({ navigation }) {
           <AddReactions />
         </View>
       </ScrollView>
-
-      <Modal
-        animationType="slide"
-        visible={modalVisible}
-        onRequestClose={handleModalClose}
-      >
-        <View style={styles.modalContainer}>
-          <TouchableOpacity
-            style={styles.closeButton}
-            onPress={handleModalClose}
-          >
-            <Ionicons name="close" size={24} color={colors.white} />
-            {/* <Text style={styles.closeButtonText}>Cancel</Text> */}
-          </TouchableOpacity>
-          <StopWatch />
-        </View>
-      </Modal>
     </Screen>
   );
 }
@@ -223,7 +209,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontFamily: "montserrat-black",
-    fontSize: 20,
+    fontSize: 16,
     color: colors.white,
     textTransform: "uppercase",
     marginBottom: 10,
@@ -279,3 +265,20 @@ const styles = StyleSheet.create({
     backgroundColor: colors.blackBc,
   },
 });
+
+// <Modal
+//         animationType="slide"
+//         visible={modalVisible}
+//         onRequestClose={handleModalClose}
+//       >
+//         <View style={styles.modalContainer}>
+//           <TouchableOpacity
+//             style={styles.closeButton}
+//             onPress={handleModalClose}
+//           >
+//             <Ionicons name="close" size={24} color={colors.white} />
+//             {/* <Text style={styles.closeButtonText}>Cancel</Text> */}
+//           </TouchableOpacity>
+//           <StopWatch />
+//         </View>
+//       </Modal>

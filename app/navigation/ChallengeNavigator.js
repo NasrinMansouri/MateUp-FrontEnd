@@ -9,6 +9,8 @@ import JoinedChallengeScreen from "../screens/challenge/JoinedChallengeScreen";
 import CreateChallengeScreen from "../screens/challenge/CreateChallengeScreen";
 import StopWatch from "../screens/challenge/StopWatch";
 import SearchScreen from "../screens/SearchScreen";
+import StartChallengeScreen from "../screens/challenge/StartChallnegScreen";
+import ModalContent from "../components/challenge/stopWatch/ModalContent";
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +37,18 @@ const ChallengeNavigator = () => {
       <Stack.Screen
         name="JoinedChallenge"
         component={JoinedChallengeScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="StartChallenge"
+        component={StartChallengeScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="WorkoutContent"
+        component={ModalContent}
         options={{ headerShown: false }}
       />
 
