@@ -8,7 +8,7 @@ const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 let currentPercentage = 10;
 
-export default function DonutChartChallenge({
+export default function DonutChart({
   percentage = currentPercentage,
   radius = 150,
   strokeWidth = 12,
