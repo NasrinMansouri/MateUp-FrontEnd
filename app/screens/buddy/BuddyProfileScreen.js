@@ -24,7 +24,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
   //to change the state of button when clicked
   const [buttonClicked, setButtonClicked] = useState({
     title: "Send Buddy Request",
-    backgroundColor: colors.green,
+    backgroundColor: colors.orangeSecondary,
   });
   const { memberId } = route.params;
 
@@ -38,9 +38,9 @@ export default function BuddyProfileScreen({ route, navigation }) {
           ? "Cancel Buddy Request"
           : "Send Buddy Request",
       backgroundColor:
-        toggleState.backgroundColor === colors.green
-          ? colors.orangeSecondary
-          : colors.green,
+        toggleState.backgroundColor === colors.orangeSecondary
+          ? colors.green
+          : colors.orangeSecondary,
     }));
   };
 
