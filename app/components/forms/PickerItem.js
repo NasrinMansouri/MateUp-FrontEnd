@@ -17,9 +17,9 @@ export default function PickerItem({ label, onPress }) {
 const styles = StyleSheet.create({
   text: {
     padding: 20,
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: "nunitoSans-extraBold",
-    color: colors.black,
+    color: colors.white,
     // textTransform: "uppercase",
     textTransform: "capitalize",
   },
