@@ -4,11 +4,7 @@ import { StyleSheet, ScrollView } from "react-native";
 import AddBuddyBtn from "./AddBuddyBtn";
 import GalleryBuddies from "../buddy/GalleryBuddies";
 
-export default function DisplayBuddies({
-  onPressAddBuddy,
-  buddies,
-  onPressProfile,
-}) {
+export default function DisplayBuddies({ onPressAddBuddy, buddies, onPress }) {
   const buddiesData = [
     {
       id: 1,
@@ -27,11 +23,7 @@ export default function DisplayBuddies({
       horizontal
       showsHorizontalScrollIndicator={false}
     >
-      <GalleryBuddies
-        buddies={buddiesData}
-        paddingLeft={6}
-        onPress={onPressProfile}
-      />
+      <GalleryBuddies buddies={buddiesData} paddingLeft={6} onPress={onPress} />
       <AddBuddyBtn onPress={onPressAddBuddy} />
     </ScrollView>
   );
