@@ -14,12 +14,25 @@ import {
 import Screen from "../../components/Screen";
 import colors from "../../config/colors";
 import challengeApi from "../../api/challenge";
+import ConditionalComponentForm from "../../components/challenge/ConditionalComponentForm";
+import UploadScreen from "../UploadScreen";
 
 const validationSchema = Yup.object().shape({
   workout: Yup.object().required().label("Workout Type"), //workout type
   base: Yup.object().required().label("Time or Frequency"), //time or frequency base
-  goalFrequency: Yup.object().required().label("Goal Frequency"), //goal for frequency, everyday, , etc
-  goalTime: Yup.string().required().label("Goal Time"), //goal for time
+  // goalFrequency: Yup.object().required().label("Goal Frequency"), //goal for frequency, everyday, , etc
+  // // goalTime: Yup.string().required().label("Goal Time"), //goal for time
+  // goalTime: Yup.string().when("base", {
+  //   is: (val) => val?.value === 1,
+  //   then: Yup.string().required().label("Goal Time"),
+  //   otherwise: Yup.string().notRequired(),
+  // }),
+  // goalFrequency: Yup.object().when("base", {
+  //   is: (val) => val?.value === 2,
+  //   then: Yup.object().required().label("Goal Frequency"),
+  //   otherwise: Yup.object().notRequired(),
+  // }),
+
   start: Yup.string().required().label("Start Date"),
   end: Yup.string().required().label("End Date"),
   name: Yup.string().required().min(3).label("Challnege Name"), //naming the challenge
@@ -48,54 +61,26 @@ const challengeGoal = [
   { label: "Monthly", value: 8 },
 ];
 
-// const ConditionalComponent = () => {
-//   const { values } = useFormikContext();
-//   return values.base && values.base.value === 1 ? (
-//     <AppFormField
-//       questionTitle="Set goal for your challenge :"
-//       name="goalTime"
-//       placeholder="ex: 20 hours"
-//       keyboardType={"numeric"}
-//     />
-//   ) : (
-//     <AppFormPicker
-//       questionTitle="Set goal for your challenge :"
-//       items={challengeGoal}
-//       name="goalFrequency"
-//       numberOfColumns={3}
-//       placeholder="Select goal"
-//       width="50%"
-//     />
-//   ) ;
-// };
-// Conditional Component for rendering based on base selection
-const ConditionalComponent = () => {
-  const { values } = useFormikContext();
-  return values.base ? (
-    values.base.value === 1 ? (
-      <AppFormField
-        questionTitle="Set goal for your challenge :"
-        name="goalTime"
-        placeholder="ex: 20 hours"
-        keyboardType={"numeric"}
-      />
-    ) : (
-      <AppFormPicker
-        questionTitle="Set goal for your challenge :"
-        items={challengeGoal}
-        name="goalFrequency"
-        numberOfColumns={3}
-        placeholder="Select goal"
-        width="50%"
-      />
-    )
-  ) : null;
-};
-
 export default function CreateChallengeScreen({}) {
+  // for the progress bar
+  const [uploadVisible, setUploadVisible] = useState(false);
+  // for maintaing the progree
+  const [progress, setProgress] = useState(0);
+
   // to send the data to the backend
   const handleSubmit = async (challenge) => {
-    const result = await challengeApi.createChallenge(challenge);
+    setUploadVisible(true);
+    console.log("Form submitted with values:", challenge);
+    const result = await challengeApi.createChallenge(
+      { challenge },
+      // callback function, our api will call that function
+      // as the upload is progressed
+      // (progress) => console.log(progress)
+      (progress) => setProgress(progress)
+    );
+    console.log(result); //log the result to debug
+    setUploadVisible(false);
+
     if (!result.ok) return alert("Could not create challenge. ");
     alert("success");
   };
@@ -103,6 +88,7 @@ export default function CreateChallengeScreen({}) {
   return (
     <ScrollView>
       <Screen style={styles.container}>
+        <UploadScreen progress={progress} visible={uploadVisible} />
         <AppForm
           initialValues={{
             workout: null,
@@ -144,24 +130,8 @@ export default function CreateChallengeScreen({}) {
             width="50%"
           />
 
-          {/* <AppFormField
-            questionTitle="Set goal for your challenge :"
-            name="goalTime"
-            placeholder="ex: 20 hours"
-            keyboardType={"numeric"}
-          />
-
-          <AppFormPicker
-            questionTitle="Set goal for your challenge :"
-            items={challengeGoal}
-            name="goalFrequency"
-            numberOfColumns={3}
-            // PickerItemComponent={ChallenegGoalPickerItem}
-            placeholder="Select goal"
-            width="50%"
-          /> */}
-
-          <ConditionalComponent />
+          {/* <ConditionalComponent /> */}
+          <ConditionalComponentForm challengeGoal={challengeGoal} />
 
           <AppFormDatePicker
             name="start"
