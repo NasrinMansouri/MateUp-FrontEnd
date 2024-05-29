@@ -7,4 +7,5 @@ export { default as GalleryChallengeByMe } from "./GalleryChallengeByMe";
 export { default as GalleryClubChallenge } from "./GalleryClubChallenge";
 export { default as GalleryJoinedChallenge } from "./GalleryJoinedChallenge";
 export { default as GroupAvatar } from "./GroupAvatar";
-export { default as stopWatch } from "./stopWatch";
+export { default as CardFilter } from "./CardFilter";
+export { default as GalleryFilters } from "./GalleryFilters";
