@@ -1,9 +1,10 @@
 import React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
-import GalleryAllChallenges from "../../../components/challenge/GalleryAllChallenges";
 
+import GalleryAllChallenges from "../../../components/challenge/GalleryAllChallenges";
 import GalleryBuddiesJoinedChallenge from "../../../components/challenge/GalleryBuddiesJoinedChallenge";
 import GalleryClubChallenge from "../../../components/challenge/GalleryClubChallenge";
+import GalleryFilters from "../../../components/challenge/GalleryFilters";
 import Screen from "../../../components/Screen";
 
 const challengeYourBuddiesJoined = [
@@ -56,18 +57,6 @@ const challengeYourBuddiesJoined = [
   },
 ];
 
-// export default function Join({}) {
-//   return (
-//     <View style={styles.container}>
-//       <GalleryBuddiesJoinedChallenge
-//         BuddiesJoinedChallenge={challengeYourBuddiesJoined}
-//       />
-//       <GalleryClubChallenge ClubChallenge={challengeYourBuddiesJoined} />
-//       <GalleryAllChallenges AllChallenges={challengeYourBuddiesJoined} />
-//     </View>
-//   );
-// }
-
 export default function Join({}) {
   const renderItemCache = {
     GalleryBuddiesJoinedChallenge: (challengeYourBuddiesJoined) => (
@@ -81,9 +70,12 @@ export default function Join({}) {
     GalleryAllChallenges: (challengeYourBuddiesJoined) => (
       <GalleryAllChallenges AllChallenges={challengeYourBuddiesJoined} />
     ),
+
+    GalleryFilters: () => <GalleryFilters />,
   };
 
   const data = [
+    { type: "GalleryFilters" },
     { type: "GalleryBuddiesJoinedChallenge", data: challengeYourBuddiesJoined },
     { type: "GalleryClubChallenge", data: challengeYourBuddiesJoined },
     { type: "GalleryAllChallenges", data: challengeYourBuddiesJoined },
