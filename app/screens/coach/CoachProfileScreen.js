@@ -1,5 +1,11 @@
-import React from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 
 import AppButton from "../../components/AppButton";
 import colors from "../../config/colors";
@@ -13,8 +19,47 @@ import {
 } from "../../components/shareMemberProfile";
 import BulletList from "../../components/shareMemberProfile/BulletList";
 import { GalleryDisplayVideos, TitleSubtitle } from "../../components/coach";
+import coachesApi from "../../api/coaches";
 
-export default function CoachProfileScreen({ navigation }) {
+export default function CoachProfileScreen({ navigation, route }) {
+  // for backend connection
+  // const [coachProfile, setCoachProfile] = useState(null);
+  // const { trainerId } = route.params;
+  // useEffect(() => {
+  //   loadCoachProfile();
+  // }, [trainerId]);
+
+  // const loadCoachProfile = async () => {
+  //   try {
+  //     const response = await coachesApi.getCoachesProfile(trainerId);
+  //     setCoachProfile(response.data.trainer);
+  //     console.log(response.data.trainer);
+  //   } catch (error) {
+  //     console.log("Error loading trainer profile:", error);
+  //   }
+  // };
+  // if (!coachProfile) {
+  //   return (
+  //     <View style={styles.container}>
+  //       <ActivityIndicator
+  //         size="large"
+  //         color={colors.orangeSecondary}
+  //         style={{ marginTop: 50 }}
+  //       />
+  //       <Text
+  //         style={{
+  //           textAlign: "center",
+  //           marginTop: 20,
+  //           fontSize: 16,
+  //           color: colors.orangeSecondary,
+  //         }}
+  //       >
+  //         Loading...
+  //       </Text>
+  //     </View>
+  //   );
+  // }
+
   const coachProfile = {
     id: 1,
     firstName: "John",
@@ -45,6 +90,7 @@ export default function CoachProfileScreen({ navigation }) {
       },
     ],
   };
+
   const {
     firstName,
     lastName,
@@ -64,21 +110,28 @@ export default function CoachProfileScreen({ navigation }) {
       <ScrollView style={styles.container}>
         <UserImage
           userImage={userImage}
+          // userImage={coachProfile.userImage}
           imageWidth={375}
           imageHeight={212}
           marginBottom={16}
         />
         <ProfileTile
+          // name={coachProfile.firstName + " " + coachProfile.lastName}
+          // location={coachProfile.location}
           firstName={firstName}
           lastName={lastName}
           location={location}
           onpressmessage={() => console.log("pressed message")}
         />
-        <Bio bio={bio} />
+        <Bio
+          bio={bio}
+          // bio={coachProfile.bio}
+        />
         <Line marginTop={62} marginBottom={22} width={"90%"} />
         <BulletList
           header={"Expertise"}
           titles={expertise}
+          // titles={coachProfile.expertise}
           textColor={colors.white}
         />
         {education && (
@@ -86,6 +139,7 @@ export default function CoachProfileScreen({ navigation }) {
             <Line marginTop={62} marginBottom={22} width={"90%"} />
             <BulletList
               titles={education}
+              // titles={coachProfile.education}
               header={"Education"}
               textColor={colors.white}
             />
@@ -95,17 +149,26 @@ export default function CoachProfileScreen({ navigation }) {
         <BulletList
           header={"Language"}
           titles={language}
+          // titles={coachProfile.language}
           textColor={colors.white}
         />
         <Line marginTop={62} marginBottom={22} width={"90%"} />
-        <TitleSubtitle title={"Rating"} subTitle={ratingDetails} />
+        <TitleSubtitle
+          title={"Rating"}
+          subTitle={ratingDetails}
+          // subTitle={coachProfile.ratingDetails}
+        />
         <Line marginTop={62} marginBottom={22} width={"90%"} />
         <TitleSubtitle
           title={"behind the scene Videos"}
           subTitle={BehindSceneDetails}
+          // subTitle={coachProfile.BehindSceneDetails}
         />
         <View style={styles.videosContainer}>
-          <GalleryDisplayVideos videos={videos} />
+          <GalleryDisplayVideos
+            videos={videos}
+            // videos={coachProfile.videos}
+          />
         </View>
       </ScrollView>
       <View style={styles.buttonContainer}>
