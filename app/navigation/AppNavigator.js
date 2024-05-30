@@ -1,29 +1,28 @@
 import React from "react";
-import { Text } from "react-native";
 import { createMaterialBottomTabNavigator } from "react-native-paper/react-navigation";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+// import navigation from "./rootNavigation";
+
 //to change background of active  TAB
 import { useTheme } from "react-native-paper";
 
 import colors from "../config/colors";
-import { Screen } from "../components/Screen";
 import HomeNavigator from "./HomeNavigator";
 import BuddyNavigator from "./BuddyNavigator";
 import CoachNavigator from "./CoachNavigator";
 import ChallengeNavigator from "./ChallengeNavigator";
 import Calendar from "../screens/calendar/Calendar";
-
-// const CalendarScreen = () => {
-//   <Screen>
-//     <Text>Calendar</Text>
-//   </Screen>;
-// };
+import useNotifications from "../hooks/useNotifications";
 
 const Tab = createMaterialBottomTabNavigator();
 const AppNavigator = () => {
+  //using notification hooks
+  // useNotifications();
+
   const theme = useTheme(); // to change color of bottom tab
 
   theme.colors.secondaryContainer = "transperent"; // to change color of bottom tab
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
