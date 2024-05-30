@@ -7,7 +7,14 @@ import ErrorMessage from "./ErrorMessage";
 import colors from "../../config/colors";
 
 export default function AppFormField({ name, questionTitle, ...otherProps }) {
-  const { setFieldTouched, handleChange, errors, touched } = useFormikContext();
+  const {
+    setFieldTouched,
+    setFieldValue,
+    handleChange,
+    errors,
+    touched,
+    values,
+  } = useFormikContext();
   return (
     <>
       {questionTitle && (
@@ -16,6 +23,8 @@ export default function AppFormField({ name, questionTitle, ...otherProps }) {
       <AppTextInput
         onBlur={() => setFieldTouched(name)}
         onChangeText={handleChange(name)}
+        // value={values[name]}
+        // onchangeText={(text) => setFieldValue(name, text)}
         {...otherProps}
       />
       <ErrorMessage error={errors[name]} visible={touched[name]} />
