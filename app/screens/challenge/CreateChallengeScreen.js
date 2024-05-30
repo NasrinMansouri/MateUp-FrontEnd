@@ -68,7 +68,8 @@ export default function CreateChallengeScreen({}) {
   const [progress, setProgress] = useState(0);
 
   // to send the data to the backend
-  const handleSubmit = async (challenge) => {
+  const handleSubmit = async (challenge, { resetForm }) => {
+    setProgress(0);
     setUploadVisible(true);
     console.log("Form submitted with values:", challenge);
     const result = await challengeApi.createChallenge(
@@ -79,16 +80,24 @@ export default function CreateChallengeScreen({}) {
       (progress) => setProgress(progress)
     );
     console.log(result); //log the result to debug
-    setUploadVisible(false);
 
-    if (!result.ok) return alert("Could not create challenge. ");
-    alert("success");
+    if (!result.ok) {
+      setUploadVisible(false);
+      return alert("Could not create challenge. ");
+    }
+    // alert("success"); //instead i have passed OnDone to upload screen
+
+    resetForm();
   };
 
   return (
     <ScrollView>
       <Screen style={styles.container}>
-        <UploadScreen progress={progress} visible={uploadVisible} />
+        <UploadScreen
+          onDone={() => setUploadVisible(false)}
+          progress={progress}
+          visible={uploadVisible}
+        />
         <AppForm
           initialValues={{
             workout: null,
@@ -130,7 +139,6 @@ export default function CreateChallengeScreen({}) {
             width="50%"
           />
 
-          {/* <ConditionalComponent /> */}
           <ConditionalComponentForm challengeGoal={challengeGoal} />
 
           <AppFormDatePicker
