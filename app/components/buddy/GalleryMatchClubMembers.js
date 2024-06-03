@@ -36,7 +36,7 @@ export default function GalleryMatchClubMembers({ UserClubMembers, onPress }) {
 const styles = StyleSheet.create({
   mainContainer: {},
   container: {
-    paddingTop: 16,
+    // paddingTop: 16,
 
     paddingLeft: 16,
   },

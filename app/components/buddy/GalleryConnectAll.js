@@ -9,7 +9,7 @@ export default function GalleryConnectAll({ connectAllMembers, onPress }) {
   const navigation = useNavigation();
   return (
     <View style={styles.mainContainer}>
-      <Text style={styles.title}>connect with all members</Text>
+      <Text style={styles.title}>All members</Text>
       <FlatList
         showsHorizontalScrollIndicator={false}
         style={styles.container}
@@ -34,11 +34,11 @@ export default function GalleryConnectAll({ connectAllMembers, onPress }) {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    marginTop: 96,
+    marginTop: 68,
     marginBottom: 200,
   },
   container: {
-    paddingTop: 16,
+    // paddingTop: 16,
     paddingLeft: 16,
   },
   title: {

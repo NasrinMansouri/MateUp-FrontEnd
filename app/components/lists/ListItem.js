@@ -83,6 +83,8 @@ function ListItem({
                   fontFamily="nunitoSans-extraBold"
                   fontSize={12}
                   backgroundColor={colors.black}
+                  borderWidth={1}
+                  borderColor={colors.danger}
                   textTransform={"capitalize"}
                 />
               </View>

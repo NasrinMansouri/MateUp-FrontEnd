@@ -13,6 +13,7 @@ function AppButton({
   fontSize = 16,
   backgroundColor = colors.green,
   textTransform = "uppercase",
+  textColor = colors.white,
   ...otherStyles
 }) {
   return (
@@ -37,6 +38,7 @@ function AppButton({
             fontFamily: fontFamily,
             fontSize: fontSize,
             textTransform: textTransform,
+            color: textColor,
           },
         ]}
       >

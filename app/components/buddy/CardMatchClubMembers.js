@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
     backgroundColor: colors.blackBc,
     paddingTop: 6,
-    paddingBottom: 6,
+    // paddingBottom: 6,
   },
   profile: {
     marginBottom: 18,
