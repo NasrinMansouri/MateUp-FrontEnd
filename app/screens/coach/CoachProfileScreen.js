@@ -24,7 +24,7 @@ import coachesApi from "../../api/coaches";
 export default function CoachProfileScreen({ navigation, route }) {
   // for backend connection
   // const [coachProfile, setCoachProfile] = useState(null);
-  // const { trainerId } = route.params;
+  const { trainerId } = route.params;
   // useEffect(() => {
   //   loadCoachProfile();
   // }, [trainerId]);

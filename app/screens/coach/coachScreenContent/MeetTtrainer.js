@@ -92,6 +92,7 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
         coachesClubMember={coachesClubMembersData}
         // coachesClubMember={getCoachesClubMembersApi.data}
         // loading={getCoachesClubMembersApi.loading}
+        // error={getCoachesClubMembersApi.error}
         onPress={(item) =>
           navigation.navigate("CoachProfile", { trainerId: item.id })
         }
@@ -103,6 +104,7 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
         // meetAllCoaches={getMeetAllCoachesApi.data}
         // loading={false}
         // loading={getMeetAllCoachesApi.loading}
+        // error={getMeetAllCoachesApi.error}
         onPress={(item) =>
           navigation.navigate("CoachProfile", { trainerId: item.id })
         }
