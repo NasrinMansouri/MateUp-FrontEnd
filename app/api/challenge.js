@@ -1,5 +1,17 @@
 import client from "./client";
 
+const getBuddiesJoinedChallenges = () => client.get("/challenges");
+const getClubChallenges = () => client.get("/challenges");
+const getAllChallenges = () => client.get("/challenges");
+
+const getUserJoinedChallenges = () => client.get("/challenges");
+const getChallengesByMe = () => client.get("/challenges");
+
+const getDetailsChallengeScreen = (challengeId) =>
+  client.get(`/challenges/${challengeId}`);
+const getJoinedChallengeScreen = (challengeId) =>
+  client.get(`/challenges/${challengeId}`);
+
 const createChallenge = (challenge, onUploadProgress) => {
   // content-type when we send json object to the server
   // content type is automatically set to application/json
@@ -29,4 +41,13 @@ const createChallenge = (challenge, onUploadProgress) => {
   });
 };
 
-export default { createChallenge };
+export default {
+  createChallenge,
+  getBuddiesJoinedChallenges,
+  getClubChallenges,
+  getAllChallenges,
+  getUserJoinedChallenges,
+  getChallengesByMe,
+  getDetailsChallengeScreen,
+  getJoinedChallengeScreen,
+};

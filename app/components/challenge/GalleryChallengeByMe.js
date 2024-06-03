@@ -1,5 +1,11 @@
 import React from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+  ActivityIndicator,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import CardJoinedChallenge from "./CardJoinedChallenge";
@@ -8,9 +14,20 @@ import colors from "../../config/colors";
 export default function GalleryChallengeByMe({
   challengeByMe,
   header,
+  onPress,
+  // loading,
   fontSize = 26,
 }) {
   const navigation = useNavigation();
+
+  // if (loading) {
+  //   return (
+  //     <View style={styles.container}>
+  //       <ActivityIndicator size="large" color={colors.orangeSecondary} />
+  //     </View>
+  //   );
+  // }
+
   return (
     <View style={styles.mainContainer}>
       {header && (
@@ -21,10 +38,10 @@ export default function GalleryChallengeByMe({
         style={styles.container}
         horizontal
         data={challengeByMe}
-        keyExtractor={(challengeByMe) => challengeByMe.id.toString()}
+        keyExtractor={(challenges) => challenges.id.toString()}
         renderItem={({ item }) => (
           <CardJoinedChallenge
-            onPress={() => navigation.navigate("JoinedChallenge", item)}
+            onPress={() => onPress(item)}
             challenegImage={item.challenegImage}
             challengeName={item.challengeName}
             challengeGoal={item.challengeGoal}
@@ -40,7 +57,7 @@ export default function GalleryChallengeByMe({
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 16,
+    // paddingTop: 16,
     paddingLeft: 16,
   },
   title: {

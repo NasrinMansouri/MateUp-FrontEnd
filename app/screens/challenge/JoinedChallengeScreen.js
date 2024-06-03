@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Modal,
+  ActivityIndicator,
 } from "react-native";
 
 import colors from "../../config/colors";
@@ -22,25 +23,61 @@ import Line from "../../components/Line";
 import ShowReactions from "../../components/challenge/ShowReactions";
 import AddReactions from "../../components/challenge/AddReactions";
 import AppButton from "../../components/AppButton";
+import challengeApi from "../../api/challenge";
 
-export default function JoinChallengeScreen({ navigation }) {
+export default function JoinChallengeScreen({ navigation, route }) {
+  // for backend connection
+  // const [challengeDetails, setChallengeDetails] = useState(null);
+  const { challengeId } = route.params;
+  console.log(" challnege id from params joined challnege screen", challengeId);
+  // useEffect(() => {
+  //   loadChallengeDetails();
+  // }, [challengeId]);
+
+  // const loadChallengeDetails = async () => {
+  //   try {
+  //     const response = await challengeApi.getJoinedChallengeScreen(challengeId);
+  //     setChallengeDetails(response.data.challenge);
+  //     console.log(response.data.challenge);
+  //   } catch (error) {
+  //     console.log("Error loading challenge details:", error);
+  //   }
+  // };
+  // if (!challengeDetails) {
+  //   return (
+  //     <View style={styles.container}>
+  //       <ActivityIndicator
+  //         size="large"
+  //         color={colors.orangeSecondary}
+  //         style={{ marginTop: 50 }}
+  //       />
+  //       <Text
+  //         style={{
+  //           textAlign: "center",
+  //           marginTop: 20,
+  //           fontSize: 16,
+  //           color: colors.orangeSecondary,
+  //         }}
+  //       >
+  //         Loading...
+  //       </Text>
+  //     </View>
+  //   );
+  // }
+
   // const navigation = useNavigation();
-  const [modalVisible, setModalVisible] = useState(false);
 
   const handleStart = () => {
     // setModalVisible(!modalVisible);
-    navigation.navigate("StartChallenge");
+    navigation.navigate("StartChallenge", { challengeId: challengeId });
+    console.log("Starting challenge...", challengeId);
   };
 
   const handleBackPress = () => {
     navigation.navigate("challenge", { screen: "My Challenges" });
   };
 
-  // const handleModalClose = () => {
-  //   setModalVisible(false);
-  // };
-
-  const challengeDetailsProgress = {
+  const challengeDetails = {
     challengeImage: require("../../../assets/person3.jpg"),
     ChallengeName: "Cardio Boost Challenge ",
     challengeType: "Cardio workout",
@@ -90,7 +127,7 @@ export default function JoinChallengeScreen({ navigation }) {
     numberOfLikes,
     numberOfComments,
     percentage,
-  } = challengeDetailsProgress;
+  } = challengeDetails;
 
   return (
     <Screen style={styles.screen}>
@@ -154,6 +191,7 @@ export default function JoinChallengeScreen({ navigation }) {
           NumberOfReactions={numberOfComments}
           title={"Comments"}
         />
+
         <Line
           marginBottom={20}
           marginTop={20}

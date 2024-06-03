@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View, TouchableOpacity, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -6,6 +6,8 @@ import AppButton from "../../../components/AppButton";
 import GalleryChallengeByMe from "../../../components/challenge/GalleryChallengeByMe";
 import GalleryJoinedChallenge from "../../../components/challenge/GalleryJoinedChallenge";
 import Screen from "../../../components/Screen";
+import useApi from "../../../hooks/useApi";
+import challengeApi from "../../../api/challenge";
 
 joinedChallengeData = [
   {
@@ -31,6 +33,14 @@ joinedChallengeData = [
 ];
 
 export default function MyChallenges({}) {
+  // for backend connection
+  // const getJoinedChallenge = useApi(challengeApi.getUserJoinedChallenges);
+  // const getChallengeByMe = useApi(challengeApi.getChallengesByMe);
+  // useEffect(() => {
+  //   getJoinedChallenge.request();
+  //   getChallengeByMe.request();
+  // }, []);
+
   const navigation = useNavigation();
 
   const renderItemCache = {
@@ -50,7 +60,14 @@ export default function MyChallenges({}) {
       <View style={styles.title1Container}>
         <GalleryJoinedChallenge
           joinedChallenge={joinedChallengeData}
+          // joinedChallenge={getJoinedChallenge.data}
+          // loading={getJoinedChallenge.loading}
+          // error={getJoinedChallenge.error}
           header={"Joined Challenges"}
+          onPress={(item) => {
+            console.log("id from gallery join channge in mychallenge", item.id);
+            navigation.navigate("JoinedChallenge", { challenegId: item.id });
+          }}
         />
       </View>
     ),
@@ -58,7 +75,13 @@ export default function MyChallenges({}) {
       <View style={styles.title2Container}>
         <GalleryChallengeByMe
           challengeByMe={joinedChallengeData}
+          // challengeByMe={getChallengeByMe.data}
+          // loading={getChallengeByMe.loading}
+          // error={getChallengeByMe.error}
           header={"Challenges by me"}
+          onPress={(item) =>
+            navigation.navigate("JoinedChallenge", { challengeId: item.id })
+          }
         />
       </View>
     ),
@@ -90,10 +113,10 @@ const styles = StyleSheet.create({
     marginLeft: 16,
   },
   title1Container: {
-    marginTop: 60,
+    marginTop: 40,
   },
   title2Container: {
-    marginTop: 96,
+    marginTop: 68,
     marginBottom: 300,
   },
 });
