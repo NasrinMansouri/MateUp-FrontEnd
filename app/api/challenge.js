@@ -7,6 +7,8 @@ const getAllChallenges = () => client.get("/challenges");
 const getUserJoinedChallenges = () => client.get("/challenges");
 const getChallengesByMe = () => client.get("/challenges");
 
+const getSearch = (query) => client.get(`/challenges/${query}`);
+
 const getDetailsChallengeScreen = (challengeId) =>
   client.get(`/challenges/${challengeId}`);
 const getJoinedChallengeScreen = (challengeId) =>
@@ -50,4 +52,5 @@ export default {
   getChallengesByMe,
   getDetailsChallengeScreen,
   getJoinedChallengeScreen,
+  getSearch,
 };

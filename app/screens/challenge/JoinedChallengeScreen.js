@@ -20,10 +20,12 @@ import BulletPointWithText from "../../components/BulletPointWithText";
 import ChallengeDescription from "../../components/challenge/ChallengeDescription";
 import DonutChart from "../../components/challenge/DonutChart";
 import Line from "../../components/Line";
-import ShowReactions from "../../components/challenge/ShowReactions";
-import AddReactions from "../../components/challenge/AddReactions";
 import AppButton from "../../components/AppButton";
 import challengeApi from "../../api/challenge";
+import {
+  LikeChallenge,
+  CommentChallenge,
+} from "../../components/challenge/comments";
 
 export default function JoinChallengeScreen({ navigation, route }) {
   // for backend connection
@@ -184,21 +186,19 @@ export default function JoinChallengeScreen({ navigation, route }) {
         <View style={styles.donutContainer}>
           <DonutChart percentage={percentage} duration={duration} />
         </View>
-        <Line marginBottom={20} marginTop={40} />
-        <ShowReactions NumberOfReactions={numberOfLikes} title={"Likes"} />
-        <Line marginBottom={20} marginTop={20} />
-        <ShowReactions
-          NumberOfReactions={numberOfComments}
-          title={"Comments"}
-        />
-
         <Line
           marginBottom={20}
           marginTop={20}
           backgroundColor={colors.blackBc}
         />
         <View style={styles.addReactionContainer}>
-          <AddReactions />
+          <LikeChallenge />
+          <Line
+            marginBottom={10}
+            marginTop={10}
+            backgroundColor={colors.blackBc}
+          />
+          <CommentChallenge />
         </View>
       </ScrollView>
     </Screen>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FlatList,
   StyleSheet,
@@ -14,6 +14,8 @@ import colors from "../../config/colors";
 // import searchApi from "../api/search";
 import ListItemSeparator from "../../components/lists/ListItemSeperator";
 import Screen from "../../components/Screen";
+import membersApi from "../../api/members";
+import useApi from "../../hooks/useApi";
 
 const searchedResults = [
   {
@@ -36,7 +38,8 @@ const searchedResults = [
 export default function BuddySearchScreen({ navigation }) {
   // State for storing user's search input
   const [searchInput, setSearchInput] = useState("");
-  // State for storing filtered search results
+
+  // // State for storing filtered search results
   const [searchResults, setSearchResults] = useState([]);
 
   // Function to handle search input change
@@ -53,32 +56,21 @@ export default function BuddySearchScreen({ navigation }) {
     }
   };
 
-  // to connect to back end
+  // // to get search results
+  // const getSearchApi = useApi(membersApi.getSearch);
 
-  // Function to handle search input change
+  // // function to handle search input change
   // const handleSearch = (text) => {
-  //   setSearchInput(text); // Update searchInput state
+  //   setSearchInput(text);
   // };
 
-  // //for backend connection
   // useEffect(() => {
-  //   loadSearchResults();
-  // }, [searchInput]);
-
-  // const loadSearchResults = async () => {
-  //   if (searchInput.trim() !== "") {        //The trim() method removes whitespace from both sides of a string.
-  //     try {
-  //       // Calling API function to fetch members based on search input
-  //       const response = await membersApi.getSearch(searchInput);
-  //       // Update searchResults state with the fetched data
-  //       setSearchResults(response.data.members);
-  //     } catch (error) {
-  //       console.error("Error fetching search results:", error);
-  //     }
+  //   if (searchInput.length > 1) {
+  //     getSearchApi.request(searchInput);
   //   } else {
-  //     setSearchResults([]); // Clear searchResults when search query is empty
+  //     setSearchInput("");
   //   }
-  // };
+  // }, [searchInput]);
 
   return (
     <Screen style={styles.container}>
@@ -94,14 +86,17 @@ export default function BuddySearchScreen({ navigation }) {
           autoCorrect={false}
           keyboardType="default"
           autoFocus
-          onChangeText={(text) => handleSearch(text)} // Call handleSearch function on text change
-          // onChangeText={handleChangeText}
+          // onChangeText={(text) => handleSearch(text)} // Call handleSearch function on text change
+          onChangeText={handleSearch}
           keyboardAppearance="dark"
         />
       </View>
       <FlatList
         showsVerticalScrollIndicator={false}
         data={searchResults}
+        // data={getSearchApi.data}
+        // loading={getSearchApi.loading}
+        // error={getSearchApi.error}
         keyExtractor={(result) => result.id.toString()}
         ItemSeparatorComponent={ListItemSeparator}
         ListEmptyComponent={
@@ -132,6 +127,7 @@ export default function BuddySearchScreen({ navigation }) {
           </TouchableWithoutFeedback>
         )}
       />
+      {/* {console.log("data from search", getSearchApi.data)} */}
     </Screen>
   );
 }

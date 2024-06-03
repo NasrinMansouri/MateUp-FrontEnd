@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FlatList,
   StyleSheet,
@@ -14,71 +14,101 @@ import colors from "../../config/colors";
 // import searchApi from "../api/search";
 import ListItemSeparator from "../../components/lists/ListItemSeperator";
 import Screen from "../../components/Screen";
+import challengeApi from "../../api/challenge";
 
-const searchedResults = [
-  {
-    id: 1,
-    name: "Moe",
-    image: require("../../../assets/person2.jpg"),
-  },
-  {
-    id: 2,
-    name: "elena",
-    image: require("../../../assets/person-1.jpg"),
-  },
-  {
-    id: 3,
-    name: "John",
-    image: require("../../../assets/person-1.jpg"),
-  },
-];
+// const searchedResults = [
+//   {
+//     id: 1,
+//     name: "Moe",
+//     image: require("../../../assets/person2.jpg"),
+//   },
+//   {
+//     id: 2,
+//     name: "elena",
+//     image: require("../../../assets/person-1.jpg"),
+//   },
+//   {
+//     id: 3,
+//     name: "John",
+//     image: require("../../../assets/person-1.jpg"),
+//   },
+// ];
 
 export default function ChallengeSearchScreen({ navigation }) {
   // State for storing user's search input
-  const [searchInput, setsearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState("");
   // State for storing filtered search results
-  const [searchResults, setsearchResults] = useState([]);
-
-  // Function to handle search input change
-  const handleSearch = (text) => {
-    setsearchInput(text); // Update searchInput state
-    const filtered = searchedResults.filter((item) =>
-      // Filter search results based on user's search input and make it case insensitive
-      item.name.toLowerCase().includes(text.toLowerCase())
-    );
-    setsearchResults(filtered); // Update searchResults state
-    // Update searchResults even when search query is empty
-    if (text === "") {
-      setsearchResults([]); //clear searchResults when search query is empty
-    }
-  };
-
-  // to connect to back end
+  const [searchResults, setSearchResults] = useState([]);
 
   // Function to handle search input change
   // const handleSearch = (text) => {
   //   setSearchInput(text); // Update searchInput state
+  //   const filtered = searchedResults.filter((item) =>
+  //     // Filter search results based on user's search input and make it case insensitive
+  //     item.name.toLowerCase().includes(text.toLowerCase())
+  //   );
+  //   setSearchResults(filtered); // Update searchResults state
+  //   // Update searchResults even when search query is empty
+  //   if (text === "") {
+  //     setSearchResults([]); //clear searchResults when search query is empty
+  //   }
   // };
 
-  // //for backend connection
-  // useEffect(() => {
-  //   loadSearchResults();
-  // }, [searchInput]);
+  // to connect to back end
 
+  // Function to handle search input change
+  const handleSearch = (text) => {
+    setSearchInput(text); // Update searchInput state
+  };
+
+  //for backend connection
+  useEffect(() => {
+    loadSearchResults();
+  }, [searchInput]);
+
+  const loadSearchResults = async () => {
+    if (searchInput.trim() !== "") {
+      //The trim() method removes whitespace from both sides of a string.
+      console.log("Fetching results for:", searchInput);
+      try {
+        // Calling API function to fetch members based on search input
+        const response = await challengeApi.getSearch(searchInput);
+        console.log("Raw response:", response);
+        // Update searchResults state with the fetched data
+        setSearchResults(response.data);
+        console.log(" response from search ", response.data);
+      } catch (error) {
+        console.error("Error fetching search results:", error);
+      }
+    } else {
+      console.log("No data in response");
+      setSearchResults([]); // Clear searchResults when search query is empty
+    }
+  };
   // const loadSearchResults = async () => {
-  //   if (searchInput.trim() !== "") {        //The trim() method removes whitespace from both sides of a string.
+  //   if (searchInput.trim() !== "") {
   //     try {
-  //       // Calling API function to fetch members based on search input
-  //       const response = await membersApi.getSearch(searchInput);
-  //       // Update searchResults state with the fetched data
-  //       setSearchResults(response.data.members);
+  //       console.log("Fetching results for:", searchInput);
+  //       const response = await challengeApi.getSearch(searchInput);
+  //       console.log("Raw response:", response);
+
+  //       if (response.ok && response.data) {
+  //         setSearchResults(response.data);
+  //         console.log("Search results:", response.data);
+  //       } else {
+  //         console.error("Failed to fetch search results:", response.problem);
+  //         setSearchResults([]);
+  //       }
   //     } catch (error) {
   //       console.error("Error fetching search results:", error);
   //     }
   //   } else {
-  //     setSearchResults([]); // Clear searchResults when search query is empty
+  //     setSearchResults([]);
   //   }
   // };
+
+  console.log("current search inpute: ", searchInput);
+  console.log("current search results: ", searchResults);
 
   return (
     <Screen style={styles.container}>
