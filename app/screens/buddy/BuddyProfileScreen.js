@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, ActivityIndicator } from "react";
 import { ScrollView, StyleSheet, View, Text } from "react-native";
 
 import AppButton from "../../components/AppButton";
@@ -15,6 +15,7 @@ import ListBulletPointWithText from "../../components/ListBulletPointWithText";
 import membersApi from "../../api/members";
 import BulletList from "../../components/shareMemberProfile/BulletList";
 import GalleryJoinedChallenge from "../../components/challenge/GalleryJoinedChallenge";
+import GalleryMemberJoinedChallenges from "../../components/buddy/GalleryMemberJoinedChallenges";
 
 export default function BuddyProfileScreen({ route, navigation }) {
   //  to trigger go to top
@@ -27,6 +28,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
     backgroundColor: colors.orangeSecondary,
   });
   const { memberId } = route.params;
+  const { challengeId } = route.params;
 
   const handleButtonClicked = () => {
     setButtonClicked((toggleState) => ({
@@ -62,7 +64,21 @@ export default function BuddyProfileScreen({ route, navigation }) {
   // if (!memberProfile) {
   //   return (
   //     <View style={styles.container}>
-  //       <Text>Loading...</Text>
+  //       <ActivityIndicator
+  //         size="large"
+  //         color={colors.orangeSecondary}
+  //         style={{ marginTop: 50 }}
+  //       />
+  //       <Text
+  //         style={{
+  //           textAlign: "center",
+  //           marginTop: 20,
+  //           fontSize: 16,
+  //           color: colors.orangeSecondary,
+  //         }}
+  //       >
+  //         Loading...
+  //       </Text>
   //     </View>
   //   );
   // }
@@ -221,13 +237,34 @@ export default function BuddyProfileScreen({ route, navigation }) {
           buddies={buddiesData}
           // buddies={memberProfile.buddies}
           header={"buddies"}
+          onPress={(item) =>
+            navigation.push("MemberProfile", {
+              memberId: item.id,
+              challengeId: item.id,
+            })
+          }
         />
+        {console.log("these is the member id:", memberId)}
         <Line marginTop={62} marginBottom={22} width={"90%"} />
-        <GalleryJoinedChallenge
+        {/* <GalleryJoinedChallenge
           joinedChallenge={joinedChallengeData}
+          onPress={(item) =>
+            navigation.navigate("ChallengeDetails", { challengeId: item.id })
+          }
+          // joinedChallenge={memberProfile.joinedChallengeData}
+          header={"joined challenges"}
+        /> */}
+        <GalleryMemberJoinedChallenges
+          joinedChallenge={joinedChallengeData}
+          onPress={(item) => {
+            navigation.navigate("ChallengeDetails", { challengeId: item.id });
+            console.log("these is the challneg id:", item.id);
+          }}
           // joinedChallenge={memberProfile.joinedChallengeData}
           header={"joined challenges"}
         />
+        {console.log("my challenge id:", challengeId)}
+
         <Line marginTop={62} marginBottom={22} width={"90%"} />
         <RequestCalendarAccess
           userFirstName={firstName}
