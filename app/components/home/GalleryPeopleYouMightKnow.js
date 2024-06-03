@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import CardProfile from "../CardProfile";
 import colors from "../../config/colors";
 
-function GalleryPeopleYouMightKnow({}) {
+function GalleryPeopleYouMightKnow({ onPress }) {
   const navigation = useNavigation();
   //dummy data for testing
   const membersData = [
@@ -54,7 +54,8 @@ function GalleryPeopleYouMightKnow({}) {
           keyExtractor={(members) => members.id.toString()}
           renderItem={({ item }) => (
             <CardProfile
-              onPressProfile={() => navigation.navigate("MemberProfile", item)}
+              // onPressProfile={() => navigation.navigate("MemberProfile", item)}
+              onPressProfile={() => onPress(item)}
               name={capitalizeFirstLetter(item.name)}
               backgroundColor={colors.blackBc}
               image={item.image}
