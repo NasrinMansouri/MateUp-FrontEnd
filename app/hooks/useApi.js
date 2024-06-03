@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import colors from "../config/colors";
 
 export default useApi = (apiFunc) => {
   const [data, setData] = useState([]);
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const request = async (...args) => {
@@ -12,8 +13,10 @@ export default useApi = (apiFunc) => {
     setLoading(false);
 
     if (!response.ok) {
+      setError(true);
       return (
-        <View>
+        <View style={styles.container}>
+          <ActivityIndicator color={colors.orangePrimary} />
           <Text style={styles.error}>loading...</Text>
           {console.log("error:", response.problem, response.data)}
         </View>
@@ -23,16 +26,22 @@ export default useApi = (apiFunc) => {
     }
   };
 
-  return { data, loading, request };
+  return { data, loading, error, request };
 };
 
 const styles = StyleSheet.create({
-  error: {
-    color: colors.orangePrimary,
-    fontFamily: "montserrat-black",
+  container: {
+    flex: 1,
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
+    marginTop: 20,
+  },
+  error: {
+    color: colors.danger,
+    fontFamily: "montserrat-black",
+    textAlign: "center",
     fontSize: 16,
   },
 });
