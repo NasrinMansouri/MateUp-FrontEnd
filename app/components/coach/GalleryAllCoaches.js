@@ -16,17 +16,17 @@ export default function GalleryAllCoaches({
   meetAllCoaches,
   onPressAllCoaches,
   onPress,
-  loading,
+  // loading,
 }) {
   const navigation = useNavigation();
 
-  if (loading) {
-    return (
-      <View style={styles.container}>
-        <ActivityIndicator size="large" color={colors.orangeSecondary} />
-      </View>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <View style={styles.container}>
+  //       <ActivityIndicator size="large" color={colors.orangeSecondary} />
+  //     </View>
+  //   );
+  // }
 
   return (
     <View style={styles.container}>
@@ -50,7 +50,7 @@ export default function GalleryAllCoaches({
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 96,
+    paddingTop: 56,
   },
   title: {
     fontFamily: "montserrat-black",

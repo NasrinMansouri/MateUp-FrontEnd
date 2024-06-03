@@ -17,17 +17,17 @@ export default function GalleryCoachesClubMembers({
   coachesClubMember,
   onPressClubCoaches,
   onPress,
-  loading,
+  // loading,
 }) {
   const navigation = useNavigation();
 
-  if (loading) {
-    return (
-      <View style={styles.container}>
-        <ActivityIndicator size="large" color={colors.orangeSecondary} />
-      </View>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <View style={styles.container}>
+  //       <ActivityIndicator size="large" color={colors.orangeSecondary} />
+  //     </View>
+  //   );
+  // }
 
   return (
     <View style={styles.container}>
@@ -54,13 +54,13 @@ export default function GalleryCoachesClubMembers({
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 40,
+    paddingTop: 30,
   },
   title: {
     fontFamily: "montserrat-black",
     fontSize: 36,
     color: colors.orangePrimary,
-    marginBottom: 10,
+    // marginBottom: 10,
     textTransform: "uppercase",
     paddingLeft: 16,
   },
