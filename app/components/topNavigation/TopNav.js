@@ -26,12 +26,12 @@ export default function TopNav({
   onPressNotification,
   // notificationSeen,
 }) {
-  const [notificationSeen, setNotificationSeen] = useState(false);
+  // const [notificationSeen, setNotificationSeen] = useState(false);
 
-  const handlePressNotification = () => {
-    setNotificationSeen(true);
-    navigation.navigate("Notification");
-  };
+  // const handlePressNotification = () => {
+  //   setNotificationSeen(true);
+  //   navigation.navigate("Notification");
+  // };
 
   const navigation = useNavigation();
   return (
@@ -53,8 +53,8 @@ export default function TopNav({
         <TouchableOpacity
           activeOpacity={0.9}
           // onPress={onPressNotification}
-          // onPress={() => navigation.navigate("Notification")}
-          onPress={handlePressNotification}
+          onPress={() => navigation.navigate("Notification")}
+          // onPress={handlePressNotification}
           style={styles.notification}
         >
           <MaterialIcons
@@ -63,7 +63,7 @@ export default function TopNav({
             color="white"
             style={styles.iconNotification}
           />
-          {!notificationSeen && <View style={styles.notificationDot} />}
+          {/* {!notificationSeen && <View style={styles.notificationDot} />} */}
         </TouchableOpacity>
         {/* Message Icon */}
         <TouchableOpacity activeOpacity={0.9} onPress={onPressMessage}>

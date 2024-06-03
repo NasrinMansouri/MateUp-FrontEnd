@@ -20,7 +20,7 @@ export default function ChallengeDescription({
       >
         <Text
           style={styles.description}
-          numberOfLines={expanded ? undefined : 3}
+          numberOfLines={expanded ? undefined : 3} // Only show 3 lines
         >
           {challengeDescription}
         </Text>
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   moreAsText: {
     fontSize: 16,
     fontFamily: "nunitoSans-extraBold",
-    color: colors.grayLight100,
+    color: colors.green,
     marginBottom: 40,
   },
 });
