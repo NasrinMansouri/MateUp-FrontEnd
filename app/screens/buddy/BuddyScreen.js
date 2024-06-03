@@ -140,12 +140,7 @@ export default function BuddyScreen({ navigation }) {
       <TopNav
         showSearchBar={true}
         // onPressSearch={() => navigation.navigate("Search")}
-        onPressSearch={() =>
-          navigation.navigate("SearchBuddy", {
-            // memberId: memberId,
-            // challengeId: challengeId,
-          })
-        }
+        onPressSearch={() => navigation.navigate("SearchBuddy")}
         onPressMessage={() => console.log("message")}
         // onPressNotification={() => {
         //   navigation.navigate("Notification", { screen: "buddy" });
