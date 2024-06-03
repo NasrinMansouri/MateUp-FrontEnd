@@ -1,6 +1,7 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+// import * as Notifications from "expo-notifications";
 
 import { ListItem, ListItemDeletAction } from "../components/lists";
 import colors from "../config/colors";
@@ -13,31 +14,31 @@ const initialNotifications = [
     id: 1,
     name: "linda lee",
     title: "Confirmed your buddy request.",
-    userImage: require("../../assets/person2.jpg"), // Replace with actual image path
+    userImage: require("../../assets/person2.jpg"),
     onPressConfirm: () => console.log("Confirm pressed for John Doe"),
-    onPressDecline: () => console.log("Decline pressed for John Doe"),
-    showRequestResult: true, // or false based on your requirement
-    showRequest: false, // or true based on your requirement
+    // onPressDecline: () => console.log("Decline pressed for John Doe"),
+    showRequestResult: true,
+    showRequest: false,
   },
   {
     id: 2,
     name: "Jane Smith",
     title: "Sent you a buddy request.",
-    userImage: require("../../assets/person4.jpg"), // Replace with actual image path
+    userImage: require("../../assets/person4.jpg"),
     onPressConfirm: () => console.log("Confirm pressed for Jane Smith"),
-    onPressDecline: () => console.log("Decline pressed for Jane Smith"),
-    showRequestResult: false, // or true based on your requirement
-    showRequest: true, // or false based on your requirement
+    // onPressDecline: () => console.log("Decline pressed for Jane Smith"),
+    showRequestResult: false,
+    showRequest: true,
   },
   {
     id: 3,
     name: "Sarah Johnson",
     title: "Sent you a buddy request.",
-    userImage: require("../../assets/person5.jpg"), // Replace with actual image path
+    userImage: require("../../assets/person5.jpg"),
     onPressConfirm: () => console.log("Confirm pressed for Jane Smith"),
-    onPressDecline: () => console.log("Decline pressed for Jane Smith"),
-    showRequestResult: false, // or true based on your requirement
-    showRequest: true, // or false based on your requirement
+    // onPressDecline: () => console.log("Decline pressed for Jane Smith"),
+    showRequestResult: false,
+    showRequest: true,
   },
 ];
 
@@ -45,7 +46,32 @@ export default function ListItemGallery({ style }) {
   const [notifications, setNotifications] = useState(initialNotifications);
   const [refreshing, setRefreshing] = useState(false);
 
+  // for recieveing notification
+  // useEffect(() => {
+  //   // Request notification permissions
+  //   const requestPermissions = async () => {
+  //     const { status } = await Notifications.requestPermissionsAsync();
+  //     if (status !== "granted") {
+  //       alert("You need to enable notifications permissions in settings.");
+  //     }
+  //   };
+
+  //   requestPermissions();
+
+  //   // Set the notification handler
+  //   Notifications.setNotificationHandler({
+  //     handleNotification: async () => ({
+  //       shouldShowAlert: true,
+  //       shouldPlaySound: true,
+  //       shouldSetBadge: true,
+  //     }),
+  //   });
+  // }, []);
+
   const handleDelete = (notification) => {
+    // to show notification when delete button is pressed
+    // showNotification();
+
     // Delete the notification from notifications
     // Later all the server API to delete the notification!
     const newNotifications = notifications.filter(
@@ -53,6 +79,25 @@ export default function ListItemGallery({ style }) {
     );
     setNotifications(newNotifications);
   };
+
+  // const showNotification = async () => {
+  //   try {
+  //     const notificationId = await Notifications.scheduleNotificationAsync({
+  //       content: {
+  //         title: "Notification",
+  //         body: "Are you sure you want to delete this?",
+  //         data: {
+  //           _displayInForeground: true,
+  //         },
+  //         sound: true,
+  //       },
+  //       trigger: { seconds: 1 },
+  //     });
+  //     console.log("Notification scheduled with ID:", notificationId);
+  //   } catch (error) {
+  //     console.log("Error scheduling notification:", error);
+  //   }
+  // };
 
   return (
     <Screen>
@@ -87,25 +132,25 @@ export default function ListItemGallery({ style }) {
                 id: 1,
                 name: "Linda Lee",
                 title: "Confirmed your High-Five request.",
-                userImage: require("../../assets/person2.jpg"), // Replace with actual image path
+                userImage: require("../../assets/person2.jpg"),
                 onPressConfirm: () =>
                   console.log("Confirm pressed for John Doe"),
-                onPressDecline: () =>
-                  console.log("Decline pressed for John Doe"),
-                showRequestResult: true, // or false based on your requirement
-                showRequest: false, // or true based on your requirement
+                // onPressDecline: () =>
+                //   console.log("Decline pressed for John Doe"),
+                showRequestResult: true,
+                showRequest: false,
               },
               {
                 id: 2,
                 name: "Sarah Johnson",
                 title: "Sent you a High-Five request.",
-                userImage: require("../../assets/person4.jpg"), // Replace with actual image path
+                userImage: require("../../assets/person4.jpg"),
                 onPressConfirm: () =>
                   console.log("Confirm pressed for Jane Smith"),
-                onPressDecline: () =>
-                  console.log("Decline pressed for Jane Smith"),
-                showRequestResult: false, // or true based on your requirement
-                showRequest: true, // or false based on your requirement
+                // onPressDecline: () =>
+                //   console.log("Decline pressed for Jane Smith"),
+                showRequestResult: false,
+                showRequest: true,
               },
             ])
           }
