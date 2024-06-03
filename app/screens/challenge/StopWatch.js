@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Modal } from "react-native";
+import { View, StyleSheet } from "react-native";
 
-import colors from "../../config/colors";
 import Screen from "../../components/Screen";
 import Body from "../../components/challenge/stopWatch/Body";
 import ControllerStopWatch from "../../components/challenge/stopWatch/ControllerStopWatch";
 import HeaderStopWatch from "../../components/challenge/stopWatch/HeaderStopWatch";
-import ModalContent from "../../components/challenge/stopWatch/ModalContent";
 import { useNavigation } from "@react-navigation/native";
 
 const StopWatchChallenge = ({ saveWorkout }) => {
   const [time, setTime] = useState(0); // Store the elapsed time in seconds
   const [isRunning, setIsRunning] = useState(false);
   const [activeButton, setActiveButton] = useState("start");
-  const [modalVisible, setModalVisible] = useState(false);
-  const [finishTime, setFinishTime] = useState(0);
 
   const navigation = useNavigation();
 
@@ -56,31 +52,13 @@ const StopWatchChallenge = ({ saveWorkout }) => {
   const handleFinish = () => {
     pauseStopWatch();
     console.log("Elapsed time:", time); // Log the elapsed time
-    setFinishTime(time);
-    setModalVisible(true);
-  };
-
-  const handleModalOpen = () => {
-    setModalVisible(true);
-  };
-
-  const handleModalClose = () => {
-    setModalVisible(false);
-  };
-
-  const resumeAndCloseModal = () => {
-    resumeStopwatch();
-    handleModalClose();
-  };
-
-  const deleteAndCloseModal = () => {
-    resetStopwatch();
-    handleModalClose();
-  };
-
-  const handleSave = () => {
-    // navigation.navigate("JoinedChallenge");
-    // setModalVisible(false);
+    navigation.navigate("SaveChallenge", {
+      time,
+      formatTime,
+      saveWorkout,
+      resumeStopwatch,
+      resetStopwatch,
+    });
   };
 
   const formatTime = (timeInSeconds) => {
@@ -108,16 +86,6 @@ const StopWatchChallenge = ({ saveWorkout }) => {
           startStopwatch={startStopwatch}
           pauseStopWatch={pauseStopWatch}
           handleFinish={handleFinish}
-          handleModalOpen={handleModalOpen}
-        />
-        <ModalContent
-          modalVisible={modalVisible}
-          formatTime={formatTime}
-          time={time}
-          finishTime={formatTime(finishTime)}
-          resumeAndCloseModal={resumeAndCloseModal}
-          deleteAndCloseModal={deleteAndCloseModal}
-          saveWorkout={handleSave}
         />
       </View>
     </Screen>
