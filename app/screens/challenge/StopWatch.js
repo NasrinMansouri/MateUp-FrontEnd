@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 
 import Screen from "../../components/Screen";
-import Body from "../../components/challenge/stopWatch/Body";
-import ControllerStopWatch from "../../components/challenge/stopWatch/ControllerStopWatch";
-import HeaderStopWatch from "../../components/challenge/stopWatch/HeaderStopWatch";
+import {
+  Body,
+  ControllerStopWatch,
+  HeaderStopWatch,
+} from "../../components/challenge/stopWatch";
 import { useNavigation } from "@react-navigation/native";
 
 const StopWatchChallenge = ({ saveWorkout }) => {
