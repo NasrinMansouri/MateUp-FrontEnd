@@ -7,7 +7,6 @@ const Controller = ({
   startStopwatch,
   pauseStopWatch,
   handleFinish,
-  handleModalOpen,
 }) => {
   return (
     <View style={styles.buttonContainer}>
@@ -29,7 +28,6 @@ const Controller = ({
               style={styles.buttonFinish}
               onPress={() => {
                 handleFinish();
-                handleModalOpen();
               }}
             >
               <Text style={styles.textFinish}>Finish</Text>

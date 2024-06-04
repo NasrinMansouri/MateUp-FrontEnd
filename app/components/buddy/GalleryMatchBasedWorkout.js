@@ -13,7 +13,7 @@ export default function GalleryMatchBasedWorkout({
   const location = "Raghenoplein 21 bis, 2800 Mechelen";
   return (
     <View style={styles.mainContainer}>
-      <Text style={styles.title}>matches based on your workour</Text>
+      <Text style={styles.title}>matches based on your workout</Text>
       <FlatList
         showsHorizontalScrollIndicator={false}
         style={styles.container}
@@ -39,10 +39,10 @@ export default function GalleryMatchBasedWorkout({
 
 const styles = StyleSheet.create({
   mainContainer: {
-    marginTop: 96,
+    marginTop: 68,
   },
   container: {
-    paddingTop: 16,
+    // paddingTop: 16,
     paddingLeft: 16,
   },
   title: {

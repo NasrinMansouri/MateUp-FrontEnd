@@ -15,6 +15,7 @@ export default function CardAvailableGroup({
   start,
   end,
   spots,
+  onPress,
 }) {
   console.log(members);
 
@@ -46,11 +47,7 @@ export default function CardAvailableGroup({
         <Text style={styles.textSpots}>{spots}</Text>
       </View>
       <View style={styles.buttonContainer}>
-        <AppButton
-          title={"Book"}
-          fontSize={14}
-          onPress={() => console.log("pressed")}
-        />
+        <AppButton title={"request to Book"} fontSize={14} onPress={onPress} />
       </View>
     </View>
   );
@@ -60,7 +57,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: 300,
-    backgroundColor: colors.white,
+    backgroundColor: colors.blackBc,
     marginBottom: 70,
     paddingTop: 40,
   },
@@ -69,7 +66,7 @@ const styles = StyleSheet.create({
   },
   goal: {
     fontFamily: "montserrat-black",
-    color: colors.black,
+    color: colors.white,
     fontSize: 16,
     textTransform: "uppercase",
     marginLeft: 16,
@@ -91,7 +88,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: "nunitoSans-bold",
-    color: colors.black,
+    color: colors.white,
     fontSize: 14,
     textTransform: "uppercase",
     marginLeft: 10,

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View, Text, ScrollView } from "react-native";
+import * as Notifications from "expo-notifications";
 
 import Screen from "../../components/Screen";
 import colors from "../../config/colors";
@@ -8,6 +9,47 @@ import Line from "../../components/Line";
 import CardAvailableGroup from "../../components/coach/CardAvailableGroup";
 
 export default function AvailableGroupsScreen() {
+  // for recieveing notification
+  useEffect(() => {
+    // Request notification permissions
+    const requestPermissions = async () => {
+      const { status } = await Notifications.requestPermissionsAsync();
+      if (status !== "granted") {
+        alert("You need to enable notifications permissions in settings.");
+      }
+    };
+
+    requestPermissions();
+
+    // Set the notification handler
+    Notifications.setNotificationHandler({
+      handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: true,
+        shouldSetBadge: true,
+      }),
+    });
+  }, []);
+
+  const showNotification = async () => {
+    try {
+      const notificationId = await Notifications.scheduleNotificationAsync({
+        content: {
+          title: "Thanks for your interest!",
+          body: "You will shortly recieve a message from your instructor.",
+          data: {
+            _displayInForeground: true,
+          },
+          sound: true,
+        },
+        trigger: { seconds: 1 },
+      });
+      console.log("Notification scheduled with ID:", notificationId);
+    } catch (error) {
+      console.log("Error scheduling notification:", error);
+    }
+  };
+
   const availableGroups = [
     {
       id: 1,
@@ -64,6 +106,7 @@ export default function AvailableGroupsScreen() {
               start={group.start}
               end={group.end}
               spots={group.spots}
+              onPress={() => showNotification()}
             />
           ))}
         </ScrollView>
@@ -78,18 +121,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    fontSize: 26,
+    fontSize: 22,
     fontFamily: "montserrat-black",
     marginTop: 20,
     marginBottom: 10,
     marginLeft: 16,
     marginRight: 16,
-    color: colors.black,
+    color: colors.white,
     textTransform: "uppercase",
   },
   container: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.blackBc,
     height: "100%",
     width: "100%",
   },

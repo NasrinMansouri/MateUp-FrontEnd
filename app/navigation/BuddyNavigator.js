@@ -6,6 +6,8 @@ import BuddyScreen from "../screens/buddy/BuddyScreen";
 import BuddyProfileScreen from "../screens/buddy/BuddyProfileScreen";
 import NotificationScreen from "../screens/NotificationScreen";
 import SearchScreen from "../screens/SearchScreen";
+import DetailsChallengeScreen from "../screens/challenge/DetailsChallengeScreen";
+import BuddySearchScreen from "../screens/buddy/BuddySearchScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -48,10 +50,26 @@ const BuddyNavigator = () => {
         }}
       />
 
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Search"
         component={SearchScreen}
         options={{ headerShown: false }}
+      /> */}
+      <Stack.Screen
+        name="SearchBuddy"
+        component={BuddySearchScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="ChallengeDetails"
+        component={DetailsChallengeScreen}
+        options={{
+          headerStyle: {
+            backgroundColor: colors.blackBc,
+          },
+          headerTitle: "",
+        }}
       />
     </Stack.Navigator>
   );

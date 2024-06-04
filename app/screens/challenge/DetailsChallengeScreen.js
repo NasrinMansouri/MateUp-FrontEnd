@@ -8,9 +8,50 @@ import ChallengeDescription from "../../components/challenge/ChallengeDescriptio
 import colors from "../../config/colors";
 import CardProfile from "../../components/CardProfile";
 import Screen from "../../components/Screen";
+import challengeApi from "../../api/challenge";
 
-export default function DetailsChallengeScreen({}) {
+export default function DetailsChallengeScreen({ route }) {
+  // for backend connection
+  // const [challengeDetails, setChallengeDetails] = useState(null);
+  const { challengeId, showBuddies } = route.params;
+  console.log("my deatils:", challengeId);
+  // useEffect(() => {
+  //   loadChallengeDetails();
+  // }, [challengeId]);
+
+  // const loadChallengeDetails = async () => {
+  //   try {
+  //     const response = await challengeApi.getDetailsChallengeScreen(challengeId);
+  //     setChallengeDetails(response.data.challenge);
+  //     console.log(response.data.challenge);
+  //   } catch (error) {
+  //     console.log("Error loading challenge details:", error);
+  //   }
+  // };
+  // if (!challengeDetails) {
+  //   return (
+  //     <View style={styles.container}>
+  //       <ActivityIndicator
+  //         size="large"
+  //         color={colors.orangeSecondary}
+  //         style={{ marginTop: 50 }}
+  //       />
+  //       <Text
+  //         style={{
+  //           textAlign: "center",
+  //           marginTop: 20,
+  //           fontSize: 16,
+  //           color: colors.orangeSecondary,
+  //         }}
+  //       >
+  //         Loading...
+  //       </Text>
+  //     </View>
+  //   );
+  // }
+
   const navigation = useNavigation();
+
   const challengeDetails = {
     challengeImage: require("../../../assets/person3.jpg"),
     ChallengeName: "Cardio Boost Challenge ",
@@ -88,7 +129,7 @@ export default function DetailsChallengeScreen({}) {
           challengeDescription={challengeDescription}
           marginTop={40}
         />
-        {yourBuddies && (
+        {showBuddies && yourBuddies && (
           <View>
             <Text style={styles.yourBuddies}>YOUR BUDDIES</Text>
             <View style={styles.buddiesContainer}>
@@ -120,7 +161,9 @@ export default function DetailsChallengeScreen({}) {
         <AppButton
           title="Join"
           fontSize={14}
-          onPress={() => navigation.navigate("JoinedChallenge")}
+          onPress={() =>
+            navigation.navigate("JoinedChallenge", { challengeId: challengeId })
+          }
         />
       </View>
     </Screen>
@@ -145,9 +188,9 @@ const styles = StyleSheet.create({
   },
   name: {
     fontFamily: "montserrat-black",
-    fontSize: 20,
+    fontSize: 16,
     color: colors.white,
-    textTransform: "capitalize",
+    textTransform: "uppercase",
     marginBottom: 10,
   },
   typeContainer: {

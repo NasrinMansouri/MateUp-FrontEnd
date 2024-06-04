@@ -9,6 +9,9 @@ import JoinedChallengeScreen from "../screens/challenge/JoinedChallengeScreen";
 import CreateChallengeScreen from "../screens/challenge/CreateChallengeScreen";
 import StopWatch from "../screens/challenge/StopWatch";
 import SearchScreen from "../screens/SearchScreen";
+import StartChallengeScreen from "../screens/challenge/StartChallnegScreen";
+import SaveChallengeScreen from "../screens/challenge/SaveChallengeScreen";
+import ChallengeSearchScreen from "../screens/challenge/ChallengeSearchScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,13 +31,25 @@ const ChallengeNavigator = () => {
           headerStyle: {
             backgroundColor: colors.blackBc,
           },
-          headerTitle: "Challenge Details",
+          headerTitle: "",
         }}
       />
 
       <Stack.Screen
         name="JoinedChallenge"
         component={JoinedChallengeScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="StartChallenge"
+        component={StartChallengeScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="SaveChallenge"
+        component={SaveChallengeScreen}
         options={{ headerShown: false }}
       />
 
@@ -64,9 +79,15 @@ const ChallengeNavigator = () => {
         }}
       />
 
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Search"
         component={SearchScreen}
+        options={{ headerShown: false }}
+      /> */}
+
+      <Stack.Screen
+        name="SearchChallenge"
+        component={ChallengeSearchScreen}
         options={{ headerShown: false }}
       />
 

@@ -1,12 +1,31 @@
-import { StyleSheet, FlatList, Text, View } from "react-native";
+import {
+  StyleSheet,
+  FlatList,
+  Text,
+  View,
+  ActivityIndicator,
+} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
 import colors from "../../config/colors";
 import CardChallenges from "./CardChallenges";
 
-export default function GalleryAllChallenges({ AllChallenges }) {
+export default function GalleryAllChallenges({
+  AllChallenges,
+  onPress,
+  onPressJoin,
+  // loading,
+}) {
   const navigation = useNavigation();
+
+  // if (loading) {
+  //   return (
+  //     <View style={styles.container}>
+  //       <ActivityIndicator size="large" color={colors.orangeSecondary} />
+  //     </View>
+  //   );
+  // }
 
   return (
     <View style={styles.container}>
@@ -15,11 +34,11 @@ export default function GalleryAllChallenges({ AllChallenges }) {
       </View>
       <FlatList
         data={AllChallenges}
-        keyExtractor={(AllChallenges) => AllChallenges.id.toString()}
+        keyExtractor={(challenges) => challenges.id.toString()}
         renderItem={({ item }) => (
           <CardChallenges
-            onPressCard={() => navigation.navigate("ChallengeDetails", item)}
-            onPressBtn={() => navigation.navigate("JoinedChallenge", item)}
+            onPressCard={() => onPress(item)}
+            onPressBtn={() => onPressJoin(item)}
             challengeImage={item.challengeImage}
             challengeName={item.challengeName}
             duration={item.duration}
@@ -39,14 +58,14 @@ export default function GalleryAllChallenges({ AllChallenges }) {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 96,
+    marginTop: 68,
     marginBottom: 300,
   },
   title: {
     fontFamily: "montserrat-black",
     fontSize: 26,
     color: colors.orangePrimary,
-    marginBottom: 30,
+    marginBottom: 10,
     textTransform: "uppercase",
     paddingLeft: 16,
   },

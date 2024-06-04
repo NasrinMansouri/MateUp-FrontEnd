@@ -6,12 +6,14 @@ import {
   Modal,
   Text,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 
 import Screen from "../../components/Screen";
 import AppButtonBorder from "../../components/AppButtonBorder";
 import Line from "../../components/Line";
 import membersApi from "../../api/members";
+import useApi from "../../hooks/useApi";
 import TopNav from "../../components/topNavigation/TopNav";
 import colors from "../../config/colors";
 import {
@@ -85,6 +87,20 @@ import FilterModal from "../../components/buddy/FilterModal";
 
 export default function BuddyScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
+  // const [notificationSeen, setNotificationSeen] = useState(false);
+
+  // new for connecting to backend using my custom api hook
+
+  // const getBuddiesApi = useApi(membersApi.getBuddies);
+  // const getUserClubMembersApi = useApi(membersApi.getUserClubMembers);
+  // const getMatchClubMembersApi = useApi(membersApi.getMatchClubMembers);
+  // const getConnectAllMembersApi = useApi(membersApi.getConnectAllMembers);
+  // useEffect(() => {
+  //   getBuddiesApi.request();
+  //   getUserClubMembersApi.request();
+  //   getMatchClubMembersApi.request();
+  //   getConnectAllMembersApi.request();
+  // }, []);
 
   //for backend connection
   const [buddies, setBuddies] = useState([]);
@@ -123,39 +139,68 @@ export default function BuddyScreen({ navigation }) {
     <Screen style={styles.container}>
       <TopNav
         showSearchBar={true}
-        onPressSearch={() => navigation.navigate("Search")}
+        // onPressSearch={() => navigation.navigate("Search")}
+        onPressSearch={() => navigation.navigate("SearchBuddy")}
         onPressMessage={() => console.log("message")}
-        onPressNotification={() =>
-          navigation.navigate("Notification", { screen: "buddy" })
-        }
+        // onPressNotification={() => {
+        //   navigation.navigate("Notification", { screen: "buddy" });
+        // }}
       />
       <ScrollView style={styles.container}>
         <View style={styles.buddyContainer}>
           <GalleryBuddies
             paddingLeft={6}
-            buddies={buddies}
+            buddies={buddiesData}
+            // for new connection to backend
+            // buddies={getBuddiesApi.data}
+            // loading={getBuddiesApi.loading}
+            // error={getBuddiesApi.error}
             onPress={(item) =>
-              navigation.navigate("MemberProfile", { memberId: item.id })
+              navigation.navigate("MemberProfile", {
+                memberId: item.id,
+                challengeId: item.id,
+              })
             }
           />
         </View>
         <Line marginBottom={40} marginTop={20} />
         <GalleryMatchClubMembers
-          UserClubMembers={UserClubMembers}
+          UserClubMembers={UserClubMembersData}
+          // for new connection to backend
+          // UserClubMembers={getUserClubMembersApi.data}
+          // loading={getUserClubMembersApi.loading}
+          // error={getUserClubMembersApi.error}
           onPress={(item) =>
-            navigation.navigate("MemberProfile", { memberId: item.id })
+            navigation.navigate("MemberProfile", {
+              memberId: item.id,
+              challengeId: item.id,
+            })
           }
         />
         <GalleryMatchBasedWorkout
-          matchMemberWorkout={matchClubMembers}
+          matchMemberWorkout={matchClubMembersData}
+          // for new connection to backend
+          // matchMemberWorkout={getMatchClubMembersApi.data}
+          // loading={getMatchClubMembersApi.loading}
+          // error={getMatchClubMembersApi.error}
           onPress={(item) =>
-            navigation.navigate("MemberProfile", { memberId: item.id })
+            navigation.navigate("MemberProfile", {
+              memberId: item.id,
+              challengeId: item.id,
+            })
           }
         />
         <GalleryConnectAll
-          connectAllMembers={connectAllMembers}
+          connectAllMembers={connectAllMembersData}
+          // for new connection to backend
+          // connectAllMembers={getConnectAllMembersApi.data}
+          // loading={getConnectAllMembersApi.loading}
+          // error={getConnectAllMembersApi.error}
           onPress={(item) =>
-            navigation.navigate("MemberProfile", { memberId: item.id })
+            navigation.navigate("MemberProfile", {
+              memberId: item.id,
+              challengeId: item.id,
+            })
           }
         />
       </ScrollView>

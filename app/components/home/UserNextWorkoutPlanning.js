@@ -28,9 +28,9 @@ export default function UserNextWorkoutPlanning({ onPress }) {
           </Text>
           <Text style={styles.textStyle}>
             <Text style={styles.whiteColorText}>Sarah</Text> and{" "}
-            <Text style={styles.whiteColorText}>bob</Text> are joining you too.{" "}
+            <Text style={styles.whiteColorText}>bob</Text> are joining you too.
           </Text>
-          <Text style={styles.textStyleLast}> Have fun together !</Text>
+          <Text style={styles.textStyleLast}>Have fun together !</Text>
           <View style={styles.buddyContainer}>
             <View style={styles.buddy1}>
               <TouchableWithoutFeedback onPress={onPress}>

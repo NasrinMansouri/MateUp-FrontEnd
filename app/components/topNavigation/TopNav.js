@@ -8,12 +8,13 @@ import {
   onPressMessage,
   onPressNotification,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 
 import SearchBar from "./SearchBar";
 import Colors from "../../config/colors";
+import { useNavigation } from "@react-navigation/native";
 
 export default function TopNav({
   showSearchBar,
@@ -23,7 +24,16 @@ export default function TopNav({
   onPressMenue,
   onPressMessage,
   onPressNotification,
+  // notificationSeen,
 }) {
+  // const [notificationSeen, setNotificationSeen] = useState(false);
+
+  // const handlePressNotification = () => {
+  //   setNotificationSeen(true);
+  //   navigation.navigate("Notification");
+  // };
+
+  const navigation = useNavigation();
   return (
     <View style={styles.mainContainer}>
       <View style={styles.LeftContainer}>
@@ -40,13 +50,20 @@ export default function TopNav({
       </View>
       <View style={styles.iconsContainer}>
         {/* Notification Icon */}
-        <TouchableOpacity activeOpacity={0.9} onPress={onPressNotification}>
+        <TouchableOpacity
+          activeOpacity={0.9}
+          // onPress={onPressNotification}
+          onPress={() => navigation.navigate("Notification")}
+          // onPress={handlePressNotification}
+          style={styles.notification}
+        >
           <MaterialIcons
             name="notifications-none"
             size={24}
             color="white"
             style={styles.iconNotification}
           />
+          {/* {!notificationSeen && <View style={styles.notificationDot} />} */}
         </TouchableOpacity>
         {/* Message Icon */}
         <TouchableOpacity activeOpacity={0.9} onPress={onPressMessage}>
@@ -85,6 +102,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 26,
     marginLeft: 150,
+  },
+  notification: {
+    position: "relative",
+  },
+  notificationDot: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    width: 10,
+    height: 10,
+    borderRadius: 10 / 2,
+    backgroundColor: Colors.danger,
   },
 });
 

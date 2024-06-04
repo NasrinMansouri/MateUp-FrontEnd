@@ -64,7 +64,13 @@ export default function CardBuddiesWorkout({
         </View>
       </View>
 
-      <AppButton title={"Join"} width={217} height={32} onPress={onPress} />
+      <AppButton
+        title={"Join"}
+        width={217}
+        height={32}
+        onPress={onPress}
+        fontSize={14}
+      />
     </TouchableOpacity>
   );
 }

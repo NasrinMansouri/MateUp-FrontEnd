@@ -1,12 +1,32 @@
-import { StyleSheet, FlatList, Text, View } from "react-native";
+import {
+  StyleSheet,
+  FlatList,
+  Text,
+  View,
+  ActivityIndicator,
+} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
 import colors from "../../config/colors";
 import CardChallenges from "./CardChallenges";
 
-export default function GalleryClubChallenge({ ClubChallenge }) {
+export default function GalleryClubChallenge({
+  ClubChallenge,
+  onPress,
+  onPressJoin,
+  // loading,
+}) {
   const navigation = useNavigation();
+
+  // if (loading) {
+  //   return (
+  //     <View style={styles.container}>
+  //       <ActivityIndicator size="large" color={colors.orangeSecondary} />
+  //     </View>
+  //   );
+  // }
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.titleContainer}>
@@ -16,11 +36,11 @@ export default function GalleryClubChallenge({ ClubChallenge }) {
         style={styles.container}
         horizontal
         data={ClubChallenge}
-        keyExtractor={(ClubChallenge) => ClubChallenge.id.toString()}
+        keyExtractor={(challenges) => challenges.id.toString()}
         renderItem={({ item }) => (
           <CardChallenges
-            onPressCard={() => navigation.navigate("ChallengeDetails", item)}
-            onPressBtn={() => navigation.navigate("JoinedChallenge", item)}
+            onPressCard={() => onPress(item)}
+            onPressBtn={() => onPressJoin(item)}
             challengeImage={item.challengeImage}
             challengeName={item.challengeName}
             duration={item.duration}
@@ -37,7 +57,7 @@ export default function GalleryClubChallenge({ ClubChallenge }) {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    marginTop: 96,
+    marginTop: 68,
   },
   container: {
     paddingLeft: 16,
@@ -46,7 +66,7 @@ const styles = StyleSheet.create({
     fontFamily: "montserrat-black",
     fontSize: 26,
     color: colors.orangePrimary,
-    marginBottom: 30,
+    marginBottom: 10,
     textTransform: "uppercase",
     paddingLeft: 16,
   },

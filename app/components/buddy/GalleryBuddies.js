@@ -13,7 +13,6 @@ import colors from "../../config/colors";
 
 function GalleryBuddies({ buddies, style, header, paddingLeft = 16 }) {
   const navigation = useNavigation();
-  console.log(buddies)
 
   //dummy data for testing
   // const buddiesData = [

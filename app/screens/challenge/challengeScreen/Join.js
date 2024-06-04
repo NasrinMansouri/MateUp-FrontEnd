@@ -1,10 +1,14 @@
-import React from "react";
-import { FlatList, StyleSheet, View } from "react-native";
-import GalleryAllChallenges from "../../../components/challenge/GalleryAllChallenges";
+import React, { useEffect } from "react";
+import { FlatList, StyleSheet, View, ActivityIndicator } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
+import GalleryAllChallenges from "../../../components/challenge/GalleryAllChallenges";
 import GalleryBuddiesJoinedChallenge from "../../../components/challenge/GalleryBuddiesJoinedChallenge";
 import GalleryClubChallenge from "../../../components/challenge/GalleryClubChallenge";
+import GalleryFilters from "../../../components/challenge/GalleryFilters";
 import Screen from "../../../components/Screen";
+import useApi from "../../../hooks/useApi";
+import challengeApi from "../../../api/challenge";
 
 const challengeYourBuddiesJoined = [
   {
@@ -56,34 +60,80 @@ const challengeYourBuddiesJoined = [
   },
 ];
 
-// export default function Join({}) {
-//   return (
-//     <View style={styles.container}>
-//       <GalleryBuddiesJoinedChallenge
-//         BuddiesJoinedChallenge={challengeYourBuddiesJoined}
-//       />
-//       <GalleryClubChallenge ClubChallenge={challengeYourBuddiesJoined} />
-//       <GalleryAllChallenges AllChallenges={challengeYourBuddiesJoined} />
-//     </View>
-//   );
-// }
-
 export default function Join({}) {
+  // for backend connection
+  // const getChallengeYourBuddiesJoinedApi = useApi(
+  //   challengeApi.getBuddiesJoinedChallenges
+  // );
+  // const getClubChallengesApi = useApi(challengeApi.getClubChallenges);
+  // const getAllChallengesApi = useApi(challengeApi.getAllChallenges);
+  // useEffect(() => {
+  //   getChallengeYourBuddiesJoinedApi.request();
+  //   getClubChallengesApi.request();
+  //   getAllChallengesApi.request();
+  // }, []);
+
+  const navigation = useNavigation();
+
   const renderItemCache = {
-    GalleryBuddiesJoinedChallenge: (challengeYourBuddiesJoined) => (
+    GalleryBuddiesJoinedChallenge: () => (
       <GalleryBuddiesJoinedChallenge
         BuddiesJoinedChallenge={challengeYourBuddiesJoined}
+        // BuddiesJoinedChallenge={getChallengeYourBuddiesJoinedApi.data}
+        // loading={getChallengeYourBuddiesJoinedApi.loading}
+        // error={getChallengeYourBuddiesJoinedApi.error}
+        onPress={(item) =>
+          navigation.navigate("ChallengeDetails", {
+            challengeId: item.id,
+            showBuddies: true,
+          })
+        }
+        onPressJoin={(item) =>
+          navigation.navigate("JoinedChallenge", { challengeId: item.id })
+        }
       />
     ),
-    GalleryClubChallenge: (challengeYourBuddiesJoined) => (
-      <GalleryClubChallenge ClubChallenge={challengeYourBuddiesJoined} />
+    GalleryClubChallenge: () => (
+      <GalleryClubChallenge
+        ClubChallenge={challengeYourBuddiesJoined}
+        // ClubChallenge={getClubChallengesApi.data}
+        // loading={getClubChallengesApi.loading}
+        // error={getClubChallengesApi.error}
+        onPress={(item) =>
+          navigation.navigate("ChallengeDetails", {
+            challengeId: item.id,
+            showBuddies: false,
+          })
+        }
+        onPressJoin={(item) =>
+          navigation.navigate("JoinedChallenge", { challengeId: item.id })
+        }
+      />
     ),
-    GalleryAllChallenges: (challengeYourBuddiesJoined) => (
-      <GalleryAllChallenges AllChallenges={challengeYourBuddiesJoined} />
+
+    GalleryAllChallenges: () => (
+      <GalleryAllChallenges
+        AllChallenges={challengeYourBuddiesJoined}
+        // AllChallenges={getAllChallengesApi.data}
+        // loading={getAllChallengesApi.loading}
+        // error={getAllChallengesApi.error}
+        onPress={(item) =>
+          navigation.navigate("ChallengeDetails", {
+            challengeId: item.id,
+            showBuddies: false,
+          })
+        }
+        onPressJoin={(item) =>
+          navigation.navigate("JoinedChallenge", { challengeId: item.id })
+        }
+      />
     ),
+
+    GalleryFilters: () => <GalleryFilters />,
   };
 
   const data = [
+    { type: "GalleryFilters" },
     { type: "GalleryBuddiesJoinedChallenge", data: challengeYourBuddiesJoined },
     { type: "GalleryClubChallenge", data: challengeYourBuddiesJoined },
     { type: "GalleryAllChallenges", data: challengeYourBuddiesJoined },

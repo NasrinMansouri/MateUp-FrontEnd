@@ -1,6 +1,12 @@
 // also can be use for meet  at user members
 
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  ActivityIndicator,
+} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
@@ -10,8 +16,19 @@ import CardCoachClubMember from "./CardCoachClubMember";
 export default function GalleryCoachesClubMembers({
   coachesClubMember,
   onPressClubCoaches,
+  onPress,
+  // loading,
 }) {
   const navigation = useNavigation();
+
+  // if (loading) {
+  //   return (
+  //     <View style={styles.container}>
+  //       <ActivityIndicator size="large" color={colors.orangeSecondary} />
+  //     </View>
+  //   );
+  // }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Coaches at your club</Text>
@@ -20,13 +37,14 @@ export default function GalleryCoachesClubMembers({
         horizontal
         showsHorizontalScrollIndicator={false}
         data={coachesClubMember}
-        keyExtractor={(coachesClubMember) => coachesClubMember.id.toString()}
+        keyExtractor={(trainers) => trainers.id.toString()}
         renderItem={({ item }) => (
           <CardCoachClubMember
             name={item.name}
             image={item.image}
             titles={item.titles}
-            onPress={() => navigation.navigate("CoachProfile", item)}
+            // onPress={() => navigation.navigate("CoachProfile", item)}
+            onPress={() => onPress(item)}
           />
         )}
       />
@@ -36,13 +54,13 @@ export default function GalleryCoachesClubMembers({
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 40,
+    paddingTop: 30,
   },
   title: {
     fontFamily: "montserrat-black",
     fontSize: 36,
     color: colors.orangePrimary,
-    marginBottom: 10,
+    // marginBottom: 10,
     textTransform: "uppercase",
     paddingLeft: 16,
   },

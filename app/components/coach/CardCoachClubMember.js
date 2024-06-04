@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     height: 230,
     marginRight: 8,
     backgroundColor: colors.blackBc,
-    paddingTop: 10,
+    // paddingTop: 10,
     paddingBottom: 10,
   },
   container: {

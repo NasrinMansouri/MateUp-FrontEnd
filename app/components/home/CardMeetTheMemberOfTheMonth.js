@@ -1,20 +1,69 @@
-// import { StyleSheet, Text, View, Image } from "react-native";
+// import { StyleSheet, Text, View } from "react-native";
 // import React from "react";
 
-// import colors from "../config/colors";
+// import colors from "../../config/colors";
+// import AnimatedImage from "./AnimatedImage";
 
-// export default function MeetTheMemberOfTheMonth({ image }) {
+// export default function CardMeetTheMemberOfTheMonth() {
+//   const images = [
+//     {
+//       id: "topLeft",
+//       image: require("../../../assets/person-1.jpg"),
+//     },
+//     {
+//       id: "buttomCenter",
+//       image: require("../../../assets/person2.jpg"),
+//     },
+//     {
+//       id: "topRight",
+//       image: require("../../../assets/person3.jpg"),
+//     },
+//     {
+//       id: "bottomLeft",
+//       image: require("../../../assets/person4.jpg"),
+//     },
+//     {
+//       id: "bottomRight",
+//       image: require("../../../assets/person5.jpg"),
+//     },
+//   ];
+
 //   return (
-//     <View style={styles.container}>
-//       <Text style={styles.textStyle}>Meet The Member Of The Month</Text>
-//       <Image style={[styles.image, styles.topLeft]} source={image} />
-//       <Image style={[styles.image, styles.buttomCenter]} source={image} />
-//       <Image style={[styles.image, styles.topRight]} source={image} />
-//       <Image style={[styles.image, styles.bottomLeft]} source={image} />
-//       <Image style={[styles.image, styles.bottomRight]} source={image} />
-//     </View>
+//     <>
+//       <Text style={styles.titleText}>whats new</Text>
+//       <Text style={styles.subTitleText}>
+//         Checkout the lates news on MATE-UP
+//       </Text>
+//       <View style={styles.container}>
+//         <Text style={styles.textStyle}>Meet The Member Of The Month</Text>
+//         {images.map(({ id, image }) => (
+//           <AnimatedImage
+//             key={id}
+//             style={[styles.image, getPositionStyle(id)]}
+//             source={image}
+//           />
+//         ))}
+//       </View>
+//     </>
 //   );
 // }
+
+// const getPositionStyle = (id) => {
+//   switch (id) {
+//     case "topLeft":
+//       return styles.topLeft;
+//     case "buttomCenter":
+//       return styles.buttomCenter;
+//     case "topRight":
+//       return styles.topRight;
+//     case "bottomLeft":
+//       return styles.bottomLeft;
+//     case "bottomRight":
+//       return styles.bottomRight;
+//     default:
+//       return {};
+//   }
+// };
 
 // const styles = StyleSheet.create({
 //   container: {
@@ -22,6 +71,8 @@
 //     height: 416,
 //     justifyContent: "center",
 //     alignItems: "center",
+//     backgroundColor: colors.orangeSecondary,
+//     // marginTop: 76,
 //   },
 //   image: {
 //     position: "absolute",
@@ -62,24 +113,28 @@
 //     right: "20%",
 //   },
 //   textStyle: {
-//     fontSize: 24,
+//     fontSize: 30,
 //     fontFamily: "montserrat-black",
-//     color: colors.orangeSecondary,
+//     color: colors.white,
 //     textTransform: "uppercase",
 //     textAlign: "center",
 //   },
+//   titleText: {
+//     fontFamily: "montserrat-black",
+//     fontSize: 26,
+//     color: colors.orangePrimary,
+//     marginBottom: 10,
+//     textTransform: "uppercase",
+//     paddingLeft: 16,
+//   },
+//   subTitleText: {
+//     fontFamily: "nunitoSans-regular",
+//     fontSize: 14,
+//     color: colors.white,
+//     marginBottom: 32,
+//     paddingLeft: 16,
+//   },
 // });
-
-//to be used in screen as:
-{
-  /* <MeetTheMemberOfTheMonth
-          image={require("./assets/person-1.jpg")}
-          image={require("./assets/person-1.jpg")}
-          image={require("./assets/person-1.jpg")}
-          image={require("./assets/person-1.jpg")}
-          image={require("./assets/person-1.jpg")}
-        /> */
-}
 
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
@@ -90,24 +145,44 @@ import AnimatedImage from "./AnimatedImage";
 export default function CardMeetTheMemberOfTheMonth() {
   const images = [
     {
-      id: "topLeft",
-      image: require("../../../assets/person-1.jpg"),
+      id: "topLeft", // Unique identifier for the image position
+      images: [
+        require("../../../assets/person-1.jpg"),
+        require("../../../assets/person2.jpg"),
+        require("../../../assets/person3.jpg"),
+      ],
     },
     {
       id: "buttomCenter",
-      image: require("../../../assets/person2.jpg"),
+      images: [
+        require("../../../assets/person2.jpg"),
+        require("../../../assets/person3.jpg"),
+        require("../../../assets/person4.jpg"),
+      ],
     },
     {
       id: "topRight",
-      image: require("../../../assets/person3.jpg"),
+      images: [
+        require("../../../assets/person3.jpg"),
+        require("../../../assets/person4.jpg"),
+        require("../../../assets/person5.jpg"),
+      ],
     },
     {
       id: "bottomLeft",
-      image: require("../../../assets/person4.jpg"),
+      images: [
+        require("../../../assets/person4.jpg"),
+        require("../../../assets/person5.jpg"),
+        require("../../../assets/person-1.jpg"),
+      ],
     },
     {
       id: "bottomRight",
-      image: require("../../../assets/person5.jpg"),
+      images: [
+        require("../../../assets/person5.jpg"),
+        require("../../../assets/person4.jpg"),
+        require("../../../assets/person3.jpg"),
+      ],
     },
   ];
 
@@ -115,15 +190,15 @@ export default function CardMeetTheMemberOfTheMonth() {
     <>
       <Text style={styles.titleText}>whats new</Text>
       <Text style={styles.subTitleText}>
-        Checkout the lates news on MATE-UP
+        Checkout the latest news on MATE-UP
       </Text>
       <View style={styles.container}>
         <Text style={styles.textStyle}>Meet The Member Of The Month</Text>
-        {images.map(({ id, image }) => (
+        {images.map(({ id, images }) => (
           <AnimatedImage
             key={id}
-            style={[styles.image, getPositionStyle(id)]}
-            source={image}
+            style={[styles.image, getPositionStyle(id)]} // Apply style and position based on id
+            images={images}
           />
         ))}
       </View>
@@ -132,6 +207,7 @@ export default function CardMeetTheMemberOfTheMonth() {
 }
 
 const getPositionStyle = (id) => {
+  // Function to get the position style based on id
   switch (id) {
     case "topLeft":
       return styles.topLeft;
@@ -182,9 +258,9 @@ const styles = StyleSheet.create({
     right: "20%",
   },
   bottomLeft: {
-    width: 22,
-    height: 22,
-    borderRadius: 22 / 2,
+    width: 42,
+    height: 42,
+    borderRadius: 42 / 2,
     bottom: "30%",
     left: "15%",
   },

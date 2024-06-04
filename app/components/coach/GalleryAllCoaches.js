@@ -1,52 +1,56 @@
-import { StyleSheet, FlatList, ScrollView, View, Text } from "react-native";
+import {
+  StyleSheet,
+  FlatList,
+  ScrollView,
+  View,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 import CardAllCoaches from "./CardAllCoaches";
 import colors from "../../config/colors";
-import { useNavigation } from "@react-navigation/native";
 
 export default function GalleryAllCoaches({
   meetAllCoaches,
   onPressAllCoaches,
+  onPress,
+  // loading,
 }) {
   const navigation = useNavigation();
+
+  // if (loading) {
+  //   return (
+  //     <View style={styles.container}>
+  //       <ActivityIndicator size="large" color={colors.orangeSecondary} />
+  //     </View>
+  //   );
+  // }
+
   return (
-    // <View style={styles.container}>
-    //   <Text style={styles.title}>Meet All Coaches</Text>
-    //   <FlatList
-    //     data={meetAllCoaches}
-    //     keyExtractor={(meetAllCoaches) => meetAllCoaches.id.toString()}
-    //     renderItem={({ item }) => (
-    //       <CardAllCoaches
-    //         name={item.name}
-    //         image={item.image}
-    //         location={item.location}
-    //         titles={item.titles}
-    //       />
-    //     )}
-    //   />
-    // </View>
     <View style={styles.container}>
       <Text style={styles.title}>Meet All Coaches</Text>
-      <ScrollView>
-        {meetAllCoaches.map((coach, id) => (
+      <FlatList
+        data={meetAllCoaches}
+        keyExtractor={(trainers) => trainers.id.toString()}
+        renderItem={({ item }) => (
           <CardAllCoaches
-            key={id}
-            name={coach.name}
-            image={coach.image}
-            location={coach.location}
-            titles={coach.titles}
-            onPress={() => navigation.navigate("CoachProfile", id)}
+            name={item.name}
+            image={item.image}
+            location={item.location}
+            titles={item.titles}
+            onPress={() => onPress(item)}
           />
-        ))}
-      </ScrollView>
+        )}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 96,
+    paddingTop: 56,
   },
   title: {
     fontFamily: "montserrat-black",

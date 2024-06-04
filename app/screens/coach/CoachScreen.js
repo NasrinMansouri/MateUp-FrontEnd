@@ -15,13 +15,13 @@ const CoachScreen = ({ navigation }) => {
     <Screen style={styles.screen}>
       <TopNav
         showSearchBar={true}
-        onPressSearch={() => navigation.navigate("Search")}
+        onPressSearch={() => navigation.navigate("SearchCoach")}
         onPressMessage={() => {
           console.log("message");
         }}
-        onPressNotification={() => {
-          navigation.navigate("Notification");
-        }}
+        // onPressNotification={() => {
+        //   navigation.navigate("Notification");
+        // }}
       />
       <Tab.Navigator
         // initialRouteName="Meet Trainers"

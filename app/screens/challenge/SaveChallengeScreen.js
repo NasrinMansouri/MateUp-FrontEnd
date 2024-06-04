@@ -1,45 +1,51 @@
 import React from "react";
 import {
+  StyleSheet,
   View,
   Text,
   TouchableOpacity,
-  StyleSheet,
-  Modal,
   TextInput,
 } from "react-native";
-import colors from "../../../config/colors";
-import AppButton from "../../AppButton";
+import AppButton from "../../components/AppButton";
+import colors from "../../config/colors";
+import { useNavigation } from "@react-navigation/native";
 
-const ModalContent = ({
-  modalVisible,
-  formatTime,
-  time,
-  resumeAndCloseModal,
-  saveWorkout,
-  deleteAndCloseModal,
-}) => {
+export default function SaveChallengeScreen({ route }) {
+  const { formatTime, time, resumeStopwatch, resetStopwatch, saveWorkout } =
+    route.params;
+  const navigation = useNavigation();
+
+  const handleResume = () => {
+    resumeStopwatch();
+    navigation.goBack();
+  };
+
+  const handleDelete = () => {
+    resetStopwatch();
+    navigation.goBack();
+  };
+
   return (
-    <Modal visible={modalVisible} animationType="slide">
+    <View style={styles.container}>
       <View style={styles.modalContainer}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.resumeContainer}
-            onPress={resumeAndCloseModal}
+            onPress={handleResume}
           >
             <Text style={styles.resume}>Resume</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.modalContent}>
-          <Text style={styles.text1}>Great Job !</Text>
+          <Text style={styles.text1}>Great Job!</Text>
           <Text style={styles.text}>
-            Your workout duration is :{" "}
+            Your workout duration is:{" "}
             <Text style={styles.time}>{formatTime(time)}</Text>
           </Text>
-
           <View>
             <Text style={styles.textInpute}>
-              if you want you can add a note, it's only visible for you!
+              If you want, you can add a note. It's only visible to you!
             </Text>
             <TextInput
               style={styles.textInputeContainer}
@@ -57,27 +63,29 @@ const ModalContent = ({
             />
             <AppButton
               title="Delete"
-              onPress={deleteAndCloseModal}
+              onPress={handleDelete}
               backgroundColor={colors.blackBc}
               fontSize={14}
               width="100%"
+              textColor={colors.danger}
             />
           </View>
         </View>
       </View>
-    </Modal>
+    </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  modalContainer: {
+  container: {
     flex: 1,
     backgroundColor: colors.blackBc,
   },
-
+  modalContainer: {
+    flex: 1,
+  },
   buttonContainer: {
     flexDirection: "row",
-    // justifyContent: "space-between",
     justifyContent: "flex-start",
     marginTop: 40,
     marginRight: 16,
@@ -88,15 +96,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "montserrat-black",
   },
-
-  save: {
-    color: colors.orangePrimary,
-    fontSize: 16,
-    fontFamily: "montserrat-black",
-  },
-
   modalContent: {
-    // backgroundColor: colors.gray,
     marginLeft: 16,
     marginRight: 16,
     marginTop: 60,
@@ -136,11 +136,9 @@ const styles = StyleSheet.create({
   saveBtn: {
     position: "absolute",
     bottom: 0,
-    marginBottom: 150,
+    marginBottom: 120,
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
   },
 });
-
-export default ModalContent;

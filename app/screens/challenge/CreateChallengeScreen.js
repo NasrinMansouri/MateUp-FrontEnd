@@ -1,5 +1,6 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Formik, useFormikContext } from "formik";
 import * as Yup from "yup";
 
 import {
@@ -12,11 +13,26 @@ import {
 } from "../../components/forms";
 import Screen from "../../components/Screen";
 import colors from "../../config/colors";
+import challengeApi from "../../api/challenge";
+import ConditionalComponentForm from "../../components/challenge/ConditionalComponentForm";
+import UploadScreen from "../UploadScreen";
 
 const validationSchema = Yup.object().shape({
   workout: Yup.object().required().label("Workout Type"), //workout type
   base: Yup.object().required().label("Time or Frequency"), //time or frequency base
-  goal: Yup.object().required().label("Goal"), //goal for time, everyday, , etc
+  // goalFrequency: Yup.object().required().label("Goal Frequency"), //goal for frequency, everyday, , etc
+  // // goalTime: Yup.string().required().label("Goal Time"), //goal for time
+  // goalTime: Yup.string().when("base", {
+  //   is: (val) => val?.value === 1,
+  //   then: Yup.string().required().label("Goal Time"),
+  //   otherwise: Yup.string().notRequired(),
+  // }),
+  // goalFrequency: Yup.object().when("base", {
+  //   is: (val) => val?.value === 2,
+  //   then: Yup.object().required().label("Goal Frequency"),
+  //   otherwise: Yup.object().notRequired(),
+  // }),
+
   start: Yup.string().required().label("Start Date"),
   end: Yup.string().required().label("End Date"),
   name: Yup.string().required().min(3).label("Challnege Name"), //naming the challenge
@@ -25,42 +41,83 @@ const validationSchema = Yup.object().shape({
 });
 
 const workoutTypes = [
-  { label: "Cardio", value: 1 },
-  { label: "Strength", value: 2 },
-  { label: "Yoga", value: 3 },
+  { label: "Cardio workout", value: 1 },
+  { label: "Strength training", value: 2 },
+  { label: "Flexibility & Mindfulness", value: 3 },
+  { label: "Group Workout", value: 4 },
 ];
 const challengeBase = [
   { label: "Time", value: 1 },
   { label: "Frequency", value: 2 },
 ];
 const challengeGoal = [
-  { label: "Everyday", value: 1 },
-  { label: "Weekly", value: 2 },
-  { label: "Monthly", value: 3 },
+  { label: "daily", value: 1 },
+  { label: "twice a week", value: 2 },
+  { label: "three times a week ", value: 3 },
+  { label: "four times a week", value: 4 },
+  { label: "five times a week", value: 5 },
+  { label: "six times a week", value: 6 },
+  { label: "Weekly", value: 7 },
+  { label: "Monthly", value: 8 },
 ];
 
 export default function CreateChallengeScreen({}) {
+  // for the progress bar
+  const [uploadVisible, setUploadVisible] = useState(false);
+  // for maintaing the progree
+  const [progress, setProgress] = useState(0);
+
+  // to send the data to the backend
+  const handleSubmit = async (challenge, { resetForm }) => {
+    setProgress(0);
+    setUploadVisible(true);
+    console.log("Form submitted with values:", challenge);
+    const result = await challengeApi.createChallenge(
+      { challenge },
+      // callback function, our api will call that function
+      // as the upload is progressed
+      // (progress) => console.log(progress)
+      (progress) => setProgress(progress)
+    );
+    console.log(result); //log the result to debug
+
+    if (!result.ok) {
+      setUploadVisible(false);
+      return alert("Could not create challenge. ");
+    }
+    // alert("success"); //instead i have passed OnDone to upload screen
+
+    resetForm();
+  };
+
   return (
     <ScrollView>
       <Screen style={styles.container}>
+        <UploadScreen
+          onDone={() => setUploadVisible(false)}
+          progress={progress}
+          visible={uploadVisible}
+        />
         <AppForm
           initialValues={{
             workout: null,
             base: null,
-            goal: null,
+            goalFrequency: null,
+            goalTime: "",
             start: "",
             end: "",
             name: "",
             description: "",
             image: "",
           }}
-          onSubmit={(values) => console.log(values)}
+          // onSubmit={(values) => console.log(values)}
+          // for sending to the backend
+          onSubmit={handleSubmit}
           validationSchema={validationSchema}
         >
           <View style={styles.headerContainer}>
             <Text style={styles.headerText}>Creat Challenge</Text>
           </View>
-
           <AppFormImagePicker name="image" />
           <AppFormPicker
             questionTitle="Which workout count toward your challenge?"
@@ -71,6 +128,7 @@ export default function CreateChallengeScreen({}) {
             placeholder="Select workout type"
             width="50%"
           />
+
           <AppFormPicker
             questionTitle="Do you want to track time or frequency?"
             items={challengeBase}
@@ -80,15 +138,9 @@ export default function CreateChallengeScreen({}) {
             placeholder="Select challenge base"
             width="50%"
           />
-          <AppFormPicker
-            questionTitle="Set goal for your challenge :"
-            items={challengeGoal}
-            name="goal"
-            numberOfColumns={3}
-            // PickerItemComponent={ChallenegGoalPickerItem}
-            placeholder="Select goal"
-            width="50%"
-          />
+
+          <ConditionalComponentForm challengeGoal={challengeGoal} />
+
           <AppFormDatePicker
             name="start"
             title="Start Date :"

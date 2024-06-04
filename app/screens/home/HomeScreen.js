@@ -24,8 +24,11 @@ export default function HomeScreen({ navigation }) {
           style={{ marginBottom: 40 }}
           item={item}
           onPressAddBuddy={() => navigation.jumpTo("Buddy")}
-          onPressProfile={(item) =>
-            navigation.navigate("MemberProfile", { memberId: item.id })
+          onPress={(item) =>
+            navigation.navigate("MemberProfile", {
+              memberId: item.id,
+              challengeId: item.id,
+            })
           }
         /> */}
       </View>
@@ -42,7 +45,15 @@ export default function HomeScreen({ navigation }) {
       </View>
     ),
     GalleryPeopleYouMightKnowComponent: (item) => (
-      <GalleryPeopleYouMightKnow item={item} />
+      <GalleryPeopleYouMightKnow
+        item={item}
+        onPress={(item) =>
+          navigation.navigate("MemberProfile", {
+            memberId: item.id,
+            challengeId: item.id,
+          })
+        }
+      />
     ),
     CardMeetTheMemberOfTheMonthComponent: (item) => (
       <CardMeetTheMemberOfTheMonth item={item} />
@@ -74,7 +85,7 @@ export default function HomeScreen({ navigation }) {
         // onPressMenue={handleModal}
         userProfileImage={require("../../../assets/person3.jpg")}
         onPressMenue={() => navigation.navigate("menu")}
-        onPressNotification={() => navigation.navigate("Notification")}
+        // onPressNotification={() => navigation.navigate("Notification")}
         onPressMessage={() => console.log("Message image pressed")}
         // showSearchBar={true}
       />
