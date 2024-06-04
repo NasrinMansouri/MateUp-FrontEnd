@@ -106,8 +106,8 @@ export default function CommentChallenge() {
         </TouchableWithoutFeedback>
       </View>
       {postedComments.map((comment, index) => (
-        <>
-          <View key={index} style={styles.commentPost}>
+        <View key={index}>
+          <View style={styles.commentPost}>
             <Image
               style={styles.image}
               source={require("../../../../assets/person3.jpg")}
@@ -115,10 +115,7 @@ export default function CommentChallenge() {
             <Text style={styles.text}>{comment}</Text>
             <View style={styles.deleteContainer}>
               <View>
-                <TouchableWithoutFeedback
-                  //   style={styles.delete}
-                  onPress={() => handleDelete(comment)}
-                >
+                <TouchableWithoutFeedback onPress={() => handleDelete(comment)}>
                   <MaterialCommunityIcons
                     name="trash-can"
                     size={15}
@@ -133,7 +130,7 @@ export default function CommentChallenge() {
             marginTop={10}
             backgroundColor={colors.black}
           />
-        </>
+        </View>
       ))}
     </View>
   );
@@ -164,7 +161,6 @@ const styles = StyleSheet.create({
   },
   commentPost: {
     flexDirection: "row",
-    // alignItems: "center",
     gap: 10,
   },
   text: {
@@ -174,12 +170,8 @@ const styles = StyleSheet.create({
     marginRight: 16,
     flex: 1,
   },
-  delete: {
-    alignSelf: "flex-end",
-  },
   deleteContainer: {
     justifyContent: "center",
     alignItems: "center",
-    // width: 30,
   },
 });
