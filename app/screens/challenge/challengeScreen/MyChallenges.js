@@ -33,13 +33,31 @@ joinedChallengeData = [
 ];
 
 export default function MyChallenges({}) {
-  // for backend connection
+  // for backend connection using hooks
   // const getJoinedChallenge = useApi(challengeApi.getUserJoinedChallenges);
   // const getChallengeByMe = useApi(challengeApi.getChallengesByMe);
   // useEffect(() => {
   //   getJoinedChallenge.request();
   //   getChallengeByMe.request();
   // }, []);
+
+  // for backend connection
+  // const [joinedChallenge, setJoinedChallenge] = useState([]);
+  // const [challengeByMe, setChallengeByMe] = useState([]);
+
+  // useEffect(() => {
+  //   loadJoinedChallenge();
+  //   loadChallenegByMe();
+  // }, []);
+
+  // const loadJoinedChallenge = async () => {
+  //   const response = await getJoinedChallenge.request();
+  //   setJoinedChallenge(response);
+  // };
+  // const loadChallenegByMe  = async () => {
+  //   const response = await getChallengeByMe.request();
+  //   setChallengeByMe(response);
+  // };
 
   const navigation = useNavigation();
 

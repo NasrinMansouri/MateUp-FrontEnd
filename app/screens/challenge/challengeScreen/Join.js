@@ -61,7 +61,7 @@ const challengeYourBuddiesJoined = [
 ];
 
 export default function Join({}) {
-  // for backend connection
+  // for backend connection using hooks
   // const getChallengeYourBuddiesJoinedApi = useApi(
   //   challengeApi.getBuddiesJoinedChallenges
   // );
@@ -72,6 +72,31 @@ export default function Join({}) {
   //   getClubChallengesApi.request();
   //   getAllChallengesApi.request();
   // }, []);
+
+  //for backend connection
+
+  // const [BuddiesJoinedChallenge, setBuddiesJoinedChallenge] = useState([]);
+  // const [ClubChallenge, setClubChallenge] = useState([]);
+  // const [AllChallenges, setAllChallenges] = useState([]);
+
+  // useEffect(() => {
+  //   loadBuddiesJoinedChallenge();
+  //   loadClubChallenge();
+  //   loadAllChallenges();
+  // }, []);
+
+  // const loadBuddiesJoinedChallenge = async () => {
+  //   const response = await challengeApi.getBuddiesJoinedChallenges();
+  //   setBuddiesJoinedChallenge(response.data.challenges);
+  // };
+  // const loadClubChallenge = async () => {
+  //   const response = await challengeApi.getClubChallenges();
+  //   setClubChallenge(response.data.challenges);
+  // };
+  // const loadAllChallenges = async () => {
+  //   const response = await challengeApi.getAllChallenges();
+  //   setAllChallenges(response.data.challenges);
+  // };
 
   const navigation = useNavigation();
 

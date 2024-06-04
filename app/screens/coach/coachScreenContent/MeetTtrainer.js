@@ -13,7 +13,7 @@ import {
   GalleryCoachesClubMembers,
 } from "../../../components/coach";
 import useApi from "../../../hooks/useApi";
-import coaches from "../../../api/coaches";
+import coachesApi from "../../../api/coaches";
 import colors from "../../../config/colors";
 
 const coachesClubMembersData = [
@@ -75,7 +75,7 @@ const meetAllCoachesData = [
 ];
 
 export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
-  // For backend connection
+  // For backend connection using hokk
   // const getCoachesClubMembersApi = useApi(coachesApi.getCoachesClubMembers);
   // const getMeetAllCoachesApi = useApi(coachesApi.getMeetAllCoaches);
 
@@ -84,11 +84,30 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
   //   getMeetAllCoachesApi.request();
   // }, []);
 
+  // for backend conncetion
+  // const [coachesClubMember, setCoachesClubMember] = useState([]);
+  // const [meetAllCoaches, setMeetAllCoaches] = useState([]);
+
+  // useEffect(() => {
+  // loadCoachesClubMembers();
+  // loadMeetAllCoaches();
+  // }, []);
+
+  // const loadCoachesClubMembers = async () => {
+  //   const response = await coachesApi.getCoachesClubMembers();
+  //   setCoachesClubMember(response.data.trainers);
+  // };
+  // const loadMeetAllCoaches = async () => {
+  //   const response = await coachesApi.getMeetAllCoaches();
+  //   setMeetAllCoaches(response.data.trainers);
+  // };
+
   const navigation = useNavigation();
 
   const renderItemCache = {
     GalleryCoachesClubMembers: (item) => (
       <GalleryCoachesClubMembers
+        // coachesClubMember={coachesClubMember}
         coachesClubMember={coachesClubMembersData}
         // coachesClubMember={getCoachesClubMembersApi.data}
         // loading={getCoachesClubMembersApi.loading}
@@ -100,6 +119,7 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
     ),
     GalleryAllCoaches: (item) => (
       <GalleryAllCoaches
+        // meetAllCoaches={meetAllCoaches}
         meetAllCoaches={meetAllCoachesData}
         // meetAllCoaches={getMeetAllCoachesApi.data}
         // loading={false}
