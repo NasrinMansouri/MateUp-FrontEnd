@@ -47,20 +47,6 @@ export default function BuddySearchScreen({ navigation }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Function to handle search input change
-  // const handleSearch = (text) => {
-  //   setSearchInput(text); // Update searchInput state
-  //   const filtered = searchedResults.filter((item) =>
-  //     // Filter search results based on user's search input and make it case insensitive
-  //     item.name.toLowerCase().includes(text.toLowerCase())
-  //   );
-  //   setSearchResults(filtered); // Update searchResults state
-  //   // Update searchResults even when search query is empty
-  //   if (text === "") {
-  //     setSearchResults([]); //clear searchResults when search query is empty
-  //   }
-  // };
-
   //to call the backend
   useEffect(() => {
     loadAllResults();
@@ -68,50 +54,44 @@ export default function BuddySearchScreen({ navigation }) {
 
   const loadAllResults = async () => {
     try {
-      const response = await membersApi.getBuddies();
+      const response = await membersApi.getSearch();
+      // console.log("response from search buddy", response.data.members);
       if (response.ok) {
-        setAllResults(response.data);
-        setSearchResults(response.data); // Initialize searchResults with all data
+        // console.log("response from search buddy", response.data.members);
+        setAllResults(response.data.members);
+        //console.log("all results", allResults);
+        setSearchResults(response.data.members); // Initialize searchResults with all data
+        // console.log("search results", searchResults);
         setError(null); //clear any previous error
-        // } else {
-        //   setError(
-        //     "errorr loading buddies in search",
-        //     response.problem,
-        //     response.data
-        //   );
-        // }
-        //   } catch (err) {
-        //     setError(err.message);
-        //     console.log("error in loadAllResults search buddy", err);
-        //   }
-        //   setLoading(false);
-        // };
       } else {
-        const errorMessage = `Error loading buddies: ${
-          response.problem
-        }. Data: ${JSON.stringify(response.data)}`;
-        setError(errorMessage);
-        console.error(errorMessage);
+        setError(
+          `Error loading buddies in search: ${
+            response.problem
+          }. ${JSON.stringify(response.data.members)}`
+        );
       }
     } catch (err) {
-      const errorMessage = `Exception: ${err.message}`;
-      setError(errorMessage);
-      console.error("Error in loadAllResults search buddy:", errorMessage);
+      setError(err.message);
+      // console.log("error in loadAllResults search buddy", err);
     }
     setLoading(false);
   };
 
+  console.log("all nowresults", allResults);
   const handleSearch = (text) => {
     setSearchInput(text);
 
     if (text === "") {
+      console.log("search query is empty", allResults);
       setSearchResults(allResults); // Reset to all results when search query is empty
       return;
     }
 
-    const filtered = allResults.filter((item) =>
-      item.name.toLowerCase().includes(text.toLowerCase())
-    );
+    const filtered = allResults.filter((item) => {
+      console.log("item from search buddy", item);
+      // item.name.toLowerCase().includes(text.toLowerCase())
+      item.name;
+    });
     setSearchResults(filtered);
   };
 
@@ -186,8 +166,11 @@ export default function BuddySearchScreen({ navigation }) {
               // onPress={() => onPress(item)}
             >
               <View style={styles.resultContainer}>
-                <Image style={styles.image} source={item.image} />
-                <Text style={styles.name}>{item.name}</Text>
+                <Image
+                  style={styles.image}
+                  source={item.user_profile_image_url}
+                />
+                <Text style={styles.name}>{item.user.name}</Text>
               </View>
             </TouchableWithoutFeedback>
           )}
