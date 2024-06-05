@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from "react-native";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { navigationRef } from "./app/navigation/rootNavigation";
-import { AppLoading } from "expo";
+// import { AppLoading } from "expo";
 
 // to change the background color
 import NavigationTheme from "./app/navigation/NavigationTheme";
@@ -450,18 +450,18 @@ const memberProfile = {
 
 export default function App() {
   // for auth
-  const [user, setUser] = useState();
-  const [isready, setIsReady] = useState(false);
+  // const [user, setUser] = useState();
+  // const [isready, setIsReady] = useState(false);
 
-  const restoreUser = async () => {
-    const user = await authStorage.getUser();
-    if (user) setUser(user);
-  };
+  // const restoreUser = async () => {
+  //   const user = await authStorage.getUser();
+  //   if (user) setUser(user);
+  // };
 
-  if (!isReady)
-    return (
-      <AppLoading startAsync={restoreUser} onFinish={() => setIsReady(true)} />
-    );
+  // if (!isReady)
+  //   return (
+  //     <AppLoading startAsync={restoreUser} onFinish={() => setIsReady(true)} />
+  //   );
 
   //for fonts
   const [isLoaded] = useFonts({
@@ -481,15 +481,15 @@ export default function App() {
 
   return (
     <>
-      <AuthContext.Provider value={{ user, setUser }}>
-        <SafeAreaProvider onLayout={handleOnLayout}>
-          <NavigationContainer ref={navigationRef} theme={myTheme}>
-            {/* <AppNavigator /> */}
-            {/* <AuthNavigator /> */}
-            {user ? <AppNavigator /> : <AuthNavigator />}
-          </NavigationContainer>
-        </SafeAreaProvider>
-      </AuthContext.Provider>
+      {/* <AuthContext.Provider value={{ user, setUser }}> */}
+      <SafeAreaProvider onLayout={handleOnLayout}>
+        <NavigationContainer ref={navigationRef} theme={myTheme}>
+          <AppNavigator />
+          {/* <AuthNavigator /> */}
+          {/* {user ? <AppNavigator /> : <AuthNavigator />} */}
+        </NavigationContainer>
+      </SafeAreaProvider>
+      {/* </AuthContext.Provider> */}
     </>
   );
 }

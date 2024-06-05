@@ -24,67 +24,6 @@ import {
 } from "../../components/buddy";
 import FilterModal from "../../components/buddy/FilterModal";
 
-// const buddiesData = [
-//   {
-//     id: 1,
-//     name: "Jon",
-//     image: require("../../../assets/person-1.jpg"),
-//   },
-//   {
-//     id: 2,
-//     name: "Mary",
-//     image: require("../../../assets/person2.jpg"),
-//   },
-// ];
-
-// const UserClubMembersData = [
-//   {
-//     id: 1,
-//     name: "John Doeeeeeeeeeeeeeeeeee",
-//     image: require("../../../assets/person2.jpg"),
-//     titles: ["strength training", "running"],
-//   },
-//   {
-//     id: 2,
-//     name: "ray pather ",
-//     image: require("../../../assets/person2.jpg"),
-//     titles: ["strength training", "running", "swimming", "yoga", "boxing"],
-//   },
-// ];
-// const matchClubMembersData = [
-//   {
-//     id: 1,
-//     name: "John Doeeeeeeeeeeeeeeeeee",
-//     image: require("../../../assets/person2.jpg"),
-//     location: "los angeles street" + " 123",
-//     titles: ["strength training", "running"],
-//   },
-//   {
-//     id: 2,
-//     name: "ray pather ",
-//     image: require("../../../assets/person2.jpg"),
-//     location: "los angeles street" + " 123",
-//     titles: ["strength training", "running", "swimming", "yoga", "boxing"],
-//   },
-// ];
-
-// const connectAllMembersData = [
-//   {
-//     id: 1,
-//     name: "John Doeeeeeeeeeeeeeeeeee",
-//     image: require("../../../assets/person2.jpg"),
-//     location: "los angeles street" + " 123",
-//     titles: ["strength training", "running"],
-//   },
-//   {
-//     id: 2,
-//     name: "ray pather ",
-//     image: require("../../../assets/person2.jpg"),
-//     location: "los angeles street" + " 123",
-//     titles: ["strength training", "running", "swimming", "yoga", "boxing"],
-//   },
-// ];
-
 export default function BuddyScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   // const [notificationSeen, setNotificationSeen] = useState(false);
@@ -117,7 +56,7 @@ export default function BuddyScreen({ navigation }) {
 
   const loadBuddies = async () => {
     const response = await membersApi.getBuddies();
-    setBuddies(response.data.members);
+    setBuddies(response.data.buddies);
   };
 
   const loadUserClubMembers = async () => {
@@ -150,9 +89,9 @@ export default function BuddyScreen({ navigation }) {
         <View style={styles.buddyContainer}>
           <GalleryBuddies
             paddingLeft={6}
-            buddies={buddiesData}
+            buddies={buddies}
             // for new connection to backend
-            // buddies={getBuddiesApi.data}
+            // buddies={getBuddiesApi.data.buddies}
             // loading={getBuddiesApi.loading}
             // error={getBuddiesApi.error}
             onPress={(item) =>
@@ -165,9 +104,9 @@ export default function BuddyScreen({ navigation }) {
         </View>
         <Line marginBottom={40} marginTop={20} />
         <GalleryMatchClubMembers
-          UserClubMembers={UserClubMembersData}
+          UserClubMembers={UserClubMembers}
           // for new connection to backend
-          // UserClubMembers={getUserClubMembersApi.data}
+          // UserClubMembers={getUserClubMembersApi.data.members}
           // loading={getUserClubMembersApi.loading}
           // error={getUserClubMembersApi.error}
           onPress={(item) =>
@@ -178,9 +117,9 @@ export default function BuddyScreen({ navigation }) {
           }
         />
         <GalleryMatchBasedWorkout
-          matchMemberWorkout={matchClubMembersData}
+          matchMemberWorkout={matchClubMembers}
           // for new connection to backend
-          // matchMemberWorkout={getMatchClubMembersApi.data}
+          // matchMemberWorkout={getMatchClubMembersApi.data.members}
           // loading={getMatchClubMembersApi.loading}
           // error={getMatchClubMembersApi.error}
           onPress={(item) =>
@@ -191,9 +130,9 @@ export default function BuddyScreen({ navigation }) {
           }
         />
         <GalleryConnectAll
-          connectAllMembers={connectAllMembersData}
+          connectAllMembers={connectAllMembers}
           // for new connection to backend
-          // connectAllMembers={getConnectAllMembersApi.data}
+          // connectAllMembers={getConnectAllMembersApi.data.members}
           // loading={getConnectAllMembersApi.loading}
           // error={getConnectAllMembersApi.error}
           onPress={(item) =>
