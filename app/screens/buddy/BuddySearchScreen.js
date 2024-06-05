@@ -17,24 +17,6 @@ import Screen from "../../components/Screen";
 import membersApi from "../../api/members";
 import useApi from "../../hooks/useApi";
 
-// const searchedResults = [
-//   {
-//     id: 1,
-//     name: "Moe",
-//     image: require("../../../assets/person2.jpg"),
-//   },
-//   {
-//     id: 2,
-//     name: "elena",
-//     image: require("../../../assets/person-1.jpg"),
-//   },
-//   {
-//     id: 3,
-//     name: "John",
-//     image: require("../../../assets/person-1.jpg"),
-//   },
-// ];
-
 export default function BuddySearchScreen({ navigation }) {
   // State for storing user's search input
   const [searchInput, setSearchInput] = useState("");
@@ -77,39 +59,22 @@ export default function BuddySearchScreen({ navigation }) {
     setLoading(false);
   };
 
-  console.log("all nowresults", allResults);
+  //console.log("all nowresults", allResults);
   const handleSearch = (text) => {
     setSearchInput(text);
 
+    console.log("search query", text);
+
     if (text === "") {
-      console.log("search query is empty", allResults);
       setSearchResults(allResults); // Reset to all results when search query is empty
-      return;
+    } else {
+      const filteredResults = allResults.filter((item) => {
+        return item.user.name.toLowerCase().includes(text.toLowerCase());
+      });
+      setSearchResults(filteredResults); // Update searchResults with filtered results
+      console.log("filtered results", filteredResults);
     }
-
-    const filtered = allResults.filter((item) => {
-      console.log("item from search buddy", item);
-      // item.name.toLowerCase().includes(text.toLowerCase())
-      item.name;
-    });
-    setSearchResults(filtered);
   };
-
-  // // to get search results
-  // const getSearchApi = useApi(membersApi.getSearch);
-
-  // // function to handle search input change
-  // const handleSearch = (text) => {
-  //   setSearchInput(text);
-  // };
-
-  // useEffect(() => {
-  //   if (searchInput.length > 1) {
-  //     getSearchApi.request(searchInput);
-  //   } else {
-  //     setSearchInput("");
-  //   }
-  // }, [searchInput]);
 
   return (
     <Screen style={styles.container}>
@@ -142,7 +107,7 @@ export default function BuddySearchScreen({ navigation }) {
           // data={getSearchApi.data}
           // loading={getSearchApi.loading}
           // error={getSearchApi.error}
-          keyExtractor={(result) => result.id.toString()}
+          keyExtractor={(member) => member.id.toString()}
           ItemSeparatorComponent={ListItemSeparator}
           ListEmptyComponent={
             <View style={styles.noResultsContainer}>
@@ -180,64 +145,6 @@ export default function BuddySearchScreen({ navigation }) {
     </Screen>
   );
 }
-//     <Screen style={styles.container}>
-//       <View style={styles.containerBackSearch}>
-//         <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
-//           <Ionicons name="chevron-back" size={24} color={colors.white} />
-//         </TouchableWithoutFeedback>
-//         <TextInput
-//           style={styles.inputModal}
-//           placeholder="Search here..."
-//           placeholderTextColor={colors.grayLight50}
-//           autoCapitalize="none"
-//           autoCorrect={false}
-//           keyboardType="default"
-//           autoFocus
-//           // onChangeText={(text) => handleSearch(text)} // Call handleSearch function on text change
-//           onChangeText={handleSearch}
-//           keyboardAppearance="dark"
-//         />
-//       </View>
-//       <FlatList
-//         showsVerticalScrollIndicator={false}
-//         data={searchResults}
-//         // data={getSearchApi.data}
-//         // loading={getSearchApi.loading}
-//         // error={getSearchApi.error}
-//         keyExtractor={(result) => result.id.toString()}
-//         ItemSeparatorComponent={ListItemSeparator}
-//         ListEmptyComponent={
-//           <View style={styles.noResultsContainer}>
-//             <Text style={styles.noResultsText}>
-//               {searchInput ? "No results found!" : ""}
-//             </Text>
-//           </View>
-//         }
-//         renderItem={(
-//           { item } //render each item in FlatList
-//         ) => (
-//           <TouchableWithoutFeedback
-//             //  onPress={() => console.log(item)}
-//             onPress={() => {
-//               console.log("buddy id from search", item.id);
-//               navigation.navigate("MemberProfile", {
-//                 memberId: item.id,
-//                 challengeId: item.id,
-//               });
-//             }}
-//             // onPress={() => onPress(item)}
-//           >
-//             <View style={styles.resultContainer}>
-//               <Image style={styles.image} source={item.image} />
-//               <Text style={styles.name}>{item.name}</Text>
-//             </View>
-//           </TouchableWithoutFeedback>
-//         )}
-//       />
-//       {/* {console.log("data from search", getSearchApi.data)} */}
-//     </Screen>
-//   );
-// }
 
 const styles = StyleSheet.create({
   container: {
