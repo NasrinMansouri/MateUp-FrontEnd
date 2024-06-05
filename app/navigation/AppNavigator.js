@@ -15,10 +15,10 @@ import Calendar from "../screens/calendar/Calendar";
 import useNotifications from "../hooks/useNotifications";
 
 const Tab = createMaterialBottomTabNavigator();
-const AppNavigator = () => {
+const AppNavigator = ({ token }) => {
   //using notification hooks
   // useNotifications();
-
+  console.log("Token:", token);
   const theme = useTheme(); // to change color of bottom tab
 
   theme.colors.secondaryContainer = "transperent"; // to change color of bottom tab

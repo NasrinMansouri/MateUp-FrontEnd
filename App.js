@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -112,7 +112,6 @@ const buddies = [
     image: require("./assets/person-1.jpg"),
   },
 ];
-
 // dummy data for coach Profile screen
 const coachProfileData = {
   id: 1,
@@ -138,7 +137,6 @@ const coachProfileData = {
     },
   ],
 };
-
 const coachesClubMembersData = [
   {
     id: 1,
@@ -165,7 +163,6 @@ const coachesClubMembersData = [
     titles: ["strength training"],
   },
 ];
-
 const coachesData = [
   {
     id: 1,
@@ -196,7 +193,6 @@ const coachesData = [
     titles: ["strength training"],
   },
 ];
-
 const sessionMembersData = [
   {
     id: 1,
@@ -262,7 +258,6 @@ const challengeYourBuddiesJoined = [
     ],
   },
 ];
-
 const sessionDetails = {
   id: 1,
   imageTrainer: require("./assets/person2.jpg"),
@@ -294,7 +289,6 @@ const sessionDetails = {
     },
   ],
 };
-
 const members = [
   {
     id: 1,
@@ -312,7 +306,6 @@ const members = [
   (end = "7 PM"),
   (spots = "1 spot is still available"),
 ];
-
 const availableGroups = [
   {
     id: 1,
@@ -386,7 +379,6 @@ const challengeDetailsData = {
   numberOfLikes: 30,
   numberOfComments: 10,
 };
-
 // dummy data for member profile
 const memberProfile = {
   id: 1,
@@ -449,20 +441,9 @@ const memberProfile = {
 };
 
 export default function App() {
-  // for auth
-  // const [user, setUser] = useState();
-  // const [isready, setIsReady] = useState(false);
 
-  // const restoreUser = async () => {
-  //   const user = await authStorage.getUser();
-  //   if (user) setUser(user);
-  // };
-
-  // if (!isReady)
-  //   return (
-  //     <AppLoading startAsync={restoreUser} onFinish={() => setIsReady(true)} />
-  //   );
-
+  const [token, setToken] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   //for fonts
   const [isLoaded] = useFonts({
     "montserrat-black": require("./assets/fonts/Montserrat-Black.ttf"),
@@ -479,19 +460,43 @@ export default function App() {
     return null;
   }
 
+  const handleLogin = (token) => {
+    setIsAuthenticated(true);
+    setToken(token);
+  };
+
+  if (!isLoaded) {
+    return null;
+  }
+
+
   return (
     <>
-      {/* <AuthContext.Provider value={{ user, setUser }}> */}
       <SafeAreaProvider onLayout={handleOnLayout}>
         <NavigationContainer ref={navigationRef} theme={myTheme}>
-          <AppNavigator />
-          {/* <AuthNavigator /> */}
-          {/* {user ? <AppNavigator /> : <AuthNavigator />} */}
+          {isAuthenticated ? (
+            <AppNavigator token={token} /> // Pass token to AppNavigator
+          ) : (
+            <AuthNavigator onLogin={handleLogin} />
+          )}
         </NavigationContainer>
       </SafeAreaProvider>
-      {/* </AuthContext.Provider> */}
     </>
   );
 }
 
 const styles = StyleSheet.create({});
+
+// for auth
+// const [user, setUser] = useState();
+// const [isready, setIsReady] = useState(false);
+
+// const restoreUser = async () => {
+//   const user = await authStorage.getUser();
+//   if (user) setUser(user);
+// };
+
+// if (!isReady)
+//   return (
+//     <AppLoading startAsync={restoreUser} onFinish={() => setIsReady(true)} />
+//   );

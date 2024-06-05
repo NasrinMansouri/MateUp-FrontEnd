@@ -5,7 +5,7 @@ import {
   View,
   Linking,
 } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
 import { Entypo } from "@expo/vector-icons";
 import Svg, { Path } from "react-native-svg";
@@ -13,16 +13,45 @@ import Svg, { Path } from "react-native-svg";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
 import { AppFormField, SubmitButton, AppForm } from "../components/forms";
+import axios from 'axios';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
 });
 
-export default function LoginScreen(props) {
+
+const LoginScreen = ({ route }, props) => {
+  const [token, setToken] = useState('');
+  const { onLogin } = route.params;
+  const [error, setError] = useState('');
+
   const handleSignUp = () => {
     // navigate to basic-fit website
     Linking.openURL("https://www.basic-fit.com/en-be/home");
+  };
+
+  const handleSubmit = async ({ email, password }, { resetForm }) => {
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/user/login', {
+        email,
+        password,
+      });
+      console.log('Response:', response.data);
+      if (!response.data.status) {
+        setError(response.data.message);
+        return;
+      } else {
+        console.log('Before token update');
+        setToken(response.data.userToken);
+        console.log('After token update');
+        resetForm();
+        onLogin(response.data.userToken);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('An unexpected error occurred. Please try again.');
+    }
   };
 
   return (
@@ -64,9 +93,10 @@ export default function LoginScreen(props) {
 
       <AppForm
         initialValues={{ email: "", password: "" }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
+        {error && <Text style={styles.errorText}>{error}</Text>}
         <View style={styles.emailConatiner}>
           <AppFormField
             autoCapitalize="none"
@@ -107,6 +137,8 @@ export default function LoginScreen(props) {
     </Screen>
   );
 }
+
+export default LoginScreen;
 
 const styles = StyleSheet.create({
   screen: {
@@ -150,5 +182,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 60,
     marginBottom: 80,
+  },
+  errorText: {
+    color: 'orange',
+    fontSize: 20,
+    textAlign: 'center',
+    marginVertical: 10,
   },
 });
