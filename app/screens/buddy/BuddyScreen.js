@@ -23,6 +23,7 @@ import {
   GalleryMatchClubMembers,
 } from "../../components/buddy";
 import FilterModal from "../../components/buddy/FilterModal";
+import { getUserToken } from '../../auth/userToken';
 
 export default function BuddyScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -54,8 +55,13 @@ export default function BuddyScreen({ navigation }) {
     loadConnectAllMembers();
   }, []);
 
+
+  const token = getUserToken();
+  console.log(token)
+
   const loadBuddies = async () => {
     const response = await membersApi.getBuddies();
+    console.log("buddies", response.data.buddies)
     setBuddies(response.data.buddies);
   };
 
@@ -81,9 +87,9 @@ export default function BuddyScreen({ navigation }) {
         // onPressSearch={() => navigation.navigate("Search")}
         onPressSearch={() => navigation.navigate("SearchBuddy")}
         onPressMessage={() => console.log("message")}
-        // onPressNotification={() => {
-        //   navigation.navigate("Notification", { screen: "buddy" });
-        // }}
+      // onPressNotification={() => {
+      //   navigation.navigate("Notification", { screen: "buddy" });
+      // }}
       />
       <ScrollView style={styles.container}>
         <View style={styles.buddyContainer}>

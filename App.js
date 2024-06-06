@@ -20,6 +20,7 @@ import authStorage from "./app/auth/storage";
 import AppNavigator from "./app/navigation/AppNavigator";
 import LoginScreen from "./app/screens/LoginScreen";
 import myTheme from "./app/navigation/NavigationTheme";
+import { setUserToken } from './app/auth/userToken';
 
 // dummy data for Buddy Profile screen
 const userProfileData = {
@@ -462,7 +463,7 @@ export default function App() {
 
   const handleLogin = (token) => {
     setIsAuthenticated(true);
-    setToken(token);
+    setUserToken(token);
   };
 
   if (!isLoaded) {
@@ -475,7 +476,7 @@ export default function App() {
       <SafeAreaProvider onLayout={handleOnLayout}>
         <NavigationContainer ref={navigationRef} theme={myTheme}>
           {isAuthenticated ? (
-            <AppNavigator token={token} /> // Pass token to AppNavigator
+            <AppNavigator/> // Pass token to AppNavigator
           ) : (
             <AuthNavigator onLogin={handleLogin} />
           )}

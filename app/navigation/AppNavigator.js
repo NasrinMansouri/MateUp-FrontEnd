@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { createMaterialBottomTabNavigator } from "react-native-paper/react-navigation";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 // import navigation from "./rootNavigation";
@@ -13,13 +13,30 @@ import CoachNavigator from "./CoachNavigator";
 import ChallengeNavigator from "./ChallengeNavigator";
 import Calendar from "../screens/calendar/Calendar";
 import useNotifications from "../hooks/useNotifications";
+import { getUserToken } from '../auth/userToken';
 
 const Tab = createMaterialBottomTabNavigator();
-const AppNavigator = ({ token }) => {
+const AppNavigator = () => {
   //using notification hooks
   // useNotifications();
-  console.log("Token:", token);
+  const [token, setToken] = useState(null);
   const theme = useTheme(); // to change color of bottom tab
+
+  useEffect(() => {
+    const fetchToken = async () => {
+      const userToken = await getUserToken();
+      setToken(userToken);
+    };
+
+    fetchToken();
+  }, []);
+
+  if (!token) {
+    // Render loading indicator or return null until token is available
+    return null;
+  }
+
+  console.log("Token:", token);
 
   theme.colors.secondaryContainer = "transperent"; // to change color of bottom tab
 
