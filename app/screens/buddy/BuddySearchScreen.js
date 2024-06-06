@@ -60,6 +60,7 @@ export default function BuddySearchScreen({ navigation }) {
   };
 
   //console.log("all nowresults", allResults);
+  //filtering result works
   const handleSearch = (text) => {
     setSearchInput(text);
 
