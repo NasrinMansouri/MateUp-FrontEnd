@@ -69,6 +69,7 @@ export default function ListBulletPointWithText({
               title={displayedTitles[maxType - 1]} // Display the third workout title
             />
             {/* You can add 'more' text here if needed */}
+            {showMoreAsText && <Text style={styles.moreAsText}>more</Text>}
           </View>
         )}
       </View>
