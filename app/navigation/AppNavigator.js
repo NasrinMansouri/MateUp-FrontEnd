@@ -14,29 +14,35 @@ import ChallengeNavigator from "./ChallengeNavigator";
 import Calendar from "../screens/calendar/Calendar";
 import useNotifications from "../hooks/useNotifications";
 import { getUserToken } from '../auth/userToken';
+import { getFromAsyncStorage } from '../auth/asyncStorage';
 
 const Tab = createMaterialBottomTabNavigator();
-const AppNavigator = () => {
+const AppNavigator = ({ userToken, userId, memberId, onLogout }) => {
   //using notification hooks
   // useNotifications();
-  const [token, setToken] = useState(null);
   const theme = useTheme(); // to change color of bottom tab
 
   useEffect(() => {
-    const fetchToken = async () => {
-      const userToken = await getUserToken();
-      setToken(userToken);
-    };
+    // You can access userToken and userId here
+    console.log('User Token on AppNavigator:', userToken);
+    console.log('User ID on AppNavigator:', userId);
+    console.log('Member ID on AppNavigator:', memberId);
+  }, [userToken, userId, memberId]);
 
-    fetchToken();
-  }, []);
-
-  if (!token) {
+  if (!userToken) {
     // Render loading indicator or return null until token is available
     return null;
   }
 
-  console.log("Token:", token);
+  if (!userId) {
+    // Render loading indicator or return null until token is available
+    return null;
+  }
+
+  if (!memberId) {
+    // Render loading indicator or return null until token is available
+    return null;
+  }
 
   theme.colors.secondaryContainer = "transperent"; // to change color of bottom tab
 

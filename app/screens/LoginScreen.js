@@ -14,6 +14,7 @@ import Screen from "../components/Screen";
 import colors from "../config/colors";
 import { AppFormField, SubmitButton, AppForm } from "../components/forms";
 import axios from 'axios';
+import { saveToAsyncStorage, getFromAsyncStorage } from '../auth/asyncStorage';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -22,7 +23,10 @@ const validationSchema = Yup.object().shape({
 
 
 const LoginScreen = ({ route }, props) => {
-  const [token, setToken] = useState('');
+  const [userToken, setUserToken] = useState('');
+  const [userId, setUserId] = useState(0);
+  const [memberId, setMemberId] = useState(0);
+
   const { onLogin } = route.params;
   const [error, setError] = useState('');
 
@@ -43,10 +47,20 @@ const LoginScreen = ({ route }, props) => {
         return;
       } else {
         console.log('Before token update');
-        setToken(response.data.userToken);
+        const userToken = response.data.userToken;
+        const userId = response.data.userData.id;
+        const memberId = response.data.userData.member.id;
+
+        // Save user token and user data to AsyncStorage
+        await saveToAsyncStorage('userToken', userToken);
+        await saveToAsyncStorage('userId', userId);
+        await saveToAsyncStorage('memberId', memberId);
+        // await saveToAsyncStorage('userData', JSON.stringify(userData));
+
         console.log('After token update');
+
         resetForm();
-        onLogin(response.data.userToken);
+        onLogin(userToken, userId, memberId);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -139,7 +153,14 @@ const LoginScreen = ({ route }, props) => {
 }
 
 export default LoginScreen;
-
+// Extract relevant user data
+// const userData = {
+//   id: response.data.userData.id,
+//   role: response.data.userData.role,
+//   username: response.data.userData.username,
+//   name: response.data.userData.name,
+//   surname: response.data.userData.surname,
+// };
 const styles = StyleSheet.create({
   screen: {
     padding: 10,
