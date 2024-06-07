@@ -1,5 +1,10 @@
 import { StyleSheet, View, FlatList } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import membersApi from "../../api/members";
+
+import useApi from "../../hooks/useApi";
+
 
 import Line from "../../components/Line";
 import colors from "../../config/colors";
@@ -14,13 +19,31 @@ import {
   CardMeetTheMemberOfTheMonth,
   GalleryEducationalContent,
 } from "../../components/home";
+import {
+  GalleryBuddies,
+  GalleryConnectAll,
+  GalleryMatchBasedWorkout,
+  GalleryMatchClubMembers,
+} from "../../components/buddy";
 import MenueScreen from "./MenueScreen";
 
 export default function HomeScreen({ navigation }) {
+
+  const [buddies, setBuddies] = useState([]);
+
+  useEffect(() => {
+    loadBuddies();
+  }, []);
+  const loadBuddies = async () => {
+    const response = await membersApi.getBuddies();
+    console.log("buddies", response.data.buddies)
+    setBuddies(response.data.buddies);
+  };
+
   const renderItemCache = {
     DisplayBuddies: (item) => (
       <View style={styles.buddiesContainer}>
-        {/* <DisplayBuddies
+        <DisplayBuddies
           style={{ marginBottom: 40 }}
           item={item}
           onPressAddBuddy={() => navigation.jumpTo("Buddy")}
@@ -30,7 +53,7 @@ export default function HomeScreen({ navigation }) {
               challengeId: item.id,
             })
           }
-        /> */}
+        />
       </View>
     ),
     LineComponent: (item) => (
@@ -87,8 +110,17 @@ export default function HomeScreen({ navigation }) {
         onPressMenue={() => navigation.navigate("menu")}
         // onPressNotification={() => navigation.navigate("Notification")}
         onPressMessage={() => console.log("Message image pressed")}
-        // showSearchBar={true}
+      // showSearchBar={true}
       />
+          <GalleryBuddies
+            paddingLeft={6}
+            buddies={buddies}
+            // for new connection to backend
+            // buddies={getBuddiesApi.data.buddies}
+            // loading={getBuddiesApi.loading}
+            // error={getBuddiesApi.error}
+            onPress={(item) => handlePress(item)}
+          />
       <FlatList
         data={data}
         keyExtractor={(item) => item.type}
@@ -97,10 +129,10 @@ export default function HomeScreen({ navigation }) {
         renderItem={({ item }) => renderItemCache[item.type](item)}
         showsVerticalScrollIndicator={false}
       />
-      <MenueScreen
-      // onPressProfile={() => navigation.navigate("UserProfile")}
-      //  modalVisible={modalVisible} handleModalClose={handleModal}
-      />
+      {/* <MenueScreen
+        onPressProfile={() => navigation.navigate("UserProfile")}
+        modalVisible={modalVisible} handleModalClose={handleModal}
+      /> */}
     </Screen>
   );
 }
