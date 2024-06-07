@@ -19,7 +19,7 @@ const makeAuthenticatedRequest = async (url, options = {}) => {
 
     const headers = {
       'Accept': 'application/json',
-      'Authorization': `Bearer ${userToken}` 
+      'Authorization': `Bearer ${userToken}`
     };
 
     return client.get(url, { ...options, headers });
@@ -30,7 +30,7 @@ const makeAuthenticatedRequest = async (url, options = {}) => {
 };
 
 // const getUserClubMembers = () => client.get("/members");
-const getMatchClubMembers = () => client.get("/members");
+// const getMatchClubMembers = () => client.get("/members");
 const getConnectAllMembers = () => client.get("/members");
 const getSearch = () => client.get("/members");
 
@@ -83,6 +83,40 @@ const getUserClubMembers = async () => {
     throw error;
   }
 };
+
+const getMatchClubMembers = async () => {
+  try {
+    // Fetch the current user's details including home_club_address
+    const memberId = await getDataFromStorage('memberId');
+    const currentUserResponse = await client.get(`/member/${memberId}`);
+    const currentUser = currentUserResponse.data.member;
+
+    // Fetch all members
+    const response = await client.get("/members");
+
+    // Extract workout types from the current user
+    const currentUserWorkoutTypes = currentUser.workout_types.split(',').map(type => type.trim());
+
+    // Filter members based on workout types
+    const filteredMembers = response.data.members.filter(member => {
+      // Extract workout types from each member
+      const memberWorkoutTypes = member.workout_types.split(',').map(type => type.trim());
+      
+      // Check if any workout type of the current user exists in the member's workout types
+      const matches = currentUserWorkoutTypes.some(type => memberWorkoutTypes.includes(type));
+
+      return matches;
+    });
+
+    console.log('Filtered members:', filteredMembers);
+
+    return filteredMembers;
+  } catch (error) {
+    console.error('Error fetching matched club members:', error);
+    throw error;
+  }
+};
+
 
 export default {
   getBuddies,
