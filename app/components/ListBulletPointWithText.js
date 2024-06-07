@@ -11,83 +11,83 @@ export default function ListBulletPointWithText({
   fontSize = 12,
   textTransform = "uppercase",
 }) {
-  // // Maximum number of workout types to display
-  // const maxType = 2;
+  // Ensure titles is an array
+  let displayedTitles = [];
+  if (typeof titles === "string") {
+    displayedTitles = titles.split(",");
+  } else if (Array.isArray(titles)) {
+    displayedTitles = titles;
+  } else {
+    // Handle the case when titles is neither a string nor an array
+    return null; // Or handle it differently based on your requirements
+  }
 
-  // // Slice the titles array to include only the first three workout types
-  // const displayedTitles = titles.slice(0, maxType);
+  // Maximum number of workout types to display
+  const maxType = 2;
 
-  // // to indicate if moreAsText is needed
-  // const showMoreAsText = titles.length > maxType;
+  // Slice the titles array to include only the first two workout types
+  displayedTitles = displayedTitles.slice(0, maxType);
 
-  // //to indicate if last workout is needed
-  // const showThirdType = titles.length > 2;
-  // return (
-  //   <View>
-  //     {header && <Text style={styles.header}>{header}</Text>}
-  //     <View style={styles.bulletPoints}>
-  //       {displayedTitles.map((title, id) => (
-  //         <View key={id} style={styles.listContainer}>
-  //           <BulletPointWithText
-  //             bulletColor={colors.orangePrimary}
-  //             width={5}
-  //             height={5}
-  //             borderRadius={5 / 2}
-  //             marginRight={4}
-  //             marginBottom={4}
-  //             textColor={textColor}
-  //             fontFamily="nunitoSans-extraBold"
-  //             textTransform={textTransform}
-  //             fontSize={fontSize}
-  //             title={title}
-  //           />
-  //         </View>
-  //       ))}
-  //       {showThirdType && (
-  //         <View style={styles.lastListContainer}>
-  //           <BulletPointWithText
-  //             bulletColor={colors.orangePrimary}
-  //             width={5}
-  //             height={5}
-  //             borderRadius={5 / 2}
-  //             marginRight={4}
-  //             marginBottom={4}
-  //             textColor={textColor}
-  //             fontFamily="nunitoSans-extraBold"
-  //             textTransform={"uppercase"}
-  //             fontSize={fontSize}
-  //             title={titles[maxType]} // Display the third workout title
-  //           />
-  //           {showMoreAsText && <Text style={styles.moreAsText}>more</Text>}
-  //         </View>
-  //       )}
-  //     </View>
-  //   </View>
-  // );
-  const title = titles
+  //to indicate if last workout is needed
+  const showThirdType = displayedTitles.length > 2;
 
   return (
     <View>
       {header && <Text style={styles.header}>{header}</Text>}
       <View style={styles.bulletPoints}>
-        <View style={styles.listContainer}>
-          <BulletPointWithText
-            bulletColor={colors.orangePrimary}
-            width={5}
-            height={5}
-            borderRadius={5 / 2}
-            marginRight={4}
-            marginBottom={4}
-            textColor={textColor}
-            fontFamily="nunitoSans-extraBold"
-            textTransform={textTransform}
-            fontSize={fontSize}
-            title={title}
-          />
-        </View>
+        {displayedTitles.map((title, id) => (
+          <View key={id} style={styles.listContainer}>
+            <BulletPointWithText
+              bulletColor={colors.orangePrimary}
+              width={5}
+              height={5}
+              borderRadius={5 / 2}
+              marginRight={4}
+              marginBottom={4}
+              textColor={textColor}
+              fontFamily="nunitoSans-extraBold"
+              textTransform={textTransform}
+              fontSize={fontSize}
+              title={title}
+            />
+          </View>
+        ))}
+
+        {showThirdType && (
+          <View style={styles.lastListContainer}>
+            <BulletPointWithText
+              bulletColor={colors.orangePrimary}
+              width={5}
+              height={5}
+              borderRadius={5 / 2}
+              marginRight={4}
+              marginBottom={4}
+              textColor={textColor}
+              fontFamily="nunitoSans-extraBold"
+              textTransform={"uppercase"}
+              fontSize={fontSize}
+              title={displayedTitles[maxType - 1]} // Display the third workout title
+            />
+            {/* You can add 'more' text here if needed */}
+            {showMoreAsText && <Text style={styles.moreAsText}>more</Text>}
+          </View>
+        )}
       </View>
     </View>
   );
+
+  // to be use in screen as:
+  {
+    /* <ListBulletPointWithText
+  titles={[
+    "strength training",
+    "running",
+    "swimming",
+    "yoga",
+    "boxing",
+  ]}
+  /> */
+  }
 }
 
 const styles = StyleSheet.create({
@@ -116,16 +116,3 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
 });
-
-// to be use in screen as:
-{
-  /* <ListBulletPointWithText
-titles={[
-  "strength training",
-  "running",
-  "swimming",
-  "yoga",
-  "boxing",
-]}
-/> */
-}

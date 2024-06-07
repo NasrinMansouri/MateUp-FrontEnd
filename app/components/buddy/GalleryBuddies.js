@@ -71,11 +71,11 @@ function GalleryBuddies({ buddies, style, header, paddingLeft = 16 }) {
               // }
               onPressProfile={() => onPress(item)}
               // name={capitalizeFirstLetter(item.name)}
-              name={item.user.name}
+              name={item.name}
               // name={item.user.name ? capitalizeFirstLetter(item.user.name) : null}
               backgroundColor={colors.blackBc}
               // image={item.user.profile_image_url} //for connecting to backed
-              image={item.user.profile_image_url}
+              image={item.profile_image_url}
               flexDirection={"column"}
               cardWidth={97}
               cardHeight={107}

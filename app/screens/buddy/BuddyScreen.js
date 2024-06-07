@@ -23,6 +23,7 @@ import {
   GalleryMatchClubMembers,
 } from "../../components/buddy";
 import FilterModal from "../../components/buddy/FilterModal";
+import { getUserToken } from '../../auth/userToken';
 
 export default function BuddyScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -54,25 +55,43 @@ export default function BuddyScreen({ navigation }) {
     loadConnectAllMembers();
   }, []);
 
+
+  const token = getUserToken();
+  console.log(token)
+
   const loadBuddies = async () => {
     const response = await membersApi.getBuddies();
+    console.log("buddies", response.data.buddies)
     setBuddies(response.data.buddies);
   };
 
   const loadUserClubMembers = async () => {
     const response = await membersApi.getUserClubMembers();
-    setUserClubMembers(response.data.members);
+    setUserClubMembers(response);
   };
 
   const loadMatchClubMembers = async () => {
     const response = await membersApi.getMatchClubMembers();
-    setMatchClubMembers(response.data.members);
+    setMatchClubMembers(response);
+  };
+  const loadConnectAllMembers = async () => {
+    try {
+      const response = await membersApi.getConnectAllMembers();
+      console.log("ConnectAllMembers", response);
+      setConnectAllMembers(response);
+    } catch (error) {
+      console.error("Error loading Connect All Members:", error);
+    }
   };
 
-  const loadConnectAllMembers = async () => {
-    const response = await membersApi.getConnectAllMembers();
-    setConnectAllMembers(response.data.members);
+  const handlePress = (item) => {
+    console.log("Clicked memberId:", item.id);
+    navigation.navigate("MemberProfile", {
+      memberId: item.id,
+      challengeId: item.id,
+    });
   };
+
 
   return (
     <Screen style={styles.container}>
@@ -81,9 +100,9 @@ export default function BuddyScreen({ navigation }) {
         // onPressSearch={() => navigation.navigate("Search")}
         onPressSearch={() => navigation.navigate("SearchBuddy")}
         onPressMessage={() => console.log("message")}
-        // onPressNotification={() => {
-        //   navigation.navigate("Notification", { screen: "buddy" });
-        // }}
+      // onPressNotification={() => {
+      //   navigation.navigate("Notification", { screen: "buddy" });
+      // }}
       />
       <ScrollView style={styles.container}>
         <View style={styles.buddyContainer}>
@@ -94,12 +113,7 @@ export default function BuddyScreen({ navigation }) {
             // buddies={getBuddiesApi.data.buddies}
             // loading={getBuddiesApi.loading}
             // error={getBuddiesApi.error}
-            onPress={(item) =>
-              navigation.navigate("MemberProfile", {
-                memberId: item.id,
-                challengeId: item.id,
-              })
-            }
+            onPress={(item) => handlePress(item)}
           />
         </View>
         <Line marginBottom={40} marginTop={20} />
@@ -109,12 +123,7 @@ export default function BuddyScreen({ navigation }) {
           // UserClubMembers={getUserClubMembersApi.data.members}
           // loading={getUserClubMembersApi.loading}
           // error={getUserClubMembersApi.error}
-          onPress={(item) =>
-            navigation.navigate("MemberProfile", {
-              memberId: item.id,
-              challengeId: item.id,
-            })
-          }
+          onPress={(item) => handlePress(item)}
         />
         <GalleryMatchBasedWorkout
           matchMemberWorkout={matchClubMembers}
@@ -122,12 +131,7 @@ export default function BuddyScreen({ navigation }) {
           // matchMemberWorkout={getMatchClubMembersApi.data.members}
           // loading={getMatchClubMembersApi.loading}
           // error={getMatchClubMembersApi.error}
-          onPress={(item) =>
-            navigation.navigate("MemberProfile", {
-              memberId: item.id,
-              challengeId: item.id,
-            })
-          }
+          onPress={(item) => handlePress(item)}
         />
         <GalleryConnectAll
           connectAllMembers={connectAllMembers}
@@ -135,12 +139,7 @@ export default function BuddyScreen({ navigation }) {
           // connectAllMembers={getConnectAllMembersApi.data.members}
           // loading={getConnectAllMembersApi.loading}
           // error={getConnectAllMembersApi.error}
-          onPress={(item) =>
-            navigation.navigate("MemberProfile", {
-              memberId: item.id,
-              challengeId: item.id,
-            })
-          }
+          onPress={(item) => handlePress(item)}
         />
       </ScrollView>
       <View style={styles.fixButtonPosition}>

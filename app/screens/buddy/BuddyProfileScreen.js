@@ -21,6 +21,24 @@ import GalleryJoinedChallenge from "../../components/challenge/GalleryJoinedChal
 export default function BuddyProfileScreen({ route, navigation }) {
   const scrollRef = useRef();
   const [memberProfile, setMemberProfile] = useState(null); //or ({}) //pass an empty object
+  const [buddies, setBuddies] = useState([]);
+
+  useEffect(() => {
+    loadBuddies();
+  }, []);
+
+  const loadBuddies = async () => {
+    try {
+      const { memberId } = route.params; // Retrieve memberId from route params
+      const response = await membersApi.getMemberBuddies(memberId); // Pass memberId to the API call
+      console.log("buddies", response.data.buddies)
+      setBuddies(response.data.buddies);
+    } catch (error) {
+      console.error("Error loading buddies:", error);
+    }
+  };
+  
+
   // const navigation = useNavigation();
 
   //to change the state of button when clicked
@@ -55,13 +73,14 @@ export default function BuddyProfileScreen({ route, navigation }) {
 
   const loadMemberProfile = async () => {
     try {
-      const response = await membersApi.getMembersProfile(memberId);
+      const response = await membersApi.getMembersProfile(memberId); // Pass memberId here
       setMemberProfile(response.data.member);
       console.log(response.data.member);
     } catch (error) {
       console.error("Error loading member profile:", error);
     }
   };
+  
   if (!memberProfile) {
     return (
       <View style={styles.container}>
@@ -156,7 +175,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
         <Line marginTop={62} marginBottom={22} width={"90%"} />
         {/* <GalleryBuddies buddies={buddies} header={"buddies"} /> */}
         <GalleryBuddies
-          buddies={memberProfile.buddies}
+          buddies={buddies}
           // buddies={userProfile.buddiesData}
           header={"buddies"}
         />

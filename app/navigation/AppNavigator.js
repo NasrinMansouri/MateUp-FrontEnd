@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { createMaterialBottomTabNavigator } from "react-native-paper/react-navigation";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 // import navigation from "./rootNavigation";
@@ -13,13 +13,41 @@ import CoachNavigator from "./CoachNavigator";
 import ChallengeNavigator from "./ChallengeNavigator";
 import Calendar from "../screens/calendar/Calendar";
 import useNotifications from "../hooks/useNotifications";
+import { getUserToken } from '../auth/userToken';
+import { saveToAsyncStorage , getFromAsyncStorage} from '../auth/asyncStorage';
 
 const Tab = createMaterialBottomTabNavigator();
-const AppNavigator = () => {
+const AppNavigator = ({ userToken, userId, memberId, onLogout }) => {
   //using notification hooks
   // useNotifications();
-
   const theme = useTheme(); // to change color of bottom tab
+
+  useEffect(() => {
+    // You can access userToken and userId here
+    console.log('User Token on AppNavigator:', userToken);
+    console.log('User ID on AppNavigator:', userId);
+    console.log('Member ID on AppNavigator:', memberId);
+  }, [userToken, userId, memberId]);
+
+  // save the userToken, userId, memberId to AsyncStorage
+  useEffect(() => {
+    saveToAsyncStorage(userToken, userId, memberId);
+  }, [userToken, userId, memberId]);
+
+  if (!userToken) {
+    // Render loading indicator or return null until token is available
+    return null;
+  }
+
+  if (!userId) {
+    // Render loading indicator or return null until token is available
+    return null;
+  }
+
+  if (!memberId) {
+    // Render loading indicator or return null until token is available
+    return null;
+  }
 
   theme.colors.secondaryContainer = "transperent"; // to change color of bottom tab
 

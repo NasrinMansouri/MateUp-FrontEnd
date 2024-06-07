@@ -5,7 +5,7 @@ import {
   View,
   Linking,
 } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
 import { Entypo } from "@expo/vector-icons";
 import Svg, { Path } from "react-native-svg";
@@ -13,16 +13,59 @@ import Svg, { Path } from "react-native-svg";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
 import { AppFormField, SubmitButton, AppForm } from "../components/forms";
+import axios from 'axios';
+import { saveToAsyncStorage, getFromAsyncStorage } from '../auth/asyncStorage';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
 });
 
-export default function LoginScreen(props) {
+
+const LoginScreen = ({ route }, props) => {
+  const [userToken, setUserToken] = useState('');
+  const [userId, setUserId] = useState(0);
+  const [memberId, setMemberId] = useState(0);
+
+  const { onLogin } = route.params;
+  const [error, setError] = useState('');
+
   const handleSignUp = () => {
     // navigate to basic-fit website
     Linking.openURL("https://www.basic-fit.com/en-be/home");
+  };
+
+  const handleSubmit = async ({ email, password }, { resetForm }) => {
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/user/login', {
+        email,
+        password,
+      });
+      console.log('Response:', response.data);
+      if (!response.data.status) {
+        setError(response.data.message);
+        return;
+      } else {
+        console.log('Before token update');
+        const userToken = response.data.userToken;
+        const userId = response.data.userData.id;
+        const memberId = response.data.userData.member.id;
+
+        // Save user token and user data to AsyncStorage
+        await saveToAsyncStorage('userToken', userToken);
+        await saveToAsyncStorage('userId', userId);
+        await saveToAsyncStorage('memberId', memberId);
+        // await saveToAsyncStorage('userData', JSON.stringify(userData));
+
+        console.log('After token update');
+
+        resetForm();
+        onLogin(userToken, userId, memberId);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('An unexpected error occurred. Please try again.');
+    }
   };
 
   return (
@@ -64,9 +107,10 @@ export default function LoginScreen(props) {
 
       <AppForm
         initialValues={{ email: "", password: "" }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
+        {error && <Text style={styles.errorText}>{error}</Text>}
         <View style={styles.emailConatiner}>
           <AppFormField
             autoCapitalize="none"
@@ -108,6 +152,15 @@ export default function LoginScreen(props) {
   );
 }
 
+export default LoginScreen;
+// Extract relevant user data
+// const userData = {
+//   id: response.data.userData.id,
+//   role: response.data.userData.role,
+//   username: response.data.userData.username,
+//   name: response.data.userData.name,
+//   surname: response.data.userData.surname,
+// };
 const styles = StyleSheet.create({
   screen: {
     padding: 10,
@@ -150,5 +203,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 60,
     marginBottom: 80,
+  },
+  errorText: {
+    color: 'orange',
+    fontSize: 20,
+    textAlign: 'center',
+    marginVertical: 10,
   },
 });

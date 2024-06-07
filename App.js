@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -20,6 +20,8 @@ import authStorage from "./app/auth/storage";
 import AppNavigator from "./app/navigation/AppNavigator";
 import LoginScreen from "./app/screens/LoginScreen";
 import myTheme from "./app/navigation/NavigationTheme";
+import { setUserToken } from './app/auth/userToken';
+import { getFromAsyncStorage, saveToAsyncStorage, deleteFromAsyncStorage } from './app/auth/asyncStorage';
 
 // dummy data for Buddy Profile screen
 const userProfileData = {
@@ -112,7 +114,6 @@ const buddies = [
     image: require("./assets/person-1.jpg"),
   },
 ];
-
 // dummy data for coach Profile screen
 const coachProfileData = {
   id: 1,
@@ -138,7 +139,6 @@ const coachProfileData = {
     },
   ],
 };
-
 const coachesClubMembersData = [
   {
     id: 1,
@@ -165,7 +165,6 @@ const coachesClubMembersData = [
     titles: ["strength training"],
   },
 ];
-
 const coachesData = [
   {
     id: 1,
@@ -196,7 +195,6 @@ const coachesData = [
     titles: ["strength training"],
   },
 ];
-
 const sessionMembersData = [
   {
     id: 1,
@@ -262,7 +260,6 @@ const challengeYourBuddiesJoined = [
     ],
   },
 ];
-
 const sessionDetails = {
   id: 1,
   imageTrainer: require("./assets/person2.jpg"),
@@ -294,7 +291,6 @@ const sessionDetails = {
     },
   ],
 };
-
 const members = [
   {
     id: 1,
@@ -312,7 +308,6 @@ const members = [
   (end = "7 PM"),
   (spots = "1 spot is still available"),
 ];
-
 const availableGroups = [
   {
     id: 1,
@@ -386,7 +381,6 @@ const challengeDetailsData = {
   numberOfLikes: 30,
   numberOfComments: 10,
 };
-
 // dummy data for member profile
 const memberProfile = {
   id: 1,
@@ -449,49 +443,133 @@ const memberProfile = {
 };
 
 export default function App() {
-  // for auth
-  // const [user, setUser] = useState();
-  // const [isready, setIsReady] = useState(false);
+  const [userToken, setUserToken] = useState(null);
+  const [userId, setUserId] = useState(null);
+  const [memberId, setMemberId] = useState(null);
+  const [error, setError] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // const restoreUser = async () => {
-  //   const user = await authStorage.getUser();
-  //   if (user) setUser(user);
-  // };
-
-  // if (!isReady)
-  //   return (
-  //     <AppLoading startAsync={restoreUser} onFinish={() => setIsReady(true)} />
-  //   );
-
-  //for fonts
   const [isLoaded] = useFonts({
     "montserrat-black": require("./assets/fonts/Montserrat-Black.ttf"),
     "nunitoSans-bold": require("./assets/fonts/NunitoSans7pt-Bold.ttf"),
     "nunitoSans-regular": require("./assets/fonts/NunitoSans7pt-Regular.ttf"),
     "nunitoSans-extraBold": require("./assets/fonts/NunitoSans7pt-ExtraBold.ttf"),
   });
+
   const handleOnLayout = useCallback(async () => {
     if (isLoaded) {
-      await SplashScreen.hideAsync(); //hide the splashscreen
+      await SplashScreen.hideAsync();
     }
   }, [isLoaded]);
-  if (!isLoaded) {
+
+  useEffect(() => {
+    const checkAuthToken = async () => {
+      try {
+        const storedToken = await getFromAsyncStorage('userToken');
+        if (storedToken) {
+          setUserToken(storedToken);
+          setIsAuthenticated(true);
+        }
+      } catch (error) {
+        console.error('Error retrieving userToken:', error);
+        // Handle error gracefully, e.g., set isAuthenticated to false
+      }
+    };
+
+    const checkUserId = async () => {
+      try {
+        const storedUserId = await getFromAsyncStorage('userId');
+        if (storedUserId) {
+          setUserId(storedUserId);
+        }
+      } catch (error) {
+        console.error('Error retrieving userId:', error);
+        // Handle error gracefully
+      }
+    };
+
+    const checkMemberId = async () => {
+      try {
+        const storedMemberId = await getFromAsyncStorage('memberId');
+        if (storedMemberId) {
+          setMemberId(storedMemberId);
+        }
+      } catch (error) {
+        console.error('Error retrieving memberId:', error);
+        // Handle error gracefully
+      }
+    };
+
+    checkAuthToken();
+    checkUserId();
+    checkMemberId();
+  }, []);
+
+
+   const handleLogin = async (userToken, userId, memberId) => {
+    try {
+      await saveToAsyncStorage('userToken', userToken);
+      setUserToken(userToken);
+      await saveToAsyncStorage('userId', userId);
+      setUserId(userId);
+      await saveToAsyncStorage('memberId', memberId);
+      setMemberId(memberId);
+      setIsAuthenticated(true);
+    } catch (error) {
+      console.error('Error saving userToken and userId:', error);
+      // Handle error gracefully
+    }
+  };
+
+  if (error) {
+    console.error('Error loading fonts:', error);
+    // Handle font loading error gracefully
     return null;
+  }
+
+  if (!isLoaded) {
+    return null; // Maybe show a loading indicator
   }
 
   return (
     <>
-      {/* <AuthContext.Provider value={{ user, setUser }}> */}
       <SafeAreaProvider onLayout={handleOnLayout}>
         <NavigationContainer ref={navigationRef} theme={myTheme}>
-          <AppNavigator />
-          {/* <AuthNavigator /> */}
-          {/* {user ? <AppNavigator /> : <AuthNavigator />} */}
+          {isAuthenticated ? (
+            <AppNavigator userToken={userToken} userId={userId} memberId={memberId}/> // Pass token to AppNavigator
+          ) : (
+            <AuthNavigator onLogin={handleLogin} />
+          )}
         </NavigationContainer>
       </SafeAreaProvider>
-      {/* </AuthContext.Provider> */}
     </>
   );
 }
 
 const styles = StyleSheet.create({});
+
+
+// retrieving the token and user
+//   import { getFromAsyncStorage } from '../utils/AsyncStorage';
+
+// const retrieveUserData = async () => {
+//   const token = await getFromAsyncStorage('userToken');
+//   const user = await getFromAsyncStorage('user');
+//   console.log('Token:', token);
+//   console.log('User:', user ? JSON.parse(user) : null);
+// };
+
+// for logou
+// const handleLogout = async () => {
+//   await deleteFromAsyncStorage('userToken');
+//   setToken(null);
+//   setIsAuthenticated(false);
+// };
+
+// for logout but for logout page
+//   import { deleteFromAsyncStorage } from '../utils/AsyncStorage';
+// const handleLogout = async () => {
+//   await deleteFromAsyncStorage('userToken');
+//   await deleteFromAsyncStorage('user');
+//   // Perform any additional logout operations
+// };
