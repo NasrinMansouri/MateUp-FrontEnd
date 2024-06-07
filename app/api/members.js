@@ -31,7 +31,8 @@ const makeAuthenticatedRequest = async (url, options = {}) => {
 
 // const getUserClubMembers = () => client.get("/members");
 // const getMatchClubMembers = () => client.get("/members");
-const getConnectAllMembers = () => client.get("/members");
+// const getConnectAllMembers = () => client.get("/members");
+
 const getSearch = () => client.get("/members");
 
 const getMembersProfile = async () => {
@@ -75,7 +76,7 @@ const getUserClubMembers = async () => {
       return false;
     });
 
-    console.log('Filtered members:', filteredMembers);
+    console.log('Location filtered members:', filteredMembers);
 
     return filteredMembers;
   } catch (error) {
@@ -101,14 +102,14 @@ const getMatchClubMembers = async () => {
     const filteredMembers = response.data.members.filter(member => {
       // Extract workout types from each member
       const memberWorkoutTypes = member.workout_types.split(',').map(type => type.trim());
-      
+
       // Check if any workout type of the current user exists in the member's workout types
       const matches = currentUserWorkoutTypes.some(type => memberWorkoutTypes.includes(type));
 
       return matches;
     });
 
-    console.log('Filtered members:', filteredMembers);
+    console.log('Workout filtered members:', filteredMembers);
 
     return filteredMembers;
   } catch (error) {
@@ -117,6 +118,17 @@ const getMatchClubMembers = async () => {
   }
 };
 
+const getConnectAllMembers = async () => {
+  try {
+    const allMembers = await client.get("/members");
+    const response = allMembers.data.members;
+    console.log('All members:', response);
+    return response;
+  } catch (error) {
+    console.error('Error fetching connect all members:', error);
+    throw error;
+  }
+}
 
 export default {
   getBuddies,
