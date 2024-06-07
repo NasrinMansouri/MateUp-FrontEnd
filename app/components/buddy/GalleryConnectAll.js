@@ -18,7 +18,6 @@ export default function GalleryConnectAll({ connectAllMembers, onPress }) {
         keyExtractor={(Members) => Members.id.toString()}
         initialNumToRender={connectAllMembers.length}
         renderItem={({ item }) => {
-          console.log("Rendering item:", item);
           return (
             <CardMatchBasedWorkout
               name={item.user.name}

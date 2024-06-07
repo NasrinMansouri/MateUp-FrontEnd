@@ -35,9 +35,8 @@ const makeAuthenticatedRequest = async (url, options = {}) => {
 
 const getSearch = () => client.get("/members");
 
-const getMembersProfile = async () => {
+const getMembersProfile = async (memberId) => {
   try {
-    const memberId = await getDataFromStorage('memberId');
     return makeAuthenticatedRequest(`/member/${memberId}`);
   } catch (error) {
     console.error('Error getting member profile:', error);
@@ -45,11 +44,29 @@ const getMembersProfile = async () => {
   }
 };
 
+
 const getBuddies = async () => {
   try {
-    return makeAuthenticatedRequest('/buddy/list');
+    const memberId = await getDataFromStorage('memberId');
+    console.log('Member ID:', memberId);
+    const response = await makeAuthenticatedRequest(`/buddy/list/${memberId}`, {
+      Accept: 'application/json'
+    });
+    console.log('Buddies:', response);
+    return response;
   } catch (error) {
     console.error('Error getting buddies:', error);
+    throw error;
+  }
+};
+
+const getMemberBuddies = async (memberId) => {
+  try {
+    return makeAuthenticatedRequest(`/buddy/list/${memberId}`, {
+      Accept: 'application/json'
+    });
+  } catch (error) {
+    console.error('Error getting member buddies:', error);
     throw error;
   }
 };
@@ -137,4 +154,5 @@ export default {
   getConnectAllMembers,
   getMembersProfile,
   getSearch,
+  getMemberBuddies
 };
