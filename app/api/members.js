@@ -29,7 +29,7 @@ const makeAuthenticatedRequest = async (url, options = {}) => {
   }
 };
 
-const getUserClubMembers = () => client.get("/members");
+// const getUserClubMembers = () => client.get("/members");
 const getMatchClubMembers = () => client.get("/members");
 const getConnectAllMembers = () => client.get("/members");
 const getSearch = () => client.get("/members");
@@ -49,6 +49,37 @@ const getBuddies = async () => {
     return makeAuthenticatedRequest('/buddy/list');
   } catch (error) {
     console.error('Error getting buddies:', error);
+    throw error;
+  }
+};
+
+const getUserClubMembers = async () => {
+  try {
+    // Fetch the current user's details including home_club_address
+    const memberId = await getDataFromStorage('memberId');
+    console.log('memberId:', memberId);
+    const currentUserResponse = await client.get(`/member/${memberId}`);
+    console.log('currentUserResponse:', currentUserResponse);
+    const currentUser = currentUserResponse.data.member;
+    const homeClubAddress = currentUser.home_club_address;
+
+    // Fetch members filtered by home_club_address
+    const response = await client.get("/members")
+    console.log(response)
+
+    // Filter members based on home_club_address
+    const filteredMembers = response.data.members.filter(member => {
+      if (member.home_club_address) {
+        return member.home_club_address === homeClubAddress;
+      }
+      return false;
+    });
+
+    console.log('Filtered members:', filteredMembers);
+
+    return filteredMembers;
+  } catch (error) {
+    console.error('Error fetching matched club members:', error);
     throw error;
   }
 };

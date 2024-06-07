@@ -1,30 +1,24 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
 
-export const saveToAsyncStorage = async (key, value) => {
+// Function to save data to AsyncStorage
+export const saveToAsyncStorage = async (userToken, userId, memberId) => {
     try {
-        await AsyncStorage.setItem(key, value);
+        await AsyncStorage.setItem('userToken', userToken);
+        await AsyncStorage.setItem('userId', userId);
+        await AsyncStorage.setItem('memberId', memberId);
     } catch (error) {
-        console.error('Error saving to AsyncStorage:', error);
+        console.error('Error saving data to AsyncStorage:', error);
+        throw error;
     }
 };
 
+// Function to retrieve data from AsyncStorage
 export const getFromAsyncStorage = async (key) => {
     try {
         const value = await AsyncStorage.getItem(key);
-        if (!value) {
-            return null;
-        }
-        console.log('Retrieved value from AsyncStorage:', value);
         return value;
     } catch (error) {
-        console.error('Error retrieving from AsyncStorage:', error);
+        console.error('Error getting data from AsyncStorage:', error);
+        throw error;
     }
 };
-
-// export const deleteFromAsyncStorage = async (key) => {
-//     try {
-//         await AsyncStorage.deleteItemAsync(key);
-//     } catch (error) {
-//         console.error('Error deleting from AsyncStorage:', error);
-//     }
-// };
