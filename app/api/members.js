@@ -48,7 +48,7 @@ const getMembersProfile = async (memberId) => {
 const getBuddies = async () => {
   try {
     const memberId = await getDataFromStorage('memberId');
-    console.log('Member ID:', memberId);
+    console.log('Member ID in getBuddies:', memberId);
     const response = await makeAuthenticatedRequest(`/buddy/list/${memberId}`, {
       Accept: 'application/json'
     });
@@ -70,6 +70,17 @@ const getMemberBuddies = async (memberId) => {
     throw error;
   }
 };
+
+const getUser = async (userId) => {
+  try {
+    return makeAuthenticatedRequest(`/user/${userId}`, {
+      Accept: 'application/json'
+    });
+  } catch (error) {
+    console.error('Error getting member user:', error);
+    throw error;
+  }
+}
 
 const getUserClubMembers = async () => {
   try {
@@ -154,5 +165,6 @@ export default {
   getConnectAllMembers,
   getMembersProfile,
   getSearch,
-  getMemberBuddies
+  getMemberBuddies,
+  getUser
 };

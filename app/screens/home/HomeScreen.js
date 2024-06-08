@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 
 import membersApi from "../../api/members";
 
+import { getFromAsyncStorage } from "../../auth/asyncStorage";
+
 import useApi from "../../hooks/useApi";
 
 
@@ -30,15 +32,61 @@ import MenueScreen from "./MenueScreen";
 export default function HomeScreen({ navigation }) {
 
   const [buddies, setBuddies] = useState([]);
+  const [user, setUser] = useState(null);
+  const [memberId, setMemberId] = useState(0);
+  const [userId, setUserId] = useState(null);
+
+  const loadMemberId = async () => {
+    try {
+      const memberId = await getFromAsyncStorage("memberId");
+      setMemberId(memberId);
+    } catch (error) {
+      console.error("Error loading memberId:", error);
+    }
+  };
+
+ const loadUserId = async () => {
+    try {
+      const userId = await getFromAsyncStorage("userId");
+      setUserId(userId);
+    } catch (error) {
+      console.error("Error loading userId:", error);
+    }
+  };
 
   useEffect(() => {
-    loadBuddies();
-  }, []);
-  const loadBuddies = async () => {
-    const response = await membersApi.getBuddies();
-    console.log("buddies", response.data.buddies)
-    setBuddies(response.data.buddies);
+    loadMemberId();
+    if (memberId) {
+      loadBuddies(memberId);
+    }
+
+    loadUserId();
+    if (userId) {
+      loadUser(userId);
+    }
+  }, [memberId, userId]);
+  
+  const loadBuddies = async (memberId) => {
+    try {
+      const response = await membersApi.getMemberBuddies(memberId);
+      setBuddies(response.data.buddies);
+    } catch (error) {
+      console.error("Error loading buddies:", error);
+    }
   };
+
+  const loadUser = async (userId) => {
+    try {
+      const response = await membersApi.getUser(userId);
+      setUser(response.data.user);
+      console.log('user on home:', response.data.user);
+    } catch (error) {
+      console.error("Error loading user:", error);
+    }
+  };
+
+  
+
 
   const renderItemCache = {
     DisplayBuddies: (item) => (
@@ -106,7 +154,7 @@ export default function HomeScreen({ navigation }) {
       <TopNav
         showMenue={true}
         // onPressMenue={handleModal}
-        userProfileImage={require("../../../assets/person3.jpg")}
+        userProfileImage={user?.profile_image_url}
         onPressMenue={() => navigation.navigate("menu")}
         // onPressNotification={() => navigation.navigate("Notification")}
         onPressMessage={() => console.log("Message image pressed")}
