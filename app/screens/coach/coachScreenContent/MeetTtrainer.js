@@ -83,23 +83,25 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
 
   useEffect(() => {
     loadTrainers();
-    loadCoachesClubMembers();  
+    loadCoachesClubMembers();
   }, []);
   // useEffect(() => {
   //   getCoachesClubMembersApi.request();
   //   getMeetAllCoachesApi.request();
   // }, []);
 
+  // get all the trainers
   const loadTrainers = async () => {
-    try{
-    const response = await coaches.getmeetAllCoaches();
-    console.log("Get all trainers", response)
-    setTrainers(response.data.trainers);
-    }catch(error){
+    try {
+      const response = await coaches.getmeetAllCoaches();
+      console.log("Get all trainers", response)
+      setTrainers(response.data.trainers);
+    } catch (error) {
       console.error("Error loading trainers:", error);
     }
   };
 
+  // get coaches at your club
   const loadCoachesClubMembers = async () => {
     const response = await coaches.getCoachesClubMembers();
     console.log("Get all trainers on club on coaches", response)
@@ -108,6 +110,7 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
 
   const navigation = useNavigation();
 
+  // handle press for each trainer
   const handlePress = (item) => {
     console.log("Clicked memberId:", item.id);
     navigation.navigate("CoachProfile", {

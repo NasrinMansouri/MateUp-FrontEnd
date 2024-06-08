@@ -84,6 +84,7 @@ export default function BuddyScreen({ navigation }) {
     }
   };
 
+  // handle press for each buddy
   const handlePress = (item) => {
     console.log("Clicked memberId:", item.id);
     navigation.navigate("MemberProfile", {

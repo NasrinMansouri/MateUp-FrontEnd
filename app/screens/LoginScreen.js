@@ -47,19 +47,21 @@ const LoginScreen = ({ route }, props) => {
         return;
       } else {
         console.log('Before token update');
+        // Extract token, user ID, and member ID from response
         const userToken = response.data.userToken;
         const userId = response.data.userData.id;
         const memberId = response.data.userData.member.id;
 
-        // Save user token and user data to AsyncStorage
+        // Save token, user ID, and member ID to AsyncStorage
         await saveToAsyncStorage('userToken', userToken);
         await saveToAsyncStorage('userId', userId);
         await saveToAsyncStorage('memberId', memberId);
-        // await saveToAsyncStorage('userData', JSON.stringify(userData));
-
         console.log('After token update');
 
+        // Reset form and call onLogin
         resetForm();
+
+        // Call onLogin
         onLogin(userToken, userId, memberId);
       }
     } catch (error) {

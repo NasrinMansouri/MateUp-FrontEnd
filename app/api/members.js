@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // Function to retrieve data from AsyncStorage
 const getDataFromStorage = async (key) => {
   try {
+    // get the data from AsyncStorage
     return await AsyncStorage.getItem(key);
   } catch (error) {
     console.error(`Error retrieving ${key}:`, error);
@@ -15,6 +16,7 @@ const getDataFromStorage = async (key) => {
 // Function to make authenticated API requests
 const makeAuthenticatedRequest = async (url, options = {}) => {
   try {
+    // Get the user token from AsyncStorage
     const userToken = await getDataFromStorage('userToken');
 
     const headers = {
@@ -22,6 +24,7 @@ const makeAuthenticatedRequest = async (url, options = {}) => {
       'Authorization': `Bearer ${userToken}`
     };
 
+    // Make the authenticated API request
     return client.get(url, { ...options, headers });
   } catch (error) {
     console.error(`Error making authenticated request to ${url}:`, error);
@@ -37,6 +40,7 @@ const getSearch = () => client.get("/members");
 
 const getMembersProfile = async (memberId) => {
   try {
+    // get the member
     return makeAuthenticatedRequest(`/member/${memberId}`);
   } catch (error) {
     console.error('Error getting member profile:', error);
@@ -47,8 +51,11 @@ const getMembersProfile = async (memberId) => {
 
 const getBuddies = async () => {
   try {
+    // Fetch the member ID from AsyncStorage
     const memberId = await getDataFromStorage('memberId');
     console.log('Member ID in getBuddies:', memberId);
+
+    // Fetch the member's buddies
     const response = await makeAuthenticatedRequest(`/buddy/list/${memberId}`, {
       Accept: 'application/json'
     });
@@ -62,6 +69,7 @@ const getBuddies = async () => {
 
 const getMemberBuddies = async (memberId) => {
   try {
+    // Fetch the member's buddies
     return makeAuthenticatedRequest(`/buddy/list/${memberId}`, {
       Accept: 'application/json'
     });
@@ -73,6 +81,7 @@ const getMemberBuddies = async (memberId) => {
 
 const getUser = async (userId) => {
   try {
+    // get the current user
     return makeAuthenticatedRequest(`/user/${userId}`, {
       Accept: 'application/json'
     });
@@ -87,6 +96,8 @@ const getUserClubMembers = async () => {
     // Fetch the current user's details including home_club_address
     const memberId = await getDataFromStorage('memberId');
     console.log('memberId:', memberId);
+
+    // Fetch the current member and their home_club_address
     const currentUserResponse = await client.get(`/member/${memberId}`);
     console.log('currentUserResponse:', currentUserResponse);
     const currentUser = currentUserResponse.data.member;
@@ -148,6 +159,7 @@ const getMatchClubMembers = async () => {
 
 const getConnectAllMembers = async () => {
   try {
+    // Fetch all members
     const allMembers = await client.get("/members");
     const response = allMembers.data.members;
     console.log('All members:', response);

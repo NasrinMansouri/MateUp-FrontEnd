@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // Function to retrieve data from AsyncStorage
 const getDataFromStorage = async (key) => {
   try {
+    // get the data from AsyncStorage
     return await AsyncStorage.getItem(key);
   } catch (error) {
     console.error(`Error retrieving ${key}:`, error);
@@ -14,6 +15,7 @@ const getDataFromStorage = async (key) => {
 // Function to make authenticated API requests
 const makeAuthenticatedRequest = async (url, options = {}) => {
   try {
+    // Get the user token from AsyncStorage
     const userToken = await getDataFromStorage('userToken');
 
     const headers = {
@@ -21,6 +23,7 @@ const makeAuthenticatedRequest = async (url, options = {}) => {
       'Authorization': `Bearer ${userToken}`
     };
 
+    // Make the authenticated API request 
     return client.get(url, { ...options, headers });
   } catch (error) {
     console.error(`Error making authenticated request to ${url}:`, error);
@@ -43,9 +46,11 @@ const getCoachesClubMembers = async () => {
     const memberId = await getDataFromStorage('memberId');
     console.log('memberId:', memberId);
 
+    // Fetch all members
     const currentUserResponse = await client.get(`/member/${memberId}`);
     console.log('currentUserResponse:', currentUserResponse);
 
+    // Extract home_club_address from the current user
     const currentUser = currentUserResponse.data.member;
     console.log('currentUser:', currentUser);
     const homeClubAddress = currentUser.home_club_address;
@@ -53,6 +58,7 @@ const getCoachesClubMembers = async () => {
 
     // Fetch all trainers
     const response = await client.get(`/trainers`);
+
     // Check if response contains the trainers data
     if (!response.data || !response.data.trainers) {
       throw new Error('No trainers data found in response');
@@ -76,6 +82,7 @@ const getCoachesClubMembers = async () => {
 
 const getCoachesProfile = async (trainerId) => {
   try {
+    // get the trainer profile
     const response = await makeAuthenticatedRequest(`/trainer/${trainerId}`);
     console.log(response); // This should log the response
     return response; // Return the response to the caller

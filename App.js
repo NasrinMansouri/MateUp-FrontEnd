@@ -462,12 +462,16 @@ export default function App() {
     }
   }, [isLoaded]);
 
+  // Function to retrieve userToken from AsyncStorage
   useEffect(() => {
     const checkAuthToken = async () => {
       try {
+        // Get the user token from AsyncStorage
         const storedToken = await getFromAsyncStorage('userToken');
+        // Check if token exists
         if (storedToken) {
           setUserToken(storedToken);
+          // Set isAuthenticated to true
           setIsAuthenticated(true);
         }
       } catch (error) {
@@ -476,9 +480,12 @@ export default function App() {
       }
     };
 
+    // Function to retrieve userId from AsyncStorage
     const checkUserId = async () => {
       try {
+        // Get the user token from AsyncStorage
         const storedUserId = await getFromAsyncStorage('userId');
+        // Check if token exists
         if (storedUserId) {
           setUserId(storedUserId);
         }
@@ -488,9 +495,12 @@ export default function App() {
       }
     };
 
+    // Function to retrieve memberId from AsyncStorage
     const checkMemberId = async () => {
       try {
+        // Get the user token from AsyncStorage
         const storedMemberId = await getFromAsyncStorage('memberId');
+        // Check if token exists
         if (storedMemberId) {
           setMemberId(storedMemberId);
         }
@@ -505,15 +515,18 @@ export default function App() {
     checkMemberId();
   }, []);
 
-
-   const handleLogin = async (userToken, userId, memberId) => {
+  // Hanlle the user login
+  const handleLogin = async (userToken, userId, memberId) => {
     try {
+      // Save the user token, userId, and memberId to AsyncStorage
       await saveToAsyncStorage('userToken', userToken);
       setUserToken(userToken);
       await saveToAsyncStorage('userId', userId);
       setUserId(userId);
       await saveToAsyncStorage('memberId', memberId);
       setMemberId(memberId);
+
+      // Set isAuthenticated to true
       setIsAuthenticated(true);
     } catch (error) {
       console.error('Error saving userToken and userId:', error);
@@ -536,7 +549,7 @@ export default function App() {
       <SafeAreaProvider onLayout={handleOnLayout}>
         <NavigationContainer ref={navigationRef} theme={myTheme}>
           {isAuthenticated ? (
-            <AppNavigator userToken={userToken} userId={userId} memberId={memberId}/> // Pass token to AppNavigator
+            <AppNavigator userToken={userToken} userId={userId} memberId={memberId} /> // Pass token to AppNavigator
           ) : (
             <AuthNavigator onLogin={handleLogin} />
           )}

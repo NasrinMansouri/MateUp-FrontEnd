@@ -33,6 +33,7 @@ export default function CoachProfileScreen({ navigation, route }) {
 
   console.log("trainerId on CoachProfileScreen", trainerId);
 
+  // load the trainer profile
   const loadTrainerProfile = async () => {
     try {
       const response = await coaches.getCoachesProfile(trainerId);

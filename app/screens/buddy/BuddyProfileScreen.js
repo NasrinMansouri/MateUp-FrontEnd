@@ -27,6 +27,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
     loadBuddies();
   }, []);
 
+  // load all the buddies of a member
   const loadBuddies = async () => {
     try {
       const { memberId } = route.params; // Retrieve memberId from route params
@@ -37,7 +38,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
       console.error("Error loading buddies:", error);
     }
   };
-  
+
 
   // const navigation = useNavigation();
 
@@ -66,7 +67,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
   };
 
   //for backend connection
-
+  // load member profile based on memberId
   useEffect(() => {
     loadMemberProfile();
   }, [memberId]);
@@ -80,7 +81,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
       console.error("Error loading member profile:", error);
     }
   };
-  
+
   if (!memberProfile) {
     return (
       <View style={styles.container}>

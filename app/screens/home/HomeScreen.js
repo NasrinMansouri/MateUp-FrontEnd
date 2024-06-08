@@ -36,6 +36,7 @@ export default function HomeScreen({ navigation }) {
   const [memberId, setMemberId] = useState(0);
   const [userId, setUserId] = useState(null);
 
+  // Load memberId from AsyncStorage
   const loadMemberId = async () => {
     try {
       const memberId = await getFromAsyncStorage("memberId");
@@ -45,6 +46,7 @@ export default function HomeScreen({ navigation }) {
     }
   };
 
+  // Load userId from AsyncStorage
  const loadUserId = async () => {
     try {
       const userId = await getFromAsyncStorage("userId");
@@ -54,18 +56,24 @@ export default function HomeScreen({ navigation }) {
     }
   };
 
+  
   useEffect(() => {
+    // Load memberId
     loadMemberId();
+    // if memberId exists, load buddies
     if (memberId) {
       loadBuddies(memberId);
     }
 
+    // Load userId
     loadUserId();
+    // if userId exists, load user
     if (userId) {
       loadUser(userId);
     }
   }, [memberId, userId]);
   
+  // Load buddies
   const loadBuddies = async (memberId) => {
     try {
       const response = await membersApi.getMemberBuddies(memberId);
@@ -75,6 +83,7 @@ export default function HomeScreen({ navigation }) {
     }
   };
 
+  // Load user
   const loadUser = async (userId) => {
     try {
       const response = await membersApi.getUser(userId);
