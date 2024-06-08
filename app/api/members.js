@@ -92,7 +92,7 @@ const getUserClubMembers = async () => {
     const currentUser = currentUserResponse.data.member;
     const homeClubAddress = currentUser.home_club_address;
 
-    // Fetch members filtered by home_club_address
+    // Fetch members
     const response = await client.get("/members")
     console.log(response)
 

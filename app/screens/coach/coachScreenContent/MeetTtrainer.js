@@ -79,9 +79,11 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
   // const getCoachesClubMembersApi = useApi(coachesApi.getCoachesClubMembers);
   // const getMeetAllCoachesApi = useApi(coachesApi.getMeetAllCoaches);
   const [trainers, setTrainers] = useState([]);
+  const [coachesClubMembers, setCoachesClubMembers] = useState([]);
 
   useEffect(() => {
     loadTrainers();
+    loadCoachesClubMembers();  
   }, []);
   // useEffect(() => {
   //   getCoachesClubMembersApi.request();
@@ -98,18 +100,30 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
     }
   };
 
+  const loadCoachesClubMembers = async () => {
+    const response = await coaches.getCoachesClubMembers();
+    console.log("Get all trainers on club on coaches", response)
+    setCoachesClubMembers(response);
+  }
+
   const navigation = useNavigation();
+
+  const handlePress = (item) => {
+    console.log("Clicked memberId:", item.id);
+    navigation.navigate("CoachProfile", {
+      trainerId: item.id
+    });
+  };
+
 
   const renderItemCache = {
     GalleryCoachesClubMembers: (item) => (
       <GalleryCoachesClubMembers
-        coachesClubMember={coachesClubMembersData}
+        coachesClubMember={coachesClubMembers}
         // coachesClubMember={getCoachesClubMembersApi.data}
         // loading={getCoachesClubMembersApi.loading}
         // error={getCoachesClubMembersApi.error}
-        onPress={(item) =>
-          navigation.navigate("CoachProfile", { trainerId: item.id })
-        }
+        onPress={(item) => handlePress(item)}
       />
     ),
     GalleryAllCoaches: (item) => (
@@ -119,9 +133,7 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
         // loading={false}
         // loading={getMeetAllCoachesApi.loading}
         // error={getMeetAllCoachesApi.error}
-        onPress={(item) =>
-          navigation.navigate("CoachProfile", { trainerId: item.id })
-        }
+        onPress={(item) => handlePress(item)}
       />
     ),
   };

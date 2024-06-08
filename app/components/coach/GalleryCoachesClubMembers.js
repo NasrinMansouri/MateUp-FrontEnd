@@ -40,9 +40,9 @@ export default function GalleryCoachesClubMembers({
         keyExtractor={(trainers) => trainers.id.toString()}
         renderItem={({ item }) => (
           <CardCoachClubMember
-            name={item.name}
-            image={item.image}
-            titles={item.titles}
+            name={item.user.name}
+            image={item.user.profile_image_url}
+            titles={item.expertise}
             // onPress={() => navigation.navigate("CoachProfile", item)}
             onPress={() => onPress(item)}
           />

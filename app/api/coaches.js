@@ -37,10 +37,59 @@ const getmeetAllCoaches = async () => {
   }
 };
 
-const getCoachesClubMembers = () => client.get("/trainers");
-// const getmeetAllCoaches = () => client.get("/trainers");
+const getCoachesClubMembers = async () => {
+  try {
+    // Fetch the current user's details including home_club_address
+    const memberId = await getDataFromStorage('memberId');
+    console.log('memberId:', memberId);
 
-const getCoachesProfile = (trainerId) => client.get(`/trainers/${trainerId}`);
+    const currentUserResponse = await client.get(`/member/${memberId}`);
+    console.log('currentUserResponse:', currentUserResponse);
+
+    const currentUser = currentUserResponse.data.member;
+    console.log('currentUser:', currentUser);
+    const homeClubAddress = currentUser.home_club_address;
+    console.log("homeClubAddress", homeClubAddress)
+
+    // Fetch all trainers
+    const response = await client.get(`/trainers`);
+    // Check if response contains the trainers data
+    if (!response.data || !response.data.trainers) {
+      throw new Error('No trainers data found in response');
+    }
+
+    // Filter trainers based on home_club_address
+    const trainers = response.data.trainers.filter(trainer => {
+      if (trainer.home_club_address) {
+        return trainer.home_club_address === currentUser.home_club_address;
+      }
+      return false;
+    });
+    console.log('Location filtered trainers:', trainers);
+
+    return trainers;
+  } catch (error) {
+    console.error('Error getting trainers:', error);
+    throw error;
+  }
+};
+
+const getCoachesProfile = async (trainerId) => {
+  try {
+    const response = await makeAuthenticatedRequest(`/trainer/${trainerId}`);
+    console.log(response); // This should log the response
+    return response; // Return the response to the caller
+  } catch (error) {
+    console.error('Error getting trainer profile:', error);
+    throw error;
+  }
+};
+
+
+
+// const getCoachesClubMembers = () => client.get("/trainers");
+// const getmeetAllCoaches = () => client.get("/trainers");
+//const getCoachesProfile = (trainerId) => client.get(`/trainers/${trainerId}`);
 
 export default {
   getCoachesClubMembers,
