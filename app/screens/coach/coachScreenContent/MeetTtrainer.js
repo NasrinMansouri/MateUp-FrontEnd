@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   ScrollView,
@@ -78,11 +78,25 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
   // For backend connection
   // const getCoachesClubMembersApi = useApi(coachesApi.getCoachesClubMembers);
   // const getMeetAllCoachesApi = useApi(coachesApi.getMeetAllCoaches);
+  const [trainers, setTrainers] = useState([]);
 
+  useEffect(() => {
+    loadTrainers();
+  }, []);
   // useEffect(() => {
   //   getCoachesClubMembersApi.request();
   //   getMeetAllCoachesApi.request();
   // }, []);
+
+  const loadTrainers = async () => {
+    try{
+    const response = await coaches.getmeetAllCoaches();
+    console.log("Get all trainers", response)
+    setTrainers(response.data.trainers);
+    }catch(error){
+      console.error("Error loading trainers:", error);
+    }
+  };
 
   const navigation = useNavigation();
 
@@ -100,7 +114,7 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
     ),
     GalleryAllCoaches: (item) => (
       <GalleryAllCoaches
-        meetAllCoaches={meetAllCoachesData}
+        meetAllCoaches={trainers}
         // meetAllCoaches={getMeetAllCoachesApi.data}
         // loading={false}
         // loading={getMeetAllCoachesApi.loading}

@@ -36,10 +36,10 @@ export default function GalleryAllCoaches({
         keyExtractor={(trainers) => trainers.id.toString()}
         renderItem={({ item }) => (
           <CardAllCoaches
-            name={item.name}
-            image={item.image}
-            location={item.location}
-            titles={item.titles}
+            name={item.user.name}
+            image={item.user.profile_image_url}
+            location={item.home_club_address}
+            titles={item.expertise}
             onPress={() => onPress(item)}
           />
         )}
