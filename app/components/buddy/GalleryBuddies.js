@@ -11,37 +11,9 @@ import BuddyProfileScreen from "../../screens/buddy/BuddyProfileScreen";
 import CardProfile from "../CardProfile";
 import colors from "../../config/colors";
 
-function GalleryBuddies({ buddies, style, header, paddingLeft = 16 }) {
+function GalleryBuddies({ buddies, onPress, style, header, paddingLeft = 16 }) {
   const navigation = useNavigation();
 
-  //dummy data for testing
-  // const buddiesData = [
-  //   {
-  //     id: 1,
-  //     name: "MMMMMMMMMMMMMMMM ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Coucheeeeeeee ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Couchhhhhhhhh ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "NNNNNN NNNNN ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "Couch ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  // ];
   
   return (
     <View>
@@ -118,3 +90,32 @@ export default GalleryBuddies;
 {
   /* <GalleryBuddies buddies={buddiesData} /> */
 }
+
+  //dummy data for testing
+  // const buddiesData = [
+  //   {
+  //     id: 1,
+  //     name: "MMMMMMMMMMMMMMMM ",
+  //     image: require("../../../assets/person-1.jpg"),
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Coucheeeeeeee ",
+  //     image: require("../../../assets/person-1.jpg"),
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Couchhhhhhhhh ",
+  //     image: require("../../../assets/person-1.jpg"),
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "NNNNNN NNNNN ",
+  //     image: require("../../../assets/person-1.jpg"),
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Couch ",
+  //     image: require("../../../assets/person-1.jpg"),
+  //   },
+  // ];

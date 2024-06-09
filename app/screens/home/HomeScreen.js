@@ -94,8 +94,14 @@ export default function HomeScreen({ navigation }) {
     }
   };
 
-  
-
+   // handle press for each buddy
+   const handlePress = (item) => {
+    console.log("Clicked memberId:", item.id);
+    navigation.navigate("MemberProfile", {
+      memberId: item.id,
+      challengeId: item.id,
+    });
+  };
 
   const renderItemCache = {
     DisplayBuddies: (item) => (
