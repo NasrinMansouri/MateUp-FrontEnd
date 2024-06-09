@@ -18,10 +18,12 @@ import BulletList from "../../components/shareMemberProfile/BulletList";
 import GalleryJoinedChallenge from "../../components/challenge/GalleryJoinedChallenge";
 // import { useNavigation } from "@react-navigation/native";
 
-export default function BuddyProfileScreen({ route, navigation }) {
+export default function BuddyProfileScreen({route, navigation }) {
   const scrollRef = useRef();
   const [memberProfile, setMemberProfile] = useState(null); //or ({}) //pass an empty object
   const [buddies, setBuddies] = useState([]);
+
+  const { isBuddy } = route.params;
 
   useEffect(() => {
     loadBuddies();
@@ -191,7 +193,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
           userFirstName={memberProfile.user.name}
           onPressGoToTop={goToTop}
           onPressGoToCalendar={handleGoToCalendar}
-          isBuddy={false} // change to true if they are buddy
+          isBuddy={isBuddy} // change to true if they are buddy
         />
       </ScrollView>
     </Screen>

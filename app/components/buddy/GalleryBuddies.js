@@ -11,9 +11,8 @@ import BuddyProfileScreen from "../../screens/buddy/BuddyProfileScreen";
 import CardProfile from "../CardProfile";
 import colors from "../../config/colors";
 
-function GalleryBuddies({ buddies, onPress, style, header, paddingLeft = 16 }) {
+function GalleryBuddies({isBuddy, buddies, onPress, style, header, paddingLeft = 16 }) {
   const navigation = useNavigation();
-
   
   return (
     <View>
@@ -42,6 +41,7 @@ function GalleryBuddies({ buddies, onPress, style, header, paddingLeft = 16 }) {
               //   )
               // }
               onPressProfile={() => onPress(item)}
+              isBuddy={isBuddy}
               // name={capitalizeFirstLetter(item.name)}
               name={item.name}
               // name={item.user.name ? capitalizeFirstLetter(item.user.name) : null}

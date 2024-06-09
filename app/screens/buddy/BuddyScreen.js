@@ -95,6 +95,15 @@ export default function BuddyScreen({ navigation }) {
     });
   };
 
+  const handlePressBuddy = (item) => {
+    console.log("Clicked memberId:", item.id);
+    navigation.navigate("MemberProfile", {
+      memberId: item.id,
+      challengeId: item.id,
+      isBuddy: true
+    });
+  };
+  
 
   return (
     <Screen style={styles.container}>
@@ -116,7 +125,7 @@ export default function BuddyScreen({ navigation }) {
             // buddies={getBuddiesApi.data.buddies}
             // loading={getBuddiesApi.loading}
             // error={getBuddiesApi.error}
-            onPress={(item) => handlePress(item)}
+            onPress={(item) => handlePressBuddy(item)}
           />
         </View>
         <Line marginBottom={40} marginTop={20} />

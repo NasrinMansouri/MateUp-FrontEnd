@@ -47,7 +47,7 @@ export default function HomeScreen({ navigation }) {
   };
 
   // Load userId from AsyncStorage
- const loadUserId = async () => {
+  const loadUserId = async () => {
     try {
       const userId = await getFromAsyncStorage("userId");
       setUserId(userId);
@@ -56,7 +56,7 @@ export default function HomeScreen({ navigation }) {
     }
   };
 
-  
+
   useEffect(() => {
     // Load memberId
     loadMemberId();
@@ -72,7 +72,7 @@ export default function HomeScreen({ navigation }) {
       loadUser(userId);
     }
   }, [memberId, userId]);
-  
+
   // Load buddies
   const loadBuddies = async (memberId) => {
     try {
@@ -94,12 +94,13 @@ export default function HomeScreen({ navigation }) {
     }
   };
 
-   // handle press for each buddy
-   const handlePress = (item) => {
+  // handle press for each buddy
+  const handlePressBuddy = (item) => {
     console.log("Clicked memberId:", item.id);
     navigation.navigate("MemberProfile", {
       memberId: item.id,
       challengeId: item.id,
+      isBuddy: true
     });
   };
 
@@ -175,15 +176,15 @@ export default function HomeScreen({ navigation }) {
         onPressMessage={() => console.log("Message image pressed")}
       // showSearchBar={true}
       />
-          <GalleryBuddies
-            paddingLeft={6}
-            buddies={buddies}
-            // for new connection to backend
-            // buddies={getBuddiesApi.data.buddies}
-            // loading={getBuddiesApi.loading}
-            // error={getBuddiesApi.error}
-            onPress={(item) => handlePress(item)}
-          />
+      <GalleryBuddies
+        paddingLeft={6}
+        buddies={buddies}
+        // for new connection to backend
+        // buddies={getBuddiesApi.data.buddies}
+        // loading={getBuddiesApi.loading}
+        // error={getBuddiesApi.error}
+        onPress={(item) => handlePressBuddy(item)}
+      />
       <FlatList
         data={data}
         keyExtractor={(item) => item.type}
