@@ -1,75 +1,44 @@
-import client from "./client";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { makeAuthenticatedRequest, getDataFromStorage } from "./apiUtils";
 
-// Function to retrieve data from AsyncStorage
-const getDataFromStorage = async (key) => {
+// getMeetAllCoaches
+const getMeetAllCoaches = async () => {
   try {
-    // get the data from AsyncStorage
-    return await AsyncStorage.getItem(key);
-  } catch (error) {
-    console.error(`Error retrieving ${key}:`, error);
-    return null;
-  }
-};
-
-// Function to make authenticated API requests
-const makeAuthenticatedRequest = async (url, options = {}) => {
-  try {
-    // Get the user token from AsyncStorage
-    const userToken = await getDataFromStorage('userToken');
-
-    const headers = {
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${userToken}`
-    };
-
-    // Make the authenticated API request 
-    return client.get(url, { ...options, headers });
-  } catch (error) {
-    console.error(`Error making authenticated request to ${url}:`, error);
-    throw error;
-  }
-};
-
-const getmeetAllCoaches = async () => {
-  try {
-    return makeAuthenticatedRequest(`/trainers`);
+    // get all the trainers
+    return makeAuthenticatedRequest('/trainers');
   } catch (error) {
     console.error('Error getting trainers:', error);
     throw error;
   }
 };
 
+// getCoachesClubMembers
 const getCoachesClubMembers = async () => {
   try {
-    // Fetch the current user's details including home_club_address
+    // get the member ID from AsyncStorage
     const memberId = await getDataFromStorage('memberId');
     console.log('memberId:', memberId);
 
-    // Fetch all members
-    const currentUserResponse = await client.get(`/member/${memberId}`);
+    // use the member ID to get the current user
+    const currentUserResponse = await makeAuthenticatedRequest('/member', memberId);
     console.log('currentUserResponse:', currentUserResponse);
 
-    // Extract home_club_address from the current user
+    // get the home club address from the current user
     const currentUser = currentUserResponse.data.member;
     console.log('currentUser:', currentUser);
     const homeClubAddress = currentUser.home_club_address;
-    console.log("homeClubAddress", homeClubAddress)
+    console.log("homeClubAddress", homeClubAddress);
 
-    // Fetch all trainers
-    const response = await client.get(`/trainers`);
+    // get all the trainers
+    const response = await makeAuthenticatedRequest('/trainers');
 
-    // Check if response contains the trainers data
+    // check if there are any trainers
     if (!response.data || !response.data.trainers) {
       throw new Error('No trainers data found in response');
     }
 
-    // Filter trainers based on home_club_address
+    // filter the trainers by home club address
     const trainers = response.data.trainers.filter(trainer => {
-      if (trainer.home_club_address) {
-        return trainer.home_club_address === currentUser.home_club_address;
-      }
-      return false;
+      return trainer.home_club_address === homeClubAddress;
     });
     console.log('Location filtered trainers:', trainers);
 
@@ -80,26 +49,21 @@ const getCoachesClubMembers = async () => {
   }
 };
 
+// getCoachesProfile
 const getCoachesProfile = async (trainerId) => {
   try {
     // get the trainer profile
     const response = await makeAuthenticatedRequest(`/trainer/${trainerId}`);
-    console.log(response); // This should log the response
-    return response; // Return the response to the caller
+    console.log(response);
+    return response;
   } catch (error) {
     console.error('Error getting trainer profile:', error);
     throw error;
   }
 };
 
-
-
-// const getCoachesClubMembers = () => client.get("/trainers");
-// const getmeetAllCoaches = () => client.get("/trainers");
-//const getCoachesProfile = (trainerId) => client.get(`/trainers/${trainerId}`);
-
 export default {
   getCoachesClubMembers,
-  getmeetAllCoaches,
+  getMeetAllCoaches,
   getCoachesProfile,
 };

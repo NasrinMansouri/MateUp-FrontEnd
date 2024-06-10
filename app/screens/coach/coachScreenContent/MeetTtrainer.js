@@ -93,7 +93,7 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
   // get all the trainers
   const loadTrainers = async () => {
     try {
-      const response = await coaches.getmeetAllCoaches();
+      const response = await coaches.getMeetAllCoaches();
       console.log("Get all trainers", response)
       setTrainers(response.data.trainers);
     } catch (error) {
@@ -165,7 +165,7 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
 // }) {
 //   // for backend connection
 //   // const getCoachesClubMembersApi = useApi(coachesApi.getCoachesClubMembers);
-//   // const getMeetAllCoachesApi = useApi(coachesApi.getmeetAllCoaches);
+//   // const getMeetAllCoachesApi = useApi(coachesApi.getMeetAllCoaches);
 //   // useEffect(() => {
 //   //   getCoachesClubMembersApi.request();
 //   //   getMeetAllCoachesApi.request();
