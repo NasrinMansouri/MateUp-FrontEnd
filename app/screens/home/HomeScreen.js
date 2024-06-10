@@ -83,6 +83,7 @@ export default function HomeScreen({ navigation }) {
     }
   };
 
+  
   // Load user
   const loadUser = async (userId) => {
     try {
