@@ -35,6 +35,12 @@ const getUser = async (userId) => {
   return makeAuthenticatedRequest('/user', userId);
 };
 
+// getUserClubMembers
+const getUserClubMembers = async () => {
+  const memberId = await getDataFromStorage('memberId');
+  return makeAuthenticatedRequest('/member/club', memberId);
+} 
+
 // getBuddyIds
 const getBuddyIds = async (userId) => {
   try {
@@ -51,43 +57,43 @@ const getBuddyIds = async (userId) => {
   }
 };
 
-const getUserClubMembers = async () => {
-  try {
-    // get the member ID and user ID from AsyncStorage
-    const memberId = await getDataFromStorage('memberId');
-    const userId = await getDataFromStorage('userId');
-    console.log('memberId of getUserClubMembers:', memberId);
-    console.log('userId of getUserClubMembers:', userId);
+// const getUserClubMembers = async () => {
+//   try {
+//     // get the member ID and user ID from AsyncStorage
+//     const memberId = await getDataFromStorage('memberId');
+//     const userId = await getDataFromStorage('userId');
+//     console.log('memberId of getUserClubMembers:', memberId);
+//     console.log('userId of getUserClubMembers:', userId);
 
-    // use the member ID to get the current user and home club address
-    const currentUserResponse = await makeAuthenticatedRequest('/member', memberId);
-    const currentUser = currentUserResponse.data.member;
-    const homeClubAddress = currentUser.home_club_address;
-    console.log('currentUser of getUserClubMembers:', currentUser);
-    console.log('homeClubAddress of getUserClubMembers:', homeClubAddress);
+//     // use the member ID to get the current user and home club address
+//     const currentUserResponse = await makeAuthenticatedRequest('/member', memberId);
+//     const currentUser = currentUserResponse.data.member;
+//     const homeClubAddress = currentUser.home_club_address;
+//     console.log('currentUser of getUserClubMembers:', currentUser);
+//     console.log('homeClubAddress of getUserClubMembers:', homeClubAddress);
 
-    // get all the members
-    const membersResponse = await makeAuthenticatedRequest('/members');
-    const allMembers = membersResponse.data.members;
-    console.log('allMembers of getUserClubMembers:', allMembers);
+//     // get all the members
+//     const membersResponse = await makeAuthenticatedRequest('/members');
+//     const allMembers = membersResponse.data.members;
+//     console.log('allMembers of getUserClubMembers:', allMembers);
 
-    // get the buddy IDs for the current user
-    const buddyIds = await getBuddyIds(userId);
-    console.log('buddyIds:', buddyIds);
+//     // get the buddy IDs for the current user
+//     const buddyIds = await getBuddyIds(userId);
+//     console.log('buddyIds:', buddyIds);
 
-    // filter the members by home club address and non-buddy
-    const filteredMembers = allMembers.filter(member => {
-      return member.home_club_address === homeClubAddress && !buddyIds.has(member.id);
-    });
+//     // filter the members by home club address and non-buddy
+//     const filteredMembers = allMembers.filter(member => {
+//       return member.home_club_address === homeClubAddress && !buddyIds.has(member.id);
+//     });
 
-    console.log('Location filtered and non-buddy members:', filteredMembers);
+//     console.log('Location filtered and non-buddy members:', filteredMembers);
 
-    return filteredMembers;
-  } catch (error) {
-    console.error('Error fetching matched club members:', error);
-    throw error;
-  }
-};
+//     return filteredMembers;
+//   } catch (error) {
+//     console.error('Error fetching matched club members:', error);
+//     throw error;
+//   }
+// };
 
 const getMatchClubMembers = async () => {
   try {

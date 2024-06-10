@@ -68,7 +68,7 @@ export default function BuddyScreen({ navigation }) {
   const loadUserClubMembers = async () => {
     const response = await membersApi.getUserClubMembers();
     console.log("UserClubMembers on buddy screen", response);
-    setUserClubMembers(response);
+    setUserClubMembers(response.data.members);
   };
 
   const loadMatchClubMembers = async () => {
