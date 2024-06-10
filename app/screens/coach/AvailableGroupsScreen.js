@@ -7,8 +7,11 @@ import colors from "../../config/colors";
 import TopNav from "../../components/topNavigation/TopNav";
 import Line from "../../components/Line";
 import CardAvailableGroup from "../../components/coach/CardAvailableGroup";
+import coaches from "../../api/coaches";
 
-export default function AvailableGroupsScreen() {
+export default function AvailableGroupsScreen({ navigation, route }) {
+  const { trainerId } = route.params;
+  console.log("trainerId on AvailableGroupsScreen", trainerId);
   // for recieveing notification
   useEffect(() => {
     // Request notification permissions
@@ -50,43 +53,61 @@ export default function AvailableGroupsScreen() {
     }
   };
 
-  const availableGroups = [
-    {
-      id: 1,
-      members: [
-        {
-          id: 1,
-          image: require("../../../assets/person3.jpg"),
-        },
-        {
-          id: 2,
-          image: require("../../../assets/person3.jpg"),
-        },
-      ],
-      goal: "Get Strong and get toned",
-      date: "Aug 3",
-      year: "2024",
-      start: "5 PM",
-      end: "7 PM",
-      spots: "1 spot is still available",
-    },
-    {
-      id: 2,
-      members: [
-        {
-          id: 1,
-          image: require("../../../assets/person3.jpg"),
-        },
-      ],
-      goal: "Get Strong and get toned",
-      date: "Aug 3",
-      year: "2024",
-      start: "5 PM",
-      end: "7 PM",
-      spots: "2 spot is still available",
-    },
-  ];
 
+
+  // const availableGroups = [
+  //   {
+  //     id: 1,
+  //     members: [
+  //       {
+  //         id: 1,
+  //         image: require("../../../assets/person3.jpg"),
+  //       },
+  //       {
+  //         id: 2,
+  //         image: require("../../../assets/person3.jpg"),
+  //       },
+  //     ],
+  //     goal: "Get Strong and get toned",
+  //     date: "Aug 3",
+  //     year: "2024",
+  //     start: "5 PM",
+  //     end: "7 PM",
+  //     spots: "1 spot is still available",
+  //   },
+  //   {
+  //     id: 2,
+  //     members: [
+  //       {
+  //         id: 1,
+  //         image: require("../../../assets/person3.jpg"),
+  //       },
+  //     ],
+  //     goal: "Get Strong and get toned",
+  //     date: "Aug 3",
+  //     year: "2024",
+  //     start: "5 PM",
+  //     end: "7 PM",
+  //     spots: "2 spot is still available",
+  //   },
+  // ];
+
+
+  const [availableGroups, setAvailableGroups] = React.useState([]);
+
+  useEffect(() => {
+    loadSessions();
+  }, []);
+
+  const loadSessions = async () => {
+    try {
+      const response = await coaches.getCoachesSessions(trainerId)
+      console.log(response.data.sessions);
+      setAvailableGroups(response.data.sessions);
+    } catch (error) {
+      console.error("Error loading member profile:", error);
+    }
+  };
   return (
     <Screen style={styles.mainContainer}>
       {/* <TopNav /> */}
@@ -99,13 +120,17 @@ export default function AvailableGroupsScreen() {
           {availableGroups.map((group, id) => (
             <CardAvailableGroup
               key={id}
-              members={group.members}
+              //members={group.members}
+              members={[{
+                id: 1,
+                image: require("../../../assets/person3.jpg"),
+              }]}
               goal={group.goal}
-              date={group.date}
-              year={group.year}
-              start={group.start}
-              end={group.end}
-              spots={group.spots}
+              date={group.session_date}
+              //year={group.year}
+              start={group.start_time}
+              end={group.end_time}
+              spots={group.available_spots}
               onPress={() => showNotification()}
             />
           ))}

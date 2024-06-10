@@ -40,7 +40,7 @@ const getCoachesClubMembers = async () => {
     const trainers = response.data.trainers.filter(trainer => {
       return trainer.home_club_address === homeClubAddress;
     });
-    console.log('Location filtered trainers:', trainers);
+    console.log('getCoachesClubMembers:', trainers);
 
     return trainers;
   } catch (error) {
@@ -57,13 +57,27 @@ const getCoachesProfile = async (trainerId) => {
     console.log(response);
     return response;
   } catch (error) {
-    console.error('Error getting trainer profile:', error);
+    console.error('getCoachesProfile:', error);
     throw error;
   }
 };
+
+// getCoachesSessions
+const getCoachesSessions = async (trainerId) => {
+  try {
+    // get the trainer sessions
+    const response = await makeAuthenticatedRequest(`/group-sessions/${trainerId}`);
+    console.log('getCoachesSessions:', response);
+    return response;
+  } catch (error) {
+    console.error('Error getting trainer sessions:', error);
+    throw error;
+  }
+}
 
 export default {
   getCoachesClubMembers,
   getMeetAllCoaches,
   getCoachesProfile,
+  getCoachesSessions,
 };

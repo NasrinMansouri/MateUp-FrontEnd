@@ -162,7 +162,7 @@ export default function CoachProfileScreen({ navigation, route }) {
           title={"see available groups"}
           width={"100%"}
           fontSize={14}
-          onPress={() => navigation.navigate("AvailableGroups")}
+          onPress={() => navigation.navigate("AvailableGroups", { trainerId: trainerId })}
           containerStyle={styles.buttonContainer}
         />
         <AppButton
