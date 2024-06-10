@@ -11,7 +11,7 @@ const filterNonBuddies = (members, buddyIds) => {
 const getSearch = async () => {
   // get the member ID from AsyncStorage
   const memberId = await getDataFromStorage('memberId');
-  return makeAuthenticatedRequest('/member', memberId);
+  return makeAuthenticatedRequest('/member/searching-members', memberId);
 };
 
 // getMembersProfile
@@ -38,7 +38,7 @@ const getUser = async (userId) => {
 // getUserClubMembers
 const getUserClubMembers = async () => {
   const memberId = await getDataFromStorage('memberId');
-  return makeAuthenticatedRequest('/member/club', memberId);
+  return makeAuthenticatedRequest('/member/club-members', memberId);
 } 
 
 // getBuddyIds
@@ -57,36 +57,41 @@ const getBuddyIds = async (userId) => {
   }
 };
 
-// const getUserClubMembers = async () => {
+const getMatchClubMembers = async () => {
+  const memberId = await getDataFromStorage('memberId');
+  return makeAuthenticatedRequest('/member/matching-workouts-members', memberId);
+}
+
+// const getMatchClubMembers = async () => {
 //   try {
+  
 //     // get the member ID and user ID from AsyncStorage
 //     const memberId = await getDataFromStorage('memberId');
 //     const userId = await getDataFromStorage('userId');
-//     console.log('memberId of getUserClubMembers:', memberId);
-//     console.log('userId of getUserClubMembers:', userId);
 
-//     // use the member ID to get the current user and home club address
+//     // use the member ID to get the current user
 //     const currentUserResponse = await makeAuthenticatedRequest('/member', memberId);
 //     const currentUser = currentUserResponse.data.member;
-//     const homeClubAddress = currentUser.home_club_address;
-//     console.log('currentUser of getUserClubMembers:', currentUser);
-//     console.log('homeClubAddress of getUserClubMembers:', homeClubAddress);
 
 //     // get all the members
 //     const membersResponse = await makeAuthenticatedRequest('/members');
 //     const allMembers = membersResponse.data.members;
-//     console.log('allMembers of getUserClubMembers:', allMembers);
 
 //     // get the buddy IDs for the current user
 //     const buddyIds = await getBuddyIds(userId);
-//     console.log('buddyIds:', buddyIds);
 
-//     // filter the members by home club address and non-buddy
+//     // get the workout types of the current user
+//     const currentUserWorkoutTypes = currentUser.workout_types.split(',').map(type => type.trim());
+
+//     // filter the members by workout type and non-buddy
 //     const filteredMembers = allMembers.filter(member => {
-//       return member.home_club_address === homeClubAddress && !buddyIds.has(member.id);
+//       const memberWorkoutTypes = member.workout_types.split(',').map(type => type.trim());
+//       const matches = currentUserWorkoutTypes.some(type => memberWorkoutTypes.includes(type));
+
+//       return matches && !buddyIds.has(member.id);
 //     });
 
-//     console.log('Location filtered and non-buddy members:', filteredMembers);
+//     console.log('Workout filtered and non-buddy members:', filteredMembers);
 
 //     return filteredMembers;
 //   } catch (error) {
@@ -94,44 +99,6 @@ const getBuddyIds = async (userId) => {
 //     throw error;
 //   }
 // };
-
-const getMatchClubMembers = async () => {
-  try {
-  
-    // get the member ID and user ID from AsyncStorage
-    const memberId = await getDataFromStorage('memberId');
-    const userId = await getDataFromStorage('userId');
-
-    // use the member ID to get the current user
-    const currentUserResponse = await makeAuthenticatedRequest('/member', memberId);
-    const currentUser = currentUserResponse.data.member;
-
-    // get all the members
-    const membersResponse = await makeAuthenticatedRequest('/members');
-    const allMembers = membersResponse.data.members;
-
-    // get the buddy IDs for the current user
-    const buddyIds = await getBuddyIds(userId);
-
-    // get the workout types of the current user
-    const currentUserWorkoutTypes = currentUser.workout_types.split(',').map(type => type.trim());
-
-    // filter the members by workout type and non-buddy
-    const filteredMembers = allMembers.filter(member => {
-      const memberWorkoutTypes = member.workout_types.split(',').map(type => type.trim());
-      const matches = currentUserWorkoutTypes.some(type => memberWorkoutTypes.includes(type));
-
-      return matches && !buddyIds.has(member.id);
-    });
-
-    console.log('Workout filtered and non-buddy members:', filteredMembers);
-
-    return filteredMembers;
-  } catch (error) {
-    console.error('Error fetching matched club members:', error);
-    throw error;
-  }
-};
 
 const getConnectAllMembers = async () => {
   try {

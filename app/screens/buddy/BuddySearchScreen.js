@@ -38,7 +38,7 @@ export default function BuddySearchScreen({ navigation }) {
     try {
       const response = await membersApi.getSearch();
       // console.log("response from search buddy", response.data.members);
-      if (response.ok) {
+      if (response.statusText === "OK") {
         // console.log("response from search buddy", response.data.members);
         setAllResults(response.data.members);
         //console.log("all results", allResults);
@@ -124,9 +124,11 @@ export default function BuddySearchScreen({ navigation }) {
               //  onPress={() => console.log(item)}
               onPress={() => {
                 console.log("buddy id from search", item.id);
+                console.log("is buddy", item.is_buddy);
                 navigation.navigate("MemberProfile", {
                   memberId: item.id,
                   challengeId: item.id,
+                  isBuddy:item.is_buddy
                 });
               }}
               // onPress={() => onPress(item)}

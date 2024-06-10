@@ -1,7 +1,14 @@
-import client from "./client";
+// import client from "./client";
 
-const getSearch = (memberId) => client.get(`/members/${memberId}`);
 
-export default {
-  getSearch,
-};
+// // getMembersBySearch
+// const getSearch = async () => {
+//   // get the member ID from AsyncStorage
+//   const memberId = await getDataFromStorage('memberId');
+//   return makeAuthenticatedRequest('/member/searching-members', memberId);
+// };
+
+
+// export default {
+//   getSearch,
+// };
