@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList, StyleSheet, View, ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -9,6 +9,7 @@ import GalleryFilters from "../../../components/challenge/GalleryFilters";
 import Screen from "../../../components/Screen";
 import useApi from "../../../hooks/useApi";
 import challengeApi from "../../../api/challenge";
+import { getFromAsyncStorage } from "../../../auth/asyncStorage";
 
 const challengeYourBuddiesJoined = [
   {
@@ -74,6 +75,37 @@ export default function Join({}) {
   // }, []);
 
   const navigation = useNavigation();
+  const [memberId, setMemberId] = useState(0);
+  const [clubChallenges, setClubChallenges] = useState([]);
+
+  // Load memberId from AsyncStorage
+  const loadMemberId = async () => {
+    try {
+      const memberId = await getFromAsyncStorage("memberId");
+      setMemberId(memberId);
+    } catch (error) {
+      console.error("Error loading memberId:", error);
+    }
+  };
+
+  useEffect(() => {
+    // Load memberId
+    loadMemberId();
+    // if memberId exists, load buddies
+    if (memberId) {
+      loadClubChallenges(memberId);
+    }
+  }, [memberId]);
+
+  const loadClubChallenges = async () => {
+    try {
+      const response = await challengeApi.getClubChallenges(memberId);
+      console.log("response.data", response.data);
+      setClubChallenges(response.data.challenges);
+    } catch (error) {
+      console.error("Error loading challenges:", error);
+    }
+  };
 
   const renderItemCache = {
     GalleryBuddiesJoinedChallenge: () => (
@@ -95,7 +127,7 @@ export default function Join({}) {
     ),
     GalleryClubChallenge: () => (
       <GalleryClubChallenge
-        ClubChallenge={challengeYourBuddiesJoined}
+        ClubChallenge={clubChallenges}
         // ClubChallenge={getClubChallengesApi.data}
         // loading={getClubChallengesApi.loading}
         // error={getClubChallengesApi.error}
@@ -143,6 +175,7 @@ export default function Join({}) {
     <Screen>
       <FlatList
         data={data}
+        initialNumToRender={data.length}
         keyExtractor={(item) => item.type}
         renderItem={({ item }) => renderItemCache[item.type](item.data)}
         showsVerticalScrollIndicator={false}

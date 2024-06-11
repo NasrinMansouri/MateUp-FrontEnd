@@ -4,7 +4,8 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import Screen from "../../components/Screen";
 import colors from "../../config/colors";
 import TopNav from "../../components/topNavigation/TopNav";
-import { Join, MyChallenges } from "./challengeScreen";
+import Join from "./challengeScreen/Join";
+import MyChallenges from "./challengeScreen/MyChallenges";
 
 const Tab = createMaterialTopTabNavigator();
 

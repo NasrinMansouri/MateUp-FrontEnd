@@ -151,6 +151,7 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
     <View style={styles.container}>
       <FlatList
         data={data}
+        initialNumToRender={data.length}
         keyExtractor={(item) => item.type}
         renderItem={({ item }) => renderItemCache[item.type](item)}
         showsVerticalScrollIndicator={false}

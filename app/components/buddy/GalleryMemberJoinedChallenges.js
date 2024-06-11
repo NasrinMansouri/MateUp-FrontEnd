@@ -38,6 +38,7 @@ export default function GalleryMemberJoinedChallenges({
         style={styles.container}
         horizontal
         data={joinedChallenge}
+        initialNumToRender={joinedChallenge.length}
         keyExtractor={(challenges) => challenges.id.toString()}
         renderItem={({ item }) => (
           <CardJoinedChallenge

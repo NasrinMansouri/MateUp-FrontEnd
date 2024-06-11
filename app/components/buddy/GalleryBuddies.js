@@ -27,6 +27,7 @@ function GalleryBuddies({isBuddy, buddies, onPress, style, header, paddingLeft =
         horizontal
         showsHorizontalScrollIndicator={false}
         data={buddies}
+        initialNumToRender={buddies.length}
         keyExtractor={(members) => members.id.toString()}
         renderItem={({ item }) => {
           return (

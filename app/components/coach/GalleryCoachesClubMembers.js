@@ -37,6 +37,7 @@ export default function GalleryCoachesClubMembers({
         horizontal
         showsHorizontalScrollIndicator={false}
         data={coachesClubMember}
+        initialNumToRender={coachesClubMember.length}
         keyExtractor={(trainers) => trainers.id.toString()}
         renderItem={({ item }) => (
           <CardCoachClubMember

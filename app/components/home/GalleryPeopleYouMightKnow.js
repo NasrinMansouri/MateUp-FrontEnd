@@ -6,37 +6,73 @@ import { useNavigation } from "@react-navigation/native";
 
 import CardProfile from "../CardProfile";
 import colors from "../../config/colors";
+import { getFromAsyncStorage } from "../../auth/asyncStorage";
+import { useEffect, useState } from "react";
+import membersApi from "../../api/members";
 
 function GalleryPeopleYouMightKnow({ onPress }) {
   const navigation = useNavigation();
   //dummy data for testing
-  const membersData = [
-    {
-      id: 1,
-      name: "Red ",
-      image: require("../../../assets/person-1.jpg"),
-    },
-    {
-      id: 2,
-      name: "Couch ",
-      image: require("../../../assets/person-1.jpg"),
-    },
-    {
-      id: 3,
-      name: "Couch ",
-      image: require("../../../assets/person-1.jpg"),
-    },
-    {
-      id: 4,
-      name: "Couch111111111 ",
-      image: require("../../../assets/person-1.jpg"),
-    },
-    {
-      id: 5,
-      name: "Couch ",
-      image: require("../../../assets/person-1.jpg"),
-    },
-  ];
+  // const membersData = [
+  //   {
+  //     id: 1,
+  //     name: "Red ",
+  //     image: require("../../../assets/person-1.jpg"),
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Couch ",
+  //     image: require("../../../assets/person-1.jpg"),
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Couch ",
+  //     image: require("../../../assets/person-1.jpg"),
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Couch111111111 ",
+  //     image: require("../../../assets/person-1.jpg"),
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Couch ",
+  //     image: require("../../../assets/person-1.jpg"),
+  //   },
+  // ];
+
+  const [memberId, setMemberId] = useState(0);
+  const [youMightKnow, setYouMightKnow] = useState([]);
+
+  // Load memberId from AsyncStorage
+  const loadMemberId = async () => {
+    try {
+      const memberId = await getFromAsyncStorage("memberId");
+      setMemberId(memberId);
+    } catch (error) {
+      console.error("Error loading memberId:", error);
+    }
+  };
+
+  useEffect(() => {
+    // Load memberId
+    loadMemberId();
+    // if memberId exists, load buddies
+    if (memberId) {
+      loadmembersYouMightKnow();
+    }
+  }, [memberId]);
+
+  const loadmembersYouMightKnow = async () => {
+    try {
+      const memberId = await getFromAsyncStorage("memberId");
+      const response = await membersApi.getmembersYouMightKnow(memberId);
+      setYouMightKnow(response.data.people_you_might_know);
+    } catch (error) {
+      console.error("Error loading buddies:", error);
+    }
+  };
+
 
   const capitalizeFirstLetter = (string) => {
     // capitalize first letter and make rest lowercase
@@ -50,7 +86,8 @@ function GalleryPeopleYouMightKnow({ onPress }) {
           style={styles.container}
           horizontal
           showsHorizontalScrollIndicator={false}
-          data={membersData}
+          data={youMightKnow}
+          initialNumToRender={youMightKnow.length}
           keyExtractor={(members) => members.id.toString()}
           renderItem={({ item }) => (
             <CardProfile
@@ -58,7 +95,7 @@ function GalleryPeopleYouMightKnow({ onPress }) {
               onPressProfile={() => onPress(item)}
               name={capitalizeFirstLetter(item.name)}
               backgroundColor={colors.blackBc}
-              image={item.image}
+              image={item.profile_image_url}
               flexDirection={"column"}
               cardWidth={120}
               cardHeight={98}

@@ -83,6 +83,7 @@ export default function HomeScreen({ navigation }) {
     }
   };
 
+  
   // Load user
   const loadUser = async (userId) => {
     try {
@@ -187,6 +188,7 @@ export default function HomeScreen({ navigation }) {
       />
       <FlatList
         data={data}
+        initialNumToRender={data.length}
         keyExtractor={(item) => item.type}
         // renderItem function,
         // which renders the component(each item) based on the type

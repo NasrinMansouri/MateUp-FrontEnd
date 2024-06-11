@@ -101,6 +101,7 @@ export default function CoachSearchScreen({ navigation }) {
       <FlatList
         showsVerticalScrollIndicator={false}
         data={searchResults}
+        initialNumToRender={searchResults.length}
         keyExtractor={(members) => members.id.toString()}
         ItemSeparatorComponent={ListItemSeparator}
         ListEmptyComponent={

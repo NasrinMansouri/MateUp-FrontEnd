@@ -1,7 +1,14 @@
 import client from "./client";
+import { makeAuthenticatedRequest, getDataFromStorage } from "./apiUtils";
+
+const getClubChallenges = async () => {
+  // get the member ID from AsyncStorage
+  const memberId = await getDataFromStorage('memberId');
+  return makeAuthenticatedRequest('/challenges/club-challenges', memberId);
+}
 
 const getBuddiesJoinedChallenges = () => client.get("/challenges");
-const getClubChallenges = () => client.get("/challenges");
+//const getClubChallenges = () => client.get("/challenges");
 const getAllChallenges = () => client.get("/challenges");
 
 const getUserJoinedChallenges = () => client.get("/challenges");

@@ -18,6 +18,7 @@ export default function GalleryMatchBasedWorkout({
         style={styles.container}
         horizontal
         data={matchMemberWorkout}
+        initialNumToRender={matchMemberWorkout.length}
         keyExtractor={(Members) => Members.id.toString()}
         renderItem={({ item }) => (
           <CardMatchBasedWorkout

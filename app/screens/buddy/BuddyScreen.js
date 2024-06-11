@@ -68,19 +68,19 @@ export default function BuddyScreen({ navigation }) {
   const loadUserClubMembers = async () => {
     const response = await membersApi.getUserClubMembers();
     console.log("UserClubMembers on buddy screen", response);
-    setUserClubMembers(response);
+    setUserClubMembers(response.data.members);
   };
 
   const loadMatchClubMembers = async () => {
     const response = await membersApi.getMatchClubMembers();
     console.log("MatchClubMembers on buddy screen", response);
-    setMatchClubMembers(response);
+    setMatchClubMembers(response.data.members);
   };
   const loadConnectAllMembers = async () => {
     try {
       const response = await membersApi.getConnectAllMembers();
       console.log("ConnectAllMembers on buddy screen", response);
-      setConnectAllMembers(response);
+      setConnectAllMembers(response.data.members);
     } catch (error) {
       console.error("Error loading Connect All Members:", error);
     }
