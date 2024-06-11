@@ -1,99 +1,86 @@
-import challenge from "./challenge";
-import client from "./client";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { makeAuthenticatedRequest, getDataFromStorage } from "./apiUtils";
 
-// Function to retrieve data from AsyncStorage
-const getDataFromStorage = async (key) => {
-  try {
-    return await AsyncStorage.getItem(key);
-  } catch (error) {
-    console.error(`Error retrieving ${key}:`, error);
-    return null;
-  }
+// Utility function to filter out buddies from a list of members
+const filterNonBuddies = (members, buddyIds) => {
+  return members.filter(member => !buddyIds.has(member.id));
 };
 
-// Function to make authenticated API requests
-const makeAuthenticatedRequest = async (url, options = {}) => {
-  try {
-    const userToken = await getDataFromStorage('userToken');
+// --------------------- //
 
-    const headers = {
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${userToken}`
-    };
-
-    return client.get(url, { ...options, headers });
-  } catch (error) {
-    console.error(`Error making authenticated request to ${url}:`, error);
-    throw error;
-  }
+// getMembersBySearch
+const getSearch = async () => {
+  // get the member ID from AsyncStorage
+  const memberId = await getDataFromStorage('memberId');
+  return makeAuthenticatedRequest('/member', memberId);
 };
 
-// const getUserClubMembers = () => client.get("/members");
-// const getMatchClubMembers = () => client.get("/members");
-// const getConnectAllMembers = () => client.get("/members");
-
-const getSearch = () => client.get("/members");
-
+// getMembersProfile
 const getMembersProfile = async (memberId) => {
-  try {
-    return makeAuthenticatedRequest(`/member/${memberId}`);
-  } catch (error) {
-    console.error('Error getting member profile:', error);
-    throw error;
-  }
+  return makeAuthenticatedRequest('/member', memberId);
 };
 
-
+// getBuddies
 const getBuddies = async () => {
-  try {
-    const memberId = await getDataFromStorage('memberId');
-    console.log('Member ID:', memberId);
-    const response = await makeAuthenticatedRequest(`/buddy/list/${memberId}`, {
-      Accept: 'application/json'
-    });
-    console.log('Buddies:', response);
-    return response;
-  } catch (error) {
-    console.error('Error getting buddies:', error);
-    throw error;
-  }
+  const memberId = await getDataFromStorage('memberId');
+  return makeAuthenticatedRequest('/buddy/list', memberId);
 };
 
+// getMemberBuddies
 const getMemberBuddies = async (memberId) => {
+  return makeAuthenticatedRequest('/buddy/list', memberId);
+};
+
+// getUser
+const getUser = async (userId) => {
+  return makeAuthenticatedRequest('/user', userId);
+};
+
+// getBuddyIds
+const getBuddyIds = async (userId) => {
   try {
-    return makeAuthenticatedRequest(`/buddy/list/${memberId}`, {
-      Accept: 'application/json'
-    });
+    // Get the list of buddies for the current user
+    const buddiesResponse = await makeAuthenticatedRequest('/buddy/list', userId);
+    const buddies = buddiesResponse.data.buddies;
+
+    // Create a set of buddy IDs for fast lookup
+    const buddyIds = new Set(buddies.map(buddy => buddy.id));
+    return buddyIds;
   } catch (error) {
-    console.error('Error getting member buddies:', error);
+    console.error('Error fetching buddies:', error);
     throw error;
   }
 };
 
 const getUserClubMembers = async () => {
   try {
-    // Fetch the current user's details including home_club_address
+    // get the member ID and user ID from AsyncStorage
     const memberId = await getDataFromStorage('memberId');
-    console.log('memberId:', memberId);
-    const currentUserResponse = await client.get(`/member/${memberId}`);
-    console.log('currentUserResponse:', currentUserResponse);
+    const userId = await getDataFromStorage('userId');
+    console.log('memberId of getUserClubMembers:', memberId);
+    console.log('userId of getUserClubMembers:', userId);
+
+    // use the member ID to get the current user and home club address
+    const currentUserResponse = await makeAuthenticatedRequest('/member', memberId);
     const currentUser = currentUserResponse.data.member;
     const homeClubAddress = currentUser.home_club_address;
+    console.log('currentUser of getUserClubMembers:', currentUser);
+    console.log('homeClubAddress of getUserClubMembers:', homeClubAddress);
 
-    // Fetch members filtered by home_club_address
-    const response = await client.get("/members")
-    console.log(response)
+    // get all the members
+    const membersResponse = await makeAuthenticatedRequest('/members');
+    const allMembers = membersResponse.data.members;
+    console.log('allMembers of getUserClubMembers:', allMembers);
 
-    // Filter members based on home_club_address
-    const filteredMembers = response.data.members.filter(member => {
-      if (member.home_club_address) {
-        return member.home_club_address === homeClubAddress;
-      }
-      return false;
+    // get the buddy IDs for the current user
+    const buddyIds = await getBuddyIds(userId);
+    console.log('buddyIds:', buddyIds);
+
+    // filter the members by home club address and non-buddy
+    const filteredMembers = allMembers.filter(member => {
+      return member.home_club_address === homeClubAddress && !buddyIds.has(member.id);
     });
 
-    console.log('Location filtered members:', filteredMembers);
+    console.log('Location filtered and non-buddy members:', filteredMembers);
 
     return filteredMembers;
   } catch (error) {
@@ -104,29 +91,34 @@ const getUserClubMembers = async () => {
 
 const getMatchClubMembers = async () => {
   try {
-    // Fetch the current user's details including home_club_address
+  
+    // get the member ID and user ID from AsyncStorage
     const memberId = await getDataFromStorage('memberId');
-    const currentUserResponse = await client.get(`/member/${memberId}`);
+    const userId = await getDataFromStorage('userId');
+
+    // use the member ID to get the current user
+    const currentUserResponse = await makeAuthenticatedRequest('/member', memberId);
     const currentUser = currentUserResponse.data.member;
 
-    // Fetch all members
-    const response = await client.get("/members");
+    // get all the members
+    const membersResponse = await makeAuthenticatedRequest('/members');
+    const allMembers = membersResponse.data.members;
 
-    // Extract workout types from the current user
+    // get the buddy IDs for the current user
+    const buddyIds = await getBuddyIds(userId);
+
+    // get the workout types of the current user
     const currentUserWorkoutTypes = currentUser.workout_types.split(',').map(type => type.trim());
 
-    // Filter members based on workout types
-    const filteredMembers = response.data.members.filter(member => {
-      // Extract workout types from each member
+    // filter the members by workout type and non-buddy
+    const filteredMembers = allMembers.filter(member => {
       const memberWorkoutTypes = member.workout_types.split(',').map(type => type.trim());
-
-      // Check if any workout type of the current user exists in the member's workout types
       const matches = currentUserWorkoutTypes.some(type => memberWorkoutTypes.includes(type));
 
-      return matches;
+      return matches && !buddyIds.has(member.id);
     });
 
-    console.log('Workout filtered members:', filteredMembers);
+    console.log('Workout filtered and non-buddy members:', filteredMembers);
 
     return filteredMembers;
   } catch (error) {
@@ -137,15 +129,26 @@ const getMatchClubMembers = async () => {
 
 const getConnectAllMembers = async () => {
   try {
-    const allMembers = await client.get("/members");
-    const response = allMembers.data.members;
-    console.log('All members:', response);
-    return response;
+    // get the user ID from AsyncStorage
+    const userId = await getDataFromStorage('userId');
+
+    // get all the members
+    const allMembersResponse = await makeAuthenticatedRequest('/members');
+    const allMembers = allMembersResponse.data.members;
+
+    // get the buddy IDs for the current user
+    const buddyIds = await getBuddyIds(userId);
+
+    const filteredMembers = filterNonBuddies(allMembers, buddyIds);
+
+    console.log('All non-buddy members:', filteredMembers);
+
+    return filteredMembers;
   } catch (error) {
     console.error('Error fetching connect all members:', error);
     throw error;
   }
-}
+};
 
 export default {
   getBuddies,
@@ -154,5 +157,6 @@ export default {
   getConnectAllMembers,
   getMembersProfile,
   getSearch,
-  getMemberBuddies
+  getMemberBuddies,
+  getUser
 };

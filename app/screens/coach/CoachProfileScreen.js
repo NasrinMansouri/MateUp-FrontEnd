@@ -19,46 +19,32 @@ import {
 } from "../../components/shareMemberProfile";
 import BulletList from "../../components/shareMemberProfile/BulletList";
 import { GalleryDisplayVideos, TitleSubtitle } from "../../components/coach";
-import coachesApi from "../../api/coaches";
+import coaches from "../../api/coaches";
 
 export default function CoachProfileScreen({ navigation, route }) {
   // for backend connection
   // const [coachProfile, setCoachProfile] = useState(null);
   const { trainerId } = route.params;
-  // useEffect(() => {
-  //   loadCoachProfile();
-  // }, [trainerId]);
+  const [trainerProfile, setTrainerProfile] = useState(null);
 
-  // const loadCoachProfile = async () => {
-  //   try {
-  //     const response = await coachesApi.getCoachesProfile(trainerId);
-  //     setCoachProfile(response.data.trainer);
-  //     console.log(response.data.trainer);
-  //   } catch (error) {
-  //     console.log("Error loading trainer profile:", error);
-  //   }
-  // };
-  // if (!coachProfile) {
-  //   return (
-  //     <View style={styles.container}>
-  //       <ActivityIndicator
-  //         size="large"
-  //         color={colors.orangeSecondary}
-  //         style={{ marginTop: 50 }}
-  //       />
-  //       <Text
-  //         style={{
-  //           textAlign: "center",
-  //           marginTop: 20,
-  //           fontSize: 16,
-  //           color: colors.orangeSecondary,
-  //         }}
-  //       >
-  //         Loading...
-  //       </Text>
-  //     </View>
-  //   );
-  // }
+  useEffect(() => {
+    loadTrainerProfile();
+  }, []);
+
+  console.log("trainerId on CoachProfileScreen", trainerId);
+
+  // load the trainer profile
+  const loadTrainerProfile = async () => {
+    try {
+      const response = await coaches.getCoachesProfile(trainerId);
+      setTrainerProfile(response.data.trainer);
+      console.log("setTrainerProfile on CoachProfileScreen", response.data.trainer);
+    } catch (error) {
+      console.error("Error loading trainer profile:", error);
+    }
+  }
+
+  console.log("trainerProfile on CoachProfileScreen", trainerProfile);
 
   const coachProfile = {
     id: 1,
@@ -109,7 +95,7 @@ export default function CoachProfileScreen({ navigation, route }) {
     <Screen style={styles.screen}>
       <ScrollView style={styles.container}>
         <UserImage
-          userImage={userImage}
+          userImage={trainerProfile?.user?.profile_image_url}
           // userImage={coachProfile.userImage}
           imageWidth={375}
           imageHeight={212}
@@ -118,9 +104,9 @@ export default function CoachProfileScreen({ navigation, route }) {
         <ProfileTile
           // name={coachProfile.firstName + " " + coachProfile.lastName}
           // location={coachProfile.location}
-          firstName={firstName}
-          lastName={lastName}
-          location={location}
+          firstName={trainerProfile?.user?.name}
+          lastName={trainerProfile?.user?.surname}
+          location={trainerProfile?.home_club_address}
           onpressmessage={() => console.log("pressed message")}
         />
         <Bio
@@ -130,7 +116,7 @@ export default function CoachProfileScreen({ navigation, route }) {
         <Line marginTop={62} marginBottom={22} width={"90%"} />
         <BulletList
           header={"Expertise"}
-          titles={expertise}
+          titles={trainerProfile?.expertise}
           // titles={coachProfile.expertise}
           textColor={colors.white}
         />
@@ -138,7 +124,7 @@ export default function CoachProfileScreen({ navigation, route }) {
           <View>
             <Line marginTop={62} marginBottom={22} width={"90%"} />
             <BulletList
-              titles={education}
+              titles={trainerProfile?.education}
               // titles={coachProfile.education}
               header={"Education"}
               textColor={colors.white}
@@ -148,7 +134,7 @@ export default function CoachProfileScreen({ navigation, route }) {
         <Line marginTop={62} marginBottom={22} width={"90%"} />
         <BulletList
           header={"Language"}
-          titles={language}
+          titles={trainerProfile?.language}
           // titles={coachProfile.language}
           textColor={colors.white}
         />
@@ -176,7 +162,7 @@ export default function CoachProfileScreen({ navigation, route }) {
           title={"see available groups"}
           width={"100%"}
           fontSize={14}
-          onPress={() => navigation.navigate("AvailableGroups")}
+          onPress={() => navigation.navigate("AvailableGroups", { trainerId: trainerId })}
           containerStyle={styles.buttonContainer}
         />
         <AppButton
@@ -218,6 +204,40 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
 });
+// useEffect(() => {
+  //   loadCoachProfile();
+  // }, [trainerId]);
+
+  // const loadCoachProfile = async () => {
+  //   try {
+  //     const response = await coachesApi.getCoachesProfile(trainerId);
+  //     setCoachProfile(response.data.trainer);
+  //     console.log(response.data.trainer);
+  //   } catch (error) {
+  //     console.log("Error loading trainer profile:", error);
+  //   }
+  // };
+  // if (!coachProfile) {
+  //   return (
+  //     <View style={styles.container}>
+  //       <ActivityIndicator
+  //         size="large"
+  //         color={colors.orangeSecondary}
+  //         style={{ marginTop: 50 }}
+  //       />
+  //       <Text
+  //         style={{
+  //           textAlign: "center",
+  //           marginTop: 20,
+  //           fontSize: 16,
+  //           color: colors.orangeSecondary,
+  //         }}
+  //       >
+  //         Loading...
+  //       </Text>
+  //     </View>
+  //   );
+  // }
 
 // dummy data for coach Profile screen
 // const coachProfileData = {

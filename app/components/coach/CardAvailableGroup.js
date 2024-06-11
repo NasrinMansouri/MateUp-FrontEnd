@@ -44,7 +44,7 @@ export default function CardAvailableGroup({
         </Text>
       </View>
       <View style={styles.spotsContainer}>
-        <Text style={styles.textSpots}>{spots}</Text>
+        <Text style={styles.textSpots}>{spots} spots left</Text>
       </View>
       <View style={styles.buttonContainer}>
         <AppButton title={"request to Book"} fontSize={14} onPress={onPress} />

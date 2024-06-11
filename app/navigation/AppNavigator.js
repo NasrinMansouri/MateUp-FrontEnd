@@ -22,6 +22,7 @@ const AppNavigator = ({ userToken, userId, memberId, onLogout }) => {
   // useNotifications();
   const theme = useTheme(); // to change color of bottom tab
 
+  // log the userToken, userId, memberId
   useEffect(() => {
     // You can access userToken and userId here
     console.log('User Token on AppNavigator:', userToken);

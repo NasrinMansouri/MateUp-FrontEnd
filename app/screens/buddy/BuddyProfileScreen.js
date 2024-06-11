@@ -18,15 +18,35 @@ import BulletList from "../../components/shareMemberProfile/BulletList";
 import GalleryJoinedChallenge from "../../components/challenge/GalleryJoinedChallenge";
 // import { useNavigation } from "@react-navigation/native";
 
-export default function BuddyProfileScreen({ route, navigation }) {
+export default function BuddyProfileScreen({route, navigation }) {
   const scrollRef = useRef();
   const [memberProfile, setMemberProfile] = useState(null); //or ({}) //pass an empty object
   const [buddies, setBuddies] = useState([]);
+
+  const { isBuddy } = route.params;
 
   useEffect(() => {
     loadBuddies();
   }, []);
 
+  useEffect(() => {
+    if (isBuddy !== undefined) {
+      setButtonClicked(
+        isBuddy
+          ? {
+              title: "Cancel Buddy Request",
+              backgroundColor: colors.orangeSecondary,
+            }
+          : {
+              title: "Send Buddy Request",
+              backgroundColor: colors.green,
+            }
+      );
+    }
+  }, [isBuddy]);
+
+
+  // load all the buddies of a member
   const loadBuddies = async () => {
     try {
       const { memberId } = route.params; // Retrieve memberId from route params
@@ -37,7 +57,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
       console.error("Error loading buddies:", error);
     }
   };
-  
+
 
   // const navigation = useNavigation();
 
@@ -49,24 +69,25 @@ export default function BuddyProfileScreen({ route, navigation }) {
   const { memberId } = route.params;
   // for backend connection
 
+
+  console.log('isBuddy on buddyProfileScreen', isBuddy)
   const handleButtonClicked = () => {
-    setButtonClicked((toggleState) => ({
-      //check if the current state is send buddy request,
-      //if yes it will change it to cancel buddy request
-      // else it will change it to send buddy request, which means it is cancel request
-      title:
-        toggleState.title === "Send Buddy Request"
-          ? "Cancel Buddy Request"
-          : "Send Buddy Request",
-      backgroundColor:
-        toggleState.backgroundColor === colors.green
-          ? colors.orangeSecondary
-          : colors.green,
-    }));
+    if (isBuddy) {
+      setButtonClicked({
+        title: "Cancel Buddy Request",
+        backgroundColor: colors.orangeSecondary,
+      });
+    } else {
+      setButtonClicked({
+        title: "Send Buddy Request",
+        backgroundColor: colors.green,
+      });
+    }
   };
+  
 
   //for backend connection
-
+  // load member profile based on memberId
   useEffect(() => {
     loadMemberProfile();
   }, [memberId]);
@@ -80,7 +101,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
       console.error("Error loading member profile:", error);
     }
   };
-  
+
   if (!memberProfile) {
     return (
       <View style={styles.container}>
@@ -136,7 +157,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
           //firstName={firstName}
           // firstName={userProfile.firstName}
           // lastName={lastName}
-          location="Raghenoplein 21 bis, 2800 Mechelen"
+          location={memberProfile.home_club_address}
           onpressmessage={() => console.log("pressed message")}
         />
         <Bio bio={memberProfile.user.bio} />
@@ -190,7 +211,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
           userFirstName={memberProfile.user.name}
           onPressGoToTop={goToTop}
           onPressGoToCalendar={handleGoToCalendar}
-          isBuddy={false} // change to true if they are buddy
+          isBuddy={isBuddy} // change to true if they are buddy
         />
       </ScrollView>
     </Screen>
@@ -211,3 +232,19 @@ const styles = StyleSheet.create({
     marginLeft: 16,
   },
 });
+
+  // const handleButtonClicked = () => {
+  //   //check if the current state is send buddy request,
+  //   //if yes it will change it to cancel buddy request
+  //   // else it will change it to send buddy request, which means it is cancel request
+  //   setButtonClicked((toggleState) => ({
+  //     title:
+  //       toggleState.title === "Send Buddy Request"
+  //         ? "Cancel Buddy Request"
+  //         : "Send Buddy Request",
+  //     backgroundColor:
+  //       toggleState.backgroundColor === colors.green
+  //         ? colors.orangeSecondary
+  //         : colors.green,
+  //   }));
+  // };

@@ -1,5 +1,6 @@
 import { create } from "apisauce";
 import { Platform } from "react-native";
+import axios from "axios";
 
 let url;
 if (Platform.OS == 'android') {
@@ -8,7 +9,7 @@ if (Platform.OS == 'android') {
 else {
   url = "http://127.0.0.1:8000/api";
 }
-const apiClient = create({
-  baseURL: url
+const apiClient = axios.create({
+  baseURL: url,
 });
 export default apiClient;

@@ -10,7 +10,6 @@ export default function GalleryMatchBasedWorkout({
   onPress,
 }) {
   const navigation = useNavigation();
-  const location = "Raghenoplein 21 bis, 2800 Mechelen";
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.title}>matches based on your workout</Text>
@@ -24,7 +23,7 @@ export default function GalleryMatchBasedWorkout({
           <CardMatchBasedWorkout
             name={item.user.name}
             image={item.user.profile_image_url}
-            location={location}
+            location={item.home_club_address}
             titles={item.workout_types}  
             // onPress={onPress}
             // onPress={() => navigation.navigate("MemberProfile", item)}

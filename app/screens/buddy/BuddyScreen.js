@@ -61,29 +61,32 @@ export default function BuddyScreen({ navigation }) {
 
   const loadBuddies = async () => {
     const response = await membersApi.getBuddies();
-    console.log("buddies", response.data.buddies)
+    console.log("Buddies on buddy screen", response.data.buddies)
     setBuddies(response.data.buddies);
   };
 
   const loadUserClubMembers = async () => {
     const response = await membersApi.getUserClubMembers();
+    console.log("UserClubMembers on buddy screen", response);
     setUserClubMembers(response);
   };
 
   const loadMatchClubMembers = async () => {
     const response = await membersApi.getMatchClubMembers();
+    console.log("MatchClubMembers on buddy screen", response);
     setMatchClubMembers(response);
   };
   const loadConnectAllMembers = async () => {
     try {
       const response = await membersApi.getConnectAllMembers();
-      console.log("ConnectAllMembers", response);
+      console.log("ConnectAllMembers on buddy screen", response);
       setConnectAllMembers(response);
     } catch (error) {
       console.error("Error loading Connect All Members:", error);
     }
   };
 
+  // handle press for each buddy
   const handlePress = (item) => {
     console.log("Clicked memberId:", item.id);
     navigation.navigate("MemberProfile", {
@@ -92,6 +95,15 @@ export default function BuddyScreen({ navigation }) {
     });
   };
 
+  const handlePressBuddy = (item) => {
+    console.log("Clicked memberId:", item.id);
+    navigation.navigate("MemberProfile", {
+      memberId: item.id,
+      challengeId: item.id,
+      isBuddy: true
+    });
+  };
+  
 
   return (
     <Screen style={styles.container}>
@@ -113,7 +125,7 @@ export default function BuddyScreen({ navigation }) {
             // buddies={getBuddiesApi.data.buddies}
             // loading={getBuddiesApi.loading}
             // error={getBuddiesApi.error}
-            onPress={(item) => handlePress(item)}
+            onPress={(item) => handlePressBuddy(item)}
           />
         </View>
         <Line marginBottom={40} marginTop={20} />
