@@ -53,6 +53,7 @@ export default function GalleryBuddiesWorkout({ buddiesWorkout }) {
           horizontal
           showsHorizontalScrollIndicator={false}
           data={buddiesWorkoutData}
+          initialNumToRender={buddiesWorkoutData.length}
           keyExtractor={(buddiesWorkout) => buddiesWorkout.id.toString()}
           renderItem={({ item }) => (
             <CardBuddiesWorkout

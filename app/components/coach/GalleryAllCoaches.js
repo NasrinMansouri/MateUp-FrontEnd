@@ -33,6 +33,7 @@ export default function GalleryAllCoaches({
       <Text style={styles.title}>Meet All Coaches</Text>
       <FlatList
         data={meetAllCoaches}
+        initialNumToRender={meetAllCoaches.length}
         keyExtractor={(trainers) => trainers.id.toString()}
         renderItem={({ item }) => (
           <CardAllCoaches

@@ -18,6 +18,7 @@ export default function GalleryMatchClubMembers({ UserClubMembers, onPress }) {
         style={styles.container}
         horizontal
         data={UserClubMembers}
+        initialNumToRender={UserClubMembers.length}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <CardMatchClubMembers

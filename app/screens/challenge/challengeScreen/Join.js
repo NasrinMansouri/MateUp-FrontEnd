@@ -143,6 +143,7 @@ export default function Join({}) {
     <Screen>
       <FlatList
         data={data}
+        initialNumToRender={data.length}
         keyExtractor={(item) => item.type}
         renderItem={({ item }) => renderItemCache[item.type](item.data)}
         showsVerticalScrollIndicator={false}

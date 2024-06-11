@@ -105,6 +105,7 @@ export default function BuddySearchScreen({ navigation }) {
         <FlatList
           showsVerticalScrollIndicator={false}
           data={searchResults}
+          initialNumToRender={searchResults.length}
           // data={getSearchApi.data}
           // loading={getSearchApi.loading}
           // error={getSearchApi.error}

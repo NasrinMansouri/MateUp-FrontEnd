@@ -72,6 +72,7 @@ function GalleryPeopleYouMightKnow({ onPress }) {
           horizontal
           showsHorizontalScrollIndicator={false}
           data={youMightKnow}
+          initialNumToRender={youMightKnow.length}
           keyExtractor={(members) => members.id.toString()}
           renderItem={({ item }) => (
             <CardProfile

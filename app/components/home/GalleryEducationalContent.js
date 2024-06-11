@@ -26,6 +26,7 @@ export default function GalleryEducationalContent({ educationalContent }) {
         vertical
         style={styles.container}
         data={dataEducationalContent}
+        initialNumToRender={dataEducationalContent.length}
         keyExtractor={(educationalContent) => educationalContent.id.toString()}
         renderItem={({ item }) => (
           <CardEducationalContent

@@ -34,6 +34,7 @@ export default function GalleryAllChallenges({
       </View>
       <FlatList
         data={AllChallenges}
+        initialNumToRender={AllChallenges.length}
         keyExtractor={(challenges) => challenges.id.toString()}
         renderItem={({ item }) => (
           <CardChallenges
