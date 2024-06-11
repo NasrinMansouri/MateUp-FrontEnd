@@ -41,12 +41,27 @@ function GalleryPeopleYouMightKnow({ onPress }) {
   //   },
   // ];
 
+  const [memberId, setMemberId] = useState(0);
   const [youMightKnow, setYouMightKnow] = useState([]);
 
-  useEffect(() => {
-    loadmembersYouMightKnow();
-  }, []);
+  // Load memberId from AsyncStorage
+  const loadMemberId = async () => {
+    try {
+      const memberId = await getFromAsyncStorage("memberId");
+      setMemberId(memberId);
+    } catch (error) {
+      console.error("Error loading memberId:", error);
+    }
+  };
 
+  useEffect(() => {
+    // Load memberId
+    loadMemberId();
+    // if memberId exists, load buddies
+    if (memberId) {
+      loadmembersYouMightKnow();
+    }
+  }, [memberId]);
 
   const loadmembersYouMightKnow = async () => {
     try {
