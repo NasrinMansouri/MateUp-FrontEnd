@@ -80,7 +80,7 @@ export default function BuddyScreen({ navigation }) {
     try {
       const response = await membersApi.getConnectAllMembers();
       console.log("ConnectAllMembers on buddy screen", response);
-      setConnectAllMembers(response);
+      setConnectAllMembers(response.data.members);
     } catch (error) {
       console.error("Error loading Connect All Members:", error);
     }

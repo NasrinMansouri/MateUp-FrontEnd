@@ -39,7 +39,7 @@ const getUser = async (userId) => {
 const getUserClubMembers = async () => {
   const memberId = await getDataFromStorage('memberId');
   return makeAuthenticatedRequest('/member/club-members', memberId);
-} 
+}
 
 // getBuddyIds
 const getBuddyIds = async (userId) => {
@@ -57,37 +57,22 @@ const getBuddyIds = async (userId) => {
   }
 };
 
+// getMatchClubMembers
 const getMatchClubMembers = async () => {
   const memberId = await getDataFromStorage('memberId');
   return makeAuthenticatedRequest('/member/matching-workouts-members', memberId);
 }
 
+// getmembersYouMightKnow
 const getmembersYouMightKnow = async () => {
   const memberId = await getDataFromStorage('memberId');
   return makeAuthenticatedRequest('/member/members-you-might-know', memberId);
 }
 
+// getConnectAllMembers
 const getConnectAllMembers = async () => {
-  try {
-    // get the user ID from AsyncStorage
-    const userId = await getDataFromStorage('userId');
-
-    // get all the members
-    const allMembersResponse = await makeAuthenticatedRequest('/members');
-    const allMembers = allMembersResponse.data.members;
-
-    // get the buddy IDs for the current user
-    const buddyIds = await getBuddyIds(userId);
-
-    const filteredMembers = filterNonBuddies(allMembers, buddyIds);
-
-    console.log('All non-buddy members:', filteredMembers);
-
-    return filteredMembers;
-  } catch (error) {
-    console.error('Error fetching connect all members:', error);
-    throw error;
-  }
+  const memberId = await getDataFromStorage('memberId');
+  return makeAuthenticatedRequest('/member/connect-other-members', memberId);
 };
 
 export default {
