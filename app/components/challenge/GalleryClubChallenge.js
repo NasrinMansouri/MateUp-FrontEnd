@@ -41,12 +41,12 @@ export default function GalleryClubChallenge({
           <CardChallenges
             onPressCard={() => onPress(item)}
             onPressBtn={() => onPressJoin(item)}
-            challengeImage={item.challengeImage}
-            challengeName={item.challengeName}
-            duration={item.duration}
-            beginingDate={item.beginingDate}
-            endingDate={item.endingDate}
-            year={item.year}
+            challengeImage={item.challenge_image_url}
+            challengeName={item.name}
+            duration={item.time_based}
+            beginingDate={item.start_date}
+            endingDate={item.end_date}
+            //year={item.year}
             cardHeight={284}
           />
         )}
