@@ -131,7 +131,7 @@ export default function ChallengeSearchScreen({ navigation }) {
       <FlatList
         showsVerticalScrollIndicator={false}
         data={searchResults}
-        initialNumToRender={searchResults.length}
+        initialNumToRender={searchResults && searchResults.length > 0 ? searchResults.length : undefined}
         keyExtractor={(members) => members.id.toString()}
         ItemSeparatorComponent={ListItemSeparator}
         ListEmptyComponent={

@@ -37,12 +37,12 @@ export default function GalleryCoachesClubMembers({
         horizontal
         showsHorizontalScrollIndicator={false}
         data={coachesClubMember}
-        initialNumToRender={coachesClubMember.length}
+        initialNumToRender={coachesClubMember && coachesClubMember.length > 0 ? coachesClubMember.length : undefined}
         keyExtractor={(trainers) => trainers.id.toString()}
         renderItem={({ item }) => (
           <CardCoachClubMember
             name={item.user.name}
-            image={item.user.profile_image_url}
+            image={{uri: item.user.profile_image_url}}
             titles={item.expertise}
             // onPress={() => navigation.navigate("CoachProfile", item)}
             onPress={() => onPress(item)}

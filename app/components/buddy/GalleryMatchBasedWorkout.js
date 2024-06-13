@@ -18,14 +18,14 @@ export default function GalleryMatchBasedWorkout({
         style={styles.container}
         horizontal
         data={matchMemberWorkout}
-        initialNumToRender={matchMemberWorkout.length}
+        initialNumToRender={matchMemberWorkout && matchMemberWorkout.length > 0 ? matchMemberWorkout.length : undefined}
         keyExtractor={(Members) => Members.id.toString()}
         renderItem={({ item }) => (
           <CardMatchBasedWorkout
             name={item.user.name}
-            image={item.user.profile_image_url}
+            image={{uri: item.user.profile_image_url}}
             location={item.home_club_address}
-            titles={item.workout_types}  
+            titles={item.workout_types}
             // onPress={onPress}
             // onPress={() => navigation.navigate("MemberProfile", item)}
             onPress={() => onPress(item)}

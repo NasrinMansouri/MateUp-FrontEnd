@@ -137,7 +137,7 @@ export default function DetailsChallengeScreen({ route }) {
                 <CardProfile
                   key={id}
                   name={buddy.name}
-                  image={buddy.image}
+                  image={{uri: buddy.image}}
                   flexDirection={"row"}
                   cardWidth={"100%"}
                   imageHeight={52}

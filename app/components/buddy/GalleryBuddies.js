@@ -11,9 +11,9 @@ import BuddyProfileScreen from "../../screens/buddy/BuddyProfileScreen";
 import CardProfile from "../CardProfile";
 import colors from "../../config/colors";
 
-function GalleryBuddies({isBuddy, buddies, onPress, style, header, paddingLeft = 16 }) {
+function GalleryBuddies({ isBuddy, buddies, onPress, style, header, paddingLeft = 16 }) {
   const navigation = useNavigation();
-  
+
   return (
     <View>
       {header && (
@@ -27,12 +27,13 @@ function GalleryBuddies({isBuddy, buddies, onPress, style, header, paddingLeft =
         horizontal
         showsHorizontalScrollIndicator={false}
         data={buddies}
-        initialNumToRender={buddies.length}
+        initialNumToRender={buddies && buddies.length > 0 ? buddies.length : undefined}
         keyExtractor={(members) => members.id.toString()}
         renderItem={({ item }) => {
+          console.log("Profile Image URL:", item.profile_image_url);
           return (
             <CardProfile
-            // onPressProfile={() =>
+              // onPressProfile={() =>
               //   navigation.navigate(
               //     "MemberProfile",
               //     item
@@ -48,7 +49,7 @@ function GalleryBuddies({isBuddy, buddies, onPress, style, header, paddingLeft =
               // name={item.user.name ? capitalizeFirstLetter(item.user.name) : null}
               backgroundColor={colors.blackBc}
               // image={item.user.profile_image_url} //for connecting to backed
-              image={item.profile_image_url}
+              image={{ uri: item.profile_image_url }}
               flexDirection={"column"}
               cardWidth={97}
               cardHeight={107}
@@ -92,31 +93,31 @@ export default GalleryBuddies;
   /* <GalleryBuddies buddies={buddiesData} /> */
 }
 
-  //dummy data for testing
-  // const buddiesData = [
-  //   {
-  //     id: 1,
-  //     name: "MMMMMMMMMMMMMMMM ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Coucheeeeeeee ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Couchhhhhhhhh ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "NNNNNN NNNNN ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "Couch ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  // ];
+//dummy data for testing
+// const buddiesData = [
+//   {
+//     id: 1,
+//     name: "MMMMMMMMMMMMMMMM ",
+//     image: require("../../../assets/person-1.jpg"),
+//   },
+//   {
+//     id: 2,
+//     name: "Coucheeeeeeee ",
+//     image: require("../../../assets/person-1.jpg"),
+//   },
+//   {
+//     id: 3,
+//     name: "Couchhhhhhhhh ",
+//     image: require("../../../assets/person-1.jpg"),
+//   },
+//   {
+//     id: 4,
+//     name: "NNNNNN NNNNN ",
+//     image: require("../../../assets/person-1.jpg"),
+//   },
+//   {
+//     id: 5,
+//     name: "Couch ",
+//     image: require("../../../assets/person-1.jpg"),
+//   },
+// ];

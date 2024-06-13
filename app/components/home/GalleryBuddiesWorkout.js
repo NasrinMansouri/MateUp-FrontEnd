@@ -53,12 +53,12 @@ export default function GalleryBuddiesWorkout({ buddiesWorkout }) {
           horizontal
           showsHorizontalScrollIndicator={false}
           data={buddiesWorkoutData}
-          initialNumToRender={buddiesWorkoutData.length}
+          initialNumToRender={buddiesWorkoutData && buddiesWorkoutData.length > 0 ? buddiesWorkoutData.length : undefined}
           keyExtractor={(buddiesWorkout) => buddiesWorkout.id.toString()}
           renderItem={({ item }) => (
             <CardBuddiesWorkout
               onPress={() => console.log("my buddies workout", item)}
-              image={item.image}
+              image={{uri: item.image}}
               name={item.name}
               workout={item.workout}
               day={item.day}

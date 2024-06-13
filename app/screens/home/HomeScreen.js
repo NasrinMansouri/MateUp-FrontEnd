@@ -83,7 +83,7 @@ export default function HomeScreen({ navigation }) {
     }
   };
 
-  
+
   // Load user
   const loadUser = async (userId) => {
     try {
@@ -171,7 +171,7 @@ export default function HomeScreen({ navigation }) {
       <TopNav
         showMenue={true}
         // onPressMenue={handleModal}
-        userProfileImage={user?.profile_image_url}
+        userProfileImage={{uri: user?.profile_image_url}}
         onPressMenue={() => navigation.navigate("menu")}
         // onPressNotification={() => navigation.navigate("Notification")}
         onPressMessage={() => console.log("Message image pressed")}
@@ -188,7 +188,7 @@ export default function HomeScreen({ navigation }) {
       />
       <FlatList
         data={data}
-        initialNumToRender={data.length}
+        initialNumToRender={data && data.length > 0 ? data.length : undefined}
         keyExtractor={(item) => item.type}
         // renderItem function,
         // which renders the component(each item) based on the type

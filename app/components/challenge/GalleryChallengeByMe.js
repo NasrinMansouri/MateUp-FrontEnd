@@ -38,12 +38,12 @@ export default function GalleryChallengeByMe({
         style={styles.container}
         horizontal
         data={challengeByMe}
-        initialNumToRender={challengeByMe.length}
+        initialNumToRender={challengeByMe && challengeByMe.length > 0 ? challengeByMe.length : undefined}
         keyExtractor={(challenges) => challenges.id.toString()}
         renderItem={({ item }) => (
           <CardJoinedChallenge
             onPress={() => onPress(item)}
-            challenegImage={item.challenegImage}
+            challenegImage={{uri: item.challenegImage}}
             challengeName={item.challengeName}
             challengeGoal={item.challengeGoal}
             startDate={item.startDate}

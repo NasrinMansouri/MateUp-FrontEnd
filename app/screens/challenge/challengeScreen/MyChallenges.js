@@ -32,7 +32,7 @@ joinedChallengeData = [
   },
 ];
 
-export default function MyChallenges({}) {
+export default function MyChallenges({ }) {
   // for backend connection
   // const getJoinedChallenge = useApi(challengeApi.getUserJoinedChallenges);
   // const getChallengeByMe = useApi(challengeApi.getChallengesByMe);
@@ -97,7 +97,7 @@ export default function MyChallenges({}) {
     <Screen>
       <FlatList
         data={data}
-        initialNumToRender={data.length}
+        initialNumToRender={data && data.length > 0 ? data.length : undefined}
         keyExtractor={(item) => item.type}
         renderItem={({ item }) => renderItemCache[item.type](item.data)}
         showsVerticalScrollIndicator={false}

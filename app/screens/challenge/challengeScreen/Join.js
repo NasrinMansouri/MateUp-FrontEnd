@@ -61,7 +61,7 @@ const challengeYourBuddiesJoined = [
   },
 ];
 
-export default function Join({}) {
+export default function Join({ }) {
   // for backend connection
   // const getChallengeYourBuddiesJoinedApi = useApi(
   //   challengeApi.getBuddiesJoinedChallenges
@@ -175,7 +175,7 @@ export default function Join({}) {
     <Screen>
       <FlatList
         data={data}
-        initialNumToRender={data.length}
+        initialNumToRender={data && data.length > 0 ? data.length : undefined}
         keyExtractor={(item) => item.type}
         renderItem={({ item }) => renderItemCache[item.type](item.data)}
         showsVerticalScrollIndicator={false}

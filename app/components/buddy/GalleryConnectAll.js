@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import colors from "../../config/colors";
 import CardMatchBasedWorkout from "./CardMatchBasedWorkout";
+import members from "../../api/members";
 
 export default function GalleryConnectAll({ connectAllMembers, onPress }) {
   const navigation = useNavigation();
@@ -16,12 +17,12 @@ export default function GalleryConnectAll({ connectAllMembers, onPress }) {
         horizontal
         data={connectAllMembers}
         keyExtractor={(Members) => Members.id.toString()}
-        initialNumToRender={connectAllMembers.length}
+        initialNumToRender={connectAllMembers && connectAllMembers.length > 0 ? connectAllMembers.length : undefined}
         renderItem={({ item }) => {
           return (
             <CardMatchBasedWorkout
               name={item.user.name}
-              image={item.user.profile_image_url}
+              image={{uri: item.user.profile_image_url}}
               location={item.home_club_address}
               titles={item.workout_types}
               onPress={() => onPress(item)}

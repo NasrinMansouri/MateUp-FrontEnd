@@ -95,7 +95,7 @@ export default function CoachProfileScreen({ navigation, route }) {
     <Screen style={styles.screen}>
       <ScrollView style={styles.container}>
         <UserImage
-          userImage={trainerProfile?.user?.profile_image_url}
+          userImage={{uri: trainerProfile?.user?.profile_image_url}}
           // userImage={coachProfile.userImage}
           imageWidth={375}
           imageHeight={212}

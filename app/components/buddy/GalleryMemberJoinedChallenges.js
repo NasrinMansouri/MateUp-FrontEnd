@@ -38,7 +38,7 @@ export default function GalleryMemberJoinedChallenges({
         style={styles.container}
         horizontal
         data={joinedChallenge}
-        initialNumToRender={joinedChallenge.length}
+        initialNumToRender={joinedChallenge && joinedChallenge.length > 0 ? joinedChallenge.length : undefined}
         keyExtractor={(challenges) => challenges.id.toString()}
         renderItem={({ item }) => (
           <CardJoinedChallenge
@@ -47,7 +47,7 @@ export default function GalleryMemberJoinedChallenges({
             // onPress={() =>
             //   navigation.navigate("JoinedChallenge", { item: item.id })
             // }
-            challenegImage={item.challenegImage}
+            challenegImage={{uri: item.challenegImage}}
             challengeName={item.challengeName}
             challengeGoal={item.challengeGoal}
             startDate={item.startDate}

@@ -18,7 +18,7 @@ import BulletList from "../../components/shareMemberProfile/BulletList";
 import GalleryJoinedChallenge from "../../components/challenge/GalleryJoinedChallenge";
 // import { useNavigation } from "@react-navigation/native";
 
-export default function BuddyProfileScreen({route, navigation }) {
+export default function BuddyProfileScreen({ route, navigation }) {
   const scrollRef = useRef();
   const [memberProfile, setMemberProfile] = useState(null); //or ({}) //pass an empty object
   const [buddies, setBuddies] = useState([]);
@@ -34,13 +34,13 @@ export default function BuddyProfileScreen({route, navigation }) {
       setButtonClicked(
         isBuddy
           ? {
-              title: "Cancel Buddy Request",
-              backgroundColor: colors.orangeSecondary,
-            }
+            title: "Cancel Buddy Request",
+            backgroundColor: colors.orangeSecondary,
+          }
           : {
-              title: "Send Buddy Request",
-              backgroundColor: colors.green,
-            }
+            title: "Send Buddy Request",
+            backgroundColor: colors.green,
+          }
       );
     }
   }, [isBuddy]);
@@ -51,7 +51,7 @@ export default function BuddyProfileScreen({route, navigation }) {
     try {
       const { memberId } = route.params; // Retrieve memberId from route params
       const response = await membersApi.getMemberBuddies(memberId); // Pass memberId to the API call
-      console.log("buddies", response.data.buddies)
+      // console.log("buddies", response.data.buddies)
       setBuddies(response.data.buddies);
     } catch (error) {
       console.error("Error loading buddies:", error);
@@ -70,7 +70,7 @@ export default function BuddyProfileScreen({route, navigation }) {
   // for backend connection
 
 
-  console.log('isBuddy on buddyProfileScreen', isBuddy)
+  // console.log('isBuddy on buddyProfileScreen', isBuddy)
   const handleButtonClicked = () => {
     if (isBuddy) {
       setButtonClicked({
@@ -84,7 +84,7 @@ export default function BuddyProfileScreen({route, navigation }) {
       });
     }
   };
-  
+
 
   //for backend connection
   // load member profile based on memberId
@@ -96,7 +96,7 @@ export default function BuddyProfileScreen({route, navigation }) {
     try {
       const response = await membersApi.getMembersProfile(memberId); // Pass memberId here
       setMemberProfile(response.data.member);
-      console.log(response.data.member);
+      // console.log(response.data.member);
     } catch (error) {
       console.error("Error loading member profile:", error);
     }
@@ -115,7 +115,7 @@ export default function BuddyProfileScreen({route, navigation }) {
   };
 
   const handleGoToCalendar = () => {
-    console.log("go to calendar");
+    // console.log("go to calendar");
   };
 
   const {
@@ -135,11 +135,11 @@ export default function BuddyProfileScreen({route, navigation }) {
     <Screen style={styles.screen}>
       <ScrollView style={styles.container} ref={scrollRef}>
         {/* <HeaderTile
-          onPressBack={() => console.log("pressed back")}
-          onPressShare={() => console.log("pressed share")}
+          onPressBack={() => // console.log("pressed back")}
+          onPressShare={() => // console.log("pressed share")}
         /> */}
         <UserImage
-          userImage={memberProfile.user.profile_image_url}
+          userImage={{uri:memberProfile.user.profile_image_url}}
           //userImage={userImage}
           // userImage={userProfile.userImage}
           //or
@@ -159,14 +159,14 @@ export default function BuddyProfileScreen({route, navigation }) {
           // lastName={lastName}
           location={memberProfile.home_club_address}
           onpressmessage={() => console.log("pressed message")}
-        />
-        <Bio bio={memberProfile.user.bio} />
+            />
+            < Bio bio={memberProfile.user.bio} />
         <View style={styles.buttonContainer}>
           <AppButton
             title={buttonClicked.title}
             backgroundColor={buttonClicked.backgroundColor}
             onPress={handleButtonClicked}
-            // onPress={() => console.log("add As buddy btn pressed")}
+            // onPress={() => // console.log("add As buddy btn pressed")}
             fontSize={14}
           />
         </View>
@@ -233,18 +233,18 @@ const styles = StyleSheet.create({
   },
 });
 
-  // const handleButtonClicked = () => {
-  //   //check if the current state is send buddy request,
-  //   //if yes it will change it to cancel buddy request
-  //   // else it will change it to send buddy request, which means it is cancel request
-  //   setButtonClicked((toggleState) => ({
-  //     title:
-  //       toggleState.title === "Send Buddy Request"
-  //         ? "Cancel Buddy Request"
-  //         : "Send Buddy Request",
-  //     backgroundColor:
-  //       toggleState.backgroundColor === colors.green
-  //         ? colors.orangeSecondary
-  //         : colors.green,
-  //   }));
-  // };
+// const handleButtonClicked = () => {
+//   //check if the current state is send buddy request,
+//   //if yes it will change it to cancel buddy request
+//   // else it will change it to send buddy request, which means it is cancel request
+//   setButtonClicked((toggleState) => ({
+//     title:
+//       toggleState.title === "Send Buddy Request"
+//         ? "Cancel Buddy Request"
+//         : "Send Buddy Request",
+//     backgroundColor:
+//       toggleState.backgroundColor === colors.green
+//         ? colors.orangeSecondary
+//         : colors.green,
+//   }));
+// };

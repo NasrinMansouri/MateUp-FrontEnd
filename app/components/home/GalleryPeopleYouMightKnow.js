@@ -87,7 +87,7 @@ function GalleryPeopleYouMightKnow({ onPress }) {
           horizontal
           showsHorizontalScrollIndicator={false}
           data={youMightKnow}
-          initialNumToRender={youMightKnow.length}
+          initialNumToRender={youMightKnow && youMightKnow.length > 0 ? youMightKnow.length : undefined}
           keyExtractor={(members) => members.id.toString()}
           renderItem={({ item }) => (
             <CardProfile
@@ -95,7 +95,7 @@ function GalleryPeopleYouMightKnow({ onPress }) {
               onPressProfile={() => onPress(item)}
               name={capitalizeFirstLetter(item.name)}
               backgroundColor={colors.blackBc}
-              image={item.profile_image_url}
+              image={{uri: item.profile_image_url}}
               flexDirection={"column"}
               cardWidth={120}
               cardHeight={98}

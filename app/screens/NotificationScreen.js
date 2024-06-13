@@ -112,7 +112,7 @@ export default function ListItemGallery({ style }) {
               onPress={() => console.log("my notification", item)}
               name={item.name}
               title={item.title}
-              userImage={item.userImage}
+              userImage={{uri: item.userImage}}
               onPressConfirm={item.onPressConfirm}
               onPressDecline={() => handleDelete(item)}
               showRequestResult={item.showRequestResult}

@@ -33,12 +33,12 @@ export default function GalleryAllCoaches({
       <Text style={styles.title}>Meet All Coaches</Text>
       <FlatList
         data={meetAllCoaches}
-        initialNumToRender={meetAllCoaches.length}
+        initialNumToRender={meetAllCoaches && meetAllCoaches.length > 0 ? meetAllCoaches.length : undefined}
         keyExtractor={(trainers) => trainers.id.toString()}
         renderItem={({ item }) => (
           <CardAllCoaches
             name={item.user.name}
-            image={item.user.profile_image_url}
+            image={{uri: item.user.profile_image_url}}
             location={item.home_club_address}
             titles={item.expertise}
             onPress={() => onPress(item)}
