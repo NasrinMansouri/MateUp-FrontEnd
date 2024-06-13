@@ -14,7 +14,8 @@ import Screen from "../components/Screen";
 import colors from "../config/colors";
 import { AppFormField, SubmitButton, AppForm } from "../components/forms";
 import axios from "axios";
-import { saveToAsyncStorage, getFromAsyncStorage } from "../auth/asyncStorage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { saveToAsyncStorage, getFromAsyncStorage, removeFromAsyncStorage, clearStorage } from "../auth/asyncStorage";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -22,12 +23,8 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginScreen = ({ route }, props) => {
-  const [userToken, setUserToken] = useState("");
-  const [userId, setUserId] = useState(0);
-  const [memberId, setMemberId] = useState(0);
-
-  const { onLogin } = route.params;
   const [error, setError] = useState("");
+  const { onLogin } = route.params;
 
   const handleSignUp = () => {
     // navigate to basic-fit website
@@ -36,32 +33,29 @@ const LoginScreen = ({ route }, props) => {
 
   const handleSubmit = async ({ email, password }, { resetForm }) => {
     try {
+      // await previous data to be removed
+      await clearStorage();
+
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/user/login",
+        "https://05d0-81-82-33-56.ngrok-free.app/api/user/login",
         {
           email,
           password,
         }
       );
-      console.log("Response:", response.data);
-      if (!response.data.status) {
+
+      if (!response.data.status || !response.data.userData?.member?.id) {
         setError(response.data.message);
         return;
       } else {
-        console.log("Before token update");
         const userToken = response.data.userToken;
         const userId = response.data.userData.id;
         const memberId = response.data.userData.member.id;
 
-        // Save user token and user data to AsyncStorage
-        await saveToAsyncStorage("userToken", userToken);
-        await saveToAsyncStorage("userId", userId);
-        await saveToAsyncStorage("memberId", memberId);
-        // await saveToAsyncStorage('userData', JSON.stringify(userData));
-
-        console.log("After token update");
-
+        await saveToAsyncStorage(userToken, userId, memberId);
         resetForm();
+
+        // Instead of passing onLogin in route params, use navigation.setOptions
         onLogin(userToken, userId, memberId);
       }
     } catch (error) {

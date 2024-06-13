@@ -14,7 +14,7 @@ import ChallengeNavigator from "./ChallengeNavigator";
 import Calendar from "../screens/calendar/Calendar";
 import useNotifications from "../hooks/useNotifications";
 import { getUserToken } from '../auth/userToken';
-import { saveToAsyncStorage , getFromAsyncStorage} from '../auth/asyncStorage';
+import { saveToAsyncStorage, getFromAsyncStorage } from '../auth/asyncStorage';
 
 const Tab = createMaterialBottomTabNavigator();
 const AppNavigator = ({ userToken, userId, memberId, onLogout }) => {
@@ -25,9 +25,9 @@ const AppNavigator = ({ userToken, userId, memberId, onLogout }) => {
   // log the userToken, userId, memberId
   useEffect(() => {
     // You can access userToken and userId here
-    console.log('User Token on AppNavigator:', userToken);
-    console.log('User ID on AppNavigator:', userId);
-    console.log('Member ID on AppNavigator:', memberId);
+    // console.log('User Token on AppNavigator:', userToken);
+    // console.log('User ID on AppNavigator:', userId);
+    // console.log('Member ID on AppNavigator:', memberId);
   }, [userToken, userId, memberId]);
 
   // save the userToken, userId, memberId to AsyncStorage

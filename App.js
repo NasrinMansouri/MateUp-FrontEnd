@@ -3,6 +3,9 @@ import { StyleSheet, View, Text } from "react-native";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { navigationRef } from "./app/navigation/rootNavigation";
+import { AppLoading } from "expo";
+import { useFonts } from "expo-font";
+import { checkAndDeleteKey, getFromAsyncStorage, clearStorage } from "./app/auth/asyncStorage";
 // import { AppLoading } from "expo";
 
 // to change the background color
@@ -10,7 +13,6 @@ import NavigationTheme from "./app/navigation/NavigationTheme";
 
 //for fonts
 import * as SplashScreen from "expo-splash-screen";
-import { useFonts } from "expo-font";
 import { useCallback } from "react";
 SplashScreen.preventAutoHideAsync();
 
@@ -21,7 +23,7 @@ import AppNavigator from "./app/navigation/AppNavigator";
 import LoginScreen from "./app/screens/LoginScreen";
 import myTheme from "./app/navigation/NavigationTheme";
 import { setUserToken } from './app/auth/userToken';
-import { getFromAsyncStorage, saveToAsyncStorage, deleteFromAsyncStorage } from './app/auth/asyncStorage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // dummy data for Buddy Profile screen
 const userProfileData = {
@@ -215,7 +217,7 @@ const challengeYourBuddiesJoined = [
     endingDate: "sep 3",
     year: 2024,
     onPress: () => {
-      console.log("card pressed");
+      // console.log("card pressed");
     },
     Buddies: [
       { id: 1, image: require("./assets/person-1.jpg") },
@@ -236,7 +238,7 @@ const challengeYourBuddiesJoined = [
     endingDate: "sep 3",
     year: 2024,
     onPress: () => {
-      console.log("card pressed");
+      // console.log("card pressed");
     },
     Buddies: [{ id: 1, image: require("./assets/person-1.jpg") }],
   },
@@ -249,7 +251,7 @@ const challengeYourBuddiesJoined = [
     endingDate: "sep 3",
     year: 2024,
     onPress: () => {
-      console.log("card pressed");
+      // console.log("card pressed");
     },
     Buddies: [
       { id: 1, image: require("./assets/person-1.jpg") },
@@ -456,57 +458,51 @@ export default function App() {
     "nunitoSans-extraBold": require("./assets/fonts/NunitoSans7pt-ExtraBold.ttf"),
   });
 
+  useEffect(() => {
+    const clearStorageOnLaunch = async () => {
+      await clearStorage();
+    };
+    clearStorageOnLaunch();
+  }, []);
+
   const handleOnLayout = useCallback(async () => {
     if (isLoaded) {
       await SplashScreen.hideAsync();
     }
   }, [isLoaded]);
 
-  // Function to retrieve userToken from AsyncStorage
   useEffect(() => {
     const checkAuthToken = async () => {
       try {
-        // Get the user token from AsyncStorage
-        const storedToken = await getFromAsyncStorage('userToken');
-        // Check if token exists
+        const storedToken = await AsyncStorage.getItem('userToken');
         if (storedToken) {
           setUserToken(storedToken);
-          // Set isAuthenticated to true
           setIsAuthenticated(true);
         }
       } catch (error) {
         console.error('Error retrieving userToken:', error);
-        // Handle error gracefully, e.g., set isAuthenticated to false
       }
     };
 
-    // Function to retrieve userId from AsyncStorage
     const checkUserId = async () => {
       try {
-        // Get the user token from AsyncStorage
-        const storedUserId = await getFromAsyncStorage('userId');
-        // Check if token exists
+        const storedUserId = await AsyncStorage.getItem('userId');
         if (storedUserId) {
           setUserId(storedUserId);
         }
       } catch (error) {
         console.error('Error retrieving userId:', error);
-        // Handle error gracefully
       }
     };
 
-    // Function to retrieve memberId from AsyncStorage
     const checkMemberId = async () => {
       try {
-        // Get the user token from AsyncStorage
-        const storedMemberId = await getFromAsyncStorage('memberId');
-        // Check if token exists
+        const storedMemberId = await AsyncStorage.getItem('memberId');
         if (storedMemberId) {
           setMemberId(storedMemberId);
         }
       } catch (error) {
         console.error('Error retrieving memberId:', error);
-        // Handle error gracefully
       }
     };
 
@@ -515,33 +511,27 @@ export default function App() {
     checkMemberId();
   }, []);
 
-  // Hanlle the user login
   const handleLogin = async (userToken, userId, memberId) => {
     try {
-      // Save the user token, userId, and memberId to AsyncStorage
-      await saveToAsyncStorage('userToken', userToken);
+      await AsyncStorage.setItem('userToken', userToken);
+      await AsyncStorage.setItem('userId', userId.toString());
+      await AsyncStorage.setItem('memberId', memberId.toString());
       setUserToken(userToken);
-      await saveToAsyncStorage('userId', userId);
       setUserId(userId);
-      await saveToAsyncStorage('memberId', memberId);
       setMemberId(memberId);
-
-      // Set isAuthenticated to true
       setIsAuthenticated(true);
     } catch (error) {
       console.error('Error saving userToken and userId:', error);
-      // Handle error gracefully
     }
   };
 
   if (error) {
     console.error('Error loading fonts:', error);
-    // Handle font loading error gracefully
     return null;
   }
 
   if (!isLoaded) {
-    return null; // Maybe show a loading indicator
+    return null;
   }
 
   return (
@@ -549,7 +539,7 @@ export default function App() {
       <SafeAreaProvider onLayout={handleOnLayout}>
         <NavigationContainer ref={navigationRef} theme={myTheme}>
           {isAuthenticated ? (
-            <AppNavigator userToken={userToken} userId={userId} memberId={memberId} /> // Pass token to AppNavigator
+            <AppNavigator userToken={userToken} userId={userId} memberId={memberId} />
           ) : (
             <AuthNavigator onLogin={handleLogin} />
           )}
@@ -568,8 +558,8 @@ const styles = StyleSheet.create({});
 // const retrieveUserData = async () => {
 //   const token = await getFromAsyncStorage('userToken');
 //   const user = await getFromAsyncStorage('user');
-//   console.log('Token:', token);
-//   console.log('User:', user ? JSON.parse(user) : null);
+//   // console.log('Token:', token);
+//   // console.log('User:', user ? JSON.parse(user) : null);
 // };
 
 // for logou
