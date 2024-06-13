@@ -11,7 +11,7 @@ export default function GalleryBuddiesWorkout({ buddiesWorkout }) {
   const buddiesWorkoutData = [
     {
       id: 1,
-      name: "John Doeeeeeeeeeeeeeeeeee",
+      name: "John Kane",
       image: require("../../../assets/person-1.jpg"),
       workout: "Running",
       day: "Monday",
@@ -21,8 +21,8 @@ export default function GalleryBuddiesWorkout({ buddiesWorkout }) {
     },
     {
       id: 2,
-      name: "ray pather ",
-      image: require("../../../assets/person-1.jpg"),
+      name: "roya pather ",
+      image: require("../../../assets/person2.jpg"),
       workout: "upper body",
       day: "Sunday",
       date: "Dec 4",
@@ -31,8 +31,8 @@ export default function GalleryBuddiesWorkout({ buddiesWorkout }) {
     },
     {
       id: 3,
-      name: "ray pather ",
-      image: require("../../../assets/person-1.jpg"),
+      name: "Mary Jane",
+      image: require("../../../assets/person3.jpg"),
       workout: "jugging",
       day: "Sunday",
       date: "Dec 4",
@@ -53,12 +53,16 @@ export default function GalleryBuddiesWorkout({ buddiesWorkout }) {
           horizontal
           showsHorizontalScrollIndicator={false}
           data={buddiesWorkoutData}
-          initialNumToRender={buddiesWorkoutData && buddiesWorkoutData.length > 0 ? buddiesWorkoutData.length : undefined}
+          initialNumToRender={
+            buddiesWorkoutData && buddiesWorkoutData.length > 0
+              ? buddiesWorkoutData.length
+              : undefined
+          }
           keyExtractor={(buddiesWorkout) => buddiesWorkout.id.toString()}
           renderItem={({ item }) => (
             <CardBuddiesWorkout
               onPress={() => console.log("my buddies workout", item)}
-              image={{uri: item.image}}
+              image={item.image}
               name={item.name}
               workout={item.workout}
               day={item.day}
@@ -77,21 +81,21 @@ export default function GalleryBuddiesWorkout({ buddiesWorkout }) {
 const styles = StyleSheet.create({
   container: {
     paddingLeft: 16,
-    marginBottom: 96,
+    marginBottom: 46,
   },
   titleText: {
     fontFamily: "montserrat-black",
     fontSize: 26,
     color: colors.orangePrimary,
-    marginBottom: 10,
+    // marginBottom: 10,
     textTransform: "uppercase",
     paddingLeft: 16,
   },
   subTitleText: {
     fontFamily: "nunitoSans-regular",
-    fontSize: 14,
+    fontSize: 16,
     color: colors.white,
-    marginBottom: 32,
+    marginBottom: 10,
     paddingLeft: 16,
   },
 });

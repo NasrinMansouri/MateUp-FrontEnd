@@ -15,7 +15,6 @@ export default function UserNextWorkoutPlanning({ onPress }) {
 
   return (
     <View>
-      {/* <Text style={styles.welcomeText}>WELCOME {firstName}</Text> */}
       <View style={styles.container}>
         <View>
           <Text style={styles.textStyle}>
@@ -100,7 +99,7 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     paddingLeft: 16,
     paddingTop: 23,
-    paddingBottom: 64,
+    // paddingBottom: 64,
   },
   welcomeText: {
     fontFamily: "montserrat-black",

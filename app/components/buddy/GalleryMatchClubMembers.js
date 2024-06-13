@@ -18,12 +18,16 @@ export default function GalleryMatchClubMembers({ UserClubMembers, onPress }) {
         style={styles.container}
         horizontal
         data={UserClubMembers}
-        initialNumToRender={UserClubMembers && UserClubMembers.length > 0 ? UserClubMembers.length : undefined}
+        initialNumToRender={
+          UserClubMembers && UserClubMembers.length > 0
+            ? UserClubMembers.length
+            : undefined
+        }
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <CardMatchClubMembers
             name={item.user.name}
-            image={{uri: item.user.profile_image_url}}
+            image={{ uri: item.user.profile_image_url }}
             titles={item.workout_types}
             // onPress={() => navigation.navigate("MemberProfile", item)}
             // onPressProfile={() => onPress(item)}
@@ -44,7 +48,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "montserrat-black",
-    fontSize: 36,
+    fontSize: 32,
     color: colors.orangePrimary,
     marginBottom: 10,
     textTransform: "uppercase",

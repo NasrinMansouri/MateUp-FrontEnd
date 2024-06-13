@@ -282,15 +282,15 @@ const styles = StyleSheet.create({
     fontFamily: "montserrat-black",
     fontSize: 26,
     color: colors.orangePrimary,
-    marginBottom: 10,
+    marginBottom: 0,
     textTransform: "uppercase",
     paddingLeft: 16,
   },
   subTitleText: {
     fontFamily: "nunitoSans-regular",
-    fontSize: 14,
+    fontSize: 16,
     color: colors.white,
-    marginBottom: 32,
+    marginBottom: 10,
     paddingLeft: 16,
   },
 });

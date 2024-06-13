@@ -18,18 +18,21 @@ export default function GalleryMatchBasedWorkout({
         style={styles.container}
         horizontal
         data={matchMemberWorkout}
-        initialNumToRender={matchMemberWorkout && matchMemberWorkout.length > 0 ? matchMemberWorkout.length : undefined}
+        initialNumToRender={
+          matchMemberWorkout && matchMemberWorkout.length > 0
+            ? matchMemberWorkout.length
+            : undefined
+        }
         keyExtractor={(Members) => Members.id.toString()}
         renderItem={({ item }) => (
           <CardMatchBasedWorkout
             name={item.user.name}
-            image={{uri: item.user.profile_image_url}}
+            image={{ uri: item.user.profile_image_url }}
             location={item.home_club_address}
             titles={item.workout_types}
             // onPress={onPress}
             // onPress={() => navigation.navigate("MemberProfile", item)}
             onPress={() => onPress(item)}
-
           />
         )}
       />
@@ -39,10 +42,9 @@ export default function GalleryMatchBasedWorkout({
 
 const styles = StyleSheet.create({
   mainContainer: {
-    marginTop: 68,
+    marginTop: 46,
   },
   container: {
-    // paddingTop: 16,
     paddingLeft: 16,
   },
   title: {

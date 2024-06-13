@@ -10,14 +10,14 @@ let url;
 //   url = "http://127.0.0.1:8000/api";
 // }
 
-url = "https://05d0-81-82-33-56.ngrok-free.app/api";
+url = "https://8ae3-2a02-a03f-6a9f-7101-e106-349c-b714-ef8.ngrok-free.app/api";
 const apiClient = axios.create({
   baseURL: url,
   headers: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Ngrok-Version': '2',
-    "ngrok-skip-browser-warning": 'true',
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    "Ngrok-Version": "2",
+    "ngrok-skip-browser-warning": "true",
   },
 });
 export default apiClient;

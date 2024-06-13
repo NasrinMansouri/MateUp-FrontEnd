@@ -7,7 +7,6 @@ import { getFromAsyncStorage } from "../../auth/asyncStorage";
 
 import useApi from "../../hooks/useApi";
 
-
 import Line from "../../components/Line";
 import colors from "../../config/colors";
 import Screen from "../../components/Screen";
@@ -30,7 +29,6 @@ import {
 import MenueScreen from "./MenueScreen";
 
 export default function HomeScreen({ navigation }) {
-
   const [buddies, setBuddies] = useState([]);
   const [user, setUser] = useState(null);
   const [memberId, setMemberId] = useState(0);
@@ -55,7 +53,6 @@ export default function HomeScreen({ navigation }) {
       console.error("Error loading userId:", error);
     }
   };
-
 
   useEffect(() => {
     // Load memberId
@@ -83,13 +80,12 @@ export default function HomeScreen({ navigation }) {
     }
   };
 
-
   // Load user
   const loadUser = async (userId) => {
     try {
       const response = await membersApi.getUser(userId);
       setUser(response.data.user);
-      console.log('user on home:', response.data.user);
+      console.log("user on home:", response.data.user);
     } catch (error) {
       console.error("Error loading user:", error);
     }
@@ -101,7 +97,7 @@ export default function HomeScreen({ navigation }) {
     navigation.navigate("MemberProfile", {
       memberId: item.id,
       challengeId: item.id,
-      isBuddy: true
+      isBuddy: true,
     });
   };
 
@@ -110,14 +106,10 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.buddiesContainer}>
         <DisplayBuddies
           style={{ marginBottom: 40 }}
+          buddies={buddies}
           item={item}
           onPressAddBuddy={() => navigation.jumpTo("Buddy")}
-          onPress={(item) =>
-            navigation.navigate("MemberProfile", {
-              memberId: item.id,
-              challengeId: item.id,
-            })
-          }
+          onPress={(item) => handlePressBuddy(item)}
         />
       </View>
     ),
@@ -159,7 +151,7 @@ export default function HomeScreen({ navigation }) {
   //define array of data, which contains objects with a type property
   const data = [
     //{ type: "DisplayBuddies" },
-    { type: "LineComponent" },
+    { type: "DisplayBuddies" },
     { type: "UserNextWorkoutPlanningComponent" },
     { type: "GalleryBuddiesWorkoutComponent" },
     { type: "GalleryPeopleYouMightKnowComponent" },
@@ -170,21 +162,9 @@ export default function HomeScreen({ navigation }) {
     <Screen style={styles.container}>
       <TopNav
         showMenue={true}
-        // onPressMenue={handleModal}
-        userProfileImage={{uri: user?.profile_image_url}}
+        userProfileImage={{ uri: user?.profile_image_url }}
         onPressMenue={() => navigation.navigate("menu")}
-        // onPressNotification={() => navigation.navigate("Notification")}
         onPressMessage={() => console.log("Message image pressed")}
-      // showSearchBar={true}
-      />
-      <GalleryBuddies
-        paddingLeft={6}
-        buddies={buddies}
-        // for new connection to backend
-        // buddies={getBuddiesApi.data.buddies}
-        // loading={getBuddiesApi.loading}
-        // error={getBuddiesApi.error}
-        onPress={(item) => handlePressBuddy(item)}
       />
       <FlatList
         data={data}
@@ -195,10 +175,6 @@ export default function HomeScreen({ navigation }) {
         renderItem={({ item }) => renderItemCache[item.type](item)}
         showsVerticalScrollIndicator={false}
       />
-      {/* <MenueScreen
-        onPressProfile={() => navigation.navigate("UserProfile")}
-        modalVisible={modalVisible} handleModalClose={handleModal}
-      /> */}
     </Screen>
   );
 }
@@ -209,13 +185,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buddiesContainer: {
-    // marginTop: 8,
+    marginBottom: 15,
   },
   buddiesWorkoutContainer: {
-    marginTop: 96,
-  },
-  buddiesWorkoutContainer: {
-    marginTop: 96,
+    marginTop: 46,
   },
   buttonSeeAll: {
     marginTop: 32,

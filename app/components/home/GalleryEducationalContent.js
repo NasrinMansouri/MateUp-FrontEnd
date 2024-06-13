@@ -26,12 +26,16 @@ export default function GalleryEducationalContent({ educationalContent }) {
         vertical
         style={styles.container}
         data={dataEducationalContent}
-        initialNumToRender={dataEducationalContent && dataEducationalContent.length > 0 ? dataEducationalContent.length : undefined}
+        initialNumToRender={
+          dataEducationalContent && dataEducationalContent.length > 0
+            ? dataEducationalContent.length
+            : undefined
+        }
         keyExtractor={(educationalContent) => educationalContent.id.toString()}
         renderItem={({ item }) => (
           <CardEducationalContent
             onPress={() => console.log("educational content", item)}
-            image={{uri: item.image}}
+            image={item.image}
             title={item.title}
             subttle={item.subttle}
           />

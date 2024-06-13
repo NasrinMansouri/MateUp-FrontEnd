@@ -14,8 +14,13 @@ import Screen from "../components/Screen";
 import colors from "../config/colors";
 import { AppFormField, SubmitButton, AppForm } from "../components/forms";
 import axios from "axios";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { saveToAsyncStorage, getFromAsyncStorage, removeFromAsyncStorage, clearStorage } from "../auth/asyncStorage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {
+  saveToAsyncStorage,
+  getFromAsyncStorage,
+  removeFromAsyncStorage,
+  clearStorage,
+} from "../auth/asyncStorage";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -37,7 +42,7 @@ const LoginScreen = ({ route }, props) => {
       await clearStorage();
 
       const response = await axios.post(
-        "https://05d0-81-82-33-56.ngrok-free.app/api/user/login",
+        "https://8ae3-2a02-a03f-6a9f-7101-e106-349c-b714-ef8.ngrok-free.app/api/user/login",
         {
           email,
           password,

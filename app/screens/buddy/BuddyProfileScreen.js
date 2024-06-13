@@ -34,17 +34,16 @@ export default function BuddyProfileScreen({ route, navigation }) {
       setButtonClicked(
         isBuddy
           ? {
-            title: "Cancel Buddy Request",
-            backgroundColor: colors.orangeSecondary,
-          }
+              title: "Cancel Buddy Request",
+              backgroundColor: colors.orangeSecondary,
+            }
           : {
-            title: "Send Buddy Request",
-            backgroundColor: colors.green,
-          }
+              title: "Send Buddy Request",
+              backgroundColor: colors.green,
+            }
       );
     }
   }, [isBuddy]);
-
 
   // load all the buddies of a member
   const loadBuddies = async () => {
@@ -58,7 +57,6 @@ export default function BuddyProfileScreen({ route, navigation }) {
     }
   };
 
-
   // const navigation = useNavigation();
 
   //to change the state of button when clicked
@@ -68,7 +66,6 @@ export default function BuddyProfileScreen({ route, navigation }) {
   });
   const { memberId } = route.params;
   // for backend connection
-
 
   // console.log('isBuddy on buddyProfileScreen', isBuddy)
   const handleButtonClicked = () => {
@@ -84,7 +81,6 @@ export default function BuddyProfileScreen({ route, navigation }) {
       });
     }
   };
-
 
   //for backend connection
   // load member profile based on memberId
@@ -118,6 +114,16 @@ export default function BuddyProfileScreen({ route, navigation }) {
     // console.log("go to calendar");
   };
 
+  // handle press for each buddy
+  const handlePressBuddy = (item) => {
+    console.log("Clicked memberId:", item.id);
+    navigation.navigate("MemberProfile", {
+      memberId: item.id,
+      challengeId: item.id,
+      isBuddy: false,
+    });
+  };
+
   const {
     firstName,
     lastName,
@@ -139,7 +145,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
           onPressShare={() => // console.log("pressed share")}
         /> */}
         <UserImage
-          userImage={{uri:memberProfile.user.profile_image_url}}
+          userImage={{ uri: memberProfile.user.profile_image_url }}
           //userImage={userImage}
           // userImage={userProfile.userImage}
           //or
@@ -159,8 +165,8 @@ export default function BuddyProfileScreen({ route, navigation }) {
           // lastName={lastName}
           location={memberProfile.home_club_address}
           onpressmessage={() => console.log("pressed message")}
-            />
-            < Bio bio={memberProfile.user.bio} />
+        />
+        <Bio bio={memberProfile.user.bio} />
         <View style={styles.buttonContainer}>
           <AppButton
             title={buttonClicked.title}
@@ -172,7 +178,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
         </View>
 
         <View>
-          <Line marginTop={62} marginBottom={22} width={"90%"} />
+          {/* <Line marginTop={62} marginBottom={22} width={"90%"} /> */}
           <View style={styles.level}>
             <ListBulletPointWithText
               titles={memberProfile.level_fitness}
@@ -187,26 +193,27 @@ export default function BuddyProfileScreen({ route, navigation }) {
           </View>
         </View>
 
-        <Line marginTop={62} marginBottom={22} width={"90%"} />
+        <Line marginTop={22} marginBottom={22} width={"90%"} />
         <BulletList
           header={"workout"}
           titles={memberProfile.workout_types}
           textColor={colors.white}
         />
-        <Line marginTop={62} marginBottom={22} width={"90%"} />
+        <Line marginTop={22} marginBottom={22} width={"90%"} />
         {/* <GalleryBuddies buddies={buddies} header={"buddies"} /> */}
         <GalleryBuddies
           buddies={buddies}
           // buddies={userProfile.buddiesData}
           header={"buddies"}
+          onPress={(item) => handlePressBuddy(item)}
         />
-        <Line marginTop={62} marginBottom={22} width={"90%"} />
+        <Line marginTop={22} marginBottom={22} width={"90%"} />
         {/* <GalleryJoinedChallenge
           // joinedChallenge={joinedChallengeData}
           joinedChallenge={userProfile.joinedChallengeData}
           header={"joined challenges"}
         /> */}
-        <Line marginTop={62} marginBottom={22} width={"90%"} />
+        <Line marginTop={22} marginBottom={22} width={"90%"} />
         <RequestCalendarAccess
           userFirstName={memberProfile.user.name}
           onPressGoToTop={goToTop}
@@ -230,6 +237,7 @@ const styles = StyleSheet.create({
   },
   level: {
     marginLeft: 16,
+    marginTop: 32,
   },
 });
 

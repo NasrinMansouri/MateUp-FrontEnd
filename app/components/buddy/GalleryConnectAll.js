@@ -17,12 +17,16 @@ export default function GalleryConnectAll({ connectAllMembers, onPress }) {
         horizontal
         data={connectAllMembers}
         keyExtractor={(Members) => Members.id.toString()}
-        initialNumToRender={connectAllMembers && connectAllMembers.length > 0 ? connectAllMembers.length : undefined}
+        initialNumToRender={
+          connectAllMembers && connectAllMembers.length > 0
+            ? connectAllMembers.length
+            : undefined
+        }
         renderItem={({ item }) => {
           return (
             <CardMatchBasedWorkout
               name={item.user.name}
-              image={{uri: item.user.profile_image_url}}
+              image={{ uri: item.user.profile_image_url }}
               location={item.home_club_address}
               titles={item.workout_types}
               onPress={() => onPress(item)}

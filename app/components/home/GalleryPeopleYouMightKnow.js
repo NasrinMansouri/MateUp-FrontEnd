@@ -73,7 +73,6 @@ function GalleryPeopleYouMightKnow({ onPress }) {
     }
   };
 
-
   const capitalizeFirstLetter = (string) => {
     // capitalize first letter and make rest lowercase
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -87,7 +86,11 @@ function GalleryPeopleYouMightKnow({ onPress }) {
           horizontal
           showsHorizontalScrollIndicator={false}
           data={youMightKnow}
-          initialNumToRender={youMightKnow && youMightKnow.length > 0 ? youMightKnow.length : undefined}
+          initialNumToRender={
+            youMightKnow && youMightKnow.length > 0
+              ? youMightKnow.length
+              : undefined
+          }
           keyExtractor={(members) => members.id.toString()}
           renderItem={({ item }) => (
             <CardProfile
@@ -95,7 +98,7 @@ function GalleryPeopleYouMightKnow({ onPress }) {
               onPressProfile={() => onPress(item)}
               name={capitalizeFirstLetter(item.name)}
               backgroundColor={colors.blackBc}
-              image={{uri: item.profile_image_url}}
+              image={{ uri: item.profile_image_url }}
               flexDirection={"column"}
               cardWidth={120}
               cardHeight={98}
@@ -121,7 +124,7 @@ function GalleryPeopleYouMightKnow({ onPress }) {
 const styles = StyleSheet.create({
   container: {
     paddingLeft: 16,
-    marginBottom: 96,
+    marginBottom: 46,
   },
 
   titleText: {
@@ -136,7 +139,7 @@ const styles = StyleSheet.create({
     fontFamily: "nunitoSans-regular",
     fontSize: 14,
     color: colors.white,
-    marginBottom: 32,
+    marginBottom: 10,
     paddingLeft: 16,
   },
 });

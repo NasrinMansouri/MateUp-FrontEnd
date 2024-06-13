@@ -147,16 +147,19 @@ export default function AppFormDatePicker({ name, title, placeholder }) {
           <AppButton
             onPress={toggleDatePicker}
             title="cancel"
-            height={26}
+            height={40}
             width={120}
             borderRadius={4}
+            borderColor={colors.black}
+            textColor={colors.white}
           />
           <AppButton
             onPress={confirmIOSDate}
             title="Confirm"
-            height={26}
+            height={40}
             width={120}
             borderRadius={4}
+            borderColor={colors.black}
           />
         </View>
       )}

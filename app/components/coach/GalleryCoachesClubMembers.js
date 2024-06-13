@@ -37,12 +37,16 @@ export default function GalleryCoachesClubMembers({
         horizontal
         showsHorizontalScrollIndicator={false}
         data={coachesClubMember}
-        initialNumToRender={coachesClubMember && coachesClubMember.length > 0 ? coachesClubMember.length : undefined}
+        initialNumToRender={
+          coachesClubMember && coachesClubMember.length > 0
+            ? coachesClubMember.length
+            : undefined
+        }
         keyExtractor={(trainers) => trainers.id.toString()}
         renderItem={({ item }) => (
           <CardCoachClubMember
             name={item.user.name}
-            image={{uri: item.user.profile_image_url}}
+            image={{ uri: item.user.profile_image_url }}
             titles={item.expertise}
             // onPress={() => navigation.navigate("CoachProfile", item)}
             onPress={() => onPress(item)}
@@ -59,7 +63,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "montserrat-black",
-    fontSize: 36,
+    fontSize: 32,
     color: colors.orangePrimary,
     // marginBottom: 10,
     textTransform: "uppercase",

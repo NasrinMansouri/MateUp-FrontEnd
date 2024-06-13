@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     justifyContent: "center",
     alignItems: "center",
-    padding: 8,
+    // padding: 8,
     borderColor: colors.black,
     height: 34,
   },

@@ -23,7 +23,7 @@ import {
   GalleryMatchClubMembers,
 } from "../../components/buddy";
 import FilterModal from "../../components/buddy/FilterModal";
-import { getUserToken } from '../../auth/userToken';
+import { getUserToken } from "../../auth/userToken";
 
 export default function BuddyScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -55,13 +55,12 @@ export default function BuddyScreen({ navigation }) {
     loadConnectAllMembers();
   }, []);
 
-
   const token = getUserToken();
-  console.log(token)
+  console.log(token);
 
   const loadBuddies = async () => {
     const response = await membersApi.getBuddies();
-    console.log("Buddies on buddy screen", response.data.buddies)
+    console.log("Buddies on buddy screen", response.data.buddies);
     setBuddies(response.data.buddies);
   };
 
@@ -100,21 +99,16 @@ export default function BuddyScreen({ navigation }) {
     navigation.navigate("MemberProfile", {
       memberId: item.id,
       challengeId: item.id,
-      isBuddy: true
+      isBuddy: true,
     });
   };
-  
 
   return (
     <Screen style={styles.container}>
       <TopNav
         showSearchBar={true}
-        // onPressSearch={() => navigation.navigate("Search")}
         onPressSearch={() => navigation.navigate("SearchBuddy")}
         onPressMessage={() => console.log("message")}
-      // onPressNotification={() => {
-      //   navigation.navigate("Notification", { screen: "buddy" });
-      // }}
       />
       <ScrollView style={styles.container}>
         <View style={styles.buddyContainer}>
@@ -128,7 +122,7 @@ export default function BuddyScreen({ navigation }) {
             onPress={(item) => handlePressBuddy(item)}
           />
         </View>
-        <Line marginBottom={40} marginTop={20} />
+        <Line marginBottom={20} marginTop={20} />
         <GalleryMatchClubMembers
           UserClubMembers={UserClubMembers}
           // for new connection to backend

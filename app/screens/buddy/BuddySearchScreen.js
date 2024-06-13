@@ -47,7 +47,8 @@ export default function BuddySearchScreen({ navigation }) {
         setError(null); //clear any previous error
       } else {
         setError(
-          `Error loading buddies in search: ${response.problem
+          `Error loading buddies in search: ${
+            response.problem
           }. ${JSON.stringify(response.data.members)}`
         );
       }
@@ -104,7 +105,11 @@ export default function BuddySearchScreen({ navigation }) {
         <FlatList
           showsVerticalScrollIndicator={false}
           data={searchResults}
-          initialNumToRender={searchResults && searchResults.length > 0 ? searchResults.length : undefined}
+          initialNumToRender={
+            searchResults && searchResults.length > 0
+              ? searchResults.length
+              : undefined
+          }
           // data={getSearchApi.data}
           // loading={getSearchApi.loading}
           // error={getSearchApi.error}
@@ -128,15 +133,15 @@ export default function BuddySearchScreen({ navigation }) {
                 navigation.navigate("MemberProfile", {
                   memberId: item.id,
                   challengeId: item.id,
-                  isBuddy: item.is_buddy
+                  isBuddy: item.is_buddy,
                 });
               }}
-            // onPress={() => onPress(item)}
+              // onPress={() => onPress(item)}
             >
               <View style={styles.resultContainer}>
                 <Image
                   style={styles.image}
-                  source={item.user_profile_image_url}
+                  source={item.user.profile_image_url}
                 />
                 <Text style={styles.name}>{item.user.name}</Text>
               </View>

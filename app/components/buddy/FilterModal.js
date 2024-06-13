@@ -13,7 +13,6 @@ const FilterModal = ({ setModalVisible }) => {
     {
       Key: "1",
       value: "Strength Training",
-      disabled: true,
     },
     {
       Key: "2",
@@ -23,16 +22,36 @@ const FilterModal = ({ setModalVisible }) => {
       Key: "3",
       value: "Yoga",
     },
+    {
+      Key: "4",
+      value: "GXR",
+    },
+    {
+      Key: "5",
+      value: "Group Class",
+    },
+    {
+      Key: "6",
+      value: "Cycling",
+    },
+    {
+      Key: "7",
+      value: "Dance",
+    },
   ];
 
   const dataLocation = [
     {
       Key: "1",
-      value: "Los Angeles",
+      value: "Avenue Louis, Brussel",
     },
     {
       Key: "2",
-      value: "New York",
+      value: "uccle Bascule, Brussel",
+    },
+    {
+      Key: "3",
+      value: "Rue du Lac, Mechelen",
     },
   ];
 
