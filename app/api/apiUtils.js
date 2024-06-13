@@ -18,12 +18,11 @@ export const makeAuthenticatedRequest = async (endpoint, id = null) => {
         const url = id ? `${endpoint}/${id}` : endpoint;
         const response = await apiClient.get(url, {
             headers: {
-                'Accept': 'application/json',
                 'Authorization': userToken,
             },
         });
 
-        console.log(`${endpoint}:`, response);
+        // console.log(`${endpoint}:`, response);
         return response;
     } catch (error) {
         console.error(`Error in ${endpoint}:`, error);
