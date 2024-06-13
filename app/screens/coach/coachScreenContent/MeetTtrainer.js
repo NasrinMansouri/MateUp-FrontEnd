@@ -5,6 +5,7 @@ import {
   View,
   ActivityIndicator,
   FlatList,
+  Modal,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -15,6 +16,8 @@ import {
 import useApi from "../../../hooks/useApi";
 import coaches from "../../../api/coaches";
 import colors from "../../../config/colors";
+import FilterModalCoach from "../../../components/coach/FilterModalCoach";
+import AppButtonBorder from "../../../components/AppButtonBorder";
 
 const coachesClubMembersData = [
   {
@@ -80,6 +83,7 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
   // const getMeetAllCoachesApi = useApi(coachesApi.getMeetAllCoaches);
   const [trainers, setTrainers] = useState([]);
   const [coachesClubMembers, setCoachesClubMembers] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     loadTrainers();
@@ -94,7 +98,7 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
   const loadTrainers = async () => {
     try {
       const response = await coaches.getMeetAllCoaches();
-      console.log("Get all trainers", response)
+      console.log("Get all trainers", response);
       setTrainers(response.data.trainers);
     } catch (error) {
       console.error("Error loading trainers:", error);
@@ -104,9 +108,9 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
   // get coaches at your club
   const loadCoachesClubMembers = async () => {
     const response = await coaches.getCoachesClubMembers();
-    console.log("Get all trainers on club on coaches", response)
+    console.log("Get all trainers on club on coaches", response);
     setCoachesClubMembers(response);
-  }
+  };
 
   const navigation = useNavigation();
 
@@ -114,10 +118,9 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
   const handlePress = (item) => {
     console.log("Clicked memberId:", item.id);
     navigation.navigate("CoachProfile", {
-      trainerId: item.id
+      trainerId: item.id,
     });
   };
-
 
   const renderItemCache = {
     GalleryCoachesClubMembers: (item) => (
@@ -156,6 +159,27 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
         renderItem={({ item }) => renderItemCache[item.type](item)}
         showsVerticalScrollIndicator={false}
       />
+      <View style={styles.modal}>
+        <View style={styles.fixButtonPosition}>
+          <AppButtonBorder
+            onPress={() => setModalVisible(true)}
+            title="Filter"
+            materialCommunityIcons={true}
+            iconName="filter-variant"
+          />
+        </View>
+        <Modal
+          animationType="slide"
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(false);
+          }}
+        >
+          <View style={styles.modalView}>
+            <FilterModalCoach setModalVisible={setModalVisible} />
+          </View>
+        </Modal>
+      </View>
     </View>
   );
 }
@@ -208,4 +232,18 @@ export default function MeetTrainer({ onPressClubCoaches, onPressAllCoaches }) {
 
 const styles = StyleSheet.create({
   container: {},
+  fixButtonPosition: {
+    position: "absolute",
+    zIndex: 1,
+    right: 16,
+    marginBottom: 10,
+    bottom: 0,
+  },
+  modal: {
+    backgroundColor: colors.black,
+  },
+  modalView: {
+    backgroundColor: colors.white, //to change modal background
+    marginTop: 40,
+  },
 });

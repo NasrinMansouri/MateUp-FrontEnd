@@ -156,7 +156,7 @@ export default function BuddyScreen({ navigation }) {
           iconName="filter-variant"
         />
       </View>
-      <View style={{ backgroundColor: colors.black }}>
+      <View style={styles.modal}>
         <Modal
           animationType="slide"
           visible={modalVisible}
@@ -199,5 +199,8 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     marginLeft: 16,
     marginRight: 16,
+  },
+  modal: {
+    backgroundColor: colors.black,
   },
 });
