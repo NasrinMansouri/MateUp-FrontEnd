@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     marginLeft: 16,
   },
   resume: {
-    marginTop: 10,
+    marginTop: 30,
     color: colors.green,
     fontSize: 16,
     fontFamily: "montserrat-black",
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   saveBtn: {
     position: "absolute",
     bottom: 0,
-    marginBottom: 120,
+    marginBottom: 220,
     justifyContent: "center",
     alignItems: "center",
     width: "100%",

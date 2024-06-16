@@ -7,7 +7,7 @@ import ControllerStopWatch from "../../components/challenge/stopWatch/Controller
 import HeaderStopWatch from "../../components/challenge/stopWatch/HeaderStopWatch";
 import { useNavigation } from "@react-navigation/native";
 
-const StopWatchChallenge = ({ saveWorkout }) => {
+const StopWatchChallenge = ({ saveWorkout, route }) => {
   const [time, setTime] = useState(0); // Store the elapsed time in seconds
   const [isRunning, setIsRunning] = useState(false);
   const [activeButton, setActiveButton] = useState("start");
@@ -78,6 +78,8 @@ const StopWatchChallenge = ({ saveWorkout }) => {
           isRunning={isRunning}
           activeButton={activeButton}
           resetStopwatch={resetStopwatch}
+          navigation={navigation}
+          route={route}
         />
         <Body time={time} formatTime={formatTime} />
         <ControllerStopWatch

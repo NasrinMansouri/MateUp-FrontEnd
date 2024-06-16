@@ -8,10 +8,6 @@ export default function StartChallengeScreen({ navigation, route }) {
   const { challengeId } = route.params;
   console.log("my challneg iddd ", challengeId);
 
-  const handleBackPress = () => {
-    navigation.goBack();
-  };
-
   const handleSave = () => {
     navigation.navigate("JoinedChallenge", { challengeId: challengeId });
     console.log("Saving workout...", challengeId);
@@ -19,10 +15,11 @@ export default function StartChallengeScreen({ navigation, route }) {
 
   return (
     <View style={styles.screen}>
-      <TouchableOpacity style={styles.closeButton} onPress={handleBackPress}>
-        <Ionicons name="close" size={24} color={colors.white} />
-      </TouchableOpacity>
-      <StopWatch saveWorkout={handleSave} />
+      <StopWatch
+        saveWorkout={handleSave}
+        navigation={navigation}
+        route={route}
+      />
     </View>
   );
 }
@@ -34,7 +31,7 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     position: "absolute",
-    top: 65,
+    top: 75,
     left: 16,
     zIndex: 2,
   },
