@@ -53,8 +53,6 @@ export default function AvailableGroupsScreen({ navigation, route }) {
     }
   };
 
-
-
   // const availableGroups = [
   //   {
   //     id: 1,
@@ -92,7 +90,6 @@ export default function AvailableGroupsScreen({ navigation, route }) {
   //   },
   // ];
 
-
   const [availableGroups, setAvailableGroups] = React.useState([]);
 
   useEffect(() => {
@@ -101,7 +98,7 @@ export default function AvailableGroupsScreen({ navigation, route }) {
 
   const loadSessions = async () => {
     try {
-      const response = await coaches.getCoachesSessions(trainerId)
+      const response = await coaches.getCoachesSessions(trainerId);
       console.log(response.data.sessions);
       setAvailableGroups(response.data.sessions);
     } catch (error) {
@@ -121,10 +118,12 @@ export default function AvailableGroupsScreen({ navigation, route }) {
             <CardAvailableGroup
               key={id}
               //members={group.members}
-              members={[{
-                id: 1,
-                image: require("../../../assets/person3.jpg"),
-              }]}
+              members={[
+                {
+                  id: 1,
+                  image: require("../../../assets/person3.jpg"),
+                },
+              ]}
               goal={group.goal}
               date={group.session_date}
               //year={group.year}
@@ -152,7 +151,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginLeft: 16,
     marginRight: 16,
-    color: colors.white,
+    color: colors.orangePrimary,
     textTransform: "uppercase",
   },
   container: {

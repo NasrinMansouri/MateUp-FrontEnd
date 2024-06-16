@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList, Text } from "react-native";
 import React, { useState, useEffect } from "react";
 
 import membersApi from "../../api/members";
@@ -104,6 +104,7 @@ export default function HomeScreen({ navigation }) {
   const renderItemCache = {
     DisplayBuddies: (item) => (
       <View style={styles.buddiesContainer}>
+        <Text style={styles.buddiesText}>Buddies</Text>
         <DisplayBuddies
           style={{ marginBottom: 40 }}
           buddies={buddies}
@@ -195,5 +196,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 32,
+  },
+  buddiesText: {
+    color: colors.orangePrimary,
+    fontFamily: "montserrat-black",
+    fontSize: 14,
+    textTransform: "uppercase",
+    marginLeft: 16,
+    marginBottom: 10,
   },
 });

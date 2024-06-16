@@ -112,6 +112,7 @@ export default function BuddyScreen({ navigation }) {
       />
       <ScrollView style={styles.container}>
         <View style={styles.buddyContainer}>
+          <Text style={styles.buddiesText}>Buddies</Text>
           <GalleryBuddies
             paddingLeft={6}
             buddies={buddies}
@@ -202,5 +203,13 @@ const styles = StyleSheet.create({
   },
   modal: {
     backgroundColor: colors.black,
+  },
+  buddiesText: {
+    color: colors.orangePrimary,
+    fontFamily: "montserrat-black",
+    fontSize: 14,
+    textTransform: "uppercase",
+    marginLeft: 16,
+    marginBottom: 10,
   },
 });

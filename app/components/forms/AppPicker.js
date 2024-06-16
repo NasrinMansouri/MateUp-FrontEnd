@@ -76,7 +76,7 @@ export default function AppPicker({
             />
             <FlatList
               data={items}
-              initialNumToRender={items && items.length > 0 ? items.length : undefined}
+              // initialNumToRender={items && items.length > 0 ? items.length : undefined}
               keyExtractor={(item) => item.value}
               renderItem={({ item }) => (
                 <PickerItemComponent

@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
     marginLeft: 16,
   },
   resume: {
+    marginTop: 10,
     color: colors.green,
     fontSize: 16,
     fontFamily: "montserrat-black",

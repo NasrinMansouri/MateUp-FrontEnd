@@ -117,7 +117,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
   // handle press for each buddy
   const handlePressBuddy = (item) => {
     console.log("Clicked memberId:", item.id);
-    navigation.navigate("MemberProfile", {
+    navigation.push("MemberProfile", {
       memberId: item.id,
       challengeId: item.id,
       isBuddy: false,

@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   clockContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginLeft: 16,
+    marginLeft: 17,
     marginTop: 4,
     gap: 10,
   },
