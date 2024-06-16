@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { StyleSheet } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { navigationRef } from "./app/navigation/rootNavigation";
-import { AppLoading } from "expo";
 import { useFonts } from "expo-font";
-import { checkAndDeleteKey, getFromAsyncStorage, clearStorage } from "./app/auth/asyncStorage";
+import {
+  checkAndDeleteKey,
+  getFromAsyncStorage,
+  clearStorage,
+} from "./app/auth/asyncStorage";
 // import { AppLoading } from "expo";
 
 // to change the background color
@@ -22,8 +25,119 @@ import authStorage from "./app/auth/storage";
 import AppNavigator from "./app/navigation/AppNavigator";
 import LoginScreen from "./app/screens/LoginScreen";
 import myTheme from "./app/navigation/NavigationTheme";
-import { setUserToken } from './app/auth/userToken';
+import { setUserToken } from "./app/auth/userToken";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+export default function App() {
+  const [userToken, setUserToken] = useState(null);
+  const [userId, setUserId] = useState(null);
+  const [memberId, setMemberId] = useState(null);
+  const [error, setError] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const [isLoaded] = useFonts({
+    "montserrat-black": require("./assets/fonts/Montserrat-Black.ttf"),
+    "nunitoSans-bold": require("./assets/fonts/NunitoSans7pt-Bold.ttf"),
+    "nunitoSans-regular": require("./assets/fonts/NunitoSans7pt-Regular.ttf"),
+    "nunitoSans-extraBold": require("./assets/fonts/NunitoSans7pt-ExtraBold.ttf"),
+  });
+
+  useEffect(() => {
+    const clearStorageOnLaunch = async () => {
+      await clearStorage();
+    };
+    clearStorageOnLaunch();
+  }, []);
+
+  const handleOnLayout = useCallback(async () => {
+    if (isLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [isLoaded]);
+
+  useEffect(() => {
+    const checkAuthToken = async () => {
+      try {
+        const storedToken = await AsyncStorage.getItem("userToken");
+        if (storedToken) {
+          setUserToken(storedToken);
+          setIsAuthenticated(true);
+        }
+      } catch (error) {
+        console.error("Error retrieving userToken:", error);
+      }
+    };
+
+    const checkUserId = async () => {
+      try {
+        const storedUserId = await AsyncStorage.getItem("userId");
+        if (storedUserId) {
+          setUserId(storedUserId);
+        }
+      } catch (error) {
+        console.error("Error retrieving userId:", error);
+      }
+    };
+
+    const checkMemberId = async () => {
+      try {
+        const storedMemberId = await AsyncStorage.getItem("memberId");
+        if (storedMemberId) {
+          setMemberId(storedMemberId);
+        }
+      } catch (error) {
+        console.error("Error retrieving memberId:", error);
+      }
+    };
+
+    checkAuthToken();
+    checkUserId();
+    checkMemberId();
+  }, []);
+
+  const handleLogin = async (userToken, userId, memberId) => {
+    try {
+      await AsyncStorage.setItem("userToken", userToken);
+      await AsyncStorage.setItem("userId", userId.toString());
+      await AsyncStorage.setItem("memberId", memberId.toString());
+      setUserToken(userToken);
+      setUserId(userId);
+      setMemberId(memberId);
+      setIsAuthenticated(true);
+    } catch (error) {
+      console.error("Error saving userToken and userId:", error);
+    }
+  };
+
+  if (error) {
+    console.error("Error loading fonts:", error);
+    return null;
+  }
+
+  if (!isLoaded) {
+    return null;
+  }
+
+  return (
+    <>
+      <SafeAreaProvider onLayout={handleOnLayout}>
+        <NavigationContainer ref={navigationRef} theme={myTheme}>
+          {isAuthenticated ? (
+            <AppNavigator
+              userToken={userToken}
+              userId={userId}
+              memberId={memberId}
+            />
+          ) : (
+            <AuthNavigator onLogin={handleLogin} />
+          )}
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </>
+  );
+}
+
+const styles = StyleSheet.create({});
 
 // dummy data for Buddy Profile screen
 const userProfileData = {
@@ -443,136 +557,3 @@ const memberProfile = {
     },
   ],
 };
-
-export default function App() {
-  const [userToken, setUserToken] = useState(null);
-  const [userId, setUserId] = useState(null);
-  const [memberId, setMemberId] = useState(null);
-  const [error, setError] = useState("");
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const [isLoaded] = useFonts({
-    "montserrat-black": require("./assets/fonts/Montserrat-Black.ttf"),
-    "nunitoSans-bold": require("./assets/fonts/NunitoSans7pt-Bold.ttf"),
-    "nunitoSans-regular": require("./assets/fonts/NunitoSans7pt-Regular.ttf"),
-    "nunitoSans-extraBold": require("./assets/fonts/NunitoSans7pt-ExtraBold.ttf"),
-  });
-
-  useEffect(() => {
-    const clearStorageOnLaunch = async () => {
-      await clearStorage();
-    };
-    clearStorageOnLaunch();
-  }, []);
-
-  const handleOnLayout = useCallback(async () => {
-    if (isLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [isLoaded]);
-
-  useEffect(() => {
-    const checkAuthToken = async () => {
-      try {
-        const storedToken = await AsyncStorage.getItem('userToken');
-        if (storedToken) {
-          setUserToken(storedToken);
-          setIsAuthenticated(true);
-        }
-      } catch (error) {
-        console.error('Error retrieving userToken:', error);
-      }
-    };
-
-    const checkUserId = async () => {
-      try {
-        const storedUserId = await AsyncStorage.getItem('userId');
-        if (storedUserId) {
-          setUserId(storedUserId);
-        }
-      } catch (error) {
-        console.error('Error retrieving userId:', error);
-      }
-    };
-
-    const checkMemberId = async () => {
-      try {
-        const storedMemberId = await AsyncStorage.getItem('memberId');
-        if (storedMemberId) {
-          setMemberId(storedMemberId);
-        }
-      } catch (error) {
-        console.error('Error retrieving memberId:', error);
-      }
-    };
-
-    checkAuthToken();
-    checkUserId();
-    checkMemberId();
-  }, []);
-
-  const handleLogin = async (userToken, userId, memberId) => {
-    try {
-      await AsyncStorage.setItem('userToken', userToken);
-      await AsyncStorage.setItem('userId', userId.toString());
-      await AsyncStorage.setItem('memberId', memberId.toString());
-      setUserToken(userToken);
-      setUserId(userId);
-      setMemberId(memberId);
-      setIsAuthenticated(true);
-    } catch (error) {
-      console.error('Error saving userToken and userId:', error);
-    }
-  };
-
-  if (error) {
-    console.error('Error loading fonts:', error);
-    return null;
-  }
-
-  if (!isLoaded) {
-    return null;
-  }
-
-  return (
-    <>
-      <SafeAreaProvider onLayout={handleOnLayout}>
-        <NavigationContainer ref={navigationRef} theme={myTheme}>
-          {isAuthenticated ? (
-            <AppNavigator userToken={userToken} userId={userId} memberId={memberId} />
-          ) : (
-            <AuthNavigator onLogin={handleLogin} />
-          )}
-        </NavigationContainer>
-      </SafeAreaProvider>
-    </>
-  );
-}
-
-const styles = StyleSheet.create({});
-
-
-// retrieving the token and user
-//   import { getFromAsyncStorage } from '../utils/AsyncStorage';
-
-// const retrieveUserData = async () => {
-//   const token = await getFromAsyncStorage('userToken');
-//   const user = await getFromAsyncStorage('user');
-//   // console.log('Token:', token);
-//   // console.log('User:', user ? JSON.parse(user) : null);
-// };
-
-// for logou
-// const handleLogout = async () => {
-//   await deleteFromAsyncStorage('userToken');
-//   setToken(null);
-//   setIsAuthenticated(false);
-// };
-
-// for logout but for logout page
-//   import { deleteFromAsyncStorage } from '../utils/AsyncStorage';
-// const handleLogout = async () => {
-//   await deleteFromAsyncStorage('userToken');
-//   await deleteFromAsyncStorage('user');
-//   // Perform any additional logout operations
-// };

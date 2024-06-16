@@ -42,6 +42,11 @@ export default function BuddyProfileScreen({ route, navigation }) {
               backgroundColor: colors.green,
             }
       );
+    } else {
+      setButtonClicked({
+        title: "Delete Buddy",
+        backgroundColor: colors.orangeSecondary,
+      });
     }
   }, [isBuddy]);
 
