@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet, View, ActivityIndicator } from "react-native";
+import { FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import GalleryAllChallenges from "../../../components/challenge/GalleryAllChallenges";
@@ -14,7 +14,7 @@ import { getFromAsyncStorage } from "../../../auth/asyncStorage";
 const challengeYourBuddiesJoined = [
   {
     id: 1,
-    challengeImage: require("../../../../assets/person-1.jpg"),
+    challengeImage: require("../../../../assets/person5.jpg"),
     challengeName: "Weekly Challenge",
     duration: "7 Hours",
     beginingDate: "AGU 3",
@@ -22,18 +22,18 @@ const challengeYourBuddiesJoined = [
     year: 2024,
 
     Buddies: [
-      { id: 1, image: require("../../../../assets/person-1.jpg") },
-      { id: 2, image: require("../../../../assets/person-1.jpg") },
-      { id: 3, image: require("../../../../assets/person-1.jpg") },
-      { id: 4, image: require("../../../../assets/person-1.jpg") },
+      { id: 1, image: require("../../../../assets/person4.jpg") },
+      { id: 2, image: require("../../../../assets/person2.jpg") },
+      { id: 3, image: require("../../../../assets/person3.jpg") },
+      { id: 4, image: require("../../../../assets/person5.jpg") },
       { id: 5, image: require("../../../../assets/person-1.jpg") },
-      { id: 6, image: require("../../../../assets/person-1.jpg") },
-      { id: 7, image: require("../../../../assets/person-1.jpg") },
+      { id: 6, image: require("../../../../assets/person4.jpg") },
+      { id: 7, image: require("../../../../assets/person2.jpg") },
     ],
   },
   {
     id: 2,
-    challengeImage: require("../../../../assets/person-1.jpg"),
+    challengeImage: require("../../../../assets/person3.jpg"),
     challengeName: "Weekly Challenge",
     duration: "7 Hours",
     beginingDate: "AGU 3",
@@ -44,7 +44,7 @@ const challengeYourBuddiesJoined = [
   },
   {
     id: 3,
-    challengeImage: require("../../../../assets/person-1.jpg"),
+    challengeImage: require("../../../../assets/person2.jpg"),
     challengeName: "Weekly Challenge",
     duration: "7 Hours",
     beginingDate: "AGU 3",
@@ -53,15 +53,15 @@ const challengeYourBuddiesJoined = [
 
     Buddies: [
       { id: 1, image: require("../../../../assets/person-1.jpg") },
-      { id: 2, image: require("../../../../assets/person-1.jpg") },
-      { id: 3, image: require("../../../../assets/person-1.jpg") },
-      { id: 4, image: require("../../../../assets/person-1.jpg") },
-      { id: 5, image: require("../../../../assets/person-1.jpg") },
+      { id: 2, image: require("../../../../assets/person2.jpg") },
+      { id: 3, image: require("../../../../assets/person3.jpg") },
+      { id: 4, image: require("../../../../assets/person4.jpg") },
+      { id: 5, image: require("../../../../assets/person5.jpg") },
     ],
   },
 ];
 
-export default function Join({ }) {
+export default function Join({}) {
   // for backend connection
   // const getChallengeYourBuddiesJoinedApi = useApi(
   //   challengeApi.getBuddiesJoinedChallenges
@@ -111,9 +111,6 @@ export default function Join({ }) {
     GalleryBuddiesJoinedChallenge: () => (
       <GalleryBuddiesJoinedChallenge
         BuddiesJoinedChallenge={challengeYourBuddiesJoined}
-        // BuddiesJoinedChallenge={getChallengeYourBuddiesJoinedApi.data}
-        // loading={getChallengeYourBuddiesJoinedApi.loading}
-        // error={getChallengeYourBuddiesJoinedApi.error}
         onPress={(item) =>
           navigation.navigate("ChallengeDetails", {
             challengeId: item.id,
@@ -128,9 +125,6 @@ export default function Join({ }) {
     GalleryClubChallenge: () => (
       <GalleryClubChallenge
         ClubChallenge={clubChallenges}
-        // ClubChallenge={getClubChallengesApi.data}
-        // loading={getClubChallengesApi.loading}
-        // error={getClubChallengesApi.error}
         onPress={(item) =>
           navigation.navigate("ChallengeDetails", {
             challengeId: item.id,
@@ -146,9 +140,6 @@ export default function Join({ }) {
     GalleryAllChallenges: () => (
       <GalleryAllChallenges
         AllChallenges={challengeYourBuddiesJoined}
-        // AllChallenges={getAllChallengesApi.data}
-        // loading={getAllChallengesApi.loading}
-        // error={getAllChallengesApi.error}
         onPress={(item) =>
           navigation.navigate("ChallengeDetails", {
             challengeId: item.id,

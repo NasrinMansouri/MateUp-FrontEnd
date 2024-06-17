@@ -1,18 +1,16 @@
-import React, { useEffect } from "react";
-import { StyleSheet, View, TouchableOpacity, FlatList } from "react-native";
+import React from "react";
+import { StyleSheet, View, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import AppButton from "../../../components/AppButton";
 import GalleryChallengeByMe from "../../../components/challenge/GalleryChallengeByMe";
 import GalleryJoinedChallenge from "../../../components/challenge/GalleryJoinedChallenge";
 import Screen from "../../../components/Screen";
-import useApi from "../../../hooks/useApi";
-import challengeApi from "../../../api/challenge";
 
 joinedChallengeData = [
   {
     id: 1,
-    challenegImage: require("../../../../assets/person2.jpg"),
+    challenegImage: require("../../../../assets/person3.jpg"),
     challengeName: "Cardio Boost Challenge",
     challengeGoal: "15 Hours",
     startDate: "Aug 3",
@@ -32,7 +30,7 @@ joinedChallengeData = [
   },
 ];
 
-export default function MyChallenges({ }) {
+export default function MyChallenges({}) {
   // for backend connection
   // const getJoinedChallenge = useApi(challengeApi.getUserJoinedChallenges);
   // const getChallengeByMe = useApi(challengeApi.getChallengesByMe);
@@ -60,9 +58,6 @@ export default function MyChallenges({ }) {
       <View style={styles.title1Container}>
         <GalleryJoinedChallenge
           joinedChallenge={joinedChallengeData}
-          // joinedChallenge={getJoinedChallenge.data}
-          // loading={getJoinedChallenge.loading}
-          // error={getJoinedChallenge.error}
           header={"Joined Challenges"}
           onPress={(item) => {
             console.log("id from gallery join channge in mychallenge", item.id);
@@ -75,9 +70,6 @@ export default function MyChallenges({ }) {
       <View style={styles.title2Container}>
         <GalleryChallengeByMe
           challengeByMe={joinedChallengeData}
-          // challengeByMe={getChallengeByMe.data}
-          // loading={getChallengeByMe.loading}
-          // error={getChallengeByMe.error}
           header={"Challenges by me"}
           onPress={(item) =>
             navigation.navigate("JoinedChallenge", { challengeId: item.id })

@@ -9,13 +9,10 @@ import {
   ScrollView,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  Modal,
-  ActivityIndicator,
 } from "react-native";
 
 import colors from "../../config/colors";
 import Screen from "../../components/Screen";
-import StopWatch from "../../screens/challenge/StopWatch";
 import BulletPointWithText from "../../components/BulletPointWithText";
 import ChallengeDescription from "../../components/challenge/ChallengeDescription";
 import DonutChart from "../../components/challenge/DonutChart";
@@ -77,44 +74,6 @@ export default function JoinChallengeScreen({ navigation, route }) {
 
   const handleBackPress = () => {
     navigation.navigate("challenge", { screen: "My Challenges" });
-  };
-
-  const challengeDetails = {
-    challengeImage: require("../../../assets/person3.jpg"),
-    ChallengeName: "Cardio Boost Challenge ",
-    challengeType: "Cardio workout",
-    duration: "15 Hours",
-    startDate: "Aug 3",
-    endDate: "Aug 4",
-    year: "2022",
-    challengeDescription:
-      "Embark on a transformative journey! Commit to completing  15 hours of cardio within the next 30 days! Join me in making every step count during this four-week adventure! Let's share our experiences here and uplift each other along the way. We've got this! 💪🏃‍♀️🏃‍♂️",
-    numberOfMembers: 10,
-    yourBuddies: [
-      {
-        id: 1,
-        name: "John Doeeeeeeeeeeeeeeeeeee",
-        image: require("../../../assets/person4.jpg"),
-      },
-      {
-        id: 2,
-        name: "John Doeeeeeeeeeeeeeeeeeee",
-        image: require("../../../assets/person5.jpg"),
-      },
-      {
-        id: 3,
-        name: "John Doeeeeeeeeeeeeeeeeeee",
-        image: require("../../../assets/person4.jpg"),
-      },
-      {
-        id: 4,
-        name: "John Doeeeeeeeeeeeeeeeeeee",
-        image: require("../../../assets/person5.jpg"),
-      },
-    ],
-    numberOfLikes: 30,
-    numberOfComments: 10,
-    percentage: 0,
   };
 
   const {
@@ -304,19 +263,40 @@ const styles = StyleSheet.create({
   },
 });
 
-// <Modal
-//         animationType="slide"
-//         visible={modalVisible}
-//         onRequestClose={handleModalClose}
-//       >
-//         <View style={styles.modalContainer}>
-//           <TouchableOpacity
-//             style={styles.closeButton}
-//             onPress={handleModalClose}
-//           >
-//             <Ionicons name="close" size={24} color={colors.white} />
-//             {/* <Text style={styles.closeButtonText}>Cancel</Text> */}
-//           </TouchableOpacity>
-//           <StopWatch />
-//         </View>
-//       </Modal>
+const challengeDetails = {
+  challengeImage: require("../../../assets/person3.jpg"),
+  ChallengeName: "Cardio Boost Challenge ",
+  challengeType: "Cardio workout",
+  duration: "15 Hours",
+  startDate: "Aug 3",
+  endDate: "Aug 4",
+  year: "2022",
+  challengeDescription:
+    "Embark on a transformative journey! Commit to completing  15 hours of cardio within the next 30 days! Join me in making every step count during this four-week adventure! Let's share our experiences here and uplift each other along the way. We've got this! 💪🏃‍♀️🏃‍♂️",
+  numberOfMembers: 10,
+  yourBuddies: [
+    {
+      id: 1,
+      name: "John Doeeeeeeeeeeeeeeeeeee",
+      image: require("../../../assets/person4.jpg"),
+    },
+    {
+      id: 2,
+      name: "John Doeeeeeeeeeeeeeeeeeee",
+      image: require("../../../assets/person5.jpg"),
+    },
+    {
+      id: 3,
+      name: "John Doeeeeeeeeeeeeeeeeeee",
+      image: require("../../../assets/person4.jpg"),
+    },
+    {
+      id: 4,
+      name: "John Doeeeeeeeeeeeeeeeeeee",
+      image: require("../../../assets/person5.jpg"),
+    },
+  ],
+  numberOfLikes: 30,
+  numberOfComments: 10,
+  percentage: 1,
+};

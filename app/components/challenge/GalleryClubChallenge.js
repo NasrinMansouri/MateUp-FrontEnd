@@ -41,7 +41,8 @@ export default function GalleryClubChallenge({
           <CardChallenges
             onPressCard={() => onPress(item)}
             onPressBtn={() => onPressJoin(item)}
-            challengeImage={{uri: item.challenge_image_url}}
+            challengeImage={{ uri: item.challenge_image_url }}
+            // challengeImage={item.challengeImage}
             challengeName={item.name}
             duration={item.time_based}
             beginingDate={item.start_date}

@@ -8,7 +8,6 @@ import DetailsChallengeScreen from "../screens/challenge/DetailsChallengeScreen"
 import JoinedChallengeScreen from "../screens/challenge/JoinedChallengeScreen";
 import CreateChallengeScreen from "../screens/challenge/CreateChallengeScreen";
 import StopWatch from "../screens/challenge/StopWatch";
-import SearchScreen from "../screens/SearchScreen";
 import StartChallengeScreen from "../screens/challenge/StartChallnegScreen";
 import SaveChallengeScreen from "../screens/challenge/SaveChallengeScreen";
 import ChallengeSearchScreen from "../screens/challenge/ChallengeSearchScreen";

@@ -11,27 +11,8 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 
 import colors from "../../config/colors";
-// import searchApi from "../api/search";
 import ListItemSeparator from "../../components/lists/ListItemSeperator";
 import Screen from "../../components/Screen";
-
-const searchedResults = [
-  {
-    id: 1,
-    name: "Moe",
-    image: require("../../../assets/person2.jpg"),
-  },
-  {
-    id: 2,
-    name: "elena",
-    image: require("../../../assets/person-1.jpg"),
-  },
-  {
-    id: 3,
-    name: "John",
-    image: require("../../../assets/person-1.jpg"),
-  },
-];
 
 export default function CoachSearchScreen({ navigation }) {
   // State for storing user's search input
@@ -52,33 +33,6 @@ export default function CoachSearchScreen({ navigation }) {
       setsearchResults([]); //clear searchResults when search query is empty
     }
   };
-
-  // to connect to back end
-
-  // Function to handle search input change
-  // const handleSearch = (text) => {
-  //   setSearchInput(text); // Update searchInput state
-  // };
-
-  // //for backend connection
-  // useEffect(() => {
-  //   loadSearchResults();
-  // }, [searchInput]);
-
-  // const loadSearchResults = async () => {
-  //   if (searchInput.trim() !== "") {        //The trim() method removes whitespace from both sides of a string.
-  //     try {
-  //       // Calling API function to fetch members based on search input
-  //       const response = await membersApi.getSearch(searchInput);
-  //       // Update searchResults state with the fetched data
-  //       setSearchResults(response.data.members);
-  //     } catch (error) {
-  //       console.error("Error fetching search results:", error);
-  //     }
-  //   } else {
-  //     setSearchResults([]); // Clear searchResults when search query is empty
-  //   }
-  // };
 
   return (
     <Screen style={styles.container}>
@@ -101,7 +55,11 @@ export default function CoachSearchScreen({ navigation }) {
       <FlatList
         showsVerticalScrollIndicator={false}
         data={searchResults}
-        initialNumToRender={searchResults && searchResults.length > 0 ? searchResults.length : undefined}
+        initialNumToRender={
+          searchResults && searchResults.length > 0
+            ? searchResults.length
+            : undefined
+        }
         keyExtractor={(members) => members.id.toString()}
         ItemSeparatorComponent={ListItemSeparator}
         ListEmptyComponent={
@@ -181,3 +139,21 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
 });
+
+const searchedResults = [
+  {
+    id: 1,
+    name: "Moe",
+    image: require("../../../assets/person2.jpg"),
+  },
+  {
+    id: 2,
+    name: "elena",
+    image: require("../../../assets/person-1.jpg"),
+  },
+  {
+    id: 3,
+    name: "John",
+    image: require("../../../assets/person-1.jpg"),
+  },
+];

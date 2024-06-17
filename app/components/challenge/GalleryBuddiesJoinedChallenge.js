@@ -37,13 +37,17 @@ export default function GalleryBuddiesJoinedChallenge({
         style={styles.container}
         horizontal
         data={BuddiesJoinedChallenge}
-        initialNumToRender={BuddiesJoinedChallenge && BuddiesJoinedChallenge.length > 0 ? BuddiesJoinedChallenge.length : undefined}
+        initialNumToRender={
+          BuddiesJoinedChallenge && BuddiesJoinedChallenge.length > 0
+            ? BuddiesJoinedChallenge.length
+            : undefined
+        }
         keyExtractor={(challenges) => challenges.id.toString()}
         renderItem={({ item }) => (
           <CardChallenges
             onPressCard={() => onPress(item)}
             onPressBtn={() => onPressJoin(item)}
-            challengeImage={{uri: item.challengeImage}}
+            challengeImage={item.challengeImage}
             challengeName={item.challengeName}
             duration={item.duration}
             beginingDate={item.beginingDate}

@@ -19,12 +19,9 @@ const CoachScreen = ({ navigation }) => {
         onPressMessage={() => {
           console.log("message");
         }}
-        // onPressNotification={() => {
-        //   navigation.navigate("Notification");
-        // }}
       />
       <Tab.Navigator
-        // initialRouteName="Meet Trainers"
+        initialRouteName="Meet Trainers"
         screenOptions={{
           tabBarLabelStyle: {
             fontFamily: "montserrat-black",

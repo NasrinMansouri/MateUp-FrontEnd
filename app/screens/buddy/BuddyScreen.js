@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  ScrollView,
-  View,
-  Modal,
-  Text,
-  TouchableOpacity,
-  ActivityIndicator,
-} from "react-native";
+import { StyleSheet, ScrollView, View, Modal, Text } from "react-native";
 
 import Screen from "../../components/Screen";
 import AppButtonBorder from "../../components/AppButtonBorder";

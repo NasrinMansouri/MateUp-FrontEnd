@@ -34,13 +34,17 @@ export default function GalleryAllChallenges({
       </View>
       <FlatList
         data={AllChallenges}
-        initialNumToRender={AllChallenges && AllChallenges.length > 0 ? AllChallenges.length : undefined}
+        initialNumToRender={
+          AllChallenges && AllChallenges.length > 0
+            ? AllChallenges.length
+            : undefined
+        }
         keyExtractor={(challenges) => challenges.id.toString()}
         renderItem={({ item }) => (
           <CardChallenges
             onPressCard={() => onPress(item)}
             onPressBtn={() => onPressJoin(item)}
-            challengeImage={{uri: item.challengeImage}}
+            challengeImage={item.challengeImage}
             challengeName={item.challengeName}
             duration={item.duration}
             beginingDate={item.beginingDate}

@@ -18,12 +18,9 @@ const ChallengeScreen = ({ navigation }) => {
         onPressMessage={() => {
           console.log("message");
         }}
-        // onPressNotification={() => {
-        //   navigation.navigate("Notification");
-        // }}
       />
       <Tab.Navigator
-        // initialRouteName="Join"
+        initialRouteName="Join"
         screenOptions={{
           tabBarLabelStyle: {
             fontFamily: "montserrat-black",

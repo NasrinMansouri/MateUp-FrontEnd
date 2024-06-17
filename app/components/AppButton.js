@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    color: colors.white,
+    // color: colors.white,
     textTransform: "uppercase",
     // fontFamily: "montserrat-black",
   },

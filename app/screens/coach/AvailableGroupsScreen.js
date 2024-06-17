@@ -4,7 +4,6 @@ import * as Notifications from "expo-notifications";
 
 import Screen from "../../components/Screen";
 import colors from "../../config/colors";
-import TopNav from "../../components/topNavigation/TopNav";
 import Line from "../../components/Line";
 import CardAvailableGroup from "../../components/coach/CardAvailableGroup";
 import coaches from "../../api/coaches";
@@ -53,43 +52,6 @@ export default function AvailableGroupsScreen({ navigation, route }) {
     }
   };
 
-  // const availableGroups = [
-  //   {
-  //     id: 1,
-  //     members: [
-  //       {
-  //         id: 1,
-  //         image: require("../../../assets/person3.jpg"),
-  //       },
-  //       {
-  //         id: 2,
-  //         image: require("../../../assets/person3.jpg"),
-  //       },
-  //     ],
-  //     goal: "Get Strong and get toned",
-  //     date: "Aug 3",
-  //     year: "2024",
-  //     start: "5 PM",
-  //     end: "7 PM",
-  //     spots: "1 spot is still available",
-  //   },
-  //   {
-  //     id: 2,
-  //     members: [
-  //       {
-  //         id: 1,
-  //         image: require("../../../assets/person3.jpg"),
-  //       },
-  //     ],
-  //     goal: "Get Strong and get toned",
-  //     date: "Aug 3",
-  //     year: "2024",
-  //     start: "5 PM",
-  //     end: "7 PM",
-  //     spots: "2 spot is still available",
-  //   },
-  // ];
-
   const [availableGroups, setAvailableGroups] = React.useState([]);
 
   useEffect(() => {
@@ -107,7 +69,6 @@ export default function AvailableGroupsScreen({ navigation, route }) {
   };
   return (
     <Screen style={styles.mainContainer}>
-      {/* <TopNav /> */}
       <View style={styles.container}>
         <ScrollView>
           <View style={styles.header}>
@@ -117,7 +78,6 @@ export default function AvailableGroupsScreen({ navigation, route }) {
           {availableGroups.map((group, id) => (
             <CardAvailableGroup
               key={id}
-              //members={group.members}
               members={[
                 {
                   id: 1,
@@ -126,7 +86,6 @@ export default function AvailableGroupsScreen({ navigation, route }) {
               ]}
               goal={group.goal}
               date={group.session_date}
-              //year={group.year}
               start={group.start_time}
               end={group.end_time}
               spots={group.available_spots}

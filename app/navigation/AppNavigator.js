@@ -13,8 +13,9 @@ import CoachNavigator from "./CoachNavigator";
 import ChallengeNavigator from "./ChallengeNavigator";
 import Calendar from "../screens/calendar/Calendar";
 import useNotifications from "../hooks/useNotifications";
-import { getUserToken } from '../auth/userToken';
-import { saveToAsyncStorage, getFromAsyncStorage } from '../auth/asyncStorage';
+import { getUserToken } from "../auth/userToken";
+import { saveToAsyncStorage, getFromAsyncStorage } from "../auth/asyncStorage";
+import CalendarNavigator from "./Calendarnavigator";
 
 const Tab = createMaterialBottomTabNavigator();
 const AppNavigator = ({ userToken, userId, memberId, onLogout }) => {
@@ -83,7 +84,7 @@ const AppNavigator = ({ userToken, userId, memberId, onLogout }) => {
       />
       <Tab.Screen
         name="Calendar"
-        component={Calendar}
+        component={CalendarNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons

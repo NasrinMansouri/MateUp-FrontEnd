@@ -5,7 +5,6 @@ import {
   ScrollView,
   Text,
   TouchableWithoutFeedback,
-  TouchableHighlight,
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 
@@ -51,12 +50,15 @@ export default function RequestCalendarAccess({
 
       {/* this will be executed when they have access to the calendar */}
       {isBuddy && (
-        <TouchableHighlight activeOpacity={0.9} onPress={onPressGoToCalendar}>
+        <TouchableWithoutFeedback
+          activeOpacity={0.9}
+          onPress={onPressGoToCalendar}
+        >
           <View style={styles.haveAccessContainer}>
             <Text style={styles.header2}>CALENDAR</Text>
             <Entypo name="chevron-right" size={24} color={colors.green} />
           </View>
-        </TouchableHighlight>
+        </TouchableWithoutFeedback>
       )}
     </>
   );

@@ -14,13 +14,7 @@ import Screen from "../components/Screen";
 import colors from "../config/colors";
 import { AppFormField, SubmitButton, AppForm } from "../components/forms";
 import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import {
-  saveToAsyncStorage,
-  getFromAsyncStorage,
-  removeFromAsyncStorage,
-  clearStorage,
-} from "../auth/asyncStorage";
+import { saveToAsyncStorage, clearStorage } from "../auth/asyncStorage";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -42,7 +36,7 @@ const LoginScreen = ({ route }, props) => {
       await clearStorage();
 
       const response = await axios.post(
-        "https://4852-2a02-a03f-6a9f-7101-e919-1a52-3309-604d.ngrok-free.app/api/user/login",
+        "https://3e90-2a02-a03f-6a9f-7101-4192-2688-1d92-3d22.ngrok-free.app/api/user/login",
         {
           email,
           password,
@@ -154,14 +148,7 @@ const LoginScreen = ({ route }, props) => {
 };
 
 export default LoginScreen;
-// Extract relevant user data
-// const userData = {
-//   id: response.data.userData.id,
-//   role: response.data.userData.role,
-//   username: response.data.userData.username,
-//   name: response.data.userData.name,
-//   surname: response.data.userData.surname,
-// };
+
 const styles = StyleSheet.create({
   screen: {
     padding: 10,
@@ -197,7 +184,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   buttonContainer: {
-    marginTop: 120,
+    marginTop: 260,
   },
   logoContainer: {
     alignItems: "center",

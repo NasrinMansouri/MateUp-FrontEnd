@@ -66,23 +66,23 @@ export default function DetailsChallengeScreen({ route }) {
     yourBuddies: [
       {
         id: 1,
-        name: "John Doeeeeeeeeeeeeeeeeeee",
+        name: "Lily paterson",
         image: require("../../../assets/person4.jpg"),
       },
       {
         id: 2,
-        name: "John Doeeeeeeeeeeeeeeeeeee",
+        name: "jimmy anderson",
         image: require("../../../assets/person5.jpg"),
       },
       {
         id: 3,
-        name: "John Doeeeeeeeeeeeeeeeeeee",
-        image: require("../../../assets/person4.jpg"),
+        name: "rose",
+        image: require("../../../assets/person2.jpg"),
       },
       {
         id: 4,
-        name: "John Doeeeeeeeeeeeeeeeeeee",
-        image: require("../../../assets/person5.jpg"),
+        name: "patrick smith",
+        image: require("../../../assets/person-1.jpg"),
       },
     ],
     numberOfLikes: 30,
@@ -137,7 +137,7 @@ export default function DetailsChallengeScreen({ route }) {
                 <CardProfile
                   key={id}
                   name={buddy.name}
-                  image={{uri: buddy.image}}
+                  image={buddy.image}
                   flexDirection={"row"}
                   cardWidth={"100%"}
                   imageHeight={52}

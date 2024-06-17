@@ -5,7 +5,6 @@ import colors from "../config/colors";
 import BuddyScreen from "../screens/buddy/BuddyScreen";
 import BuddyProfileScreen from "../screens/buddy/BuddyProfileScreen";
 import NotificationScreen from "../screens/NotificationScreen";
-import SearchScreen from "../screens/SearchScreen";
 import DetailsChallengeScreen from "../screens/challenge/DetailsChallengeScreen";
 import BuddySearchScreen from "../screens/buddy/BuddySearchScreen";
 

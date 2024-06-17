@@ -11,28 +11,8 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 
 import colors from "../../config/colors";
-// import searchApi from "../api/search";
 import ListItemSeparator from "../../components/lists/ListItemSeperator";
 import Screen from "../../components/Screen";
-import challengeApi from "../../api/challenge";
-
-// const searchedResults = [
-//   {
-//     id: 1,
-//     name: "Moe",
-//     image: require("../../../assets/person2.jpg"),
-//   },
-//   {
-//     id: 2,
-//     name: "elena",
-//     image: require("../../../assets/person-1.jpg"),
-//   },
-//   {
-//     id: 3,
-//     name: "John",
-//     image: require("../../../assets/person-1.jpg"),
-//   },
-// ];
 
 export default function ChallengeSearchScreen({ navigation }) {
   // State for storing user's search input
@@ -41,71 +21,18 @@ export default function ChallengeSearchScreen({ navigation }) {
   const [searchResults, setSearchResults] = useState([]);
 
   // Function to handle search input change
-  // const handleSearch = (text) => {
-  //   setSearchInput(text); // Update searchInput state
-  //   const filtered = searchedResults.filter((item) =>
-  //     // Filter search results based on user's search input and make it case insensitive
-  //     item.name.toLowerCase().includes(text.toLowerCase())
-  //   );
-  //   setSearchResults(filtered); // Update searchResults state
-  //   // Update searchResults even when search query is empty
-  //   if (text === "") {
-  //     setSearchResults([]); //clear searchResults when search query is empty
-  //   }
-  // };
-
-  // to connect to back end
-
-  // Function to handle search input change
   const handleSearch = (text) => {
     setSearchInput(text); // Update searchInput state
-  };
-
-  //for backend connection
-  useEffect(() => {
-    loadSearchResults();
-  }, [searchInput]);
-
-  const loadSearchResults = async () => {
-    if (searchInput.trim() !== "") {
-      //The trim() method removes whitespace from both sides of a string.
-      console.log("Fetching results for:", searchInput);
-      try {
-        // Calling API function to fetch members based on search input
-        const response = await challengeApi.getSearch(searchInput);
-        console.log("Raw response:", response);
-        // Update searchResults state with the fetched data
-        setSearchResults(response.data);
-        console.log(" response from search ", response.data);
-      } catch (error) {
-        console.error("Error fetching search results:", error);
-      }
-    } else {
-      console.log("No data in response");
-      setSearchResults([]); // Clear searchResults when search query is empty
+    const filtered = searchedResults.filter((item) =>
+      // Filter search results based on user's search input and make it case insensitive
+      item.name.toLowerCase().includes(text.toLowerCase())
+    );
+    setSearchResults(filtered); // Update searchResults state
+    // Update searchResults even when search query is empty
+    if (text === "") {
+      setSearchResults([]); //clear searchResults when search query is empty
     }
   };
-  // const loadSearchResults = async () => {
-  //   if (searchInput.trim() !== "") {
-  //     try {
-  //       console.log("Fetching results for:", searchInput);
-  //       const response = await challengeApi.getSearch(searchInput);
-  //       console.log("Raw response:", response);
-
-  //       if (response.ok && response.data) {
-  //         setSearchResults(response.data);
-  //         console.log("Search results:", response.data);
-  //       } else {
-  //         console.error("Failed to fetch search results:", response.problem);
-  //         setSearchResults([]);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching search results:", error);
-  //     }
-  //   } else {
-  //     setSearchResults([]);
-  //   }
-  // };
 
   console.log("current search inpute: ", searchInput);
   console.log("current search results: ", searchResults);
@@ -131,8 +58,12 @@ export default function ChallengeSearchScreen({ navigation }) {
       <FlatList
         showsVerticalScrollIndicator={false}
         data={searchResults}
-        initialNumToRender={searchResults && searchResults.length > 0 ? searchResults.length : undefined}
-        keyExtractor={(members) => members.id.toString()}
+        initialNumToRender={
+          searchResults && searchResults.length > 0
+            ? searchResults.length
+            : undefined
+        }
+        keyExtractor={(result) => result.id.toString()}
         ItemSeparatorComponent={ListItemSeparator}
         ListEmptyComponent={
           <View style={styles.noResultsContainer}>
@@ -210,3 +141,21 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
 });
+
+const searchedResults = [
+  {
+    id: 1,
+    name: "Moe",
+    image: require("../../../assets/person2.jpg"),
+  },
+  {
+    id: 2,
+    name: "elena",
+    image: require("../../../assets/person-1.jpg"),
+  },
+  {
+    id: 3,
+    name: "John",
+    image: require("../../../assets/person-1.jpg"),
+  },
+];

@@ -2,11 +2,7 @@ import { StyleSheet, View, FlatList, Text } from "react-native";
 import React, { useState, useEffect } from "react";
 
 import membersApi from "../../api/members";
-
 import { getFromAsyncStorage } from "../../auth/asyncStorage";
-
-import useApi from "../../hooks/useApi";
-
 import Line from "../../components/Line";
 import colors from "../../config/colors";
 import Screen from "../../components/Screen";
@@ -20,13 +16,6 @@ import {
   CardMeetTheMemberOfTheMonth,
   GalleryEducationalContent,
 } from "../../components/home";
-import {
-  GalleryBuddies,
-  GalleryConnectAll,
-  GalleryMatchBasedWorkout,
-  GalleryMatchClubMembers,
-} from "../../components/buddy";
-import MenueScreen from "./MenueScreen";
 
 export default function HomeScreen({ navigation }) {
   const [buddies, setBuddies] = useState([]);
@@ -151,7 +140,6 @@ export default function HomeScreen({ navigation }) {
 
   //define array of data, which contains objects with a type property
   const data = [
-    //{ type: "DisplayBuddies" },
     { type: "DisplayBuddies" },
     { type: "UserNextWorkoutPlanningComponent" },
     { type: "GalleryBuddiesWorkoutComponent" },

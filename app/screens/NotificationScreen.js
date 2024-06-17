@@ -16,7 +16,6 @@ const initialNotifications = [
     title: "Confirmed your buddy request.",
     userImage: require("../../assets/person2.jpg"),
     onPressConfirm: () => console.log("Confirm pressed for John Doe"),
-    // onPressDecline: () => console.log("Decline pressed for John Doe"),
     showRequestResult: true,
     showRequest: false,
   },
@@ -26,7 +25,6 @@ const initialNotifications = [
     title: "Sent you a buddy request.",
     userImage: require("../../assets/person4.jpg"),
     onPressConfirm: () => console.log("Confirm pressed for Jane Smith"),
-    // onPressDecline: () => console.log("Decline pressed for Jane Smith"),
     showRequestResult: false,
     showRequest: true,
   },
@@ -36,7 +34,6 @@ const initialNotifications = [
     title: "Sent you a buddy request.",
     userImage: require("../../assets/person5.jpg"),
     onPressConfirm: () => console.log("Confirm pressed for Jane Smith"),
-    // onPressDecline: () => console.log("Decline pressed for Jane Smith"),
     showRequestResult: false,
     showRequest: true,
   },
@@ -135,8 +132,6 @@ export default function ListItemGallery({ style }) {
                 userImage: require("../../assets/person2.jpg"),
                 onPressConfirm: () =>
                   console.log("Confirm pressed for John Doe"),
-                // onPressDecline: () =>
-                //   console.log("Decline pressed for John Doe"),
                 showRequestResult: true,
                 showRequest: false,
               },
@@ -147,8 +142,6 @@ export default function ListItemGallery({ style }) {
                 userImage: require("../../assets/person4.jpg"),
                 onPressConfirm: () =>
                   console.log("Confirm pressed for Jane Smith"),
-                // onPressDecline: () =>
-                //   console.log("Decline pressed for Jane Smith"),
                 showRequestResult: false,
                 showRequest: true,
               },

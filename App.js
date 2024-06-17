@@ -207,7 +207,7 @@ const buddies = [
   {
     id: 1,
     name: "MMMMMMMMMMMMMMMM ",
-    image: require("./assets/person-1.jpg"),
+    image: require("./assets/person2.jpg"),
   },
   {
     id: 2,

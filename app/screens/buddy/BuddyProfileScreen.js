@@ -10,13 +10,10 @@ import {
   ProfileTile,
   UserImage,
 } from "../../components/shareMemberProfile";
-import membersProfileApi from "../../api/membersProfile";
 import { GalleryBuddies, RequestCalendarAccess } from "../../components/buddy";
 import ListBulletPointWithText from "../../components/ListBulletPointWithText";
 import membersApi from "../../api/members";
 import BulletList from "../../components/shareMemberProfile/BulletList";
-import GalleryJoinedChallenge from "../../components/challenge/GalleryJoinedChallenge";
-// import { useNavigation } from "@react-navigation/native";
 
 export default function BuddyProfileScreen({ route, navigation }) {
   const scrollRef = useRef();
@@ -34,19 +31,15 @@ export default function BuddyProfileScreen({ route, navigation }) {
       setButtonClicked(
         isBuddy
           ? {
-              title: "Cancel Buddy Request",
-              backgroundColor: colors.orangeSecondary,
+              title: "Delete Buddy",
+              backgroundColor: colors.black,
+              color: colors.danger,
             }
           : {
               title: "Send Buddy Request",
               backgroundColor: colors.green,
             }
       );
-    } else {
-      setButtonClicked({
-        title: "Delete Buddy",
-        backgroundColor: colors.orangeSecondary,
-      });
     }
   }, [isBuddy]);
 
@@ -62,16 +55,14 @@ export default function BuddyProfileScreen({ route, navigation }) {
     }
   };
 
-  // const navigation = useNavigation();
-
   //to change the state of button when clicked
   const [buttonClicked, setButtonClicked] = useState({
     title: "Send Buddy Request",
     backgroundColor: colors.green,
   });
   const { memberId } = route.params;
-  // for backend connection
 
+  // for backend connection
   // console.log('isBuddy on buddyProfileScreen', isBuddy)
   const handleButtonClicked = () => {
     if (isBuddy) {
@@ -116,7 +107,8 @@ export default function BuddyProfileScreen({ route, navigation }) {
   };
 
   const handleGoToCalendar = () => {
-    // console.log("go to calendar");
+    // navigation.navigate("Calendar");
+    console.log("going to calendar");
   };
 
   // handle press for each buddy
@@ -141,20 +133,11 @@ export default function BuddyProfileScreen({ route, navigation }) {
     joinedChallengeData,
   } = memberProfile;
 
-  // location = "Raghenoplein 21 bis, 2800 Mechelen";
   return (
     <Screen style={styles.screen}>
       <ScrollView style={styles.container} ref={scrollRef}>
-        {/* <HeaderTile
-          onPressBack={() => // console.log("pressed back")}
-          onPressShare={() => // console.log("pressed share")}
-        /> */}
         <UserImage
           userImage={{ uri: memberProfile.user.profile_image_url }}
-          //userImage={userImage}
-          // userImage={userProfile.userImage}
-          //or
-          //userImage={userImage}
           imageWidth={116}
           imageHeight={116}
           imageRadius={116 / 2}
@@ -165,9 +148,6 @@ export default function BuddyProfileScreen({ route, navigation }) {
         <ProfileTile
           firstName={memberProfile.user.name}
           lastName={memberProfile.user.surname}
-          //firstName={firstName}
-          // firstName={userProfile.firstName}
-          // lastName={lastName}
           location={memberProfile.home_club_address}
           onpressmessage={() => console.log("pressed message")}
         />
@@ -183,12 +163,9 @@ export default function BuddyProfileScreen({ route, navigation }) {
         </View>
 
         <View>
-          {/* <Line marginTop={62} marginBottom={22} width={"90%"} /> */}
           <View style={styles.level}>
             <ListBulletPointWithText
               titles={memberProfile.level_fitness}
-              //titles={level}
-              // titles={userProfile.level}
               header={"Fitness level"}
               textColor={colors.white}
               fontSize={16}
@@ -205,17 +182,15 @@ export default function BuddyProfileScreen({ route, navigation }) {
           textColor={colors.white}
         />
         <Line marginTop={22} marginBottom={22} width={"90%"} />
-        {/* <GalleryBuddies buddies={buddies} header={"buddies"} /> */}
         <GalleryBuddies
           buddies={buddies}
-          // buddies={userProfile.buddiesData}
           header={"buddies"}
           onPress={(item) => handlePressBuddy(item)}
         />
         <Line marginTop={22} marginBottom={22} width={"90%"} />
         {/* <GalleryJoinedChallenge
           // joinedChallenge={joinedChallengeData}
-          joinedChallenge={userProfile.joinedChallengeData}
+          joinedChallenge={memberProfile.joinedChallengeData}
           header={"joined challenges"}
         /> */}
         <Line marginTop={22} marginBottom={22} width={"90%"} />

@@ -91,7 +91,6 @@ export default function BuddySearchScreen({ navigation }) {
           autoCorrect={false}
           keyboardType="default"
           autoFocus
-          // onChangeText={(text) => handleSearch(text)} // Call handleSearch function on text change
           onChangeText={handleSearch}
           keyboardAppearance="dark"
         />
