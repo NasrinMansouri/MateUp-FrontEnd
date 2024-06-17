@@ -1,0 +1,13 @@
+Hey dear Stijn!
+
+well, its difficult to say honestly, but I must say this last two
+weeks I have been sick. I did half of the connection and then Matea was suppose
+to do the other half. I was using apiSauce at the begining but then I saw Matea
+start using axios instead. You can also view her contribution in github which is for
+mainly for connection.
+For Violeta she hasn't done anything in this project. But she has done in a seperate
+one which she will share it with you I believe. And as her work is gonna be finish last
+minute I did not have a time to integrate it here! 
+
+Thanks,
+Nasrin
