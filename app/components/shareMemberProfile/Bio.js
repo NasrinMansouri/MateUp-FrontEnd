@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   container: {
     marginLeft: 16,
     marginRight: 16,
-    marginTop: 22,
+    // marginTop: 22,
   },
   bio: {
     fontFamily: "nunitoSans-regular",

@@ -33,7 +33,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
           ? {
               title: "Delete Buddy",
               backgroundColor: colors.black,
-              color: colors.danger,
+              textColor: colors.danger,
             }
           : {
               title: "Send Buddy Request",
@@ -67,8 +67,9 @@ export default function BuddyProfileScreen({ route, navigation }) {
   const handleButtonClicked = () => {
     if (isBuddy) {
       setButtonClicked({
-        title: "Cancel Buddy Request",
+        title: "Delete Buddy",
         backgroundColor: colors.orangeSecondary,
+        textColor: colors.danger,
       });
     } else {
       setButtonClicked({
@@ -156,6 +157,7 @@ export default function BuddyProfileScreen({ route, navigation }) {
           <AppButton
             title={buttonClicked.title}
             backgroundColor={buttonClicked.backgroundColor}
+            textColor={buttonClicked.textColor}
             onPress={handleButtonClicked}
             // onPress={() => // console.log("add As buddy btn pressed")}
             fontSize={14}
