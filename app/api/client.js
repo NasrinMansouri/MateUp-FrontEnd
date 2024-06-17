@@ -10,7 +10,7 @@ let url;
 //   url = "http://127.0.0.1:8000/api";
 // }
 
-url = "https://73de-2a02-a03f-6a9f-7101-4192-2688-1d92-3d22.ngrok-free.app/api";
+url = "https://bc5a-2a02-a03f-6a9f-7101-4192-2688-1d92-3d22.ngrok-free.app/api";
 const apiClient = axios.create({
   baseURL: url,
   headers: {

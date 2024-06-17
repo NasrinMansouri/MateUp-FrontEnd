@@ -64,7 +64,7 @@ export default function SaveChallengeScreen({ route }) {
             <AppButton
               title="Delete"
               onPress={handleDelete}
-              backgroundColor={colors.blackBc}
+              backgroundColor={colors.black}
               fontSize={14}
               width="100%"
               textColor={colors.danger}
@@ -137,9 +137,10 @@ const styles = StyleSheet.create({
   saveBtn: {
     position: "absolute",
     bottom: 0,
-    marginBottom: 220,
+    marginBottom: 170,
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
+    gap: 10,
   },
 });
