@@ -92,7 +92,7 @@ export default function CoachProfileScreen({ navigation, route }) {
         <Line marginTop={22} marginBottom={22} width={"90%"} />
         <BulletList
           header={"Language"}
-          titles={trainerProfile?.language}
+          titles={trainerProfile?.languages}
           textColor={colors.white}
         />
         <Line marginTop={22} marginBottom={22} width={"90%"} />

@@ -5,8 +5,6 @@ const filterNonBuddies = (members, buddyIds) => {
   return members.filter((member) => !buddyIds.has(member.id));
 };
 
-// --------------------- //
-
 // getMembersBySearch
 const getSearch = async () => {
   // get the member ID from AsyncStorage

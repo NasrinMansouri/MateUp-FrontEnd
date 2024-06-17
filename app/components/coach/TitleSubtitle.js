@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
   rateDetails: {
     color: colors.white,
-    fontFamily: "nunitoSans-extraBold",
+    fontFamily: "nunitoSans-bold",
     fontSize: 16,
     textTransform: "capitalize",
   },

@@ -298,5 +298,5 @@ const challengeDetails = {
   ],
   numberOfLikes: 30,
   numberOfComments: 10,
-  percentage: 1,
+  percentage: 0,
 };

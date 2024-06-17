@@ -117,12 +117,7 @@ export default function HomeScreen({ navigation }) {
     GalleryPeopleYouMightKnowComponent: (item) => (
       <GalleryPeopleYouMightKnow
         item={item}
-        onPress={(item) =>
-          navigation.navigate("MemberProfile", {
-            memberId: item.id,
-            challengeId: item.id,
-          })
-        }
+        onPress={(item) => console.log("member clicked in home page", item)}
       />
     ),
     CardMeetTheMemberOfTheMonthComponent: (item) => (

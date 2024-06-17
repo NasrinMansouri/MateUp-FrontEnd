@@ -11,56 +11,6 @@ import useApi from "../../../hooks/useApi";
 import challengeApi from "../../../api/challenge";
 import { getFromAsyncStorage } from "../../../auth/asyncStorage";
 
-const challengeYourBuddiesJoined = [
-  {
-    id: 1,
-    challengeImage: require("../../../../assets/person5.jpg"),
-    challengeName: "Weekly Challenge",
-    duration: "7 Hours",
-    beginingDate: "AGU 3",
-    endingDate: "sep 3",
-    year: 2024,
-
-    Buddies: [
-      { id: 1, image: require("../../../../assets/person4.jpg") },
-      { id: 2, image: require("../../../../assets/person2.jpg") },
-      { id: 3, image: require("../../../../assets/person3.jpg") },
-      { id: 4, image: require("../../../../assets/person5.jpg") },
-      { id: 5, image: require("../../../../assets/person-1.jpg") },
-      { id: 6, image: require("../../../../assets/person4.jpg") },
-      { id: 7, image: require("../../../../assets/person2.jpg") },
-    ],
-  },
-  {
-    id: 2,
-    challengeImage: require("../../../../assets/person3.jpg"),
-    challengeName: "Weekly Challenge",
-    duration: "7 Hours",
-    beginingDate: "AGU 3",
-    endingDate: "sep 3",
-    year: 2024,
-
-    Buddies: [{ id: 1, image: require("../../../../assets/person-1.jpg") }],
-  },
-  {
-    id: 3,
-    challengeImage: require("../../../../assets/person2.jpg"),
-    challengeName: "Weekly Challenge",
-    duration: "7 Hours",
-    beginingDate: "AGU 3",
-    endingDate: "sep 3",
-    year: 2024,
-
-    Buddies: [
-      { id: 1, image: require("../../../../assets/person-1.jpg") },
-      { id: 2, image: require("../../../../assets/person2.jpg") },
-      { id: 3, image: require("../../../../assets/person3.jpg") },
-      { id: 4, image: require("../../../../assets/person4.jpg") },
-      { id: 5, image: require("../../../../assets/person5.jpg") },
-    ],
-  },
-];
-
 export default function Join({}) {
   // for backend connection
   // const getChallengeYourBuddiesJoinedApi = useApi(
@@ -174,3 +124,53 @@ export default function Join({}) {
     </Screen>
   );
 }
+
+const challengeYourBuddiesJoined = [
+  {
+    id: 1,
+    challengeImage: require("../../../../assets/person5.jpg"),
+    challengeName: "Strength Stride Series",
+    duration: "7 Hours",
+    beginingDate: "AGU 3",
+    endingDate: "sep 3",
+    year: 2024,
+
+    Buddies: [
+      { id: 1, image: require("../../../../assets/person4.jpg") },
+      { id: 2, image: require("../../../../assets/person2.jpg") },
+      { id: 3, image: require("../../../../assets/person3.jpg") },
+      { id: 4, image: require("../../../../assets/person5.jpg") },
+      { id: 5, image: require("../../../../assets/person-1.jpg") },
+      { id: 6, image: require("../../../../assets/person4.jpg") },
+      { id: 7, image: require("../../../../assets/person2.jpg") },
+    ],
+  },
+  {
+    id: 2,
+    challengeImage: require("../../../../assets/person3.jpg"),
+    challengeName: "Muscle Power Marathon",
+    duration: "7 Hours",
+    beginingDate: "AGU 3",
+    endingDate: "sep 3",
+    year: 2024,
+
+    Buddies: [{ id: 1, image: require("../../../../assets/person-1.jpg") }],
+  },
+  {
+    id: 3,
+    challengeImage: require("../../../../assets/person2.jpg"),
+    challengeName: "Vitality Sprint quest",
+    duration: "7 Hours",
+    beginingDate: "AGU 3",
+    endingDate: "sep 3",
+    year: 2024,
+
+    Buddies: [
+      { id: 1, image: require("../../../../assets/person-1.jpg") },
+      { id: 2, image: require("../../../../assets/person2.jpg") },
+      { id: 3, image: require("../../../../assets/person3.jpg") },
+      { id: 4, image: require("../../../../assets/person4.jpg") },
+      { id: 5, image: require("../../../../assets/person5.jpg") },
+    ],
+  },
+];

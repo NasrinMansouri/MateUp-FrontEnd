@@ -5,7 +5,12 @@ import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 import BulletPointWithText from "../BulletPointWithText";
 import colors from "../../config/colors";
 
-export default function BulletList({ titles, textColor, header, showMoreAsText }) {
+export default function BulletList({
+  titles,
+  textColor,
+  header,
+  showMoreAsText,
+}) {
   const [expanded, setExpanded] = useState(false);
   const maxType = 3;
 

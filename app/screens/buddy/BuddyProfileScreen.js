@@ -10,7 +10,11 @@ import {
   ProfileTile,
   UserImage,
 } from "../../components/shareMemberProfile";
-import { GalleryBuddies, RequestCalendarAccess } from "../../components/buddy";
+import {
+  GalleryBuddies,
+  RequestCalendarAccess,
+  GalleryMemberJoinedChallenges,
+} from "../../components/buddy";
 import ListBulletPointWithText from "../../components/ListBulletPointWithText";
 import membersApi from "../../api/members";
 import BulletList from "../../components/shareMemberProfile/BulletList";
@@ -131,7 +135,6 @@ export default function BuddyProfileScreen({ route, navigation }) {
     userworkout,
     level,
     buddiesData,
-    joinedChallengeData,
   } = memberProfile;
 
   return (
@@ -159,7 +162,6 @@ export default function BuddyProfileScreen({ route, navigation }) {
             backgroundColor={buttonClicked.backgroundColor}
             textColor={buttonClicked.textColor}
             onPress={handleButtonClicked}
-            // onPress={() => // console.log("add As buddy btn pressed")}
             fontSize={14}
           />
         </View>
@@ -190,12 +192,8 @@ export default function BuddyProfileScreen({ route, navigation }) {
           onPress={(item) => handlePressBuddy(item)}
         />
         <Line marginTop={22} marginBottom={22} width={"90%"} />
-        {/* <GalleryJoinedChallenge
-          // joinedChallenge={joinedChallengeData}
-          joinedChallenge={memberProfile.joinedChallengeData}
-          header={"joined challenges"}
-        /> */}
-        <Line marginTop={22} marginBottom={22} width={"90%"} />
+        <GalleryMemberJoinedChallenges header={"joined challenges"} />
+        <Line marginTop={22} marginBottom={22} width={"0"} />
         <RequestCalendarAccess
           userFirstName={memberProfile.user.name}
           onPressGoToTop={goToTop}

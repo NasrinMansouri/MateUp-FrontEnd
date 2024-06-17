@@ -13,65 +13,65 @@ import membersApi from "../../api/members";
 function GalleryPeopleYouMightKnow({ onPress }) {
   const navigation = useNavigation();
   //dummy data for testing
-  // const membersData = [
-  //   {
-  //     id: 1,
-  //     name: "Red ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Couch ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Couch ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Couch111111111 ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "Couch ",
-  //     image: require("../../../assets/person-1.jpg"),
-  //   },
-  // ];
+  const membersData = [
+    {
+      id: 1,
+      name: "Marry",
+      image: require("../../../assets/person4.jpg"),
+    },
+    {
+      id: 2,
+      name: "sarah peterson",
+      image: require("../../../assets/person2.jpg"),
+    },
+    {
+      id: 3,
+      name: "Jerermy Smith",
+      image: require("../../../assets/person5.jpg"),
+    },
+    {
+      id: 4,
+      name: "Peter Love",
+      image: require("../../../assets/person-1.jpg"),
+    },
+    {
+      id: 5,
+      name: "lily Evans",
+      image: require("../../../assets/person3.jpg"),
+    },
+  ];
 
-  const [memberId, setMemberId] = useState(0);
-  const [youMightKnow, setYouMightKnow] = useState([]);
+  // const [memberId, setMemberId] = useState(0);
+  // const [youMightKnow, setYouMightKnow] = useState([]);
 
-  // Load memberId from AsyncStorage
-  const loadMemberId = async () => {
-    try {
-      const memberId = await getFromAsyncStorage("memberId");
-      setMemberId(memberId);
-    } catch (error) {
-      console.error("Error loading memberId:", error);
-    }
-  };
+  // // Load memberId from AsyncStorage
+  // const loadMemberId = async () => {
+  //   try {
+  //     const memberId = await getFromAsyncStorage("memberId");
+  //     setMemberId(memberId);
+  //   } catch (error) {
+  //     console.error("Error loading memberId:", error);
+  //   }
+  // };
 
-  useEffect(() => {
-    // Load memberId
-    loadMemberId();
-    // if memberId exists, load buddies
-    if (memberId) {
-      loadmembersYouMightKnow();
-    }
-  }, [memberId]);
+  // useEffect(() => {
+  //   // Load memberId
+  //   loadMemberId();
+  //   // if memberId exists, load buddies
+  //   if (memberId) {
+  //     loadmembersYouMightKnow();
+  //   }
+  // }, [memberId]);
 
-  const loadmembersYouMightKnow = async () => {
-    try {
-      const memberId = await getFromAsyncStorage("memberId");
-      const response = await membersApi.getmembersYouMightKnow(memberId);
-      setYouMightKnow(response.data.people_you_might_know);
-    } catch (error) {
-      console.error("Error loading buddies:", error);
-    }
-  };
+  // const loadmembersYouMightKnow = async () => {
+  //   try {
+  //     const memberId = await getFromAsyncStorage("memberId");
+  //     const response = await membersApi.getmembersYouMightKnow(memberId);
+  //     setYouMightKnow(response.data.people_you_might_know);
+  //   } catch (error) {
+  //     console.error("Error loading buddies:", error);
+  //   }
+  // };
 
   const capitalizeFirstLetter = (string) => {
     // capitalize first letter and make rest lowercase
@@ -85,20 +85,14 @@ function GalleryPeopleYouMightKnow({ onPress }) {
           style={styles.container}
           horizontal
           showsHorizontalScrollIndicator={false}
-          data={youMightKnow}
-          initialNumToRender={
-            youMightKnow && youMightKnow.length > 0
-              ? youMightKnow.length
-              : undefined
-          }
+          data={membersData}
           keyExtractor={(members) => members.id.toString()}
           renderItem={({ item }) => (
             <CardProfile
-              // onPressProfile={() => navigation.navigate("MemberProfile", item)}
               onPressProfile={() => onPress(item)}
               name={capitalizeFirstLetter(item.name)}
               backgroundColor={colors.blackBc}
-              image={{ uri: item.profile_image_url }}
+              image={item.image}
               flexDirection={"column"}
               cardWidth={120}
               cardHeight={98}

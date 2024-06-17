@@ -36,7 +36,7 @@ const LoginScreen = ({ route }, props) => {
       await clearStorage();
 
       const response = await axios.post(
-        "https://26c3-2a02-a03f-6a9f-7101-4192-2688-1d92-3d22.ngrok-free.app/api/user/login",
+        "https://73de-2a02-a03f-6a9f-7101-4192-2688-1d92-3d22.ngrok-free.app/api/user/login",
         {
           email,
           password,

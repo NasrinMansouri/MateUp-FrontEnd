@@ -11,10 +11,50 @@ import { useNavigation } from "@react-navigation/native";
 import CardJoinedChallenge from "../challenge/CardJoinedChallenge";
 import colors from "../../config/colors";
 
+const joinedChallenge = [
+  {
+    id: 1,
+    challenegImage: require("../../../assets/person2.jpg"),
+    challengeName: "Cardio Boost Challenge",
+    challengeGoal: "15 Hours",
+    startDate: "Aug 3",
+    endDate: "Aug 4",
+    year: "2022",
+    time: "10:00 AM",
+  },
+  {
+    id: 2,
+    challenegImage: require("../../../assets/person3.jpg"),
+    challengeName: "HIIT Power Journey",
+    challengeGoal: "15 Hours",
+    startDate: "Aug 3",
+    endDate: "Aug 4",
+    year: "2022",
+    time: "10:00 AM",
+  },
+  {
+    id: 3,
+    challenegImage: require("../../../assets/person3.jpg"),
+    challengeName: "Core Strength Blitz",
+    challengeGoal: "15 Hours",
+    startDate: "Aug 3",
+    endDate: "Aug 4",
+    year: "2022",
+    time: "10:00 AM",
+  },
+  {
+    id: 4,
+    challenegImage: require("../../../assets/person5.jpg"),
+    challengeName: "Muscle Gain Quest",
+    challengeGoal: "15 Hours",
+    startDate: "Aug 3",
+    endDate: "Aug 4",
+    year: "2022",
+    time: "10:00 AM",
+  },
+];
 export default function GalleryMemberJoinedChallenges({
-  joinedChallenge,
   header,
-  onPress,
   loading,
   fontSize = 26,
 }) {
@@ -38,16 +78,16 @@ export default function GalleryMemberJoinedChallenges({
         style={styles.container}
         horizontal
         data={joinedChallenge}
-        initialNumToRender={joinedChallenge && joinedChallenge.length > 0 ? joinedChallenge.length : undefined}
+        initialNumToRender={
+          joinedChallenge && joinedChallenge.length > 0
+            ? joinedChallenge.length
+            : undefined
+        }
         keyExtractor={(challenges) => challenges.id.toString()}
         renderItem={({ item }) => (
           <CardJoinedChallenge
-            // onPress={() => navigation.navigate("JoinedChallenge", item)}
-            onPress={() => onPress(item)}
-            // onPress={() =>
-            //   navigation.navigate("JoinedChallenge", { item: item.id })
-            // }
-            challenegImage={{uri: item.challenegImage}}
+            onPress={console.log("joined challene for member clicked", item.id)}
+            challenegImage={item.challenegImage}
             challengeName={item.challengeName}
             challengeGoal={item.challengeGoal}
             startDate={item.startDate}

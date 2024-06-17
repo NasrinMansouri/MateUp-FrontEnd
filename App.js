@@ -325,7 +325,7 @@ const challengeYourBuddiesJoined = [
   {
     id: 1,
     image: require("./assets/person-1.jpg"),
-    challengeName: "Weekly Challenge",
+    challengeName: "Vitality Voyage Challenge",
     duration: "7 Hours",
     beginingDate: "AGU 3",
     endingDate: "sep 3",
@@ -346,7 +346,7 @@ const challengeYourBuddiesJoined = [
   {
     id: 2,
     image: require("./assets/person-1.jpg"),
-    challengeName: "Weekly Challenge",
+    challengeName: "Muscle Power Marathon",
     duration: "7 Hours",
     beginingDate: "AGU 3",
     endingDate: "sep 3",
@@ -359,7 +359,7 @@ const challengeYourBuddiesJoined = [
   {
     id: 3,
     image: require("./assets/person-1.jpg"),
-    challengeName: "Weekly Challenge",
+    challengeName: "Fitness Elevation",
     duration: "7 Hours",
     beginingDate: "AGU 3",
     endingDate: "sep 3",
@@ -515,7 +515,7 @@ const memberProfile = {
     },
     {
       id: 2,
-      name: "John Doeeeeeeeeeeeeeeeeeee",
+      name: "John Doe",
       image: require("./assets/person3.jpg"),
     },
     {
@@ -525,7 +525,7 @@ const memberProfile = {
     },
     {
       id: 4,
-      name: "John Doeeeeeeeeeeeeeeeeeee",
+      name: "John Doe",
       image: require("./assets/person3.jpg"),
     },
     {
