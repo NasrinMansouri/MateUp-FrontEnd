@@ -23,12 +23,21 @@ export default function BuddyProfileScreen({ route, navigation }) {
   const scrollRef = useRef();
   const [memberProfile, setMemberProfile] = useState(null); //or ({}) //pass an empty object
   const [buddies, setBuddies] = useState([]);
+  //to change the state of button when clicked
+  const [buttonClicked, setButtonClicked] = useState({
+    title: "Send Buddy Request",
+    backgroundColor: colors.green,
+  });
 
-  const { isBuddy } = route.params;
+  const { isBuddy, memberId } = route.params;
 
   useEffect(() => {
     loadBuddies();
   }, []);
+
+  useEffect(() => {
+    loadMemberProfile();
+  }, [memberId]);
 
   useEffect(() => {
     if (isBuddy !== undefined) {
@@ -59,35 +68,24 @@ export default function BuddyProfileScreen({ route, navigation }) {
     }
   };
 
-  //to change the state of button when clicked
-  const [buttonClicked, setButtonClicked] = useState({
-    title: "Send Buddy Request",
-    backgroundColor: colors.green,
-  });
-  const { memberId } = route.params;
-
-  // for backend connection
-  // console.log('isBuddy on buddyProfileScreen', isBuddy)
+  // to change the state of button locally when clicked
   const handleButtonClicked = () => {
-    if (isBuddy) {
-      setButtonClicked({
-        title: "Delete Buddy",
-        backgroundColor: colors.orangeSecondary,
-        textColor: colors.danger,
-      });
-    } else {
-      setButtonClicked({
-        title: "Send Buddy Request",
-        backgroundColor: colors.green,
-      });
-    }
+    setButtonClicked((prevState) => {
+      if (prevState.title === "Send Buddy Request") {
+        return {
+          title: "Cancel Buddy Request",
+          backgroundColor: colors.black,
+          textColor: colors.danger,
+        };
+      } else {
+        return {
+          title: "Send Buddy Request",
+          backgroundColor: colors.green,
+          textColor: colors.white,
+        };
+      }
+    });
   };
-
-  //for backend connection
-  // load member profile based on memberId
-  useEffect(() => {
-    loadMemberProfile();
-  }, [memberId]);
 
   const loadMemberProfile = async () => {
     try {
@@ -112,7 +110,6 @@ export default function BuddyProfileScreen({ route, navigation }) {
   };
 
   const handleGoToCalendar = () => {
-    // navigation.navigate("Calendar");
     console.log("going to calendar");
   };
 
