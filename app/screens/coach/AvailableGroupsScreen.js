@@ -10,7 +10,10 @@ import coaches from "../../api/coaches";
 
 export default function AvailableGroupsScreen({ navigation, route }) {
   const { trainerId } = route.params;
+  const [availableGroups, setAvailableGroups] = React.useState([]);
+
   console.log("trainerId on AvailableGroupsScreen", trainerId);
+
   // for recieveing notification
   useEffect(() => {
     // Request notification permissions
@@ -51,8 +54,6 @@ export default function AvailableGroupsScreen({ navigation, route }) {
       console.log("Error scheduling notification:", error);
     }
   };
-
-  const [availableGroups, setAvailableGroups] = React.useState([]);
 
   useEffect(() => {
     loadSessions();
