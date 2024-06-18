@@ -7,36 +7,30 @@ import { ModalHeader, DropDownList, DatePicker, Gender } from "../filter";
 import TimePicker from "../filter/TimePicker";
 
 const FilterModalCoach = ({ setModalVisible }) => {
-  //to apply reset, when clicked on reset button
-
-  const dataWorkout = [
+  const dataExpertise = [
     {
       Key: "1",
-      value: "Strength Training",
+      value: "Get Fitter",
     },
     {
       Key: "2",
-      value: "Running",
+      value: "Lose Weight",
     },
     {
       Key: "3",
-      value: "Yoga",
+      value: "Functional Training",
     },
     {
       Key: "4",
-      value: "GXR",
+      value: "Improve Performance",
     },
     {
       Key: "5",
-      value: "Group Class",
+      value: "Gey stronger",
     },
     {
       Key: "6",
-      value: "Cycling",
-    },
-    {
-      Key: "7",
-      value: "Dance",
+      value: "Improve muscle tone",
     },
   ];
 
@@ -55,6 +49,48 @@ const FilterModalCoach = ({ setModalVisible }) => {
     },
   ];
 
+  const dataLanguage = [
+    {
+      Key: "1",
+      value: "English",
+    },
+    {
+      Key: "2",
+      value: "French",
+    },
+    {
+      Key: "3",
+      value: "Dutch",
+    },
+    {
+      Key: "4",
+      value: "Spanish",
+    },
+    {
+      Key: "5",
+      value: "German",
+    },
+  ];
+
+  const dataRate = [
+    {
+      Key: "1",
+      value: "90 euro per hour and group",
+    },
+    {
+      Key: "2",
+      value: "100 euro per hour and group",
+    },
+    {
+      Key: "3",
+      value: "120 euro per hour and group",
+    },
+    {
+      Key: "4",
+      value: "150 euro per hour and group",
+    },
+  ];
+
   return (
     <View>
       <ModalHeader title="Filter" onPress={() => setModalVisible(false)} />
@@ -63,7 +99,7 @@ const FilterModalCoach = ({ setModalVisible }) => {
         <DropDownList
           title={"Expertise"}
           placeholder={"Select workout"}
-          data={dataWorkout}
+          data={dataExpertise}
         />
         <DropDownList
           title={"Location"}
@@ -75,12 +111,12 @@ const FilterModalCoach = ({ setModalVisible }) => {
         <DropDownList
           title={"Language"}
           placeholder={"Select location"}
-          data={dataLocation}
+          data={dataLanguage}
         />
         <DropDownList
           title={"rate"}
           placeholder={"Select Rate"}
-          data={dataLocation}
+          data={dataRate}
         />
         <View style={styles.btnContainer}>
           <AppButton
