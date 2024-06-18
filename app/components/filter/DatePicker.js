@@ -57,6 +57,7 @@ export default function DatePicker({ title, setFieldValue, ...otherProps }) {
             backgroundColor={colors.white}
             borderColor={colors.black}
             textColor={colors.black}
+            borderRadius={5}
           />
           <AppButtonBorder
             onPress={confirmIOSDate}
@@ -66,6 +67,7 @@ export default function DatePicker({ title, setFieldValue, ...otherProps }) {
             backgroundColor={colors.black}
             borderColor={colors.green}
             textColor={colors.orangePrimary}
+            borderRadius={5}
           />
         </View>
       )}

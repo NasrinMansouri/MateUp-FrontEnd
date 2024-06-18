@@ -71,7 +71,6 @@ const FilterModal = ({ setModalVisible }) => {
           data={dataLocation}
         />
         <DatePicker title="When" placeholder={"Select date"} />
-        {/* <TimePicker title="Time" placeholder={"Select time"} /> */}
         <View style={styles.btnContainer}>
           <AppButton
             title="Reset"
