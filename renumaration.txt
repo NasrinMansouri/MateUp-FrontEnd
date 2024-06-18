@@ -1,9 +1,9 @@
 Hey dear Stijn!
 
-well, its difficult to say honestly, but I must say this last two
+well, its difficult to say honestly, but I must say these last two
 weeks I have been sick. I did half of the connection and then Matea did the other half. 
-I was using apiSauce at the begining but then I saw Matea changed it and
-started using axios instead. You can also view her contribution in github which is
+I was using apiSauce at the beginning but then I saw Matea changed it and
+started using axios instead. You can also view her contribution on Github which is
 mainly for connection.
 
 Thanks,
